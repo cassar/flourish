@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
   def welcome
-    @member_count = Profile.count
+    @member_count = Member.count
   end
 end
