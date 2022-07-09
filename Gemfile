@@ -67,4 +67,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  # A mocking and stubbing library for Ruby
+  gem 'mocha'
 end
