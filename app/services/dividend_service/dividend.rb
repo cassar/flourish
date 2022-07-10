@@ -3,7 +3,7 @@ class DividendService::Dividend
     MINIMUM_DIVIDEND = 10
 
     def next_dividend_amount
-      next_paying_period.dividend
+      Money.from_amount(next_paying_period.dividend).format
     end
 
     def next_dividend_date
@@ -22,7 +22,7 @@ class DividendService::Dividend
         return periods if (last_period = periods.last).dividend_to_pay?
 
         periods << last_period.next_period(
-          contributions: 500
+          contributions: TotalContributionsService.amount
         )
       end
     end
@@ -33,7 +33,7 @@ class DividendService::Dividend
         start_date: Date.today,
         distribution: DividendService::Distribution.new(
           member_count: MemberCountService.call,
-          available_funds: 500,
+          available_funds: TotalContributionsService.amount,
           minimum_dividend: MINIMUM_DIVIDEND
         )
       )
