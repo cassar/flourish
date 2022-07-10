@@ -4,12 +4,13 @@ class MemberGeneratorJob < ApplicationJob
   MAX_MEMBER_COUNT = 100
   MULTIPLIER = 100
   CONTRIBUTION_RATIO = 1
+  WAIT_TIME = 3.seconds
 
   def perform(*args)
     return Member.destroy_all if stop?
 
     Member.create!(contribution_amount: contribution_amount)
-    self.class.set(wait: 3.seconds).perform_later
+    self.class.set(wait: WAIT_TIME).perform_later
   end
 
   def contribution_amount
