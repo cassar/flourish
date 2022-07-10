@@ -19,15 +19,11 @@ class DividendService::Dividend
     private
 
     def next_paying_period
-      periods.find(&:dividend_to_pay?)
-    end
-
-    def periods
-      periods = [first_period]
+      last_period = first_period
       loop do
-        return periods if (last_period = periods.last).dividend_to_pay?
+        return last_period if last_period.dividend_to_pay?
 
-        periods << last_period.next_period(
+        last_period = last_period.next_period(
           contributions: TotalContributionsService.amount
         )
       end
