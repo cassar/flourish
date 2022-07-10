@@ -15,7 +15,7 @@ class Member < ApplicationRecord
   def broadcast_contribution_total
     ActionCable.server.broadcast(
       ContributionTotalChannel::COMMON,
-      {contribution_total: ContributionTotalService.call}
+      {contribution_total: TotalContributionsService.call}
     )
   end
 end

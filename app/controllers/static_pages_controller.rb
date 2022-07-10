@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
 
   def welcome
     @member_count = MemberCountService.call
-    @contribution_total = ContributionTotalService.call
+    @contribution_total = TotalContributionsService.call
   end
 
   private

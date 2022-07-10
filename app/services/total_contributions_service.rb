@@ -1,4 +1,4 @@
-class ContributionTotalService
+class TotalContributionsService
   class << self
     def call
       Money.from_amount(contribution_total).format
