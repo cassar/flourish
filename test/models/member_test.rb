@@ -11,4 +11,9 @@ class MemberTest < ActiveSupport::TestCase
     assert_equal 'Validation failed: Contribution amount must be greater than or equal to 0',
       error.message
   end
+
+  test "should broadcast changes after save commit" do
+    ActionCable::Server::Base.any_instance.stubs(:broadcast).twice
+    members(:robert).update contribution_amount: 0
+  end
 end
