@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   after_action :start_member_generator
 
   def welcome
-    @member_count = Member.count
+    @member_count = MemberCountService.call
   end
 
   private
