@@ -1,13 +1,11 @@
 class TotalContributionsService
   class << self
-    def call
-      Money.from_amount(contribution_total).format
+    def amount
+      Member.all.sum(:contribution_amount)
     end
 
-    private
-
-    def contribution_total
-      Member.all.sum(:contribution_amount)
+    def formatted
+      Money.from_amount(amount).format
     end
   end
 end
