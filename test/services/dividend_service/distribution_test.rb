@@ -35,4 +35,15 @@ class DividendService::DistributionTest < ActiveSupport::TestCase
     assert distribution.dividend_to_pay?
     assert_equal 5, distribution.dividend
   end
+
+  test "#dividend when there are no members" do
+    distribution = DividendService::Distribution.new(
+      available_funds: 10,
+      minimum_dividend: 5,
+      member_count: 0,
+    )
+    assert_nothing_raised do
+      assert_equal 0, distribution.dividend
+    end
+  end
 end

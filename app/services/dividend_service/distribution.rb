@@ -13,5 +13,7 @@ class DividendService::Distribution
 
   def dividend
     available_funds / member_count
+  rescue ZeroDivisionError
+    0
   end
 end
