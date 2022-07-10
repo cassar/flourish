@@ -7,31 +7,42 @@ class DividendService::DividendTest < ActiveSupport::TestCase
   end
 
   test ".next_dividend_amount" do
-    TotalContributionsService.stubs(:amount).returns(500)
+    dividend = DividendService::Dividend.new(
+      total_contributions: 500,
+      member_count: 2
+    )
 
-    assert_equal "$250.00", DividendService::Dividend.next_dividend_amount
+    assert_equal "$250.00", dividend.amount_formatted
   end
 
   test ".next_dividend_amount when no contributions" do
-    TotalContributionsService.stubs(:amount).returns(0)
+    dividend = DividendService::Dividend.new(
+      total_contributions: 0,
+      member_count: 2
+    )
 
     assert_nothing_raised do
-      assert_equal "$0.00", DividendService::Dividend.next_dividend_amount
+      assert_equal "$0.00", dividend.amount_formatted
     end
   end
 
   test ".next_dividend_date" do
-    TotalContributionsService.stubs(:amount).returns(500)
+    dividend = DividendService::Dividend.new(
+      total_contributions: 500,
+      member_count: 2
+    )
 
-    assert_equal "December 11th, 2020",
-      DividendService::Dividend.next_dividend_date
+    assert_equal "December 11th, 2020", dividend.date_formatted
   end
 
   test ".next_dividend_date when no contributions" do
-    TotalContributionsService.stubs(:amount).returns(0)
+    dividend = DividendService::Dividend.new(
+      total_contributions: 0,
+      member_count: 2
+    )
 
     assert_nothing_raised do
-      assert_equal 'never', DividendService::Dividend.next_dividend_date
+      assert_equal 'never', dividend.date_formatted
     end
   end
 end

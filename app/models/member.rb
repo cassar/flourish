@@ -9,7 +9,7 @@ class Member < ApplicationRecord
   def broadcast_member_count
     ActionCable.server.broadcast(
       MemberCountChannel::COMMON,
-      {member_count: MemberCountService.call}
+      {member_count: member_count}
     )
   end
 
@@ -24,9 +24,20 @@ class Member < ApplicationRecord
     ActionCable.server.broadcast(
       DividendInformationChannel::COMMON,
       {
-        dividend_amount: DividendService::Dividend.next_dividend_amount,
-        dividend_date: DividendService::Dividend.next_dividend_date
+        dividend_amount: dividend.amount_formatted,
+        dividend_date: dividend.date_formatted
       }
     )
+  end
+
+  def dividend
+    DividendService::Dividend.new(
+      total_contributions: TotalContributionsService.amount,
+      member_count: member_count
+    )
+  end
+
+  def member_count
+    MemberCountService.call
   end
 end
