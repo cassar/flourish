@@ -1,7 +1,14 @@
 require "test_helper"
 
 class MemberTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "member contribution cannot be less than 0" do
+    assert members(:robert).contribution_amount >= 0
+
+    error = assert_raises ActiveRecord::RecordInvalid do
+      members(:robert).update! contribution_amount: -1
+    end
+
+    assert_equal 'Validation failed: Contribution amount must be greater than or equal to 0',
+      error.message
+  end
 end
