@@ -2,8 +2,8 @@ class MemberGeneratorJob < ApplicationJob
   queue_as :default
 
   MAX_MEMBER_COUNT = 100
-  MULTIPLIER = 100
-  CONTRIBUTION_RATIO = 1
+  MULTIPLIER = 10
+  CONTRIBUTION_RATIO = 100
   WAIT_TIME = 3.seconds
 
   def perform(*args)
