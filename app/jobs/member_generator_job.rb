@@ -7,9 +7,17 @@ class MemberGeneratorJob < ApplicationJob
   WAIT_TIME = 3.seconds
 
   def perform(*args)
-    return Member.destroy_all if stop?
+    return clean_up if stop?
 
+    create_new_member
+    queue_again
+  end
+
+  def create_new_member
     Member.create!(contribution_amount: contribution_amount)
+  end
+
+  def queue_again
     self.class.set(wait: WAIT_TIME).perform_later
   end
 
@@ -33,6 +41,10 @@ class MemberGeneratorJob < ApplicationJob
 
   def member_count
     MemberCountService.call
+  end
+
+  def clean_up
+    Member.destroy_all
   end
 
   def max_member_count
