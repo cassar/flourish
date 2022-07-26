@@ -49,7 +49,7 @@ gem "sassc-rails"
 # Usable, fast, simple HTTP 1.1 for Ruby
 gem "excon"
 
-# Simple Rails app configuration 
+# Simple Rails app configuration
 gem "figaro"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
@@ -78,4 +78,6 @@ group :test do
   gem "webdrivers"
   # A mocking and stubbing library for Ruby
   gem 'mocha'
+  # Library for stubbing and setting expectations on HTTP requests in Ruby. 
+  gem "webmock"
 end
