@@ -28,7 +28,7 @@ gem "jbuilder"
 # Use Redis adapter to run Action Cable in production
 gem "redis", "~> 4.0"
 
-# A Ruby Library for dealing with money and currency conversion. 
+# A Ruby Library for dealing with money and currency conversion.
 gem "money"
 
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
@@ -45,6 +45,9 @@ gem "bootsnap", require: false
 
 # Use Sass to process CSS
 gem "sassc-rails"
+
+# Usable, fast, simple HTTP 1.1 for Ruby
+gem "excon"
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
