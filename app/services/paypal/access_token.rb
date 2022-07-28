@@ -6,7 +6,7 @@ class Paypal::AccessToken
   private
 
   def self.response
-    Excon.post(ENV['paypal_access_token_url'],
+    Excon.post(auth_token_url,
       headers: { 'Content-Type' => 'application/x-www-form-urlencoded' },
       user: ENV['paypal_client_id'],
       password: ENV['paypal_client_secret'],
@@ -14,5 +14,9 @@ class Paypal::AccessToken
         grant_type: 'client_credentials'
       )
     )
+  end
+
+  def self.auth_token_url
+    "#{ENV['paypal_api_v1_url']}/oauth2/token"
   end
 end

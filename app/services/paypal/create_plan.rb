@@ -6,7 +6,7 @@ class Paypal::CreatePlan
   private
 
   def self.response
-    Excon.post(ENV['paypal_create_plan_url'],
+    Excon.post(plans_url,
       headers: {
         'Accept' => 'application/json',
         'Content-Type' => 'application/json',
@@ -49,5 +49,9 @@ class Paypal::CreatePlan
         }
       }.to_json
     )
+  end
+
+  def self.plans_url
+    "#{ENV['paypal_api_v1_url']}/billing/plans"
   end
 end

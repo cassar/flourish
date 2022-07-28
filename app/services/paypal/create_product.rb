@@ -6,7 +6,7 @@ class Paypal::CreateProduct
   private
 
   def self.response
-    Excon.post(ENV['paypal_create_product_url'],
+    Excon.post(product_url,
       headers: {
         'Content-Type' => 'application/json',
         'Authorization' => "Bearer #{Paypal::AccessToken.call}",
@@ -21,5 +21,9 @@ class Paypal::CreateProduct
         home_url: 'https://example.com/home'
       }.to_json
     )
+  end
+
+  def self.product_url
+    "#{ENV['paypal_api_v1_url']}/catalogs/products"
   end
 end
