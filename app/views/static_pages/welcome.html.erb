@@ -6,4 +6,5 @@
     <p>To pay a dividend of <span id="dividend_amount"><%= @dividend_amount %></span> per member</p>
     <p>Next dividend paid <span id="dividend_date"><%= @dividend_date %></span></p>
   </article>
+  <%= render partial: 'paypal_buttons' %>
 </main>
