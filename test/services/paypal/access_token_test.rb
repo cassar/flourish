@@ -4,7 +4,7 @@ class Paypal::AccessTokenTest < ActiveSupport::TestCase
   test ".call" do
     access_token = "Test Access Token"
 
-    stub_request(:post, ENV['paypal_access_token_url'])
+    stub_request(:post, "#{ENV['paypal_api_v1_url']}/oauth2/token")
       .with(
         body: {"grant_type"=>"client_credentials"},
         headers: {
