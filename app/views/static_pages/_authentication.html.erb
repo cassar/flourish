@@ -1,0 +1,10 @@
+<% if user_signed_in? %>
+  <%= button_to "Log Out", logout_path, method: :delete %>
+<% else %>
+  <%= link_to signup_path do %>
+    <button>Sign Up</button>
+  <% end %>
+  <%= link_to login_path do %>
+    <button>Login</button>
+  <% end %>
+<% end %>
