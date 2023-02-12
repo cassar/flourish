@@ -2,4 +2,4 @@
 
 Flourish - a Universal Income Cooperative
 
-Attempting to make a web application that can be hooked into a payments api.
+This project used actioncable to refrash a live dashboard for number of contributors, and next dividend.
