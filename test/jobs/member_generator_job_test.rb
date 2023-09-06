@@ -7,7 +7,7 @@ class MemberGeneratorJobTest < ActiveJob::TestCase
     assert_difference -> { Member.count }, 1 do
       MemberGeneratorJob.perform_now
     end
-    assert 0 <= Member.last.contribution_amount
+    assert_operator 0, :<=, Member.last.contribution_amount
   end
 
   test "resets member count when limit reached and does not queue another job" do

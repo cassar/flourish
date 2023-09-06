@@ -1,6 +1,10 @@
 require "test_helper"
 
 class MemberTest < ActiveSupport::TestCase
+  test "associations" do
+    assert_equal users(:one), members(:robert).user
+  end
+
   test "member contribution cannot be less than 0" do
     assert members(:robert).contribution_amount >= 0
 

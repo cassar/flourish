@@ -1,4 +1,6 @@
 class Member < ApplicationRecord
+  belongs_to :user
+
   after_save_commit :broadcast_member_count, :broadcast_contribution_total,
     :broadcast_dividend_information
 

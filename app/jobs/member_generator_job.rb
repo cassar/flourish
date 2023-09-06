@@ -14,7 +14,8 @@ class MemberGeneratorJob < ApplicationJob
   end
 
   def create_new_member
-    Member.create!(contribution_amount: contribution_amount)
+    user = User.create!(email: "user#{next_user_id}@example.com", password: 'password')
+    Member.create!(user: user, contribution_amount: contribution_amount)
   end
 
   def queue_again
@@ -44,10 +45,24 @@ class MemberGeneratorJob < ApplicationJob
   end
 
   def clean_up
-    Member.destroy_all
+    User.destroy_all
   end
 
   def max_member_count
     MAX_MEMBER_COUNT
+  end
+
+  def next_user_id
+    last_user_id + 1
+  end
+
+  def last_user_id
+    return 0 if last_user.nil?
+    
+    last_user.id
+  end
+  
+  def last_user
+    User.last
   end
 end

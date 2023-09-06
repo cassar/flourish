@@ -7,7 +7,4 @@
 robert:
   name: Robert Owen
   contribution_amount: 15
-
-#
-two: {}
-# column: value
+  user: one
