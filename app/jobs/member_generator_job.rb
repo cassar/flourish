@@ -14,7 +14,7 @@ class MemberGeneratorJob < ApplicationJob
   end
 
   def create_new_member
-    user = User.create!(email: "user#{next_user_id}@example.com", password: 'password')
+    user = User.create!(email: "user#{random_hex}@example.com", password: 'password')
     Member.create!(user: user, contribution_amount: contribution_amount)
   end
 
@@ -52,17 +52,7 @@ class MemberGeneratorJob < ApplicationJob
     MAX_MEMBER_COUNT
   end
 
-  def next_user_id
-    last_user_id + 1
-  end
-
-  def last_user_id
-    return 0 if last_user.nil?
-    
-    last_user.id
-  end
-  
-  def last_user
-    User.last
+  def random_hex
+    SecureRandom.hex(4)
   end
 end
