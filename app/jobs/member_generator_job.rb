@@ -45,7 +45,7 @@ class MemberGeneratorJob < ApplicationJob
   end
 
   def clean_up
-    User.destroy_all
+    User.where.not(email: User::ADMIN_EMAIL).destroy_all
   end
 
   def max_member_count
