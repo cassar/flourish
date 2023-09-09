@@ -1,10 +1,12 @@
 class Member < ApplicationRecord
   belongs_to :user
 
+  MINIMUM_CONTRIBUTION_AMOUNT = 0
+
   after_save_commit :broadcast_member_count, :broadcast_contribution_total,
     :broadcast_dividend_information
 
-  validates :contribution_amount, numericality: { greater_than_or_equal_to: 0 }
+  validates :contribution_amount, numericality: { greater_than_or_equal_to: MINIMUM_CONTRIBUTION_AMOUNT }
 
   private
 
