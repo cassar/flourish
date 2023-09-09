@@ -273,7 +273,7 @@ DEPENDENCIES
   money
   pg (~> 1.1)
   puma (~> 5.0)
-  rails (~> 7.0.4)
+  rails (~> 7.0.8)
   redis (~> 4.0)
   sassc-rails
   selenium-webdriver
