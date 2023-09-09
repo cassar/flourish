@@ -13,3 +13,9 @@
  *= require_tree .
  *= require_self
  */
+
+nav a, nav form {
+  float: left;
+  margin-right: 5px; 
+}
+
