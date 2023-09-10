@@ -77,6 +77,9 @@ group :development do
 
   # A Ruby static code analyzer and formatter, based on the community Ruby style guide.
   gem 'rubocop', require: false
+
+  # Code style checking for Capybara files.
+  gem 'rubocop-capybara', require: false
 end
 
 group :test do
