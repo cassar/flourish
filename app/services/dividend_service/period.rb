@@ -2,6 +2,9 @@ module DividendService
   class Period
     attr_reader :duration, :start_date, :distribution
 
+    delegate :dividend_to_pay?, to: :distribution
+    delegate :dividend, to: :distribution
+
     class NoExtraFundsError < StandardError; end
 
     def initialize(duration:, start_date:, distribution:)
@@ -10,16 +13,8 @@ module DividendService
       @distribution = distribution
     end
 
-    def dividend_to_pay?
-      distribution.dividend_to_pay?
-    end
-
     def undistributed_funds
       distribution.available_funds
-    end
-
-    def dividend
-      distribution.dividend
     end
 
     def dividend_date

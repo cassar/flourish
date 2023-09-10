@@ -4,7 +4,7 @@ module DividendService
   class DividendTest < ActiveSupport::TestCase
     setup do
       date = Date.parse('2020 Dec 4th')
-      Date.stubs(:today).returns(date).once
+      Time.zone.stubs(:today).returns(date).once
     end
 
     test '.next_dividend_amount' do

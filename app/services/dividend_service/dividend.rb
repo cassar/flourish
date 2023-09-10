@@ -19,7 +19,7 @@ module DividendService
     end
 
     def date_formatted
-      next_dividend_date.to_formatted_s(:long_ordinal)
+      next_dividend_date.to_fs(:long_ordinal)
     rescue DividendService::Period::NoExtraFundsError
       NEVER
     end
@@ -46,7 +46,7 @@ module DividendService
     def first_period
       DividendService::Period.new(
         duration: PERIOD_DURATION,
-        start_date: Date.today,
+        start_date: Time.zone.today,
         distribution: DividendService::Distribution.new(
           member_count:,
           available_funds: total_contributions,
