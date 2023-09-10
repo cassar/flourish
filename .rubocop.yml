@@ -6,6 +6,7 @@ AllCops:
     - 'bin/**/*'
 
 require:
+  - rubocop-rails
   - rubocop-capybara
 
 Style/FrozenStringLiteralComment:
