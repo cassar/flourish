@@ -1,7 +1,7 @@
-require "test_helper"
+require 'test_helper'
 
 class MemberCountChannelTest < ActionCable::Channel::TestCase
-  test "subscribes" do
+  test 'subscribes' do
     subscribe
     assert subscription.confirmed?
   end

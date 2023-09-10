@@ -1,7 +1,7 @@
-require "test_helper"
+require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  test "should get welcome" do
+  test 'should get welcome' do
     MemberGeneratorJob.stubs(:perform_now).once
 
     get root_path

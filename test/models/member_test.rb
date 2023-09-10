@@ -1,11 +1,11 @@
-require "test_helper"
+require 'test_helper'
 
 class MemberTest < ActiveSupport::TestCase
-  test "associations" do
+  test 'associations' do
     assert_equal users(:one), members(:robert).user
   end
 
-  test "member contribution cannot be less than 0" do
+  test 'member contribution cannot be less than 0' do
     assert members(:robert).contribution_amount >= 0
 
     error = assert_raises ActiveRecord::RecordInvalid do
@@ -13,10 +13,10 @@ class MemberTest < ActiveSupport::TestCase
     end
 
     assert_equal 'Validation failed: Contribution amount must be greater than or equal to 0',
-      error.message
+                 error.message
   end
 
-  test "should broadcast changes after save commit" do
+  test 'should broadcast changes after save commit' do
     ActionCable::Server::Base.any_instance.stubs(:broadcast).times(3)
     members(:robert).update contribution_amount: 5
   end

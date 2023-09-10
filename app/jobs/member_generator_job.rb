@@ -6,7 +6,7 @@ class MemberGeneratorJob < ApplicationJob
   CONTRIBUTION_RATIO = 100
   WAIT_TIME = 3.seconds
 
-  def perform(*args)
+  def perform(*_args)
     return clean_up if stop?
 
     create_new_member
@@ -15,7 +15,7 @@ class MemberGeneratorJob < ApplicationJob
 
   def create_new_member
     user = User.create!(email: "user#{random_hex}@example.com", password: 'password')
-    Member.create!(user: user, contribution_amount: contribution_amount)
+    Member.create!(user:, contribution_amount:)
   end
 
   def queue_again
@@ -37,7 +37,7 @@ class MemberGeneratorJob < ApplicationJob
   end
 
   def random_amount
-    Integer(rand() * MULTIPLIER)
+    Integer(rand * MULTIPLIER)
   end
 
   def member_count

@@ -4,7 +4,7 @@ class Member < ApplicationRecord
   MINIMUM_CONTRIBUTION_AMOUNT = 0
 
   after_save_commit :broadcast_member_count, :broadcast_contribution_total,
-    :broadcast_dividend_information
+                    :broadcast_dividend_information
 
   validates :contribution_amount, numericality: { greater_than_or_equal_to: MINIMUM_CONTRIBUTION_AMOUNT }
 
@@ -13,14 +13,14 @@ class Member < ApplicationRecord
   def broadcast_member_count
     ActionCable.server.broadcast(
       MemberCountChannel::COMMON,
-      {member_count: member_count}
+      { member_count: }
     )
   end
 
   def broadcast_contribution_total
     ActionCable.server.broadcast(
       ContributionTotalChannel::COMMON,
-      {contribution_total: TotalContributionsService.formatted}
+      { contribution_total: TotalContributionsService.formatted }
     )
   end
 
@@ -37,7 +37,7 @@ class Member < ApplicationRecord
   def dividend
     DividendService::Dividend.new(
       total_contributions: TotalContributionsService.amount,
-      member_count: member_count
+      member_count:
     )
   end
 
