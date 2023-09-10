@@ -12,7 +12,17 @@
   </head>
 
   <body>
-    <p class=<%= "notice" if notice || alert %> ><%= notice %><%= alert %></p>
-    <%= yield %>
+    <% if current_page?(root_path) %>
+      <h1>Universal Income</h1>
+      <p class=<%= "notice" if notice || alert %> ><%= notice %><%= alert %></p>
+      <%= yield %>
+    <% else %>
+      <header>
+        <h1>Universal Income</h1>
+      </header>
+      <p class=<%= "notice" if notice || alert %> ><%= notice %><%= alert %></p>
+      <%= yield %>
+      <%= link_to "Dashboard", root_path %>
+    <% end %>
   </body>
 </html>
