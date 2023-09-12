@@ -9,3 +9,6 @@ one:
     
 two:
   email: user2@email.com
+
+no_member:
+  email: no-member@email.com

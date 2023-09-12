@@ -4,7 +4,14 @@
 # model remove the "{}" from the fixture names and add the columns immediately
 # below each fixture, per the syntax in the comments below
 #
-robert:
+active:
   name: Robert Owen
   contribution_amount: 15
   user: one
+  active: 1
+
+inactive:
+  name: Cecil Brown
+  contribution_amount: 0 
+  user: two 
+  active: 0

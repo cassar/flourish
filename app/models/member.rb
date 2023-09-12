@@ -8,6 +8,11 @@ class Member < ApplicationRecord
 
   validates :contribution_amount, numericality: { greater_than_or_equal_to: MINIMUM_CONTRIBUTION_AMOUNT }
 
+  enum active: {
+    inactive: 0,
+    active: 1
+  }
+
   private
 
   def broadcast_member_count
