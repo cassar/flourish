@@ -2,8 +2,8 @@ class MemberGeneratorJob < ApplicationJob
   queue_as :default
 
   MAX_MEMBER_COUNT = 100
-  MULTIPLIER = 10
-  CONTRIBUTION_RATIO = 100
+  CONTRIBUTION_AMOUNT_MULTIPLIER = 100
+  CONTRIBUTING_MEMBER_RATIO = 5
   WAIT_TIME = 3.seconds
 
   def perform(*_args)
@@ -33,11 +33,11 @@ class MemberGeneratorJob < ApplicationJob
   end
 
   def contribute?
-    (member_count % CONTRIBUTION_RATIO).zero?
+    (member_count % CONTRIBUTING_MEMBER_RATIO).zero?
   end
 
   def random_amount
-    Integer(rand * MULTIPLIER)
+    Integer(rand * CONTRIBUTION_AMOUNT_MULTIPLIER)
   end
 
   def member_count
