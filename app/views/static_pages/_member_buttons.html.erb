@@ -1,0 +1,11 @@
+<% if user_signed_in? %>
+  <% if @member = current_user.member %>
+    <%= link_to edit_contribution_path(@member), class: 'button' do %>
+      Edit Contribution 
+    <% end %>
+  <% else %>
+    <%= link_to new_contribution_path, class: 'button' do %>
+      Contribute 
+    <% end %>
+  <% end %>
+<% end %>

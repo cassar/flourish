@@ -1,0 +1,10 @@
+<main>
+  <h1>Edit Contribute</h1>
+  <%= form_with model: @member, url: contribution_path do |form| %>
+    <p>
+      <span>AU$</span>
+      <%=form.number_field :contribution_amount, min: Member::MINIMUM_CONTRIBUTION_AMOUNT %>
+    </p>
+    <%= form.submit "Update Contribution" %>
+  <% end %>
+</main>

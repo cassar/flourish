@@ -30,4 +30,9 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  controllers:
+    contributions:
+      create:
+        success: 'Member contribution created successfully.'
+      update: 
+        success: 'Member contribution updated successfully.'
