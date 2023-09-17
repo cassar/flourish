@@ -14,13 +14,13 @@
   <body>
     <% if current_page?(root_path) %>
       <h1>Universal Income</h1>
-      <p class=<%= "notice" if notice || alert %> ><%= notice %><%= alert %></p>
+      <%= render 'layouts/flash' %>
       <%= yield %>
     <% else %>
       <header>
         <h1>Universal Income</h1>
       </header>
-      <p class=<%= "notice" if notice || alert %> ><%= notice %><%= alert %></p>
+      <%= render 'layouts/flash' %>
       <%= yield %>
       <%= link_to "Dashboard", root_path %>
     <% end %>
