@@ -40,7 +40,7 @@ class Member < ApplicationRecord
   end
 
   def dividend
-    DividendService::Dividend.new(
+    DividendService::NextDividend.new(
       total_contributions: TotalContributionsService.amount,
       member_count:
     )

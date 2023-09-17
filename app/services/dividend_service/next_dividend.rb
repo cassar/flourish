@@ -1,5 +1,5 @@
 module DividendService
-  class Dividend
+  class NextDividend
     attr_reader :total_contributions, :member_count
 
     def initialize(total_contributions:, member_count:)

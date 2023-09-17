@@ -15,7 +15,7 @@ class StaticPagesController < ApplicationController
   end
 
   def dividend
-    DividendService::Dividend.new(
+    DividendService::NextDividend.new(
       total_contributions: TotalContributionsService.amount,
       member_count: @member_count
     )
