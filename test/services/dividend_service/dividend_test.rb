@@ -4,10 +4,19 @@ module DividendService
   class DividendTest < ActiveSupport::TestCase
     setup do
       date = Date.parse('2020 Dec 4th')
-      Time.zone.stubs(:today).returns(date).once
+      Time.zone.stubs(:today).returns(date)
     end
 
-    test '.next_dividend_amount' do
+    test '#amount with contributions' do
+      dividend = DividendService::Dividend.new(
+        total_contributions: 500,
+        member_count: 2
+      )
+
+      assert_equal 250, dividend.amount
+    end
+
+    test '#amount_formatted with contributions' do
       dividend = DividendService::Dividend.new(
         total_contributions: 500,
         member_count: 2
@@ -16,7 +25,18 @@ module DividendService
       assert_equal '$250.00', dividend.amount_formatted
     end
 
-    test '.next_dividend_amount when no contributions' do
+    test '#amount when no contributions' do
+      dividend = DividendService::Dividend.new(
+        total_contributions: 0,
+        member_count: 2
+      )
+
+      assert_nothing_raised do
+        assert_equal 0, dividend.amount
+      end
+    end
+
+    test '#amount_formatted when no contributions' do
       dividend = DividendService::Dividend.new(
         total_contributions: 0,
         member_count: 2
@@ -27,7 +47,16 @@ module DividendService
       end
     end
 
-    test '.next_dividend_date' do
+    test '#date with contributions' do
+      dividend = DividendService::Dividend.new(
+        total_contributions: 500,
+        member_count: 2
+      )
+
+      assert_equal Date.parse('December 11th, 2020'), dividend.date
+    end
+
+    test '#date_formatted with contributions' do
       dividend = DividendService::Dividend.new(
         total_contributions: 500,
         member_count: 2
@@ -36,7 +65,18 @@ module DividendService
       assert_equal 'December 11th, 2020', dividend.date_formatted
     end
 
-    test '.next_dividend_date when no contributions' do
+    test '#date when no contributions' do
+      dividend = DividendService::Dividend.new(
+        total_contributions: 0,
+        member_count: 2
+      )
+
+      assert_nothing_raised do
+        assert_equal 'never', dividend.date_formatted
+      end
+    end
+
+    test '#date_formatted when no contributions' do
       dividend = DividendService::Dividend.new(
         total_contributions: 0,
         member_count: 2

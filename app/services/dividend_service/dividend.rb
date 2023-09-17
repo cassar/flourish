@@ -12,27 +12,29 @@ module DividendService
     NEVER = 'never'.freeze
     NOTHING = 0
 
-    def amount_formatted
-      Money.from_amount(next_dividend_amount).format
+    def amount
+      next_paying_period.dividend
     rescue DividendService::Period::NoExtraFundsError
-      Money.from_amount(NOTHING).format
+      NOTHING
     end
 
-    def date_formatted
-      next_dividend_date.to_fs(:long_ordinal)
+    def date
+      next_paying_period.dividend_date
     rescue DividendService::Period::NoExtraFundsError
       NEVER
     end
 
+    def amount_formatted
+      Money.from_amount(amount).format
+    end
+
+    def date_formatted
+      return NEVER if date == NEVER
+
+      date.to_fs(:long_ordinal)
+    end
+
     private
-
-    def next_dividend_amount
-      next_paying_period.dividend
-    end
-
-    def next_dividend_date
-      next_paying_period.dividend_date
-    end
 
     def next_paying_period
       last_period = first_period
