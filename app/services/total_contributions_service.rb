@@ -1,7 +1,7 @@
 class TotalContributionsService
   class << self
     def amount
-      Member.sum(:contribution_amount)
+      Member.active.sum(:contribution_amount)
     end
 
     def formatted

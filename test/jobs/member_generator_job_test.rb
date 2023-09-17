@@ -11,7 +11,7 @@ class MemberGeneratorJobTest < ActiveJob::TestCase
   end
 
   test 'resets member count when limit reached and does not queue another job' do
-    MemberGeneratorJob.any_instance.stubs(:max_member_count).returns(Member.count)
+    MemberGeneratorJob.any_instance.stubs(:max_member_count).returns(Member.active.count)
     ActiveJob::ConfiguredJob.any_instance.stubs(:perform_later).returns(nil).never
 
     assert_difference -> { Member.count }, -Member.count do
