@@ -21,7 +21,7 @@ module DividendService
     def date
       next_paying_period.dividend_date
     rescue DividendService::Period::NoExtraFundsError
-      NEVER
+      nil
     end
 
     def amount_formatted
@@ -29,7 +29,7 @@ module DividendService
     end
 
     def date_formatted
-      return NEVER if date == NEVER
+      return NEVER if date.nil?
 
       date.to_fs(:long_ordinal)
     end

@@ -72,7 +72,7 @@ module DividendService
       )
 
       assert_nothing_raised do
-        assert_equal 'never', dividend.date
+        assert_nil dividend.date
       end
     end
 
