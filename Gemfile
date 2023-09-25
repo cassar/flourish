@@ -83,6 +83,18 @@ group :development do
 
   # Code style checking for Capybara files.
   gem 'rubocop-capybara', require: false
+
+  # Guard is a command line tool to easily handle events on file system modifications.
+  gem 'guard'
+
+  # Guard::Minitest automatically run your tests with Minitest framework (much like autotest)
+  gem 'guard-minitest'
+
+  # Guard plugin for RuboCop
+  gem 'guard-rubocop'
+
+  # Guard::Bundler automatically install/update your gem bundle when needed
+  gem 'guard-bundler', require: false
 end
 
 group :test do
