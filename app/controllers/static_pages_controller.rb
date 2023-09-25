@@ -6,6 +6,9 @@ class StaticPagesController < ApplicationController
     @contribution_total = TotalContributionsService.formatted
     @dividend_amount = dividend.amount_formatted
     @dividend_date = dividend.date_formatted
+    return unless user_signed_in?
+
+    @member = current_user.member
   end
 
   private

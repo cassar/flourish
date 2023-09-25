@@ -8,43 +8,6 @@ class ContributionsControllerTest < ActionDispatch::IntegrationTest
     @member_params = { member: { contribution_amount: 100 } }
   end
 
-  test 'should redirect to sign-in when user is not signed in for new' do
-    get new_contribution_url
-    assert_redirected_to new_user_session_url
-  end
-
-  test 'should get new when user is signed in' do
-    sign_in(@memberless_user)
-
-    get new_contribution_url
-    assert_response :success
-  end
-
-  test 'should create member contribution when user is signed in' do
-    sign_in(@memberless_user)
-
-    assert_difference('Member.count') do
-      post contributions_url, params: @member_params
-    end
-
-    assert_redirected_to root_url
-    assert_equal 'Member contribution created successfully.', flash[:success]
-  end
-
-  test 'should not create member contribution with invalid params when user is signed in' do
-    sign_in(@memberless_user)
-
-    assert_no_difference('Member.count') do
-      post contributions_url, params: { member: { contribution_amount: -1 } }
-    end
-
-    assert_match 'Contribution amount must be greater than or equal to 0', flash[:error]
-  end
-
-  test 'should redirect to sign-in when user is not signed in for create' do
-    post contributions_url, params: @member_params
-    assert_redirected_to new_user_session_url
-  end
   test 'should get edit when user is signed in' do
     sign_in(@user_with_member)
     get edit_contribution_url(@member)

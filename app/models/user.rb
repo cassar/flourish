@@ -8,4 +8,6 @@ class User < ApplicationRecord
          :rememberable, :validatable
 
   has_one :member, dependent: :destroy
+
+  after_create :create_member!
 end
