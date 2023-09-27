@@ -41,7 +41,7 @@ class MemberGeneratorJob < ApplicationJob
   end
 
   def member_count
-    MemberCountService.call
+    ActiveMemberCountService.call
   end
 
   def clean_up

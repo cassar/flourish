@@ -47,6 +47,6 @@ class Member < ApplicationRecord
   end
 
   def member_count
-    MemberCountService.call
+    ActiveMemberCountService.call
   end
 end

@@ -2,7 +2,7 @@ class StaticPagesController < ApplicationController
   after_action :start_member_generator
 
   def welcome
-    @member_count = MemberCountService.call
+    @member_count = ActiveMemberCountService.call
     @contribution_total = TotalContributionsService.formatted
     @dividend_amount = dividend.amount_formatted
     @dividend_date = dividend.date_formatted
