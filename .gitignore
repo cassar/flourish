@@ -32,3 +32,6 @@
 
 # Ignore application configuration
 /config/application.yml
+
+# Ignore the tags file
+tags
