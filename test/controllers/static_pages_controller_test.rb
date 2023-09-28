@@ -1,7 +1,7 @@
 require 'test_helper'
 
-class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  test 'should get welcome' do
+class DashboardControllerTest < ActionDispatch::IntegrationTest
+  test 'should get dashboard' do
     MemberGeneratorJob.stubs(:perform_now).once
 
     get root_path

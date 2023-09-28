@@ -1,4 +1,4 @@
-class StaticPagesController < ApplicationController
+class DashboardController < ApplicationController
   after_action :start_member_generator
 
   def welcome

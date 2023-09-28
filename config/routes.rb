@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   resources :contributions, only: %i[edit update]
 
   # Defines the root path route ("/")
-  root 'static_pages#welcome'
+  root 'dashboard#welcome'
 end
