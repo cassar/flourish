@@ -13,18 +13,9 @@
 
   <body>
     <% if current_page?(root_path) %>
-      <h1>Universal Income</h1>
-      <%= render 'layouts/flash' %>
-      <%= yield %>
+      <%= render 'layouts/root_page' %>
     <% else %>
-      <header>
-        <h1>Universal Income</h1>
-      </header>
-      <%= render 'layouts/flash' %>
-      <%= yield %>
-      <footer>
-        <%= link_to "Dashboard", root_path %>
-      </footer>
+      <%= render 'layouts/app_page' %>
     <% end %>
   </body>
 </html>
