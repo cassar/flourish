@@ -22,7 +22,9 @@
       </header>
       <%= render 'layouts/flash' %>
       <%= yield %>
-      <%= link_to "Dashboard", root_path %>
+      <footer>
+        <%= link_to "Dashboard", root_path %>
+      </footer>
     <% end %>
   </body>
 </html>
