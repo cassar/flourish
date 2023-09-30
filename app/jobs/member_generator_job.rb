@@ -16,6 +16,7 @@ class MemberGeneratorJob < ApplicationJob
   def create_new_member
     user = User.create!(email: "user#{random_hex}@example.com", password: 'password')
     user.member.active!
+    user.member.update(contribution_amount:)
   end
 
   def queue_again
