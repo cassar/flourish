@@ -31,7 +31,7 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'should broadcast changes after save commit' do
-    ActionCable::Server::Base.any_instance.stubs(:broadcast).times(3)
+    ActionCable::Server::Base.any_instance.stubs(:broadcast).times(4)
     members(:active).update contribution_amount: 5
   end
 end
