@@ -1,0 +1,18 @@
+<main>
+  <h1>Activate</h1>
+  <%= turbo_stream_from 'dividend_amount' %>
+  <%= turbo_stream_from 'dividend_date' %>
+  <p>
+  Active members are currently set to receive a dividend of <%= render partial: 'dashboard/dividend_amount' %> on <%= render partial: 'dashboard/dividend_date' %>
+  </p>
+  <article>
+    Your contribution of <%= @member.contribution_amount_formatted %> per week will:
+    <ul>
+      <li><%= @direction_of_amount_change_message %></li>
+      <li><%= @direction_of_time_change_message %></li>
+    </ul>
+  </article>
+  <nav>
+    <%= button_to "Activate", activation_path, method: :patch %>
+  </nav>
+</main>

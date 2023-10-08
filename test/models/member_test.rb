@@ -30,6 +30,10 @@ class MemberTest < ActiveSupport::TestCase
                  error.message
   end
 
+  test 'contribution amount formatted' do
+    assert_equal '$15.00', members(:active).contribution_amount_formatted
+  end
+
   test 'should broadcast changes after save commit' do
     ActionCable::Server::Base.any_instance.stubs(:broadcast).times(4)
     members(:active).update contribution_amount: 5

@@ -38,6 +38,10 @@ class Member < ApplicationRecord
                          target: 'dividend_date'
   end
 
+  def contribution_amount_formatted
+    Money.from_amount(contribution_amount).format
+  end
+
   private
 
   def member_count

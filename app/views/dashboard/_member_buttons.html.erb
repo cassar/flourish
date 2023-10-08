@@ -1,5 +1,13 @@
 <% if @member %>
-  <%= link_to edit_contribution_path(@member), class: 'button' do %>
-    Edit Contribution 
+  <% if @member.inactive? %>
+    <%= link_to edit_activation_path(@member), class: 'button' do %>
+      Activate
+    <% end %>
+  <% end %>
+  <% if @member.active? %>
+    <%= render partial: 'contribute_buttons' %>
+    <%= link_to edit_inactivation_path(@member), class: 'button' do %>
+      Deactivate
+    <% end %>
   <% end %>
 <% end %>

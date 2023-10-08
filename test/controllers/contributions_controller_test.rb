@@ -23,7 +23,7 @@ class ContributionsControllerTest < ActionDispatch::IntegrationTest
     sign_in(@user_with_member)
     patch contribution_url(@member), params: { member: { contribution_amount: 200 } }
     assert_redirected_to root_url
-    assert_equal 'Member contribution updated successfully.', flash[:success]
+    assert_equal 'Contribution updated successfully.', flash[:success]
     @member.reload
     assert_equal 200, @member.contribution_amount
   end

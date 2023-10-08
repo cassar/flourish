@@ -1,0 +1,9 @@
+<% if @member.contribution_amount %>
+  <%= link_to edit_contribution_path(@member), class: 'button' do %>
+    <% if @member.contribution_amount.zero? %>
+      Contribute 
+    <% else %>
+      Update Contribution
+    <% end %>
+  <% end %>
+<% end %>

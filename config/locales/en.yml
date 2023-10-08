@@ -1,7 +1,20 @@
 en:
   controllers:
     contributions:
-      create:
-        success: 'Member contribution created successfully.'
       update: 
-        success: 'Member contribution updated successfully.'
+        success: 'Contribution updated successfully.'
+    activations:
+      update:
+        success: 'Activated successfully.'
+    inactivations:
+      update:
+        success: 'Deactivated successfully.'
+  services:
+    dividend_service:
+      next_dividend_compare:
+        increase: "Increase the dividend by %{amount_difference} to %{future_amount}."
+        decrease: "Decrease the dividend by %{amount_difference} to %{future_amount}."
+        no_change: "Leave the dividend unchanged at %{future_amount}."
+        bring_forward: "Bring forward the dividend date by %{time_amount} to %{dividend_date}."
+        push_back: "Push back the dividend date by %{time_amount} to %{dividend_date}."
+        unchanged: "Leave the next dividend date unchanged at %{dividend_date}."
