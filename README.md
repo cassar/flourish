@@ -1,5 +1,7 @@
 # README
 
-Flourish - a Universal Income Cooperative
+Universal Income Application
 
-This project used actioncable to refrash a live dashboard for number of contributors, and next dividend.
+This project centres around the idea of universal basic income.
+
+Members will make contributions, and the pool will be split evenly between members.
