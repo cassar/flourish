@@ -10,7 +10,8 @@ module DividendService
     test '#amount with contributions' do
       dividend = DividendService::NextDividend.new(
         total_contributions: 500,
-        member_count: 2
+        member_count: 2,
+        total_pool: 500
       )
 
       assert_equal 250, dividend.amount
@@ -19,7 +20,8 @@ module DividendService
     test '#amount_formatted with contributions' do
       dividend = DividendService::NextDividend.new(
         total_contributions: 500,
-        member_count: 2
+        member_count: 2,
+        total_pool: 500
       )
 
       assert_equal '$250.00', dividend.amount_formatted
@@ -28,7 +30,8 @@ module DividendService
     test '#amount when no contributions' do
       dividend = DividendService::NextDividend.new(
         total_contributions: 0,
-        member_count: 2
+        member_count: 2,
+        total_pool: 0
       )
 
       assert_nothing_raised do
@@ -39,7 +42,8 @@ module DividendService
     test '#amount_formatted when no contributions' do
       dividend = DividendService::NextDividend.new(
         total_contributions: 0,
-        member_count: 2
+        member_count: 2,
+        total_pool: 0
       )
 
       assert_nothing_raised do
@@ -50,7 +54,8 @@ module DividendService
     test '#date with contributions' do
       dividend = DividendService::NextDividend.new(
         total_contributions: 500,
-        member_count: 2
+        member_count: 2,
+        total_pool: 500
       )
 
       assert_equal Date.parse('December 11th, 2020'), dividend.date
@@ -59,7 +64,8 @@ module DividendService
     test '#date_formatted with contributions' do
       dividend = DividendService::NextDividend.new(
         total_contributions: 500,
-        member_count: 2
+        member_count: 2,
+        total_pool: 500
       )
 
       assert_equal 'December 11th, 2020', dividend.date_formatted
@@ -68,7 +74,8 @@ module DividendService
     test '#date when no contributions' do
       dividend = DividendService::NextDividend.new(
         total_contributions: 0,
-        member_count: 2
+        member_count: 2,
+        total_pool: 0
       )
 
       assert_nothing_raised do
@@ -79,7 +86,8 @@ module DividendService
     test '#date_formatted when no contributions' do
       dividend = DividendService::NextDividend.new(
         total_contributions: 0,
-        member_count: 2
+        member_count: 2,
+        total_pool: 0
       )
 
       assert_nothing_raised do

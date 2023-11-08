@@ -51,7 +51,8 @@ class Member < ApplicationRecord
   def dividend
     DividendService::NextDividend.new(
       total_contributions: TotalContributionsService.amount,
-      member_count:
+      member_count:,
+      total_pool: BankAccountService.balance
     )
   end
 end

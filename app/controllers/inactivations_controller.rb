@@ -30,14 +30,16 @@ class InactivationsController < ApplicationController
   def current_next_dividend
     DividendService::NextDividend.new(
       total_contributions: TotalContributionsService.amount,
-      member_count: active_member_count
+      member_count: active_member_count,
+      total_pool: BankAccountService.balance
     )
   end
 
   def future_next_dividend
     DividendService::NextDividend.new(
       total_contributions: future_total_contributions,
-      member_count: future_active_member_count
+      member_count: future_active_member_count,
+      total_pool: BankAccountService.balance
     )
   end
 

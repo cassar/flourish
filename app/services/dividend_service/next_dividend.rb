@@ -1,10 +1,11 @@
 module DividendService
   class NextDividend
-    attr_reader :total_contributions, :member_count
+    attr_reader :total_contributions, :member_count, :total_pool
 
-    def initialize(total_contributions:, member_count:)
+    def initialize(total_contributions:, member_count:, total_pool:)
       @total_contributions = total_contributions
       @member_count = member_count
+      @total_pool = total_pool
     end
 
     MINIMUM_DIVIDEND = 10
@@ -51,7 +52,7 @@ module DividendService
         start_date: Time.zone.today,
         distribution: DividendService::Distribution.new(
           member_count:,
-          available_funds: total_contributions,
+          available_funds: total_pool,
           minimum_dividend: MINIMUM_DIVIDEND
         )
       )

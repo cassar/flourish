@@ -1,15 +1,14 @@
 <main>
   <article>
-    <p>
     <%= turbo_stream_from 'member_count' %>
-    <%= render partial: 'member_count' %> members
-    </p>
+    <p><b>Member Count</b>: <%= render partial: 'member_count' %></p>
     <%= turbo_stream_from 'contribution_total' %>
-    <p>Contributing a combined <%= render partial: 'contribution_total' %> per week</p>
+    <p><b>Weekly Contributions</b>: <%= render partial: 'contribution_total' %></p>
+    <p><b>Total Pool</b>: <%= @total_pool %></p>
     <%= turbo_stream_from 'dividend_amount' %>
-    <p>To pay a dividend of <%= render partial: 'dividend_amount' %> per member</p>
+    <p><b>Next Dividend Amount</b>: <%= render partial: 'dividend_amount' %></p>
     <%= turbo_stream_from 'dividend_date' %>
-    <p>Next dividend paid <%= render partial: 'dividend_date' %></p>
+    <p><b>Next Dividend Date</b>: <%= render partial: 'dividend_date' %></p>
   </article>
   <nav>
     <%= render partial: 'member_buttons' %>

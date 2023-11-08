@@ -6,6 +6,7 @@ class DashboardController < ApplicationController
     @contribution_total = TotalContributionsService.formatted
     @dividend_amount = dividend.amount_formatted
     @dividend_date = dividend.date_formatted
+    @total_pool = BankAccountService.balance_formatted
     return unless user_signed_in?
 
     @member = current_user.member
@@ -20,7 +21,8 @@ class DashboardController < ApplicationController
   def dividend
     DividendService::NextDividend.new(
       total_contributions: TotalContributionsService.amount,
-      member_count: @member_count
+      member_count: @member_count,
+      total_pool: BankAccountService.balance
     )
   end
 end
