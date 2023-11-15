@@ -3,7 +3,7 @@ class DashboardController < ApplicationController
 
   def welcome
     @member_count = ActiveMemberCountService.call
-    @dividend_amount = dividend.amount_formatted
+    @dividend_amount = Money.from_amount(DividendService::NextDividend::MINIMUM_DIVIDEND).format
     @total_pool = BankAccountService.balance_formatted
     return unless user_signed_in?
 
@@ -14,13 +14,5 @@ class DashboardController < ApplicationController
 
   def start_member_generator
     MemberGeneratorJob.perform_now
-  end
-
-  def dividend
-    DividendService::NextDividend.new(
-      total_contributions: TotalContributionsService.amount,
-      member_count: @member_count,
-      total_pool: BankAccountService.balance
-    )
   end
 end

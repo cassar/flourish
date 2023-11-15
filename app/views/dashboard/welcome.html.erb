@@ -3,8 +3,7 @@
     <%= turbo_stream_from 'member_count' %>
     <p><b>Member Count</b>: <%= render partial: 'member_count' %></p>
     <p><b>Total Pool</b>: <%= @total_pool %></p>
-    <%= turbo_stream_from 'dividend_amount' %>
-    <p><b>Next Dividend Amount</b>: <%= render partial: 'dividend_amount' %></p>
+    <p><b>Next Dividend Amount</b>: <%= @dividend_amount %></p>
   </article>
   <nav>
     <%= render partial: 'authentication' %>

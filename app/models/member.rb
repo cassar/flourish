@@ -17,13 +17,6 @@ class Member < ApplicationRecord
                          target: 'member_count'
   end
 
-  after_save_commit do
-    broadcast_replace_to 'dividend_amount',
-                         partial: 'dashboard/dividend_amount',
-                         locals: { dividend_amount: dividend.amount_formatted },
-                         target: 'dividend_amount'
-  end
-
   def contribution_amount_formatted
     Money.from_amount(contribution_amount).format
   end
