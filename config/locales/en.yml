@@ -1,14 +1,6 @@
 en:
   controllers:
-    contributions:
-      update: 
-        success: 'Contribution updated successfully.'
-    activations:
       update:
-        success: 'Activated successfully.'
-    inactivations:
-      update:
-        success: 'Deactivated successfully.'
   services:
     dividend_service:
       next_dividend_compare:
