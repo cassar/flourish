@@ -10,14 +10,20 @@ class UpBankAccount
   end
 
   def balance
-    raise NoCredentialsError if [access_token, account_number].any? nil
-
-    return dollars if response.status == 200
-
-    raise Error, "Error: #{response.status}, body: #{response.body}"
+    Rails.cache.fetch('up_bank_balance', expires_in: 30.minutes) do
+      request_balance
+    end
   end
 
   private
+
+  def request_balance
+    raise NoCredentialsError if [access_token, account_number].any? nil
+
+    raise Error, error_message unless response.status == 200
+
+    dollars
+  end
 
   def dollars
     cents / 100
@@ -41,5 +47,9 @@ class UpBankAccount
 
   def headers
     { 'Authorization' => "Bearer #{access_token}" }
+  end
+
+  def error_message
+    "Error: #{response.status}, body: #{response.body}"
   end
 end
