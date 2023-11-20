@@ -1,6 +1,8 @@
 en:
   controllers:
+    memberships:
       update:
+        success: "PayID updated successfully."
   services:
     dividend_service:
       next_dividend_compare:

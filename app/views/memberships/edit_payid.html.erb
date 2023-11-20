@@ -1,0 +1,15 @@
+<main>
+  <h1>PayID</h1>
+  <%= form_with model: @member, url: membership_path do |form| %>
+    <article>
+      <p>
+      <span>PayID</span>
+      <%=form.text_field :payid %>
+      </p>
+    </article>
+    <%= form.submit "Submit" %>
+    <%= link_to membership_path, class: 'button' do %>
+      Cancel 
+    <% end %>
+  <% end %>
+</main>

@@ -38,4 +38,18 @@ class MemberTest < ActiveSupport::TestCase
     ActionCable::Server::Base.any_instance.stubs(:broadcast).once
     members(:active).update contribution_amount: 5
   end
+
+  test 'should activate inactive membership with payid' do
+    assert members(:inactive).inactive?
+
+    members(:inactive).update! payid: 'something'
+    assert members(:inactive).reload.active?
+  end
+
+  test 'should inactivate active membership without payid' do
+    assert members(:active).active?
+
+    members(:active).update! payid: ''
+    assert members(:active).reload.inactive?
+  end
 end

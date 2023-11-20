@@ -4,4 +4,9 @@
     <p><b>Status</b>: <%= @member.active.capitalize %></p>
     <p><b>PayID</b>: <%= @member.payid || '[Add PayID to activate Membership]' %></p>
   </article>
+  <nav>
+    <%= link_to payid_path, class: 'button' do %>
+      PayID
+    <% end %>
+  </nav>
 </main>

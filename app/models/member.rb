@@ -10,6 +10,8 @@ class Member < ApplicationRecord
 
   belongs_to :user
 
+  before_save :activate_or_deactivate_membership
+
   after_save_commit do
     broadcast_replace_to 'member_count',
                          partial: 'dashboard/member_count',
@@ -22,6 +24,14 @@ class Member < ApplicationRecord
   end
 
   private
+
+  def activate_or_deactivate_membership
+    self.active = if payid.present?
+                    :active
+                  else
+                    :inactive
+                  end
+  end
 
   def member_count
     ActiveMemberCountService.call
