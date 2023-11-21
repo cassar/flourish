@@ -10,14 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_19_063026) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_21_123058) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "dividends", force: :cascade do |t|
-    t.integer "amount"
+  create_table "distributions", force: :cascade do |t|
+    t.integer "amount_in_base_units"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "dividends", force: :cascade do |t|
+    t.integer "status"
+    t.bigint "distribution_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["distribution_id"], name: "index_dividends_on_distribution_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -29,14 +37,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_063026) do
     t.integer "active", default: 0
     t.string "payid"
     t.index ["user_id"], name: "index_members_on_user_id", unique: true
-  end
-
-  create_table "payments", force: :cascade do |t|
-    t.integer "status"
-    t.bigint "dividend_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["dividend_id"], name: "index_payments_on_dividend_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,6 +65,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_19_063026) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "dividends", "distributions"
   add_foreign_key "members", "users"
-  add_foreign_key "payments", "dividends"
 end
