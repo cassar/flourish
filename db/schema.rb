@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_21_123058) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_25_013215) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -25,7 +25,9 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_123058) do
     t.bigint "distribution_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "member_id"
     t.index ["distribution_id"], name: "index_dividends_on_distribution_id"
+    t.index ["member_id"], name: "index_dividends_on_member_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -66,5 +68,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_21_123058) do
   end
 
   add_foreign_key "dividends", "distributions"
+  add_foreign_key "dividends", "members"
   add_foreign_key "members", "users"
 end

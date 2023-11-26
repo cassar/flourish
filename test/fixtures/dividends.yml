@@ -3,7 +3,9 @@
 one:
   distribution: one
   status: 1
+  member: active
 
 two:
   distribution: two
   status: 1
+  member: active
