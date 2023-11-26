@@ -4,5 +4,12 @@
 <%= render 'layouts/flash' %>
 <%= yield %>
 <footer>
-  <%= link_to "Dashboard", root_path %>
+  <nav>
+    <ul>
+      <li><%= link_to 'Dashboard', root_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to 'Membership', membership_path %></li>
+      <% end %>
+    </ul>
+  </nav>
 </footer>

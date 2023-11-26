@@ -1,0 +1,16 @@
+<main>
+  <h1>Dividends</h1>
+  <% if @dividends.any? %>
+    <% @dividends.each do |dividend| %>
+      <article>
+        <p>
+          <%= dividend.id %>
+        </p>
+      </article>
+    <% end %>
+  <% else %>
+    <article>
+      <p>No dividends</p>
+    </article>
+  <% end %>
+</main>
