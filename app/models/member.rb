@@ -10,6 +10,8 @@ class Member < ApplicationRecord
 
   belongs_to :user
 
+  has_many :dividends, dependent: :destroy
+
   before_save :activate_or_deactivate_membership
 
   after_save_commit do

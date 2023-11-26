@@ -1,8 +1,21 @@
 require 'test_helper'
 
 class MemberTest < ActiveSupport::TestCase
-  test 'associations' do
+  test 'belongs to user association' do
     assert_equal users(:one), members(:active).user
+  end
+
+  test 'has many dividends association' do
+    assert_includes members(:active).dividends, dividends(:one)
+  end
+
+  test 'dependend destroy relationship on dividends' do
+    assert dividends(:one).present?
+    members(:active).destroy
+
+    assert_raises ActiveRecord::RecordNotFound do
+      dividends(:one).reload
+    end
   end
 
   test 'new member defaults to inactive' do
