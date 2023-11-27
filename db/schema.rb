@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_25_013215) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_27_104643) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "distributions", force: :cascade do |t|
-    t.integer "amount_in_base_units"
+    t.integer "dividend_amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
