@@ -21,7 +21,7 @@ class MembershipsController < ApplicationController
   end
 
   def dividends
-    @dividends = current_user.member.dividends
+    @dividends = current_user.member.dividends.preload(:distribution)
   end
 
   private

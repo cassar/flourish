@@ -4,13 +4,13 @@
     <% @dividends.each do |dividend| %>
       <article>
         <p>
-          <%= dividend.id %>
+          <%= dividend.distribution.dividend_amount_formatted %>
         </p>
       </article>
     <% end %>
   <% else %>
     <article>
-      <p>No dividends</p>
+      <p>[No dividends]</p>
     </article>
   <% end %>
 </main>
