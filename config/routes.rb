@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   get :dividends, to: 'memberships#dividends'
   patch :membership, to: 'memberships#update'
 
+  resources :dividends, only: [] do
+    member { patch :pay_out }
+  end
+
   # Defines the root path route ("/")
   root 'dashboard#welcome'
 end

@@ -3,6 +3,12 @@ en:
     memberships:
       update:
         success: "PayID updated successfully."
+    dividends:
+      pay_out:
+        success: "This Dividend has been marked for pay out."
+        not_authorised: "That's not your dividend. 🤨"
+        already_marked_for_pay_out: "Dividend has already been marked for payed out."
+        
   services:
     dividend_service:
       next_dividend_compare:

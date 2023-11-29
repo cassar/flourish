@@ -6,11 +6,16 @@
         <p>
           <%= dividend.distribution.dividend_amount_formatted %>
         </p>
+        <% if dividend.issued? %>
+          <%= button_to "Pay Out", pay_out_dividend_path(dividend), method: :patch %>
+        <% else %>
+          <p><b>Status</b>: <%= dividend.status.titleize %></p>
+        <% end %>
       </article>
     <% end %>
   <% else %>
     <article>
-      <p>[No dividends]</p>
+      <p>[No Dividends]</p>
     </article>
   <% end %>
 </main>

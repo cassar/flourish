@@ -2,10 +2,16 @@
 
 one:
   distribution: one
-  status: 1
+  status: issued
   member: active
 
 two:
   distribution: two
-  status: 1
+  status: issued
+  member: inactive
+
+pay_out:
+  distribution: one
+  status: pay_out
   member: active
+
