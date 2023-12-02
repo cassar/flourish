@@ -3,9 +3,8 @@
   <% if @dividends.any? %>
     <% @dividends.each do |dividend| %>
       <article>
-        <p>
-          <%= dividend.distribution.dividend_amount_formatted %>
-        </p>
+        <p><b>Date</b>: <%= dividend.created_at_formatted %></p> 
+        <p><b>Amount</b>: <%= dividend.distribution.dividend_amount_formatted %></p>
         <% if dividend.issued? %>
           <%= button_to "Pay Out", pay_out_dividend_path(dividend), method: :patch %>
         <% else %>

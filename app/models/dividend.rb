@@ -6,4 +6,8 @@ class Dividend < ApplicationRecord
 
   belongs_to :distribution
   belongs_to :member
+
+  def created_at_formatted
+    created_at.strftime("#{created_at.day.ordinalize} %b %Y")
+  end
 end
