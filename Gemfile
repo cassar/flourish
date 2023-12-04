@@ -95,6 +95,9 @@ group :development do
 
   # Guard::Bundler automatically install/update your gem bundle when needed
   gem 'guard-bundler', require: false
+
+  # Preview mail in the browser instead of sending.
+  gem 'letter_opener'
 end
 
 group :test do
