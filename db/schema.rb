@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_29_093906) do
+ActiveRecord::Schema[7.1].define(version: 2023_12_10_012631) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_29_093906) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "member_id"
+    t.text "receipt"
     t.index ["distribution_id"], name: "index_dividends_on_distribution_id"
     t.index ["member_id"], name: "index_dividends_on_member_id"
   end
