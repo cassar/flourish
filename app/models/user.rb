@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  ADMIN_EMAIL = 'admin@email.com'.freeze
+  ADMIN_EMAIL = ENV['admin_email'] || 'admin@email.com'.freeze
   ADMIN_PASSWORD = 'password'.freeze
 
   # Include default devise modules. Others available are:
