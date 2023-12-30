@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     member { patch :pay_out }
   end
 
+  namespace :admin do
+    resources :dividends, only: [:show, :update]
+  end
+
   # Defines the root path route ("/")
   root 'dashboard#welcome'
 end

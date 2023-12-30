@@ -1,5 +1,10 @@
 en:
   controllers:
+    admin:
+      dividends:
+        not_authorised: "You don't have access."
+        update:
+          success: "Receipt updated successfully."
     memberships:
       update:
         success: "PayID updated successfully."
