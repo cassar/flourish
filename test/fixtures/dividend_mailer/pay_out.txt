@@ -16,7 +16,6 @@
   <body>
     <p>A member has requested a dividend payout.</p>
     <p><b>Email</b>: user@email.com</p>
-    <p><b>PayId</b>: </p>
     <a><a href="http://test.domain.com/admin/dividends/980190962">Dividend</a></a>
   </body>
 </html>
