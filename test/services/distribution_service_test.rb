@@ -3,10 +3,9 @@ require 'test_helper'
 class DistributionTest < ActiveSupport::TestCase
   test 'creates dividends' do
     assert_difference 'Dividend.count' do
-      total_amount = DividendService::NextDividend::MINIMUM_DIVIDEND
       DistributionService.new(
         members: [members(:active)],
-        total_amount:
+        total_amount: DividendService::NextDividend::MINIMUM_DIVIDEND
       ).call
     end
   end
