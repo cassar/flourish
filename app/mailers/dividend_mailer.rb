@@ -1,5 +1,5 @@
 class DividendMailer < ApplicationMailer
-  default from: 'notifications@example.com'
+  default from: ENV['default_from_email'] || 'notifications@example.com'
 
   def pay_out_notification
     @dividend = params[:dividend]
