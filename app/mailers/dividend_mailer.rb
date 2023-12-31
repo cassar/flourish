@@ -1,4 +1,4 @@
-class DividendPayOutMailer < ApplicationMailer
+class DividendMailer < ApplicationMailer
   default from: 'notifications@example.com'
 
   def pay_out_notification
