@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <p>You've received a dividend.</p>
+    <p><b>Amount</b>: <%= @distribution.dividend_amount_formatted %></p>
+    <a><%= link_to "Dividends", dividends_url(@dividend) %></a>
+  </body>
+</html>
+

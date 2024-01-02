@@ -23,3 +23,7 @@ en:
         bring_forward: "Bring forward the dividend date by %{time_amount} to %{dividend_date}."
         push_back: "Push back the dividend date by %{time_amount} to %{dividend_date}."
         unchanged: "Leave the next dividend date unchanged at %{dividend_date}."
+  
+  mailers:
+    dividend_mailer:
+      new_dividend_notification_subject: "New Dividend Distributed"
