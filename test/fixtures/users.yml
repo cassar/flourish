@@ -6,6 +6,7 @@
 #
 one:
   email: user@email.com
+  confirmed_at: "2nd Oct 2023"
     
 two:
   email: user2@email.com

@@ -3,9 +3,9 @@ class User < ApplicationRecord
   ADMIN_PASSWORD = 'password'.freeze
 
   # Include default devise modules. Others available are:
-  # :recoverable, :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  # :recoverable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :rememberable, :validatable
+         :rememberable, :validatable, :confirmable
 
   has_one :member, dependent: :destroy
 
