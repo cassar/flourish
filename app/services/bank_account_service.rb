@@ -2,8 +2,8 @@ class BankAccountService
   class << self
     def balance
       UpBankAccount.new(
-        access_token: ENV.fetch('up_bank_access_token', nil),
-        account_number: ENV.fetch('up_bank_account_number', nil)
+        access_token: ENV.fetch('UP_BANK_ACCESS_TOKEN', nil),
+        account_number: ENV.fetch('UP_BANK_ACCOUNT_NUMBER', nil)
       ).balance
     rescue UpBankAccount::NoCredentialsError
       1000
