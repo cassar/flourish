@@ -1,5 +1,5 @@
 class ActiveMemberCountService
   def self.call
-    Member.active.count
+    ActiveMemberService.call.count
   end
 end
