@@ -16,7 +16,7 @@
   <body>
     <p>You've received a dividend.</p>
     <p><b>Amount</b>: $500.00</p>
-    <a><a href="http://test.domain.com/dividends.980190962">Dividends</a></a>
+    <a><a href="http://test.domain.com/dividends">Dividends</a></a>
   </body>
 </html>
 
