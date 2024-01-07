@@ -9,6 +9,15 @@ class DividendTest < ActiveSupport::TestCase
     assert_equal members(:active), dividends(:one).member
   end
 
+  test 'before save paid check' do
+    dividend = dividends(:pending_pay_out)
+    assert_predicate dividend, :pending_pay_out?
+
+    dividend.update! receipt: 'something'
+
+    assert_predicate dividend, :paid?
+  end
+
   test 'created_at_formatted' do
     assert_equal '8th Nov 2023', dividends(:one).created_at_formatted
   end
