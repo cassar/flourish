@@ -11,9 +11,9 @@ module Admin
     end
 
     def update
-      DividendMailer.with(dividend:).paid_notification.deliver_later
       @dividend = Dividend.find params[:id]
       @dividend.update!(dividend_params)
+      DividendMailer.with(dividend:).paid_out_notification.deliver_later
       @member = @dividend.member
       flash.now[:success] = I18n.t('controllers.admin.dividends.update.success')
       render :show

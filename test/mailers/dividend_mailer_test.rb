@@ -27,8 +27,8 @@ class DividendMailerTest < ActionMailer::TestCase
     assert_equal read_fixture('new_dividend.txt').join, email.body.to_s
   end
 
-  test 'paid_notification' do
-    email = DividendMailer.with(dividend: dividends(:paid)).paid_notification
+  test 'paid_out_notification' do
+    email = DividendMailer.with(dividend: dividends(:paid_out)).paid_out_notification
 
     assert_emails 1 do
       email.deliver_now

@@ -9,7 +9,7 @@
           <%= button_to "Pay Out", pay_out_dividend_path(dividend), method: :patch %>
         <% elsif dividend.pending_pay_out? %>
           <p><b>Status</b>: <%= dividend.status.titleize %></p>
-        <% elsif dividend.paid? %>
+        <% elsif dividend.paid_out? %>
           <p><b>Status</b>: <%= dividend.status.titleize %></p>
           <details>
             <summary>Receipt</summary>

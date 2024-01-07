@@ -16,11 +16,11 @@ class DividendMailer < ApplicationMailer
     mail(to: User::ADMIN_EMAIL, subject: "#{@user.email} has requested a Pay Out")
   end
 
-  def paid_notification
+  def paid_out_notification
     @dividend = params[:dividend]
     @member = @dividend.member
     @distribution = @dividend.distribution
     @user = @member.user
-    mail(to: @user.email, subject: I18n.t('mailers.dividend_mailer.paid_notification_subject'))
+    mail(to: @user.email, subject: I18n.t('mailers.dividend_mailer.paid_out_notification_subject'))
   end
 end
