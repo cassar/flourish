@@ -9,7 +9,7 @@ module Admin
 
     def update
       @dividend = Dividend.find params[:id]
-      @dividend.update(dividend_params)
+      @dividend.update!(dividend_params)
       flash.now[:success] = I18n.t('controllers.admin.dividends.update.success')
       render :show
     end
