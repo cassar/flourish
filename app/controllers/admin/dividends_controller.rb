@@ -4,17 +4,21 @@ module Admin
     before_action :authorise_user!
 
     def show
-      @dividend = Dividend.find params[:id]
+      dividend
     end
 
     def update
-      @dividend = Dividend.find params[:id]
-      @dividend.update!(dividend_params)
+      dividend.update!(dividend_params)
+      DividendMailer.with(dividend:).paid_notification.deliver_later
       flash.now[:success] = I18n.t('controllers.admin.dividends.update.success')
       render :show
     end
 
     private
+
+    def dividend
+      @dividend ||= Dividend.find params[:id]
+    end
 
     def dividend_params
       params.require(:dividend).permit(:receipt)

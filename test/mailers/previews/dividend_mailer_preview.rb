@@ -14,4 +14,11 @@ class DividendMailerPreview < ActionMailer::Preview
     dividend = Dividend.new(id: 1, member:)
     DividendMailer.with(dividend:).pay_out_notification
   end
+
+  def paid_notification
+    user = User.new(email: 'email@example.com')
+    member = Member.new(payid: 'my_pay_id', user:)
+    dividend = Dividend.new(id: 1, member:, receipt: 'your receipt that was paid out')
+    DividendMailer.with(dividend:).paid_notification
+  end
 end

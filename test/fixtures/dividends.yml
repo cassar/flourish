@@ -16,3 +16,8 @@ pending_pay_out:
   status: pending_pay_out
   member: active
 
+paid:
+  distribution: one
+  status: paid
+  member: active
+  receipt: This is your receipt, thank you.
