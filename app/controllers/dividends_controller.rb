@@ -4,7 +4,7 @@ class DividendsController < ApplicationController
   before_action :check_dividend_in_issued_state!
 
   def pay_out
-    dividend.pay_out!
+    dividend.pending_pay_out!
     DividendMailer.with(dividend:).pay_out_notification.deliver_later
     redirect_to dividends_path, notice: I18n.t('controllers.dividends.pay_out.success')
   end

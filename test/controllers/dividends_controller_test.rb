@@ -6,7 +6,7 @@ class DividendsControllerTest < ActionDispatch::IntegrationTest
     sign_in @user
     @member = @user.member
     @dividend = dividends(:one)
-    @payed_out_dividend = dividends(:pay_out)
+    @payed_out_dividend = dividends(:pending_pay_out)
     @not_my_dividend = dividends(:two)
   end
 
@@ -27,13 +27,13 @@ class DividendsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should redirect back to dividends if not in issued state' do
-    assert @payed_out_dividend.pay_out?
+    assert @payed_out_dividend.pending_pay_out?
 
     patch pay_out_dividend_path(@payed_out_dividend)
 
     assert_redirected_to dividends_path
     assert_equal 'Dividend has already been marked for payed out.', flash[:alert]
-    assert @payed_out_dividend.reload.pay_out?
+    assert @payed_out_dividend.reload.pending_pay_out?
   end
 
   test 'should update dividend to pay out' do
@@ -44,6 +44,6 @@ class DividendsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to dividends_path
     assert_equal 'This Dividend has been marked for pay out.', flash[:notice]
-    assert @dividend.reload.pay_out?
+    assert @dividend.reload.pending_pay_out?
   end
 end

@@ -11,8 +11,8 @@ two:
   status: issued
   member: inactive
 
-pay_out:
+pending_pay_out:
   distribution: one
-  status: pay_out
+  status: pending_pay_out
   member: active
 
