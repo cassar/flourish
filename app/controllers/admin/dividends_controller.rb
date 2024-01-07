@@ -4,12 +4,13 @@ module Admin
     before_action :authorise_user!
 
     def show
-      dividend
+      @member = dividend.member
     end
 
     def update
       dividend.update!(dividend_params)
       DividendMailer.with(dividend:).paid_notification.deliver_later
+      @member = dividend.member
       flash.now[:success] = I18n.t('controllers.admin.dividends.update.success')
       render :show
     end
