@@ -3,6 +3,7 @@
     <%= turbo_stream_from 'member_count' %>
     <p><b>Member Count</b>: <%= render partial: 'member_count' %></p>
     <p><b>Total Pool</b>: <%= @total_pool %></p>
+    <p><b>Next Distribution</b>: <%= next_friday_date_formatted %></p>
     <p><b>Minimum Dividend</b>: <%= Money.from_amount(DividendService::NextDividend::MINIMUM_DIVIDEND).format %>
   </article>
   <details>
