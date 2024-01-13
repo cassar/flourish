@@ -3,21 +3,21 @@
 one:
   distribution: one
   status: issued
-  member: active
+  member: one
   created_at: 8/11/2023
 
 two:
   distribution: two
   status: issued
-  member: inactive
+  member: two
 
 pending_pay_out:
   distribution: one
   status: pending_pay_out
-  member: active
+  member: one
 
 paid_out:
   distribution: one
   status: paid_out
-  member: active
+  member: one
   receipt: This is your receipt, thank you.

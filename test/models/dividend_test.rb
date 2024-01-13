@@ -6,7 +6,7 @@ class DividendTest < ActiveSupport::TestCase
   end
 
   test 'belongs to member association' do
-    assert_equal members(:active), dividends(:one).member
+    assert_equal members(:one), dividends(:one).member
   end
 
   test 'before save check for receipt check' do
