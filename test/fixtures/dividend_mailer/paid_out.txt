@@ -16,7 +16,7 @@
   <body>
     <p>Your dividend has been paid out.</p>
     <p><b>Receipt</b>: This is your receipt, thank you.</p>
-    <a><a href="http://test.domain.com/dividends">Dividends</a></a>
+    <a><a href="http://test.flourish.buzz/dividends">Dividends</a></a>
   </body>
 </html>
 
