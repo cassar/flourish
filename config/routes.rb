@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dividends, only: [:show, :update]
+    post :up_bank, to: 'admin/up_bank#webhooks'
   end
 
   # Defines the root path route ("/")
