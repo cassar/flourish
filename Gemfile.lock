@@ -147,6 +147,7 @@ GEM
       guard (~> 2.0)
       rubocop (< 2.0)
     hashdiff (1.1.0)
+    honeybadger (5.4.1)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     importmap-rails (2.0.1)
@@ -375,6 +376,7 @@ DEPENDENCIES
   guard-bundler
   guard-minitest
   guard-rubocop
+  honeybadger (~> 5.4)
   importmap-rails
   jbuilder
   letter_opener
