@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DistributionTest < ActiveSupport::TestCase
   test 'creates dividends' do
-    DistributionDayService.stubs(:today?).returns(true)
+    DistributionDateService.stubs(:today?).returns(true)
     ActiveMemberService.stubs(:call).returns([members(:one)])
     BankAccountService.stubs(:balance).returns(DistributionService::MINIMUM_DIVIDEND_IN_CENTS)
 
@@ -12,7 +12,7 @@ class DistributionTest < ActiveSupport::TestCase
   end
 
   test 'fails when not the day for distributions' do
-    DistributionDayService.stubs(:today?).returns(false)
+    DistributionDateService.stubs(:today?).returns(false)
 
     assert_raises DistributionService::NotTodayError do
       DistributionService.new.call
@@ -20,7 +20,7 @@ class DistributionTest < ActiveSupport::TestCase
   end
 
   test 'fails when no members' do
-    DistributionDayService.stubs(:today?).returns(true)
+    DistributionDateService.stubs(:today?).returns(true)
     ActiveMemberService.stubs(:call).returns([])
 
     assert_raises DistributionService::NoMembersError do
@@ -29,7 +29,7 @@ class DistributionTest < ActiveSupport::TestCase
   end
 
   test 'fails when no money' do
-    DistributionDayService.stubs(:today?).returns(true)
+    DistributionDateService.stubs(:today?).returns(true)
     ActiveMemberService.stubs(:call).returns([members(:one)])
     BankAccountService.stubs(:balance).returns(0)
 
@@ -39,7 +39,7 @@ class DistributionTest < ActiveSupport::TestCase
   end
 
   test 'fails when below minimum dividend' do
-    DistributionDayService.stubs(:today?).returns(true)
+    DistributionDateService.stubs(:today?).returns(true)
     ActiveMemberService.stubs(:call).returns([members(:one)])
     BankAccountService.stubs(:balance).returns(1)
 

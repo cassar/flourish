@@ -49,6 +49,6 @@ class DistributionService
   end
 
   def distribution_is_today?
-    DistributionDayService.today?
+    DistributionDateService.today?
   end
 end
