@@ -3,7 +3,7 @@ class DividendMailerPreview < ActionMailer::Preview
   def new_dividend_notification
     user = User.new(email: 'email@example.com')
     member = Member.new(payid: 'my_pay_id', user:)
-    distribution = Distribution.new(dividend_amount: 400)
+    distribution = Distribution.new(dividend_amount_in_base_units: 400)
     dividend = Dividend.new(member:, distribution:)
     DividendMailer.with(dividend:).new_dividend_notification
   end

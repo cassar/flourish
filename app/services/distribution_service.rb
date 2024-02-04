@@ -10,7 +10,7 @@ class DistributionService
     raise NotTodayError unless distribution_is_today?
     raise NoMembersError if member_count.zero?
     raise NoMoneyError if total_amount.zero?
-    raise BelowMinimumDividendError if dividend_amount_in_cents < minimum_dividend
+    raise BelowMinimumDividendError if dividend_amount_in_base_units < minimum_dividend
 
     members.each do |member|
       create_dividend_and_send_notification(member)
@@ -25,10 +25,10 @@ class DistributionService
   end
 
   def distribution
-    @distribution ||= Distribution.create! dividend_amount: dividend_amount_in_cents
+    @distribution ||= Distribution.create! dividend_amount_in_base_units:
   end
 
-  def dividend_amount_in_cents
+  def dividend_amount_in_base_units
     total_amount / member_count
   end
 
