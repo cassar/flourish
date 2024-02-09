@@ -45,7 +45,7 @@ class DistributionService
   end
 
   def total_amount
-    @total_amount ||= BankAccountService.balance
+    @total_amount ||= TotalPoolService.balance_in_base_units
   end
 
   def distribution_is_today?

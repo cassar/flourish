@@ -4,7 +4,7 @@ class DistributionTest < ActiveSupport::TestCase
   test 'creates dividends' do
     DistributionDateService.stubs(:today?).returns(true)
     ActiveMemberService.stubs(:call).returns([members(:one)])
-    BankAccountService.stubs(:balance).returns(DistributionService::MINIMUM_DIVIDEND_IN_CENTS)
+    TotalPoolService.stubs(:balance_in_base_units).returns(DistributionService::MINIMUM_DIVIDEND_IN_CENTS)
 
     assert_difference 'Dividend.count' do
       DistributionService.new.call
@@ -31,7 +31,7 @@ class DistributionTest < ActiveSupport::TestCase
   test 'fails when no money' do
     DistributionDateService.stubs(:today?).returns(true)
     ActiveMemberService.stubs(:call).returns([members(:one)])
-    BankAccountService.stubs(:balance).returns(0)
+    TotalPoolService.stubs(:balance_in_base_units).returns(0)
 
     assert_raises DistributionService::NoMoneyError do
       DistributionService.new.call
@@ -41,7 +41,7 @@ class DistributionTest < ActiveSupport::TestCase
   test 'fails when below minimum dividend' do
     DistributionDateService.stubs(:today?).returns(true)
     ActiveMemberService.stubs(:call).returns([members(:one)])
-    BankAccountService.stubs(:balance).returns(1)
+    TotalPoolService.stubs(:balance_in_base_units).returns(1)
 
     assert_raises DistributionService::BelowMinimumDividendError do
       DistributionService.new.call

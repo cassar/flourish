@@ -8,6 +8,8 @@ class Dividend < ApplicationRecord
   belongs_to :distribution
   belongs_to :member
 
+  scope :outstanding, -> { where(status: %i[issued pending_pay_out]) }
+
   before_save :check_for_receipt
 
   def created_at_formatted
