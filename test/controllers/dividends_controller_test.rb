@@ -7,7 +7,7 @@ class DividendsControllerTest < ActionDispatch::IntegrationTest
     @member = @user.member
     @dividend = dividends(:one)
     @payed_out_dividend = dividends(:pending_pay_out)
-    @not_my_dividend = dividends(:two)
+    @not_my_dividend = dividends(:issued)
   end
 
   test 'should redirect to sign in when not authenticated for pay out' do
