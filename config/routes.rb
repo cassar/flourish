@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   patch :membership, to: 'memberships#update'
 
   resources :dividends, only: [:index] do
-    member { patch :pay_out }
+    member { patch :pay_out, :recontribute } 
   end
 
   namespace :admin do
