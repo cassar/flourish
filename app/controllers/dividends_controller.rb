@@ -4,7 +4,7 @@ class DividendsController < ApplicationController
   before_action :check_dividend_in_issued_state!, only: [:pay_out]
 
   def index
-    @dividends = current_user.member.dividends.preload(:distribution)
+    @dividends = current_user.member.dividends.order(created_at: :desc).preload(:distribution)
   end
 
   def pay_out
