@@ -1,7 +1,11 @@
 class DividendsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorise_user!
-  before_action :check_dividend_in_issued_state!
+  before_action :authorise_user!, only: [:pay_out]
+  before_action :check_dividend_in_issued_state!, only: [:pay_out]
+
+  def index
+    @dividends = current_user.member.dividends.preload(:distribution)
+  end
 
   def pay_out
     dividend.pending_pay_out!

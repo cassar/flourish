@@ -3,10 +3,9 @@ Rails.application.routes.draw do
 
   get :membership, to: 'memberships#show'
   get :payid, to: 'memberships#edit_payid'
-  get :dividends, to: 'memberships#dividends'
   patch :membership, to: 'memberships#update'
 
-  resources :dividends, only: [] do
+  resources :dividends, only: [:index] do
     member { patch :pay_out }
   end
 

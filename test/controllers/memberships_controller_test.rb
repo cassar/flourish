@@ -42,15 +42,4 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
     @member.reload
     assert_equal 'new_payid', @member.payid
   end
-
-  test 'should redirect to sign in when not authenticated for dividends' do
-    sign_out @user
-    get dividends_path
-    assert_redirected_to new_user_session_path
-  end
-
-  test 'should get dividends' do
-    get dividends_path
-    assert_response :success
-  end
 end

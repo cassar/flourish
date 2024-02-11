@@ -20,10 +20,6 @@ class MembershipsController < ApplicationController
     end
   end
 
-  def dividends
-    @dividends = current_user.member.dividends.preload(:distribution)
-  end
-
   private
 
   def member_params
