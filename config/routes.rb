@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     post :up_bank, to: 'admin/up_bank#webhooks'
   end
 
+  get :distributions, to: 'dashboard#distributions'
+
   # Defines the root path route ("/")
   root 'dashboard#dashboard'
 end

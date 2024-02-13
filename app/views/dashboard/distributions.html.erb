@@ -1,0 +1,31 @@
+<main>
+  <h1>Distributions</h1>
+  <% if @distributions.any? %>
+    <% @distributions.each do |distribution| %>
+      <article>
+        <p><b>Date</b>: <%= created_at_formatted distribution %></p> 
+        <p><b>Amount</b>: <%= distribution.dividend_amount_formatted %></p>
+        <p><b>Dividends</b>: <%= distribution.dividends.length %></p>
+        <% if distribution.dividends.any? %>
+          <ul>
+            <% Dividend.statuses.each do |label, value| %>            
+              <% next if status_count(label, distribution.dividends).zero? %>
+              <li>
+                <%= label.capitalize %>: <%= status_count(label, distribution.dividends) %>
+              </li>
+            <% end %>
+          </ul>
+        <% end %>
+      </article>
+    <% end %>
+  <% else %>
+    <article>
+      <p>[No Distributions]</p>
+    </article>
+  <% end %>
+  <details>
+    <summary>About Distributions</summary>
+    <p>Distributions will occur on a <%= DistributionDateService::DISTRIBUTION_DAY %> when there is at least enough money to pay the minimum dividend.</p>
+    <p>Members will then be given the option to have their dividend paid out, or to recontribute the money back into the pool.</p>
+  </details>
+</main>

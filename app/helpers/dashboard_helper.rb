@@ -6,4 +6,10 @@ module DashboardHelper
   def created_at_formatted(record)
     record.created_at.strftime("#{record.created_at.day.ordinalize} %b %Y")
   end
+
+  def status_count(label, dividends)
+    dividends.count do |dividend|
+      dividend.status.eql? label
+    end
+  end
 end

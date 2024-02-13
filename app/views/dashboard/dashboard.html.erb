@@ -13,6 +13,9 @@
     <p>If the minimum dividend is not met at the time of the weekly distribution, then no funds will be distributed and the funds get transfered to the next week's pool.</p>
   </details>
   <nav>
+    <%= link_to distributions_path, class: 'button' do %>
+      Distributions
+    <% end %>
     <%= render partial: 'authentication' %>
   </nav>
 </main>
