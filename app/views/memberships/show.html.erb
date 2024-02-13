@@ -15,5 +15,9 @@
     <%= link_to dividends_path, class: 'button' do %>
       Dividends
     <% end %>
+    <%= link_to edit_user_registration_path, class: 'button' do %>
+      Account
+    <% end %>
+    <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
   </nav>
 </main>

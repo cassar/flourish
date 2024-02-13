@@ -2,10 +2,6 @@
   <%= link_to membership_path, class: 'button' do %>
     Membership
   <% end %>
-  <%= link_to edit_user_registration_path, class: 'button' do %>
-    Account
-  <% end %>
-  <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
 <% else %>
   <%= link_to new_user_registration_path, class: 'button' do %>
     Sign up
