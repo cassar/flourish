@@ -23,8 +23,4 @@ class DividendTest < ActiveSupport::TestCase
 
     assert_predicate dividend, :paid_out?
   end
-
-  test 'created_at_formatted' do
-    assert_equal '8th Nov 2023', dividends(:one).created_at_formatted
-  end
 end

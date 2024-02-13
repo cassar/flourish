@@ -13,10 +13,6 @@ class Dividend < ApplicationRecord
 
   before_save :check_for_receipt
 
-  def created_at_formatted
-    created_at.strftime("#{created_at.day.ordinalize} %b %Y")
-  end
-
   private
 
   def check_for_receipt
