@@ -4,8 +4,8 @@
     <% @distributions.each do |distribution| %>
       <article>
         <p><b>Date</b>: <%= created_at_formatted distribution %></p> 
-        <p><b>Amount</b>: <%= distribution.dividend_amount_formatted %></p>
-        <p><b>Dividends</b>: <%= distribution.dividends.length %></p>
+        <p><b>Dividend Amount</b>: <%= distribution.dividend_amount_formatted %></p>
+        <p><b>Dividend Count</b>: <%= distribution.dividends.length %></p>
       </article>
     <% end %>
   <% else %>
