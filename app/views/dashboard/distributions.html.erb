@@ -6,16 +6,6 @@
         <p><b>Date</b>: <%= created_at_formatted distribution %></p> 
         <p><b>Amount</b>: <%= distribution.dividend_amount_formatted %></p>
         <p><b>Dividends</b>: <%= distribution.dividends.length %></p>
-        <% if distribution.dividends.any? %>
-          <ul>
-            <% Dividend.statuses.each do |label, value| %>            
-              <% next if status_count(label, distribution.dividends).zero? %>
-              <li>
-                <%= label.capitalize %>: <%= status_count(label, distribution.dividends) %>
-              </li>
-            <% end %>
-          </ul>
-        <% end %>
       </article>
     <% end %>
   <% else %>

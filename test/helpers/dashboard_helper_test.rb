@@ -10,8 +10,4 @@ class DashboardHelperTest < ActionView::TestCase
   test 'should format the created at attribute' do
     assert_equal '8th Nov 2023', created_at_formatted(dividends(:one))
   end
-
-  test 'should count dividends of a given status' do
-    assert_equal 2, status_count('issued', [dividends(:one), dividends(:issued)])
-  end
 end
