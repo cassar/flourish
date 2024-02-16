@@ -6,7 +6,7 @@
   <body>
     <p>You've received a dividend.</p>
     <p><b>Amount</b>: <%= @distribution.dividend_amount_formatted %></p>
-    <a><%= link_to "Dividends", dividends_url %></a>
+    <a><%= link_to "Dividend", dividend_url(@dividend) %></a>
   </body>
 </html>
 

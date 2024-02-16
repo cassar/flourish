@@ -16,7 +16,7 @@
   <body>
     <p>You've received a dividend.</p>
     <p><b>Amount</b>: $5.00</p>
-    <a><a href="http://test.flourish.buzz/dividends">Dividends</a></a>
+    <a><a href="http://test.flourish.buzz/dividends/{{id}}">Dividend</a></a>
   </body>
 </html>
 
