@@ -1,16 +1,19 @@
 <article>
   <p><b>Date</b>: <%= created_at_formatted dividend %></p> 
   <p><b>Amount</b>: <%= dividend.distribution.dividend_amount_formatted %></p>
-  <% if dividend.issued? %>
-    <%= button_to "Pay Out", pay_out_dividend_path(dividend), method: :patch %>
-    <%= button_to "Recontribute", recontribute_dividend_path(dividend), method: :patch %>
-  <% elsif dividend.pending_pay_out? || dividend.recontributed? %>
+  <% unless dividend.issued? %>
     <p><b>Status</b>: <%= dividend.status.titleize %></p>
-  <% elsif dividend.paid_out? %>
-    <p><b>Status</b>: <%= dividend.status.titleize %></p>
+  <% end %>
+  <% if dividend.paid_out? %>
     <details>
       <summary>Receipt</summary>
       <p><%= dividend.receipt %></p>
     </details>
   <% end %>
 </article>
+<% if dividend.issued? %>
+  <nav>
+    <%= button_to "Pay Out", pay_out_dividend_path(dividend), method: :patch %>
+    <%= button_to "Recontribute", recontribute_dividend_path(dividend), method: :patch %>
+  </nav>
+<% end %>

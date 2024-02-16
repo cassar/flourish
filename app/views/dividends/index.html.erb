@@ -1,5 +1,10 @@
 <main>
   <h1>Dividends</h1>
+  <details>
+    <summary>Receiving a Dividend</summary>
+    <p>Members will be notified via email when a new dividend has been issued.</p>
+    <p>Once issued, members can choose to have their dividend paid out or can recontribute their dividend towards the next week's pool.</p>
+  </details>
   <% if @dividends.any? %>
     <%= render @dividends %>
   <% else %>
@@ -7,9 +12,4 @@
       <p>[No Dividends]</p>
     </article>
   <% end %>
-  <details>
-    <summary>Receiving a Dividend</summary>
-    <p>Members will be notified via email when a new dividend has been issued.</p>
-    <p>Once issued, members can choose to have their dividend paid out or can recontribute their dividend towards the next week's pool.</p>
-  </details>
 </main>
