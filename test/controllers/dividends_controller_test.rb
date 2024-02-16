@@ -21,6 +21,27 @@ class DividendsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test 'should redirect to sign in when not authenticated for dividend' do
+    sign_out @user
+    get dividend_path @dividend
+    assert_redirected_to new_user_session_path
+  end
+
+  test 'should redirect back to dividends if not authorised for dividend' do
+    assert_not_equal @not_my_dividend.member, @member
+
+    get dividend_path @not_my_dividend
+
+    assert_redirected_to dividends_path
+    assert_equal 'That\'s not your dividend. 🤨', flash[:alert]
+    assert @not_my_dividend.reload.issued?
+  end
+
+  test 'should get dividend' do
+    get dividend_path @dividend
+    assert_response :success
+  end
+
   test 'should redirect to sign in when not authenticated for pay out' do
     sign_out @user
     patch pay_out_dividend_path(@dividend)

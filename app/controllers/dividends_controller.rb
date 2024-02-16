@@ -1,11 +1,13 @@
 class DividendsController < ApplicationController
   before_action :authenticate_user!
-  before_action :authorise_user!, only: %i[pay_out recontribute]
+  before_action :authorise_user!, only: %i[show pay_out recontribute]
   before_action :check_dividend_in_issued_state!, only: %i[pay_out recontribute]
 
   def index
     @dividends = current_user.member.dividends.order(created_at: :desc).preload(:distribution)
   end
+
+  def show; end
 
   def pay_out
     dividend.pending_pay_out!
@@ -33,6 +35,6 @@ class DividendsController < ApplicationController
   end
 
   def dividend
-    Dividend.find params[:id]
+    @dividend ||= Dividend.find params[:id]
   end
 end

@@ -1,24 +1,7 @@
 <main>
   <h1>Dividends</h1>
   <% if @dividends.any? %>
-    <% @dividends.each do |dividend| %>
-      <article>
-        <p><b>Date</b>: <%= created_at_formatted dividend %></p> 
-        <p><b>Amount</b>: <%= dividend.distribution.dividend_amount_formatted %></p>
-        <% if dividend.issued? %>
-          <%= button_to "Pay Out", pay_out_dividend_path(dividend), method: :patch %>
-          <%= button_to "Recontribute", recontribute_dividend_path(dividend), method: :patch %>
-        <% elsif dividend.pending_pay_out? || dividend.recontributed? %>
-          <p><b>Status</b>: <%= dividend.status.titleize %></p>
-        <% elsif dividend.paid_out? %>
-          <p><b>Status</b>: <%= dividend.status.titleize %></p>
-          <details>
-            <summary>Receipt</summary>
-            <p><%= dividend.receipt %></p>
-          </details>
-        <% end %>
-      </article>
-    <% end %>
+    <%= render @dividends %>
   <% else %>
     <article>
       <p>[No Dividends]</p>
