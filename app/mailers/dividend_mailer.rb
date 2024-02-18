@@ -1,5 +1,5 @@
 class DividendMailer < ApplicationMailer
-  default from: ENV['DEFAULT_FROM_EMAIL'] || 'notifications@example.com'
+  default from: "Flourish Notifications <#{ENV['DEFAULT_FROM_EMAIL'] || 'notifications@example.com'}>"
 
   def new_dividend_notification
     @dividend = params[:dividend]
