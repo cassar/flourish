@@ -1,10 +1,10 @@
 <article>
-  <form>
+  <%= form_with model: dividend, url: pay_out_dividend_path(dividend) do |form| %>
     <p><b>Date</b>: <%= created_at_formatted dividend %></p> 
     <p><b>Amount</b>: <%= dividend.distribution.dividend_amount_formatted %></p>
     <% if dividend.issued? %>
       <nav>
-        <%= button_to "Pay Out", pay_out_dividend_path(dividend), method: :patch %>
+        <%= form.submit "Pay Out" %>
         <%= button_to "Recontribute", recontribute_dividend_path(dividend), method: :patch %>
       </nav>
     <% else %>
@@ -16,5 +16,5 @@
         <p><%= dividend.receipt %></p>
       </details>
     <% end %>
-  </form>
+  <% end %>
 </article>
