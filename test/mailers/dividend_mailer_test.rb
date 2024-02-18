@@ -10,7 +10,7 @@ class DividendMailerTest < ActionMailer::TestCase
 
     assert_equal ['notifications@example.com'], email.from
     assert_equal ['admin@email.com'], email.to
-    assert_equal 'user@email.com has requested a Pay Out', email.subject
+    assert_equal 'Pay Out Requested', email.subject
     assert_equal read_fixture('pay_out.txt').join, email.body.to_s
   end
 

@@ -30,3 +30,5 @@ en:
     dividend_mailer:
       new_dividend_notification_subject: "New Dividend Distributed"
       paid_out_notification_subject: "Your Dividend has been Paid Out"
+      pay_out_notification_subject: "Pay Out Requested"
+
