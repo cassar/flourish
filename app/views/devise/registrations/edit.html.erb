@@ -31,6 +31,13 @@
 <% end %>
 
 <div class="notice">
+  <p><strong>Log Out</strong></p>
+  <p>Log out of this session.</p>
+
+  <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
+</div>
+
+<div class="notice">
   <p><strong>Delete Account</strong></p>
   <p>Delete all account information.</p>
 
