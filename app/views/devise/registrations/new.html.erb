@@ -1,25 +1,23 @@
-<main>
-  <h1>Sign up</h1>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+<h1>Sign up</h1>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
 
-    <p>
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </p>
+  <p>
+    <%= f.label :email %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </p>
 
-    <p>
-    <%= f.label :password %>
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </p>
+  <p>
+  <%= f.label :password %>
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </p>
 
-    <p>
-      <%= f.label :password_confirmation %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-    </p>
+  <p>
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </p>
 
-    <%= f.submit "Sign up" %>
-  <% end %>
+  <%= f.submit "Sign up" %>
+<% end %>
 
-  <%= render "devise/shared/links" %>
-</main>
+<%= render "devise/shared/links" %>

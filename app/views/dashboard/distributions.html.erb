@@ -1,21 +1,19 @@
-<main>
-  <h1>Distributions</h1>
-  <% if @distributions.any? %>
-    <% @distributions.each do |distribution| %>
-      <article>
-        <p><b>Date</b>: <%= created_at_formatted distribution %></p> 
-        <p><b>Dividend</b>: <%= distribution.dividend_amount_formatted %></p>
-        <p><b>Members</b>: <%= distribution.dividends.length %></p>
-      </article>
-    <% end %>
-  <% else %>
+<h1>Distributions</h1>
+<% if @distributions.any? %>
+  <% @distributions.each do |distribution| %>
     <article>
-      <p>[No Distributions]</p>
+      <p><b>Date</b>: <%= created_at_formatted distribution %></p> 
+      <p><b>Dividend</b>: <%= distribution.dividend_amount_formatted %></p>
+      <p><b>Members</b>: <%= distribution.dividends.length %></p>
     </article>
   <% end %>
-  <details>
-    <summary>About Distributions</summary>
-    <p>Distributions will occur on a <%= DistributionDateService::DISTRIBUTION_DAY %> when there is at least enough money to pay the minimum dividend.</p>
-    <p>Members will then be given the option to have their dividend paid out, or to recontribute the money back into the pool.</p>
-  </details>
-</main>
+<% else %>
+  <article>
+    <p>[No Distributions]</p>
+  </article>
+<% end %>
+<details>
+  <summary>About Distributions</summary>
+  <p>Distributions will occur on a <%= DistributionDateService::DISTRIBUTION_DAY %> when there is at least enough money to pay the minimum dividend.</p>
+  <p>Members will then be given the option to have their dividend paid out, or to recontribute the money back into the pool.</p>
+</details>

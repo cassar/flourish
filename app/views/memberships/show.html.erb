@@ -1,22 +1,20 @@
-<main>
-  <h1>Membership</h1>
-  <article>
-    <p><b>PayID</b>: <%= @member.payid || '[Add PayID to activate Membership]' %></p>
-  </article>
-  <details>
-    <summary>Receiving a Payout</summary>
-    <p>An Australian <a href="https://payid.com.au/" target="_blank">PayID</a> is required to recieve payouts.</p>
-    <p>Don't have an Australian PayID? Members will be notified when new transfer methods become available.</p>
-  </details>
-  <nav>
-    <%= link_to payid_path, class: 'button' do %>
-      PayID
-    <% end %>
-    <%= link_to dividends_path, class: 'button' do %>
-      Dividends
-    <% end %>
-    <%= link_to edit_user_registration_path, class: 'button' do %>
-      Account
-    <% end %>
-  </nav>
-</main>
+<h1>Membership</h1>
+<article>
+  <p><b>PayID</b>: <%= @member.payid || '[Add PayID to activate Membership]' %></p>
+</article>
+<details>
+  <summary>Receiving a Payout</summary>
+  <p>An Australian <a href="https://payid.com.au/" target="_blank">PayID</a> is required to recieve payouts.</p>
+  <p>Don't have an Australian PayID? Members will be notified when new transfer methods become available.</p>
+</details>
+<nav>
+  <%= link_to payid_path, class: 'button' do %>
+    PayID
+  <% end %>
+  <%= link_to dividends_path, class: 'button' do %>
+    Dividends
+  <% end %>
+  <%= link_to edit_user_registration_path, class: 'button' do %>
+    Account
+  <% end %>
+</nav>
