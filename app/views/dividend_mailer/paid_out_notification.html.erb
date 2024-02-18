@@ -1,12 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <p>Your dividend has been paid out.</p>
-    <p><b>Receipt</b>: <%= @dividend.receipt %></p>
-    <a><%= link_to "Dividends", dividends_url %></a>
-  </body>
-</html>
+<h1>Dividend Pay Out</h1>
+<article>
+  <p>Your dividend has been paid out.</p>
+  <p><b>Amount</b>: <%= @distribution.dividend_amount_formatted %></p>
+  <p><b>Receipt</b>: <%= @dividend.receipt %></p>
+  <a><%= link_to "See your Dividend", dividend_url(@dividend) %></a>
+</article>
 

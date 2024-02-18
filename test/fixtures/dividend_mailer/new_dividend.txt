@@ -2,24 +2,19 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
     <style>
       /* Email styles need to be inline */
     </style>
   </head>
 
   <body>
-    <!DOCTYPE html>
-<html>
-  <head>
-    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
-  </head>
-  <body>
-    <p>You've received a dividend.</p>
-    <p><b>Amount</b>: $5.00</p>
-    <a><a href="http://test.flourish.buzz/dividends/{{id}}">Dividend</a></a>
-  </body>
-</html>
-
+    <h1>New Dividend Received</h1>
+<article>
+  <p>You have received a new dividend.</p>
+  <p><b>Amount</b>: $5.00</p>
+  <a><a href="http://test.flourish.buzz/dividends/980190962">Claim your dividend</a></a>
+</article>
 
   </body>
 </html>
