@@ -2,12 +2,19 @@
   <nav>
     <ul>
       <li><%= link_to 'Dashboard', root_path %></li>
-      <% if user_signed_in? %>
+      <li><%= link_to 'Distributions', distributions_path %></li>
+    </ul>
+    <% if user_signed_in? %>
+      <ul>
         <li><%= link_to 'Membership', membership_path %></li>
         <li><%= link_to 'Account', edit_user_registration_path %></li>
         <li><%= link_to 'Dividends', dividends_path %></li>
-      <% end %>
-      <li><%= link_to 'Distributions', distributions_path %></li>
-    </ul>
+      </ul>
+    <% else %>
+      <ul>
+        <li><%= link_to 'Sign up', new_user_registration_path %></li>
+        <li><%= link_to 'Log in', new_user_session_path %></li> 
+      </ul>
+    <% end %>
   </nav>
 </footer>
