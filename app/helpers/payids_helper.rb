@@ -1,0 +1,2 @@
+module PayidsHelper
+end

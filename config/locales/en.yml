@@ -5,7 +5,7 @@ en:
         not_authorised: "You don't have access."
         update:
           success: "Receipt updated successfully."
-    memberships:
+    payids:
       update:
         success: "PayID updated successfully."
     dividends:

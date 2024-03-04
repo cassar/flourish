@@ -1,0 +1,31 @@
+<h1>Pay Outs</h1>
+<article>
+  <p>Pay outs: Enabled</p>
+  <ul>
+    <li>
+      Payment Details: 
+      <% if @member.payid %>
+        ✅ Entered
+      <% else %>
+        ☑️  Enter a PayID to request pay outs.
+      <% end %>
+    </li>
+  </ul>
+</article>
+<p>
+  <%= link_to edit_payid_path(@member), class: 'button' do %>
+    PayID
+  <% end %>
+</p>
+<% if @dividends.any? %>
+  <%= render @dividends %>
+<% else %>
+  <article>
+    <p>[No Payouts]</p>
+  </article>
+<% end %>
+<details>
+  <summary>Receiving a Payout</summary>
+  <p>An Australian <a href="https://payid.com.au/" target="_blank">PayID</a> is required to recieve payouts.</p>
+  <p>Don't have an Australian PayID? Members will be notified when new transfer methods become available.</p>
+</details>
