@@ -9,7 +9,7 @@ class PayidsController < ApplicationController
     @member = current_user.member
     if @member.update(member_params)
       flash[:success] = I18n.t('controllers.payids.update.success')
-      redirect_to pay_outs_path
+      redirect_to membership_path
     else
       flash.now[:error] = @member.errors.full_messages.to_sentence
       render :edit

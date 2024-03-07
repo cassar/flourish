@@ -3,11 +3,29 @@
   <p><strong>Status</strong>: Active</p>
   <ul>
     <li>
-      Confirmed Email: 
+      <strong>Email</strong>: 
       <% if current_user.confirmed? %>
-        ✅ 
+        Confirmed 
       <% else%>
-        ☑️ 
+        Unconfirmed 
+      <% end %>
+    </li>
+  </ul>
+  <p>
+    <strong>Pay Outs</strong>: 
+    <% if @member.payid.present? %> 
+      Enabled
+    <% else %>
+      Not Enabled
+    <% end %>
+  </p>
+  <ul>
+    <li>
+      <strong>PayID</strong>: 
+      <% if @member.payid.present? %>
+        Entered (<%= link_to 'Update', edit_payid_path(@member) %>)
+      <% else %>
+        <%= link_to 'Enter', edit_payid_path(@member) %>
       <% end %>
     </li>
   </ul>

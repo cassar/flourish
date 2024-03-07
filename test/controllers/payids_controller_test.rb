@@ -26,7 +26,7 @@ class PayidsControllerTest < ActionDispatch::IntegrationTest
 
   test 'should update payid' do
     patch payid_path(@member), params: { member: { payid: 'new_payid' } }
-    assert_redirected_to pay_outs_path
+    assert_redirected_to membership_path
     assert_equal 'PayID updated successfully.', flash[:success]
     @member.reload
     assert_equal 'new_payid', @member.payid

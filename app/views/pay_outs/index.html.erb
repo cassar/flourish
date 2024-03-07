@@ -1,22 +1,4 @@
 <h1>Pay Outs</h1>
-<article>
-  <p>Pay outs: Enabled</p>
-  <ul>
-    <li>
-      Payment Details: 
-      <% if @member.payid %>
-        ✅ Entered
-      <% else %>
-        ☑️  Enter a PayID to request pay outs.
-      <% end %>
-    </li>
-  </ul>
-</article>
-<p>
-  <%= link_to edit_payid_path(@member), class: 'button' do %>
-    PayID
-  <% end %>
-</p>
 <% if @dividends.any? %>
   <%= render @dividends %>
 <% else %>

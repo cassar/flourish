@@ -13,16 +13,7 @@ class PayOutsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
-  test 'should get index when has payid' do
-    @member.update! payid: 'my_payid'
-
-    get pay_outs_path
-    assert_response :success
-  end
-
-  test 'should get index when no payid' do
-    assert_nil @member.payid
-
+  test 'should get index' do
     get pay_outs_path
     assert_response :success
   end
