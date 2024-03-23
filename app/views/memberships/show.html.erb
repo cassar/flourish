@@ -23,7 +23,7 @@
     <li>
       <strong>PayID</strong>: 
       <% if @member.payid.present? %>
-        Entered (<%= link_to 'Update', edit_payid_path(@member) %>)
+        Entered (<%= link_to 'update', edit_payid_path(@member) %>)
       <% else %>
         <%= link_to 'Enter', edit_payid_path(@member) %>
       <% end %>
