@@ -1,6 +1,15 @@
 <h1>Membership</h1>
 <article>
-  <p><strong>Status</strong>: Active</p>
+  <p>
+    <strong>Contributions</strong>: Enabled
+    <ul>
+      <li>
+        <strong>Reference</strong>:
+        <%= @member.contribution_reference %>
+      </li>
+    </ul>
+  </p>
+  <p><strong>Dividends</strong>: Enabled</p>
   <ul>
     <li>
       <strong>Email</strong>: 
@@ -29,15 +38,6 @@
       <% end %>
     </li>
   </ul>
-  <p>
-    <strong>Contributions</strong>: Enabled
-    <ul>
-      <li>
-        <strong>Reference</strong>:
-        <%= @member.contribution_reference %>
-      </li>
-    </ul>
-  </p>
 </article>
 <nav>
   <%= link_to dividends_path, class: 'button' do %>
