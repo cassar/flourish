@@ -5,6 +5,10 @@ class Member < ApplicationRecord
 
   has_many :dividends, dependent: :destroy
 
+  def contribution_reference
+    "flourish-#{id}"
+  end
+
   private
 
   def member_count
