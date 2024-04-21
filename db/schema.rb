@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_02_04_022807) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_02_110404) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contributions", force: :cascade do |t|
+    t.integer "amount_in_base_units"
+    t.bigint "member_id", null: false
+    t.string "up_bank_transaction_reference"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_contributions_on_member_id"
+    t.index ["up_bank_transaction_reference"], name: "index_contributions_on_up_bank_transaction_reference", unique: true
+  end
 
   create_table "distributions", force: :cascade do |t|
     t.integer "dividend_amount_in_base_units"
@@ -66,6 +76,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_02_04_022807) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "contributions", "members"
   add_foreign_key "dividends", "distributions"
   add_foreign_key "dividends", "members"
   add_foreign_key "members", "users"

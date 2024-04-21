@@ -17,4 +17,17 @@ class MemberTest < ActiveSupport::TestCase
       dividends(:one).reload
     end
   end
+
+  test 'has many contributions association' do
+    assert_includes members(:one).contributions, contributions(:one)
+  end
+
+  test 'dependend destroy relationship on contributions' do
+    assert contributions(:one).present?
+    members(:one).destroy
+
+    assert_raises ActiveRecord::RecordNotFound do
+      contributions(:one).reload
+    end
+  end
 end

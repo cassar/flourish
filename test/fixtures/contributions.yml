@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount_in_base_units: 1
+  member: one
+  up_bank_transaction_reference: MyString1
+
+two:
+  amount_in_base_units: 1
+  member: two
+  up_bank_transaction_reference: MyString2

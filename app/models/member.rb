@@ -4,6 +4,7 @@ class Member < ApplicationRecord
   belongs_to :user
 
   has_many :dividends, dependent: :destroy
+  has_many :contributions, dependent: :destroy
 
   def contribution_reference
     "flourish-#{id}"
