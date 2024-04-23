@@ -5,6 +5,17 @@ class ContributionTest < ActiveSupport::TestCase
     assert_equal members(:one), contributions(:one).member
   end
 
+  test 'up bank transaction reference presence validation' do
+    error = assert_raises ActiveRecord::RecordInvalid do
+      contributions(:one).update!(
+        up_bank_transaction_reference: nil
+      )
+    end
+
+    expected_error = 'Validation failed: Up bank transaction reference can\'t be blank'
+    assert_equal expected_error, error.message
+  end
+
   test 'up bank transaction reference uniqueness validation' do
     error = assert_raises ActiveRecord::RecordInvalid do
       contributions(:one).update!(
