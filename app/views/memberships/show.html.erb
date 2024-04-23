@@ -9,7 +9,7 @@
       </li>
     </ul>
   </p>
-  <p><strong>Dividends</strong>: Enabled</p>
+  <p><strong><%= link_to 'Dividends', dividends_path %></strong>: Enabled</p>
   <ul>
     <li>
       <strong>Email</strong>: 
@@ -21,7 +21,7 @@
     </li>
   </ul>
   <p>
-    <strong>Pay Outs</strong>: 
+  <strong><%= link_to 'Pay Outs', pay_outs_path %></strong>: 
     <% if @member.payid.present? %> 
       Enabled
     <% else %>
@@ -40,12 +40,6 @@
   </ul>
 </article>
 <nav>
-  <%= link_to dividends_path, class: 'button' do %>
-    Dividends
-  <% end %>
-  <%= link_to pay_outs_path, class: 'button' do %>
-    Pay Outs
-  <% end %>
   <%= link_to edit_user_registration_path, class: 'button' do %>
     Account
   <% end %>
