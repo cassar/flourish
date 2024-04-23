@@ -17,6 +17,5 @@ Rails.application.routes.draw do
 
   get :distributions, to: 'dashboard#distributions'
 
-  # Defines the root path route ("/")
   root 'dashboard#dashboard'
 end
