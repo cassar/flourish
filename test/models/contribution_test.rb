@@ -5,7 +5,7 @@ class ContributionTest < ActiveSupport::TestCase
     assert_equal members(:one), contributions(:one).member
   end
 
-  test 'up bank uniqueness validation' do
+  test 'up bank transaction reference uniqueness validation' do
     error = assert_raises ActiveRecord::RecordInvalid do
       contributions(:one).update!(
         up_bank_transaction_reference: contributions(:two).up_bank_transaction_reference
