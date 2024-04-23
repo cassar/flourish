@@ -1,0 +1,13 @@
+<h1>Contributions</h1>
+<% if @contributions.any? %>
+  <%= render @contributions %>
+<% else %>
+  <article>
+    <p>[No Contributions]</p>
+  </article>
+<% end %>
+<details>
+  <summary>Sending Contributions</summary>
+  <p>Contributions can be sent directly to our bank account.</p>
+  <p>For direct banking contributions to appear here, attach your reference, which is: <mark><%= @member.contribution_reference %></mark></p>
+</details>

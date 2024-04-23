@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get :membership, to: 'memberships#show'
 
+  resources :contributions, only: :index
+
   resources :dividends, only: [:index, :show] do
     member { patch :pay_out, :recontribute } 
   end

@@ -26,4 +26,10 @@ class ContributionTest < ActiveSupport::TestCase
     expected_error = 'Validation failed: Amount in base units must be greater than 0'
     assert_equal expected_error, error.message
   end
+
+  test 'amount_formatted' do
+    assert_equal 100, contributions(:one).amount_in_base_units
+
+    assert_equal '$1.00', contributions(:one).amount_formatted
+  end
 end
