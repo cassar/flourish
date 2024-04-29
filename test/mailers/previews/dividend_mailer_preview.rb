@@ -1,5 +1,12 @@
 # Preview all emails at http://localhost:3000/rails/mailers/dividend_mailer
 class DividendMailerPreview < ActionMailer::Preview
+  def new_contribution_notification
+    user = User.new(email: 'email@example.com')
+    member = Member.new(payid: 'my_pay_id', user:)
+    contribution = Contribution.new(amount_in_base_units: 500, member:)
+    DividendMailer.with(contribution:).new_contribution_notification
+  end
+
   def new_dividend_notification
     user = User.new(email: 'email@example.com')
     member = Member.new(payid: 'my_pay_id', user:)

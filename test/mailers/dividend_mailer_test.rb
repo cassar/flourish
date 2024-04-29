@@ -1,6 +1,19 @@
 require 'test_helper'
 
 class DividendMailerTest < ActionMailer::TestCase
+  test 'new_contribution_notification' do
+    email = DividendMailer.with(contribution: contributions(:one)).new_contribution_notification
+
+    assert_emails 1 do
+      email.deliver_now
+    end
+
+    assert_equal ['notifications@example.com'], email.from
+    assert_equal ['user@email.com'], email.to
+    assert_equal 'Your Contribution has been Received', email.subject
+    assert_equal read_fixture('contribution_received.txt').join, email.body.to_s
+  end
+
   test 'pay_out_notification' do
     email = DividendMailer.with(dividend: dividends(:one)).pay_out_notification
 

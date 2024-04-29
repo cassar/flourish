@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>New Contribution Received</h1>
+<article>
+  <p>We have received your contribution.</p>
+  <p><b>Amount</b>: $1.00</p>
+  <a><a href="http://test.flourish.buzz/contributions">See your contributions</a></a>
+</article>
+
+  </body>
+</html>
