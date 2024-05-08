@@ -1,11 +1,19 @@
 class ContributionsParserService
   def call
-    parsed_transactions.each do |parsed_transaction|
-      Contribution.create(parsed_transaction)
+    contributions.each do |contribution|
+      DividendMailer.with(contribution:).new_contribution_notification.deliver_now
     end
   end
 
   private
+
+  def contributions
+    parsed_transactions.filter_map do |parsed_transaction|
+      next unless (contribution = Contribution.create(parsed_transaction)).persisted?
+
+      contribution
+    end
+  end
 
   def parsed_transactions
     transactions.filter_map do |transaction|
