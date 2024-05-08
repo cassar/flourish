@@ -10,4 +10,8 @@ class DashboardHelperTest < ActionView::TestCase
   test 'should format the created at attribute' do
     assert_equal '8th Nov 2023', created_at_formatted(dividends(:one))
   end
+
+  test 'should return the minimum dividend formatted' do
+    assert_equal '$10.00', minimum_dividend_formatted
+  end
 end
