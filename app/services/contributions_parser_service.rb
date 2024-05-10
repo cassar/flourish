@@ -1,7 +1,7 @@
 class ContributionsParserService
   def call
     contributions.each do |contribution|
-      DividendMailer.with(contribution:).new_contribution_notification.deliver_now
+      NotificationMailer.with(contribution:).new_contribution_notification.deliver_now
     end
   end
 

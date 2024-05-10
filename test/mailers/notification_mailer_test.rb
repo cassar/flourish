@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class DividendMailerTest < ActionMailer::TestCase
+class NotificationMailerTest < ActionMailer::TestCase
   test 'new_contribution_notification' do
-    email = DividendMailer.with(contribution: contributions(:one)).new_contribution_notification
+    email = NotificationMailer.with(contribution: contributions(:one)).new_contribution_notification
 
     assert_emails 1 do
       email.deliver_now
@@ -15,7 +15,7 @@ class DividendMailerTest < ActionMailer::TestCase
   end
 
   test 'pay_out_notification' do
-    email = DividendMailer.with(dividend: dividends(:one)).pay_out_notification
+    email = NotificationMailer.with(dividend: dividends(:one)).pay_out_notification
 
     assert_emails 1 do
       email.deliver_now
@@ -28,7 +28,7 @@ class DividendMailerTest < ActionMailer::TestCase
   end
 
   test 'new_dividend_notification' do
-    email = DividendMailer.with(dividend: dividends(:one)).new_dividend_notification
+    email = NotificationMailer.with(dividend: dividends(:one)).new_dividend_notification
 
     assert_emails 1 do
       email.deliver_now
@@ -42,7 +42,7 @@ class DividendMailerTest < ActionMailer::TestCase
   end
 
   test 'paid_out_notification' do
-    email = DividendMailer.with(dividend: dividends(:paid_out)).paid_out_notification
+    email = NotificationMailer.with(dividend: dividends(:paid_out)).paid_out_notification
 
     assert_emails 1 do
       email.deliver_now

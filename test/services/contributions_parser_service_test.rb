@@ -19,7 +19,7 @@ class ContributionsParserServiceTest < ActionDispatch::IntegrationTest
     ]
 
     UpBank::AccountTransactions.any_instance.stubs(:call).returns(transactions)
-    DividendMailer.any_instance.stubs(:new_contribution_notification).once
+    NotificationMailer.any_instance.stubs(:new_contribution_notification).once
 
     assert_difference -> { Contribution.count } do
       ContributionsParserService.new.call
