@@ -16,13 +16,6 @@ class NotificationMailer < ApplicationMailer
     mail(to: @user.email, subject: I18n.t('mailers.notification_mailer.new_dividend_notification_subject'))
   end
 
-  def pay_out_notification
-    @dividend = params[:dividend]
-    @member = @dividend.member
-    @user = @member.user
-    mail(to: User::ADMIN_EMAIL, subject: I18n.t('mailers.notification_mailer.pay_out_notification_subject'))
-  end
-
   def paid_out_notification
     @dividend = params[:dividend]
     @member = @dividend.member

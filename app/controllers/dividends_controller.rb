@@ -11,7 +11,7 @@ class DividendsController < ApplicationController
 
   def pay_out
     dividend.pending_pay_out!
-    NotificationMailer.with(dividend:).pay_out_notification.deliver_later
+    AdminNotificationMailer.with(dividend:).pay_out_notification.deliver_later
     redirect_to dividends_path, notice: I18n.t('controllers.dividends.pay_out.success')
   end
 
