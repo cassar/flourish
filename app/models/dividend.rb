@@ -1,5 +1,5 @@
 class Dividend < ApplicationRecord
-  enum status: {
+  enum :status, {
     issued: 0,
     pending_pay_out: 1,
     paid_out: 2,
