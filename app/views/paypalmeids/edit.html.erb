@@ -1,9 +1,9 @@
-<h1>PayID</h1>
-<%= form_with model: @member, url: payid_path do |form| %>
+<h1>PayPal.Me ID</h1>
+<%= form_with model: @member, url: paypalmeid_path do |form| %>
   <article>
     <p>
-    <span>PayID</span>
-    <%=form.text_field :payid %>
+      <span>PayPal.Me ID</span>
+      <%=form.text_field :paypalmeid %>
     </p>
   </article>
   <%= form.submit "Submit" %>

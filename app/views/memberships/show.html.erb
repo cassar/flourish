@@ -22,7 +22,7 @@
   </ul>
   <p>
   <strong><%= link_to 'Pay Outs', pay_outs_path %></strong>: 
-    <% if @member.payid.present? %> 
+    <% if @member.paypalmeid.present? %> 
       Enabled
     <% else %>
       Not Enabled
@@ -30,11 +30,11 @@
   </p>
   <ul>
     <li>
-      <strong>PayID</strong>: 
-      <% if @member.payid.present? %>
-        Entered (<%= link_to 'update', edit_payid_path(@member) %>)
+      <strong>PayPal.Me ID</strong>: 
+      <% if @member.paypalmeid.present? %>
+        Entered (<%= link_to 'update', edit_paypalmeid_path(@member) %>)
       <% else %>
-        <%= link_to 'Enter', edit_payid_path(@member) %>
+        <%= link_to 'Enter', edit_paypalmeid_path(@member) %>
       <% end %>
     </li>
   </ul>

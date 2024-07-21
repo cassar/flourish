@@ -13,15 +13,15 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
-  test 'should get show with payid present' do
-    @member.update! payid: 'my_payid'
+  test 'should get show with paypalmeid present' do
+    @member.update! paypalmeid: 'my_paypalmeid'
 
     get membership_url
     assert_response :success
   end
 
-  test 'should get show without payid present' do
-    assert_nil @member.payid
+  test 'should get show without paypalmeid present' do
+    assert_nil @member.paypalmeid
 
     get membership_url
     assert_response :success

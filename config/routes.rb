@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   end
 
   resources :pay_outs, only: [:index]
-  resources :payids, only: [:edit, :update]
+  resources :paypalmeids, only: [:edit, :update]
 
   namespace :admin do
     resources :dividends, only: [:show, :update]

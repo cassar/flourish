@@ -5,7 +5,7 @@ class MembershipsController < ApplicationController
     @member = current_user.member
   end
 
-  def edit_payid
+  def edit_paypalmeid
     @member = current_user.member
   end
 
@@ -16,13 +16,13 @@ class MembershipsController < ApplicationController
       redirect_to membership_path
     else
       flash.now[:error] = @member.errors.full_messages.to_sentence
-      render :edit_payid
+      render :edit_paypalmeid
     end
   end
 
   private
 
   def member_params
-    params.require(:member).permit(:payid)
+    params.require(:member).permit(:paypalmeid)
   end
 end
