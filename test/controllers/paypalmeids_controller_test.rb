@@ -27,7 +27,7 @@ class PaypalmeidsControllerTest < ActionDispatch::IntegrationTest
   test 'should update paypalmeid' do
     patch paypalmeid_path(@member), params: { member: { paypalmeid: 'new_paypalmeid' } }
     assert_redirected_to membership_path
-    assert_equal 'PayID updated successfully.', flash[:success]
+    assert_equal 'PayPal.Me ID updated successfully.', flash[:success]
     @member.reload
     assert_equal 'new_paypalmeid', @member.paypalmeid
   end

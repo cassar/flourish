@@ -11,7 +11,7 @@ class TotalPoolService
     private
 
     def bank_account_balance
-      UpBank::AccountBalance.new.call
+      10_000
     end
 
     def outstanding_amount_in_base_units

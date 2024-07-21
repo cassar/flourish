@@ -10,18 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_20_035955) do
+ActiveRecord::Schema[7.2].define(version: 2024_07_21_031348) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "contributions", force: :cascade do |t|
     t.integer "amount_in_base_units"
     t.bigint "member_id", null: false
-    t.string "up_bank_transaction_reference"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_contributions_on_member_id"
-    t.index ["up_bank_transaction_reference"], name: "index_contributions_on_up_bank_transaction_reference", unique: true
   end
 
   create_table "distributions", force: :cascade do |t|

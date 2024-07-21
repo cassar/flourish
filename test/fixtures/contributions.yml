@@ -3,9 +3,7 @@
 one:
   amount_in_base_units: 100
   member: one
-  up_bank_transaction_reference: MyString1
 
 two:
   amount_in_base_units: 1
   member: two
-  up_bank_transaction_reference: MyString2
