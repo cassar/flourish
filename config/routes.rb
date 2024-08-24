@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   end
 
   get :distributions, to: 'dashboard#distributions'
+  get :about, to: 'dashboard#about'
 
   root 'dashboard#dashboard'
 end
