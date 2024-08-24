@@ -30,4 +30,12 @@ class MemberTest < ActiveSupport::TestCase
       contributions(:one).reload
     end
   end
+
+  test 'pay outs disabled when no paypal.me id' do
+    assert members(:one).pay_outs_disabled?
+  end
+
+  test 'pay outs enabled when paypal.me id present' do
+    assert_not members(:two).pay_outs_disabled?
+  end
 end
