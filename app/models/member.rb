@@ -6,9 +6,6 @@ class Member < ApplicationRecord
   has_many :dividends, dependent: :destroy
   has_many :contributions, dependent: :destroy
 
-  def contribution_reference
-    "flourish-#{id}"
-  end
 
   private
 
