@@ -2,7 +2,11 @@ require 'test_helper'
 
 class TotalPoolServiceTest < ActiveSupport::TestCase
   setup do
-    OutstandingDividendsService.stubs(:total_amount_in_base_units).returns(1_500)
+    Contribution.stubs(:sum).returns(10_000)
+
+    Distribution.stubs(:joins).returns(Distribution)
+    Distribution.stubs(:merge).returns(Distribution)
+    Distribution.stubs(:sum).returns(1_500)
   end
 
   test 'balance_in_base_units' do

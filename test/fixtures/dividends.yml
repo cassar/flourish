@@ -21,3 +21,8 @@ paid_out:
   status: paid_out
   member: one
   receipt: This is your receipt, thank you.
+
+recontributed:
+  distribution: one
+  status: recontributed
+  member: one

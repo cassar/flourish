@@ -1,7 +1,7 @@
 class TotalPoolService
   class << self
     def balance_in_base_units
-      bank_account_balance - outstanding_amount_in_base_units
+      total_contributed_in_base_units - total_owed_in_base_units
     end
 
     def balance_formatted
@@ -10,12 +10,14 @@ class TotalPoolService
 
     private
 
-    def bank_account_balance
-      10_000
+    def total_contributed_in_base_units
+      Contribution.sum(:amount_in_base_units)
     end
 
-    def outstanding_amount_in_base_units
-      OutstandingDividendsService.total_amount_in_base_units
+    def total_owed_in_base_units
+      Distribution.joins(:dividends)
+                  .merge(Dividend.owed)
+                  .sum(:dividend_amount_in_base_units)
     end
   end
 end

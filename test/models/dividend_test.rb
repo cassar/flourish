@@ -9,10 +9,11 @@ class DividendTest < ActiveSupport::TestCase
     assert_equal members(:one), dividends(:one).member
   end
 
-  test 'outstanding association' do
-    assert_includes Dividend.outstanding, dividends(:issued)
-    assert_includes Dividend.outstanding, dividends(:pending_pay_out)
-    assert_not_includes Dividend.outstanding, dividends(:paid_out)
+  test 'owed scope' do
+    assert_includes Dividend.owed, dividends(:issued)
+    assert_includes Dividend.owed, dividends(:pending_pay_out)
+    assert_includes Dividend.owed, dividends(:paid_out)
+    assert_not_includes Dividend.owed, dividends(:recontributed)
   end
 
   test 'before save check for receipt check' do
