@@ -12,11 +12,11 @@
     </li>
   </ul>
   <p>
-    <% if @member.paypalmeid.present? %> 
-      Enabled
-    <% else %>
   <strong><%= link_to 'Contributions', contributions_path %></strong> and <strong><%= link_to 'Pay Outs', pay_outs_path %></strong>: 
+    <% if @member.pay_outs_disabled? %> 
       Not Enabled
+    <% else %>
+      Enabled
     <% end %>
   </p>
   <ul>
