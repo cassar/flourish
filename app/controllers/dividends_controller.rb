@@ -4,7 +4,8 @@ class DividendsController < ApplicationController
   before_action :check_dividend_in_issued_state!, only: %i[pay_out recontribute]
 
   def index
-    @dividends = current_user.member.dividends.order(created_at: :desc).preload(:distribution)
+    @member = current_user.member
+    @dividends = @member.dividends.order(created_at: :desc).preload(:distribution)
   end
 
   def show; end
@@ -23,7 +24,7 @@ class DividendsController < ApplicationController
   private
 
   def authorise_user!
-    return if dividend.member == current_user.member
+    return if dividend.member == (@member = current_user.member)
 
     redirect_to dividends_path, alert: I18n.t('controllers.dividends.not_authorised')
   end
