@@ -12,10 +12,10 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'should create a member record after user creation' do
-    assert_difference('Member.count', 1) do
-      user = User.create(email: 'john@example.com', password: 'password')
-      assert_equal user.member, Member.last
+    user = assert_difference(['User.count', 'Member.count'], 1) do
+      User.create!(email: 'john@example.com', password: 'password')
     end
+    assert_equal user.member, Member.last
   end
 
   test '#admin? should return true if admin' do
