@@ -395,7 +395,7 @@ DEPENDENCIES
   money
   pg (~> 1.1)
   puma (~> 6.0)
-  rails (~> 7.2.0.beta2)
+  rails (~> 7.2.1)
   redis (~> 4.0)
   rubocop
   rubocop-capybara
