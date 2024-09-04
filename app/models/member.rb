@@ -6,6 +6,8 @@ class Member < ApplicationRecord
   has_many :dividends, dependent: :destroy
   has_many :contributions, dependent: :destroy
 
+  validates :paypalmeid, uniqueness: true, allow_nil: true
+
   def pay_outs_disabled?
     paypalmeid.blank?
   end

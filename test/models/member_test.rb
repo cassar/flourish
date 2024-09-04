@@ -31,6 +31,24 @@ class MemberTest < ActiveSupport::TestCase
     end
   end
 
+  test 'enforces unique paypalmeid' do
+    assert_not_nil members(:two).paypalmeid
+
+    error = assert_raises ActiveRecord::RecordInvalid do
+      members(:one).update! paypalmeid: members(:two).paypalmeid
+    end
+
+    assert_match(/has already been taken/, error.message)
+  end
+
+  test 'ignores unique validation when paypalmeid is nil' do
+    assert_nil members(:one).paypalmeid
+
+    members(:two).update! paypalmeid: nil
+
+    assert_nil members(:two).reload.paypalmeid
+  end
+
   test 'pay outs disabled when no paypal.me id' do
     assert members(:one).pay_outs_disabled?
   end
