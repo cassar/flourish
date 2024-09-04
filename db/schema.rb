@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_07_21_031348) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_04_085001) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,6 +45,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_07_21_031348) do
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
     t.string "paypalmeid"
+    t.index ["paypalmeid"], name: "index_members_on_paypalmeid", unique: true
     t.index ["user_id"], name: "index_members_on_user_id", unique: true
   end
 
