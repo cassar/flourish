@@ -34,3 +34,7 @@ en:
     admin_notification_mailer:
       pay_out_notification_subject: "Pay Out Requested"
 
+  activerecord:
+    attributes:
+      member:
+        paypalmeid: PayPal.Me ID 
