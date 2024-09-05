@@ -1,3 +1,5 @@
-class Users::RegistrationsController < Devise::RegistrationsController
-  invisible_captcha only: [:create]
+module Users
+  class RegistrationsController < Devise::RegistrationsController
+    invisible_captcha only: [:create]
+  end
 end
