@@ -9,7 +9,7 @@ one:
 issued:
   distribution: two
   status: issued
-  member: two
+  member: unconfirmed
 
 pending_pay_out:
   distribution: one

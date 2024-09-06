@@ -8,7 +8,11 @@ one:
   name: Robert Owen
   user: one
 
-two:
+unconfirmed:
   name: Cecil Brown
-  user: two 
+  user: unconfirmed
   paypalmeid: cecilbrown
+
+admin:
+  name: Flourish Admin
+  user: admin
