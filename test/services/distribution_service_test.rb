@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DistributionTest < ActiveSupport::TestCase
+class DistributionServiceTest < ActiveSupport::TestCase
   test 'creates dividends' do
     DistributionDateService.stubs(:today?).returns(true)
     ActiveMemberService.stubs(:call).returns([members(:one)])
