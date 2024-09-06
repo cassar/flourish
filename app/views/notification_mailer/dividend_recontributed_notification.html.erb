@@ -1,0 +1,7 @@
+<h1>Dividend Automatically Recontributed</h1>
+<article>
+  <p>Dividend has been automatically recontributed.</p>
+  <p>Unclaimed dividends are automatically recontributed on the <%= RecontributionService::DAY_OF_THE_WEEK %> following a successful distribution.</p>
+  <p>Amount: <%= @distribution.dividend_amount_formatted %></p>
+  <a><%= link_to "View dividend", dividend_url(@dividend) %></a>
+</article>

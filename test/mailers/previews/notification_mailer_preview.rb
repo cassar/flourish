@@ -22,4 +22,12 @@ class NotificationMailerPreview < ActionMailer::Preview
     dividend = Dividend.new(id: 1, member:, distribution:, receipt: '172receipt_no38a')
     NotificationMailer.with(dividend:).paid_out_notification
   end
+
+  def dividend_recontributed_notification
+    user = User.new(email: 'email@example.com')
+    member = Member.new(paypalmeid: 'my_paypalmeid', user:)
+    distribution = Distribution.new(dividend_amount_in_base_units: 400)
+    dividend = Dividend.new(id: 1, member:, distribution:, receipt: '172receipt_no38a')
+    NotificationMailer.with(dividend:).dividend_recontributed_notification
+  end
 end

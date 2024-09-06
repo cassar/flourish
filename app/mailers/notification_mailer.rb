@@ -23,4 +23,12 @@ class NotificationMailer < ApplicationMailer
     @user = @member.user
     mail(to: @user.email, subject: I18n.t('mailers.notification_mailer.paid_out_notification_subject'))
   end
+
+  def dividend_recontributed_notification
+    @dividend = params[:dividend]
+    @member = @dividend.member
+    @distribution = @dividend.distribution
+    @user = @member.user
+    mail(to: @user.email, subject: I18n.t('mailers.notification_mailer.dividend_recontributed_notification_subject'))
+  end
 end

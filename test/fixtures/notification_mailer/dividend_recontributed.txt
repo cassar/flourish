@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      /* Email styles need to be inline */
+    </style>
+  </head>
+
+  <body>
+    <h1>Dividend Automatically Recontributed</h1>
+<article>
+  <p>Dividend has been automatically recontributed.</p>
+  <p>Unclaimed dividends are automatically recontributed on the Tuesday following a successful distribution.</p>
+  <p>Amount: $5.00</p>
+  <a><a href="http://test.flourish.buzz/dividends/452915188">View dividend</a></a>
+</article>
+
+  </body>
+</html>
