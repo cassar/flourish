@@ -9,7 +9,7 @@ class DistributionService
   def call
     raise NotTodayError unless distribution_is_today?
     raise NoMembersError if member_count.zero?
-    raise NoMoneyError if total_amount.zero?
+    raise NoMoneyError if no_money?
     raise BelowMinimumDividendError if below_minimum_dividend?
 
     members.each do |member|
@@ -29,11 +29,11 @@ class DistributionService
   end
 
   def dividend_amount_in_base_units
-    total_amount / member_count
+    total_amount_in_base_units / member_count
   end
 
   def member_count
-    members.length
+    members.count
   end
 
   def below_minimum_dividend?
@@ -48,8 +48,12 @@ class DistributionService
     Member.active
   end
 
-  def total_amount
-    @total_amount ||= TotalPoolService.balance_in_base_units
+  def no_money?
+    total_amount_in_base_units.zero?
+  end
+
+  def total_amount_in_base_units
+    @total_amount_in_base_units ||= TotalPoolService.balance_in_base_units
   end
 
   def distribution_is_today?
