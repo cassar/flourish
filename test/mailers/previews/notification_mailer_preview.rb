@@ -7,12 +7,12 @@ class NotificationMailerPreview < ActionMailer::Preview
     NotificationMailer.with(contribution:).contribution_received
   end
 
-  def new_dividend
+  def dividend_received
     user = User.new(email: 'email@example.com')
     member = Member.new(paypalmeid: 'my_paypalmeid', user:)
     distribution = Distribution.new(dividend_amount_in_base_units: 400)
     dividend = Dividend.new(id: 1, member:, distribution:)
-    NotificationMailer.with(dividend:).new_dividend
+    NotificationMailer.with(dividend:).dividend_received
   end
 
   def paid_out

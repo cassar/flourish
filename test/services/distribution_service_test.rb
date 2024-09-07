@@ -4,7 +4,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
   test 'creates multiple dividends' do
     mailer_mock = mock('mailer')
     NotificationMailer.stubs(:with).returns(mailer_mock)
-    mailer_mock.stubs(:new_dividend).returns(mailer_mock)
+    mailer_mock.stubs(:dividend_received).returns(mailer_mock)
     mailer_mock.stubs(:deliver_now).returns(true)
 
     members = [members(:one), members(:two)]

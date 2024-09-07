@@ -27,7 +27,7 @@ class DistributionService
 
   def create_dividend_and_send_notification(member)
     dividend = member.dividends.create!(distribution:)
-    NotificationMailer.with(dividend:).new_dividend.deliver_now
+    NotificationMailer.with(dividend:).dividend_received.deliver_now
   end
 
   def distribution
