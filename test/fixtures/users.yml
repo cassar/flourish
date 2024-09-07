@@ -7,9 +7,12 @@
 one:
   email: user@email.com
   confirmed_at: "2nd Oct 2023"
+
+two:
+  email: user2@email.com
     
 unconfirmed:
-  email: user2@email.com
+  email: unconfirmed@email.com
 
 no_member:
   email: no-member@email.com

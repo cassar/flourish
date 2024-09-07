@@ -25,7 +25,7 @@ class RecontributionServiceTest < ActiveSupport::TestCase
     end
   end
 
-  test 'all dependent services are called' do
+  test 'all dependent services respond' do
     Time.zone.stubs(:today).returns(Date.parse(RecontributionService::DAY_OF_THE_WEEK))
 
     assert RecontributionService.new.call

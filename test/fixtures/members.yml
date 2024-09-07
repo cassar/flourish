@@ -8,6 +8,10 @@ one:
   name: Robert Owen
   user: one
 
+two:
+  name: Angus Gene
+  user: two
+
 unconfirmed:
   name: Cecil Brown
   user: unconfirmed

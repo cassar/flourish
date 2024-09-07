@@ -1,15 +1,21 @@
 class DistributionService
   class NotTodayError < StandardError; end
   class NoMembersError < StandardError; end
-  class NoMoneyError < StandardError; end
   class BelowMinimumDividendError < StandardError; end
 
   MINIMUM_DIVIDEND_IN_CENTS = 1000
 
+  attr_accessor :run_today, :members, :total_pool_in_base_units
+
+  def initialize(run_today:, members:, total_pool_in_base_units:)
+    @run_today = run_today
+    @members = members
+    @total_pool_in_base_units = total_pool_in_base_units
+  end
+
   def call
-    raise NotTodayError unless distribution_is_today?
-    raise NoMembersError if member_count.zero?
-    raise NoMoneyError if no_money?
+    raise NotTodayError unless run_today
+    raise NoMembersError if members.empty?
     raise BelowMinimumDividendError if below_minimum_dividend?
 
     members.each do |member|
@@ -29,34 +35,10 @@ class DistributionService
   end
 
   def dividend_amount_in_base_units
-    total_amount_in_base_units / member_count
-  end
-
-  def member_count
-    members.count
+    total_pool_in_base_units / members.count
   end
 
   def below_minimum_dividend?
-    dividend_amount_in_base_units < minimum_dividend
-  end
-
-  def minimum_dividend
-    MINIMUM_DIVIDEND_IN_CENTS
-  end
-
-  def members
-    Member.active
-  end
-
-  def no_money?
-    total_amount_in_base_units.zero?
-  end
-
-  def total_amount_in_base_units
-    @total_amount_in_base_units ||= TotalPoolService.balance_in_base_units
-  end
-
-  def distribution_is_today?
-    DistributionDateService.today?
+    dividend_amount_in_base_units < MINIMUM_DIVIDEND_IN_CENTS
   end
 end
