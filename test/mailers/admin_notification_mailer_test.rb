@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class AdminNotificationMailerTest < ActionMailer::TestCase
-  test 'pay_out_notification' do
-    email = AdminNotificationMailer.with(dividend: dividends(:one)).pay_out_notification
+  test 'pay_out' do
+    email = AdminNotificationMailer.with(dividend: dividends(:one)).pay_out
 
     assert_emails 1 do
       email.deliver_now

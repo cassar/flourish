@@ -7,7 +7,7 @@ class RecontributionServiceTest < ActiveSupport::TestCase
     mailer_mock = mock('mailer')
     NotificationMailer.stubs(:with).with(dividend: dividends(:one)).returns(mailer_mock)
     NotificationMailer.stubs(:with).with(dividend: dividends(:issued)).returns(mailer_mock)
-    mailer_mock.stubs(:dividend_recontributed_notification).returns(mailer_mock)
+    mailer_mock.stubs(:dividend_recontributed).returns(mailer_mock)
     mailer_mock.stubs(:deliver_now).returns(true)
 
     assert_not_empty Dividend.issued

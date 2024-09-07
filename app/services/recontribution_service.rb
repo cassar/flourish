@@ -7,15 +7,15 @@ class RecontributionService
     raise NotTodayError unless today?
 
     Dividend.issued.each do |dividend|
-      recontribute_dividend_and_send_notification dividend
+      recontribute_dividend_and_send dividend
     end
   end
 
   private
 
-  def recontribute_dividend_and_send_notification(dividend)
+  def recontribute_dividend_and_send(dividend)
     dividend.recontributed!
-    NotificationMailer.with(dividend:).dividend_recontributed_notification.deliver_now
+    NotificationMailer.with(dividend:).dividend_recontributed.deliver_now
   end
 
   def today?

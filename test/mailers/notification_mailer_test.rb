@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class NotificationMailerTest < ActionMailer::TestCase
-  test 'new_contribution_notification' do
-    email = NotificationMailer.with(contribution: contributions(:one)).new_contribution_notification
+  test 'new_contribution' do
+    email = NotificationMailer.with(contribution: contributions(:one)).new_contribution
 
     assert_emails 1 do
       email.deliver_now
@@ -14,8 +14,8 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal read_fixture('contribution_received.txt').join, email.body.to_s
   end
 
-  test 'new_dividend_notification' do
-    email = NotificationMailer.with(dividend: dividends(:one)).new_dividend_notification
+  test 'new_dividend' do
+    email = NotificationMailer.with(dividend: dividends(:one)).new_dividend
 
     assert_emails 1 do
       email.deliver_now
@@ -28,8 +28,8 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal expected_content, email.body.to_s
   end
 
-  test 'paid_out_notification' do
-    email = NotificationMailer.with(dividend: dividends(:paid_out)).paid_out_notification
+  test 'paid_out' do
+    email = NotificationMailer.with(dividend: dividends(:paid_out)).paid_out
 
     assert_emails 1 do
       email.deliver_now
@@ -41,8 +41,8 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal read_fixture('paid_out.txt').join, email.body.to_s
   end
 
-  test 'dividend_recontributed_notification' do
-    email = NotificationMailer.with(dividend: dividends(:recontributed)).dividend_recontributed_notification
+  test 'dividend_recontributed' do
+    email = NotificationMailer.with(dividend: dividends(:recontributed)).dividend_recontributed
 
     assert_emails 1 do
       email.deliver_now

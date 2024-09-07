@@ -13,15 +13,15 @@ class DistributionService
     raise BelowMinimumDividendError if below_minimum_dividend?
 
     members.each do |member|
-      create_dividend_and_send_notification(member)
+      create_dividend_and_send(member)
     end
   end
 
   private
 
-  def create_dividend_and_send_notification(member)
+  def create_dividend_and_send(member)
     dividend = member.dividends.create!(distribution:)
-    NotificationMailer.with(dividend:).new_dividend_notification.deliver_now
+    NotificationMailer.with(dividend:).new_dividend.deliver_now
   end
 
   def distribution

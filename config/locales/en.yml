@@ -28,12 +28,12 @@ en:
   
   mailers:
     notification_mailer:
-      new_dividend_notification_subject: "New Dividend Distributed"
-      paid_out_notification_subject: "Your Dividend has been Paid Out"
-      new_contribution_notification_subject: "Your Contribution has been Received"
-      dividend_recontributed_notification_subject: "Your Dividend has been Automatically Recontributed"
+      new_dividend_subject: "New Dividend Distributed"
+      paid_out_subject: "Your Dividend has been Paid Out"
+      new_contribution_subject: "Your Contribution has been Received"
+      dividend_recontributed_subject: "Your Dividend has been Automatically Recontributed"
     admin_notification_mailer:
-      pay_out_notification_subject: "Pay Out Requested"
+      pay_out_subject: "Pay Out Requested"
 
   activerecord:
     attributes:
