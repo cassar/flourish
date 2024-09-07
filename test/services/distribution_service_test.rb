@@ -6,6 +6,11 @@ class DistributionServiceTest < ActiveSupport::TestCase
     Member.stubs(:active).returns([members(:one)])
     TotalPoolService.stubs(:balance_in_base_units).returns(DistributionService::MINIMUM_DIVIDEND_IN_CENTS)
 
+    mailer_mock = mock('mailer')
+    NotificationMailer.stubs(:with).returns(mailer_mock)
+    mailer_mock.stubs(:new_dividend).returns(mailer_mock)
+    mailer_mock.stubs(:deliver_now).returns(true)
+
     assert_difference 'Dividend.count' do
       DistributionService.new.call
     end
