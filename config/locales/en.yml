@@ -31,7 +31,7 @@ en:
       new_dividend_subject: "New Dividend Distributed"
       paid_out_subject: "Your Dividend has been Paid Out"
       new_contribution_subject: "Your Contribution has been Received"
-      dividend_recontributed_subject: "Your Dividend has been Automatically Recontributed"
+      dividend_automatically_recontributed_subject: "Your Dividend has been Automatically Recontributed"
     admin_notification_mailer:
       pay_out_requested_subject: "Pay Out Requested"
 

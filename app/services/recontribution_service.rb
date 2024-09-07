@@ -15,7 +15,7 @@ class RecontributionService
 
   def recontribute_dividend_and_send_notification(dividend)
     dividend.recontributed!
-    NotificationMailer.with(dividend:).dividend_recontributed.deliver_now
+    NotificationMailer.with(dividend:).dividend_automatically_recontributed.deliver_now
   end
 
   def today?
