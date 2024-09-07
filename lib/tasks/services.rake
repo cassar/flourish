@@ -5,7 +5,7 @@ namespace :services do
   end
 
   desc 'recontributes unclaimed dividends'
-  task recontribute: :environment do
+  task recontribution: :environment do
     RecontributionService.new.call
   end
 end
