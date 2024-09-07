@@ -3,7 +3,7 @@ require 'test_helper'
 class DistributionServiceTest < ActiveSupport::TestCase
   test 'creates dividends' do
     DistributionDateService.stubs(:today?).returns(true)
-    ActiveMemberService.stubs(:call).returns([members(:one)])
+    Member.stubs(:active).returns([members(:one)])
     TotalPoolService.stubs(:balance_in_base_units).returns(DistributionService::MINIMUM_DIVIDEND_IN_CENTS)
 
     assert_difference 'Dividend.count' do
@@ -21,7 +21,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
 
   test 'fails when no members' do
     DistributionDateService.stubs(:today?).returns(true)
-    ActiveMemberService.stubs(:call).returns([])
+    Member.stubs(:active).returns([])
 
     assert_raises DistributionService::NoMembersError do
       DistributionService.new.call
@@ -30,7 +30,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
 
   test 'fails when no money' do
     DistributionDateService.stubs(:today?).returns(true)
-    ActiveMemberService.stubs(:call).returns([members(:one)])
+    Member.stubs(:active).returns([members(:one)])
     TotalPoolService.stubs(:balance_in_base_units).returns(0)
 
     assert_raises DistributionService::NoMoneyError do
@@ -40,7 +40,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
 
   test 'fails when below minimum dividend' do
     DistributionDateService.stubs(:today?).returns(true)
-    ActiveMemberService.stubs(:call).returns([members(:one)])
+    Member.stubs(:active).returns([members(:one)])
     TotalPoolService.stubs(:balance_in_base_units).returns(1)
 
     assert_raises DistributionService::BelowMinimumDividendError do

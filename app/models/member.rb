@@ -8,6 +8,12 @@ class Member < ApplicationRecord
 
   validates :paypalmeid, uniqueness: true, allow_nil: true
 
+  scope :active, lambda {
+    joins(:user)
+      .where.not(users: { confirmed_at: nil })
+      .where.not(users: { email: User::ADMIN_EMAIL })
+  }
+
   def pay_outs_disabled?
     paypalmeid.blank?
   end

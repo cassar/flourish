@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
   def dashboard
-    @member_count = ActiveMemberCountService.call
+    @member_count = Member.active.count
     @total_pool = TotalPoolService.balance_formatted
     return unless user_signed_in?
 

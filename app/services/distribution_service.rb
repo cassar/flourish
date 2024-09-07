@@ -45,7 +45,7 @@ class DistributionService
   end
 
   def members
-    ActiveMemberService.call
+    Member.active
   end
 
   def total_amount

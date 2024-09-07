@@ -49,6 +49,12 @@ class MemberTest < ActiveSupport::TestCase
     assert_nil members(:unconfirmed).reload.paypalmeid
   end
 
+  test 'active scope' do
+    assert_includes Member.active, members(:one)
+    assert_not_includes Member.active, members(:unconfirmed)
+    assert_not_includes Member.active, members(:admin)
+  end
+
   test 'pay outs disabled when no paypal.me id' do
     assert members(:one).pay_outs_disabled?
   end
