@@ -1,11 +1,11 @@
 class NotificationMailer < ApplicationMailer
   default from: "Flourish Notifications <#{ENV['DEFAULT_FROM_EMAIL'] || 'notifications@example.com'}>"
 
-  def new_contribution
+  def contribution_received
     @contribution = params[:contribution]
     @member = @contribution.member
     @user = @member.user
-    mail(to: @user.email, subject: I18n.t('mailers.notification_mailer.new_contribution_subject'))
+    mail(to: @user.email, subject: I18n.t('mailers.notification_mailer.contribution_received_subject'))
   end
 
   def new_dividend

@@ -1,10 +1,10 @@
 # Preview all emails at http://localhost:3000/rails/mailers/notification_mailer
 class NotificationMailerPreview < ActionMailer::Preview
-  def new_contribution
+  def contribution_received
     user = User.new(email: 'email@example.com')
     member = Member.new(paypalmeid: 'my_paypalmeid', user:)
     contribution = Contribution.new(amount_in_base_units: 500, member:)
-    NotificationMailer.with(contribution:).new_contribution
+    NotificationMailer.with(contribution:).contribution_received
   end
 
   def new_dividend

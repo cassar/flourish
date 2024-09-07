@@ -1,8 +1,8 @@
 require 'test_helper'
 
 class NotificationMailerTest < ActionMailer::TestCase
-  test 'new_contribution' do
-    email = NotificationMailer.with(contribution: contributions(:one)).new_contribution
+  test 'contribution_received' do
+    email = NotificationMailer.with(contribution: contributions(:one)).contribution_received
 
     assert_emails 1 do
       email.deliver_now
