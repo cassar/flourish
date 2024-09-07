@@ -33,7 +33,7 @@ en:
       new_contribution_subject: "Your Contribution has been Received"
       dividend_recontributed_subject: "Your Dividend has been Automatically Recontributed"
     admin_notification_mailer:
-      pay_out_subject: "Pay Out Requested"
+      pay_out_requested_subject: "Pay Out Requested"
 
   activerecord:
     attributes:
