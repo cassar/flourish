@@ -29,7 +29,7 @@ en:
   mailers:
     notification_mailer:
       dividend_received_subject: "New Dividend Distributed"
-      paid_out_subject: "Your Dividend has been Paid Out"
+      dividend_paid_out_subject: "Your Dividend has been Paid Out"
       contribution_received_subject: "Your Contribution has been Received"
       dividend_automatically_recontributed_subject: "Your Dividend has been Automatically Recontributed"
     admin_notification_mailer:

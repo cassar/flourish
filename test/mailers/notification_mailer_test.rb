@@ -28,8 +28,8 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal expected_content, email.body.to_s
   end
 
-  test 'paid_out' do
-    email = NotificationMailer.with(dividend: dividends(:paid_out)).paid_out
+  test 'dividend_paid_out' do
+    email = NotificationMailer.with(dividend: dividends(:paid_out)).dividend_paid_out
 
     assert_emails 1 do
       email.deliver_now
@@ -38,7 +38,7 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal ['notifications@example.com'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Your Dividend has been Paid Out', email.subject
-    assert_equal read_fixture('paid_out.txt').join, email.body.to_s
+    assert_equal read_fixture('dividend_paid_out.txt').join, email.body.to_s
   end
 
   test 'dividend_automatically_recontributed' do
