@@ -1,8 +1,8 @@
 class DistributionDateService
-  DISTRIBUTION_DAY = 'Friday'.freeze
+  DAY_OF_THE_WEEK = 'Friday'.freeze
 
   def self.next_date
-    Date.parse(DISTRIBUTION_DAY)
+    Date.parse(DAY_OF_THE_WEEK)
   end
 
   def self.today?
