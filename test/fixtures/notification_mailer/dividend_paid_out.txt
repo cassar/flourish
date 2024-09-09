@@ -11,7 +11,7 @@
     <h1>Dividend Pay Out</h1>
 <article>
   <p>Your dividend has been paid out.</p>
-  <p><b>Amount</b>: $5.00</p>
+  <p><b>Amount</b>: $5.00 AUD</p>
   <p><b>Receipt</b>: This is your receipt, thank you.</p>
   <a><a href="http://test.flourish.buzz/dividends/843001289">See your Dividend</a></a>
 </article>

@@ -12,6 +12,6 @@ class DashboardHelperTest < ActionView::TestCase
   end
 
   test 'should return the minimum dividend formatted' do
-    assert_equal '$10.00', minimum_dividend_formatted
+    assert_equal '$10.00 AUD', minimum_dividend_formatted
   end
 end

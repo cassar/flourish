@@ -19,6 +19,6 @@ class ContributionTest < ActiveSupport::TestCase
   test 'amount_formatted' do
     assert_equal 100, contributions(:one).amount_in_base_units
 
-    assert_equal '$1.00', contributions(:one).amount_formatted
+    assert_equal '$1.00 AUD', contributions(:one).amount_formatted
   end
 end

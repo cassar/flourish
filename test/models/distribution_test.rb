@@ -14,6 +14,6 @@ class DistributionTest < ActiveSupport::TestCase
   test 'dividend amount formatted' do
     assert_equal 500, distributions(:one).dividend_amount_in_base_units
 
-    assert_equal '$5.00', distributions(:one).dividend_amount_formatted
+    assert_equal '$5.00 AUD', distributions(:one).dividend_amount_formatted
   end
 end

@@ -18,7 +18,7 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
     Distribution.stubs(:merge).returns(Distribution)
     Distribution.stubs(:sum).returns(1_500)
 
-    assert_equal '$85.00', TotalPoolService.balance_formatted
+    assert_equal '$85.00 AUD', TotalPoolService.balance_formatted
   end
 
   test 'integration' do
