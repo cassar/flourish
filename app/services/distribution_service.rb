@@ -5,12 +5,12 @@ class DistributionService
 
   MINIMUM_DIVIDEND_IN_CENTS = 1000
 
-  attr_accessor :run_today, :members, :total_pool_in_base_units
+  attr_accessor :run_today, :members, :dividend_amount_in_base_units
 
-  def initialize(run_today:, members:, total_pool_in_base_units:)
+  def initialize(run_today:, members:, dividend_amount_in_base_units:)
     @run_today = run_today
     @members = members
-    @total_pool_in_base_units = total_pool_in_base_units
+    @dividend_amount_in_base_units = dividend_amount_in_base_units
   end
 
   def call
@@ -32,10 +32,6 @@ class DistributionService
 
   def distribution
     @distribution ||= Distribution.create! dividend_amount_in_base_units:
-  end
-
-  def dividend_amount_in_base_units
-    total_pool_in_base_units / members.count
   end
 
   def below_minimum_dividend?

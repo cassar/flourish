@@ -8,14 +8,14 @@ class DistributionServiceTest < ActiveSupport::TestCase
     mailer_mock.stubs(:deliver_now).returns(true)
 
     members = [members(:one), members(:two)]
-    total_pool_in_base_units = DistributionService::MINIMUM_DIVIDEND_IN_CENTS * members.count
+    dividend_amount_in_base_units = DistributionService::MINIMUM_DIVIDEND_IN_CENTS * members.count
 
     assert_difference 'Distribution.count', 1 do
       assert_difference 'Dividend.count', members.count do
         DistributionService.new(
           run_today: true,
           members:,
-          total_pool_in_base_units:
+          dividend_amount_in_base_units:
         ).call
       end
     end
@@ -26,7 +26,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
       DistributionService.new(
         run_today: false,
         members: [],
-        total_pool_in_base_units: 0
+        dividend_amount_in_base_units: 0
       ).call
     end
   end
@@ -36,7 +36,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
       DistributionService.new(
         run_today: true,
         members: [],
-        total_pool_in_base_units: 0
+        dividend_amount_in_base_units: 0
       ).call
     end
   end
@@ -46,7 +46,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
       DistributionService.new(
         run_today: true,
         members: [members(:one)],
-        total_pool_in_base_units: 0
+        dividend_amount_in_base_units: 0
       ).call
     end
   end
@@ -55,7 +55,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     assert DistributionService.new(
       run_today: true,
       members: [members(:one)],
-      total_pool_in_base_units: DistributionService::MINIMUM_DIVIDEND_IN_CENTS
+      dividend_amount_in_base_units: DistributionService::MINIMUM_DIVIDEND_IN_CENTS
     ).call
   end
 end

@@ -1,10 +1,14 @@
 namespace :services do
   desc 'orchestrates a distribution'
   task distribution: :environment do
+    members = Member.active
     DistributionService.new(
       run_today: DistributionDateService.today?,
-      members: Member.active,
-      total_pool_in_base_units: TotalPoolService.balance_in_base_units
+      members:,
+      dividend_amount_in_base_units: DividendAmountService.new(
+        total_pool_in_base_units: TotalPoolService.balance_in_base_units,
+        member_count: members.count
+      ).amount_in_base_units
     ).call
   end
 
