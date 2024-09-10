@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   get :membership, to: 'memberships#show'
 
   resources :contributions, only: :index
+  resources :distributions, only: :index
   resources :pay_outs, only: :index
   resources :paypalmeids, only: [:edit, :update]
 
@@ -15,7 +16,6 @@ Rails.application.routes.draw do
     member { patch :pay_out, :recontribute } 
   end
 
-  get :distributions, to: 'dashboard#distributions'
   get :about, to: 'dashboard#about'
 
   root 'dashboard#dashboard'

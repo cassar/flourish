@@ -7,9 +7,4 @@ class DashboardControllerTest < ActionDispatch::IntegrationTest
     get root_path
     assert_response :success
   end
-
-  test 'should get distributions' do
-    get distributions_path
-    assert_response :success
-  end
 end

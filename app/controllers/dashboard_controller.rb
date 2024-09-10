@@ -6,8 +6,4 @@ class DashboardController < ApplicationController
 
     @member = current_user.member
   end
-
-  def distributions
-    @distributions = Distribution.order(created_at: :desc).preload(:dividends)
-  end
 end
