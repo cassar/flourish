@@ -18,6 +18,7 @@ admin.save!
   user.skip_confirmation_notification!
   user.skip_reconfirmation!
   user.confirm
+  user.last_sign_in_at = Time.now
   user.save!
 end
 

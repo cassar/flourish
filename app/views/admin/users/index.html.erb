@@ -1,0 +1,23 @@
+<h1>Users</h1>
+<% if @users.any? %>
+  <table>
+    <thead>
+      <tr>
+        <th>Email</th>
+        <th>Last Sign In</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td><%= user.last_sign_in_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <article>
+    <p>No Users.</p>
+  </article>
+<% end %>
