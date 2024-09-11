@@ -38,4 +38,4 @@ en:
   activerecord:
     attributes:
       member:
-        paypalmeid: PayPal.Me ID 
+        paypalmeid: "PayPal.Me ID"
