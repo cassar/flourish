@@ -1,8 +1,5 @@
 <h1>Distributions</h1>
-<details>
-  <summary>What is a Distribution?</summary>
-  <p>Every week on a <%= DistributionDateService::DAY_OF_THE_WEEK %>, the pool will be dividend equally between each active member and distributed in the form of a dividend.</p>
-</details>
+<%= render partial: 'details' %>
 <% if @distributions.any? %>
   <% @distributions.each do |distribution| %>
     <article>
