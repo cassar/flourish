@@ -4,6 +4,7 @@
     <thead>
       <tr>
         <th>Email</th>
+        <th>Confirmed</th>
         <th>Last Sign In</th>
       </tr>
     </thead>
@@ -11,6 +12,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= user.email %></td>
+          <td><%= user.confirmed_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
           <td><%= user.last_sign_in_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
         </tr>
       <% end %>

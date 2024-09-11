@@ -4,7 +4,7 @@ module Admin
     before_action :authorise_admin!
 
     def index
-      @users = User.order(last_sign_in_at: :desc)
+      @users = User.order(Arel.sql('confirmed_at NULLS LAST'), Arel.sql('last_sign_in_at DESC NULLS LAST'))
     end
 
     private
