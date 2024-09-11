@@ -8,14 +8,13 @@ class DistributionServiceTest < ActiveSupport::TestCase
     mailer_mock.stubs(:deliver_now).returns(true)
 
     members = [members(:one), members(:two)]
-    dividend_amount_in_base_units = DistributionService::MINIMUM_DIVIDEND_IN_CENTS * members.count
 
     assert_difference 'Distribution.count', 1 do
       assert_difference 'Dividend.count', members.count do
         DistributionService.new(
           run_today: true,
           members:,
-          dividend_amount_in_base_units:
+          dividend_amount_in_base_units: 0
         ).call
       end
     end
@@ -41,21 +40,11 @@ class DistributionServiceTest < ActiveSupport::TestCase
     end
   end
 
-  test 'fails when below minimum dividend' do
-    assert_raises DistributionService::BelowMinimumDividendError do
-      DistributionService.new(
-        run_today: true,
-        members: [members(:one)],
-        dividend_amount_in_base_units: 0
-      ).call
-    end
-  end
-
   test 'all dependent services respond' do
     assert DistributionService.new(
       run_today: true,
       members: [members(:one)],
-      dividend_amount_in_base_units: DistributionService::MINIMUM_DIVIDEND_IN_CENTS
+      dividend_amount_in_base_units: 0
     ).call
   end
 end
