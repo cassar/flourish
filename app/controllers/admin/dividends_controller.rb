@@ -1,7 +1,7 @@
 module Admin
   class DividendsController < ApplicationController
     before_action :authenticate_user!
-    before_action :authorise_user!
+    before_action :authorise_admin!
 
     attr_accessor :dividend
 
@@ -25,7 +25,7 @@ module Admin
       params.require(:dividend).permit(:receipt)
     end
 
-    def authorise_user!
+    def authorise_admin!
       return if current_user.admin?
 
       redirect_to dividends_path, alert: I18n.t('controllers.admin.dividends.not_authorised')
