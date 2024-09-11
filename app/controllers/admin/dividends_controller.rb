@@ -28,7 +28,7 @@ module Admin
     def authorise_admin!
       return if current_user.admin?
 
-      redirect_to dividends_path, alert: I18n.t('controllers.admin.dividends.not_authorised')
+      redirect_to dividends_path, alert: I18n.t('controllers.admin.not_authorised')
     end
   end
 end
