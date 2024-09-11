@@ -19,3 +19,4 @@ no_member:
 
 admin:
   email: <%= User::ADMIN_EMAIL %>
+  confirmed_at: "2nd Oct 2023"
