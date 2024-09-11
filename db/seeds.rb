@@ -7,7 +7,7 @@
 #   Character.create(name: "Luke", movie: movies.first)
 #
 
-admin = User.new(email: User::ADMIN_EMAIL)
+admin = User.new(email: User::ADMIN_EMAIL, password: 'password')
 admin.skip_confirmation_notification!
 admin.skip_reconfirmation!
 admin.confirm
