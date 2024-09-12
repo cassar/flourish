@@ -1,5 +1,8 @@
 <h1>Users</h1>
 <% if @users.any? %>
+  <article>
+    <p><b>Total Users:</b> <%= @total_user_count %></p>
+  </article>
   <table>
     <thead>
       <tr>
