@@ -1,8 +1,11 @@
 <% content_for :title, 'Dashboard'  %>
 <article>
-  <p><b>Total Pool</b>: <%= @total_pool %></p>
+  <p><b>Dashboard:</b></p>
+  <ul>
+  <li><b>Total Pool</b>: <%= @total_pool %></li>
   <%= turbo_stream_from 'member_count' %>
-  <p><b>Member Count</b>: <%= render partial: 'member_count' %></p>
+  <li><b>Member Count</b>: <%= render partial: 'member_count' %></li>
+  </ul>
 </article>
 <article>
   <p><b>Next Distribution:</b></p>
