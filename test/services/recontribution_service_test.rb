@@ -11,8 +11,10 @@ class RecontributionServiceTest < ActiveSupport::TestCase
     mailer_mock.stubs(:deliver_now).returns(true)
 
     assert_not_empty Dividend.issued
+    assert_equal 'issued', dividends(:issued).status
     RecontributionService.new.call
     assert_empty Dividend.issued
+    assert_equal 'auto_recontributed', dividends(:issued).reload.status
   end
 
   test 'fails when not the day for automatic recontributions' do

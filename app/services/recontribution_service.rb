@@ -14,7 +14,7 @@ class RecontributionService
   private
 
   def recontribute_dividend_and_send_notification(dividend)
-    dividend.recontributed!
+    dividend.auto_recontributed!
     NotificationMailer.with(dividend:).dividend_automatically_recontributed.deliver_now
   end
 

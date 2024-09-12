@@ -3,7 +3,8 @@ class Dividend < ApplicationRecord
     issued: 0,
     pending_pay_out: 1,
     paid_out: 2,
-    recontributed: 3
+    recontributed: 3,
+    auto_recontributed: 4
   }
 
   belongs_to :distribution
