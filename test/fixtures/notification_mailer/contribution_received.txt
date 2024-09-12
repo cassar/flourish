@@ -8,8 +8,7 @@
   </head>
 
   <body>
-    <h1>New Contribution Received</h1>
-<article>
+    <article>
   <p>We have received your contribution.</p>
   <p><b>Amount</b>: $1.00 AUD</p>
   <a><a href="http://test.flourish.buzz/contributions">See your contributions</a></a>

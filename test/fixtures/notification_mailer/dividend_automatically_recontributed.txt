@@ -8,8 +8,7 @@
   </head>
 
   <body>
-    <h1>Dividend Automatically Recontributed</h1>
-<article>
+    <article>
   <p>Dividend has been automatically recontributed.</p>
   <p>Unclaimed dividends are automatically recontributed on the Tuesday following a successful distribution.</p>
   <p>Amount: $5.00 AUD</p>

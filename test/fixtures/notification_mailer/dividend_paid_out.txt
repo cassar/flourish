@@ -8,8 +8,7 @@
   </head>
 
   <body>
-    <h1>Dividend Pay Out</h1>
-<article>
+    <article>
   <p>Your dividend has been paid out.</p>
   <p><b>Amount</b>: $5.00 AUD</p>
   <p><b>Receipt</b>: This is your receipt, thank you.</p>

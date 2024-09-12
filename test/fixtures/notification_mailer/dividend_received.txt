@@ -8,8 +8,7 @@
   </head>
 
   <body>
-    <h1>New Dividend Received</h1>
-<article>
+    <article>
   <p>You have received a new dividend.</p>
   <p><b>Amount</b>: $5.00 AUD</p>
   <a><a href="http://test.flourish.buzz/dividends/980190962">Claim your dividend</a></a>
