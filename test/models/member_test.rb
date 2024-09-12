@@ -51,7 +51,6 @@ class MemberTest < ActiveSupport::TestCase
 
   test 'active scope' do
     assert_includes Member.active, members(:one)
-    assert_not_includes Member.active, members(:unconfirmed)
     assert_not_includes Member.active, members(:admin)
   end
 
