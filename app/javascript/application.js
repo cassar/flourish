@@ -9,3 +9,4 @@ window.Stimulus   = application
 export { application }
 import "channels"
 import "@hotwired/turbo-rails"
+import "controllers"
