@@ -3,6 +3,8 @@
   <p><b>Total Pool</b>: <%= @total_pool %></p>
   <%= turbo_stream_from 'member_count' %>
   <p><b>Member Count</b>: <%= render partial: 'member_count' %></p>
+</article>
+<article>
   <p><b>Next Distribution:</b></p>
   <ul>
     <li><b>Date:</b> <%= next_distribution_date_formatted %></li>
