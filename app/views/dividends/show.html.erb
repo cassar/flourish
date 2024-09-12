@@ -2,7 +2,9 @@
 <%= render @dividend %>
 <% if @dividend.issued? %>
   <details>
-    <summary>Your Dividend</summary>
-    <p>Choose to have this dividend paid out to your PayPal or recontributed to next week's pool.</p>
+    <summary>Claiming your Dividend</summary>
+    <p>Choose to have this dividend paid out to your PayPal account or recontributed to next week's pool.</p>
+    <p>In order to request a pay out, a <a href="https://www.paypal.com/au/digital-wallet/send-receive-money/paypal-me" target="_blank">PayPal.Me</a> ID needs to be entered in the <%= link_to 'Membership', membership_path %> section.</p>
+    <p>All dividends will be automatically recontributed back into the pool if not claimed by the Tuesday following a distribution.</p>
   </details>
 <% end %>

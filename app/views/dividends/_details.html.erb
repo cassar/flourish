@@ -2,5 +2,6 @@
   <summary>Receiving a Dividend</summary>
   <p>Members will be notified via email when a new dividend has been issued.</p>
   <p>Once issued, members can choose to have their dividend paid out or can recontribute their dividend towards the next week's pool.</p>
-  <p>In order to request a pay out, a <a href="https://www.paypal.com/au/digital-wallet/send-receive-money/paypal-me" target="_blank">PayPal.Me</a> ID needs to be entered in the <%= link_to 'Membership', membership_path %> section.
+  <p>In order to request a pay out, a <a href="https://www.paypal.com/au/digital-wallet/send-receive-money/paypal-me" target="_blank">PayPal.Me</a> ID needs to be entered in the <%= link_to 'Membership', membership_path %> section.</p>
+  <p>All dividends will be automatically recontributed back into the pool if not claimed by the <%= RecontributionService::DAY_OF_THE_WEEK %> following a distribution.</p>
 </details>
