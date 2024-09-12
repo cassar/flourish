@@ -1,3 +1,4 @@
+<% content_for :title, 'Dashboard'  %>
 <article>
   <p><b>Total Pool</b>: <%= @total_pool %></p>
   <%= turbo_stream_from 'member_count' %>
