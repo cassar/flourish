@@ -12,6 +12,7 @@
   <p>You have received a new dividend.</p>
   <p><b>Amount</b>: $5.00 AUD</p>
   <a><a href="http://test.flourish.buzz/dividends/980190962">Claim your dividend</a></a>
+  <p>All dividends will be automatically recontributed back into the pool if not claimed by the Tuesday following a distribution.</p>
 </article>
 
   </body>
