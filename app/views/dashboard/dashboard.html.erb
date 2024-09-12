@@ -3,8 +3,11 @@
   <p><b>Total Pool</b>: <%= @total_pool %></p>
   <%= turbo_stream_from 'member_count' %>
   <p><b>Member Count</b>: <%= render partial: 'member_count' %></p>
-  <p><b>Next Distribution</b>: <%= next_distribution_date_formatted %></p>
-  <p><b>Next Dividend</b>: <%= @next_dividend_amount_formatted %></p>
+  <p><b>Next Distribution:</b></p>
+  <ul>
+    <li><b>Date:</b> <%= next_distribution_date_formatted %></li>
+    <li><b>Dividend Amount</b>: <%= @next_dividend_amount_formatted %> per member</li>
+  </ul>
 </article>
 <%= render partial: 'details' %>
 <nav>
