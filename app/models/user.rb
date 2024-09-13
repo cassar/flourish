@@ -2,8 +2,8 @@ class User < ApplicationRecord
   ADMIN_EMAIL = ENV['ADMIN_EMAIL'] || 'admin@email.com'.freeze
 
   # Include default devise modules. Others available are:
-  # :recoverable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  # :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable, :recoverable,
          :rememberable, :validatable, :confirmable, :trackable
 
   has_one :member, dependent: :destroy
