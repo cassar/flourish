@@ -1,6 +1,4 @@
 class Member < ApplicationRecord
-  MINIMUM_CONTRIBUTION_AMOUNT = 0
-
   belongs_to :user
 
   has_many :dividends, dependent: :destroy
