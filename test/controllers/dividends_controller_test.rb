@@ -113,6 +113,6 @@ class DividendsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to dividends_path
     assert_equal 'Dividend recontributed.', flash[:notice]
-    assert @dividend.reload.recontributed?
+    assert @dividend.reload.manually_recontributed?
   end
 end

@@ -12,7 +12,7 @@
   <p>Dividend has been automatically recontributed.</p>
   <p>Unclaimed dividends are automatically recontributed on the Tuesday following a successful distribution.</p>
   <p>Amount: $5.00 AUD</p>
-  <a><a href="http://test.flourish.buzz/dividends/452915188">View dividend</a></a>
+  <a><a href="http://test.flourish.buzz/dividends/107756796">View dividend</a></a>
 </article>
 
   </body>

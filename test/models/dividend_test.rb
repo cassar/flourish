@@ -13,7 +13,7 @@ class DividendTest < ActiveSupport::TestCase
     assert_includes Dividend.owed, dividends(:issued)
     assert_includes Dividend.owed, dividends(:pending_pay_out)
     assert_includes Dividend.owed, dividends(:pay_out_complete)
-    assert_not_includes Dividend.owed, dividends(:recontributed)
+    assert_not_includes Dividend.owed, dividends(:manually_recontributed)
   end
 
   test 'before save check for receipt check' do

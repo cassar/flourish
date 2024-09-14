@@ -22,7 +22,12 @@ pay_out_complete:
   member: one
   receipt: This is your receipt, thank you.
 
-recontributed:
+manually_recontributed:
   distribution: one
-  status: recontributed
+  status: manually_recontributed
+  member: one
+
+auto_recontributed:
+  distribution: one
+  status: auto_recontributed
   member: one

@@ -42,7 +42,7 @@ class NotificationMailerTest < ActionMailer::TestCase
   end
 
   test 'dividend_automatically_recontributed' do
-    email = NotificationMailer.with(dividend: dividends(:recontributed)).dividend_automatically_recontributed
+    email = NotificationMailer.with(dividend: dividends(:auto_recontributed)).dividend_automatically_recontributed
 
     assert_emails 1 do
       email.deliver_now

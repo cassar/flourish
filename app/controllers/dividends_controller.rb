@@ -17,7 +17,7 @@ class DividendsController < ApplicationController
   end
 
   def recontribute
-    dividend.recontributed!
+    dividend.manually_recontributed!
     redirect_to dividends_path, notice: I18n.t('controllers.dividends.recontribute.success')
   end
 

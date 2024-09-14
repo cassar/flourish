@@ -3,14 +3,14 @@ class Dividend < ApplicationRecord
     issued: 0,
     pending_pay_out: 1,
     pay_out_complete: 2,
-    recontributed: 3,
+    manually_recontributed: 3,
     auto_recontributed: 4
   }
 
   belongs_to :distribution
   belongs_to :member
 
-  scope :owed, -> { not_recontributed }
+  scope :owed, -> { not_manually_recontributed }
 
   before_save :check_for_receipt
 
