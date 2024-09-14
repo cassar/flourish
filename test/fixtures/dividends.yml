@@ -16,9 +16,9 @@ pending_pay_out:
   status: pending_pay_out
   member: one
 
-paid_out:
+pay_out_complete:
   distribution: one
-  status: paid_out
+  status: pay_out_complete
   member: one
   receipt: This is your receipt, thank you.
 

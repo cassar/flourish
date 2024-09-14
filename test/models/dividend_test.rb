@@ -12,7 +12,7 @@ class DividendTest < ActiveSupport::TestCase
   test 'owed scope' do
     assert_includes Dividend.owed, dividends(:issued)
     assert_includes Dividend.owed, dividends(:pending_pay_out)
-    assert_includes Dividend.owed, dividends(:paid_out)
+    assert_includes Dividend.owed, dividends(:pay_out_complete)
     assert_not_includes Dividend.owed, dividends(:recontributed)
   end
 
@@ -22,6 +22,6 @@ class DividendTest < ActiveSupport::TestCase
 
     dividend.update! receipt: 'something'
 
-    assert_predicate dividend, :paid_out?
+    assert_predicate dividend, :pay_out_complete?
   end
 end

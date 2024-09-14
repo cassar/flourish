@@ -2,7 +2,7 @@ class Dividend < ApplicationRecord
   enum :status, {
     issued: 0,
     pending_pay_out: 1,
-    paid_out: 2,
+    pay_out_complete: 2,
     recontributed: 3,
     auto_recontributed: 4
   }
@@ -17,6 +17,6 @@ class Dividend < ApplicationRecord
   private
 
   def check_for_receipt
-    self.status = :paid_out if receipt.present?
+    self.status = :pay_out_complete if receipt.present?
   end
 end

@@ -29,7 +29,7 @@ class NotificationMailerTest < ActionMailer::TestCase
   end
 
   test 'dividend_paid_out' do
-    email = NotificationMailer.with(dividend: dividends(:paid_out)).dividend_paid_out
+    email = NotificationMailer.with(dividend: dividends(:pay_out_complete)).dividend_paid_out
 
     assert_emails 1 do
       email.deliver_now

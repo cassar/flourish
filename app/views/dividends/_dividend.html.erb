@@ -7,7 +7,7 @@
   <% else %>
     <p><b>Status</b>: <%= dividend.status.titleize %></p>
   <% end %>
-  <% if dividend.paid_out? %>
+  <% if dividend.pay_out_complete? %>
     <details>
       <summary>Receipt</summary>
       <p><%= dividend.receipt %></p>
