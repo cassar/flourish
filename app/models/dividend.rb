@@ -10,7 +10,7 @@ class Dividend < ApplicationRecord
   belongs_to :distribution
   belongs_to :member
 
-  scope :owed, -> { not_manually_recontributed }
+  scope :owed, -> { where.not(status: [:manually_recontributed, :auto_recontributed]) }
 
   before_save :check_for_receipt
 
