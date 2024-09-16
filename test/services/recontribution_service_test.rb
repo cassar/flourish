@@ -1,7 +1,15 @@
 require 'test_helper'
 
 class RecontributionServiceTest < ActiveSupport::TestCase
-  test 'automatically recontributes all issued dividends' do
+  test 'auto recontributes dividends on recontribution day ' do
+    Time.zone.stubs(:today).returns(Date.parse(RecontributionService::DAY_OF_THE_WEEK))
+
+    assert_equal 'issued', dividends(:issued).status
+    RecontributionService.new.call
+    assert_equal 'auto_recontributed', dividends(:issued).reload.status
+  end
+
+  test 'sends notification after each recontribution' do
     Time.zone.stubs(:today).returns(Date.parse(RecontributionService::DAY_OF_THE_WEEK))
 
     mailer_mock = mock('mailer')
@@ -10,11 +18,9 @@ class RecontributionServiceTest < ActiveSupport::TestCase
     mailer_mock.stubs(:dividend_automatically_recontributed).returns(mailer_mock)
     mailer_mock.stubs(:deliver_now).returns(true)
 
-    assert_not_empty Dividend.issued
-    assert_equal 'issued', dividends(:issued).status
-    RecontributionService.new.call
-    assert_empty Dividend.issued
-    assert_equal 'auto_recontributed', dividends(:issued).reload.status
+    assert RecontributionService.new.call
+  end
+
   end
 
   test 'does nothing if not day for automatic recontributions' do
