@@ -17,10 +17,6 @@ class Member < ApplicationRecord
 
   private
 
-  def member_count
-    ActiveMemberCountService.call
-  end
-
   def dividend
     DividendService::NextDividend.new(
       total_contributions: TotalContributionsService.amount,
