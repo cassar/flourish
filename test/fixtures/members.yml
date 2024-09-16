@@ -5,18 +5,14 @@
 # below each fixture, per the syntax in the comments below
 #
 one:
-  name: Robert Owen
   user: one
 
 two:
-  name: Angus Gene
   user: two
 
 unconfirmed:
-  name: Cecil Brown
   user: unconfirmed
   paypalmeid: cecilbrown
 
 admin:
-  name: Flourish Admin
   user: admin
