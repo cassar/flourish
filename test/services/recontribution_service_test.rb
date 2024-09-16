@@ -17,12 +17,12 @@ class RecontributionServiceTest < ActiveSupport::TestCase
     assert_equal 'auto_recontributed', dividends(:issued).reload.status
   end
 
-  test 'fails when not the day for automatic recontributions' do
+  test 'does nothing if not day for automatic recontributions' do
     non_recontribution_day = 'Monday'
     assert_not_equal non_recontribution_day, RecontributionService::DAY_OF_THE_WEEK
     Time.zone.stubs(:today).returns(Date.parse(non_recontribution_day))
 
-    assert_raises RecontributionService::NotTodayError do
+    assert_no_difference 'Dividend.issued.count' do
       RecontributionService.new.call
     end
   end

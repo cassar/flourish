@@ -1,10 +1,8 @@
 class RecontributionService
-  class NotTodayError < StandardError; end
-
   DAY_OF_THE_WEEK = 'Tuesday'.freeze
 
   def call
-    raise NotTodayError unless today?
+    return unless today?
 
     Dividend.issued.each do |dividend|
       recontribute_dividend_and_send_notification(dividend)
