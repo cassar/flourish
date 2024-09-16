@@ -1,10 +1,11 @@
 class RecontributionService
   DAY_OF_THE_WEEK = 'Tuesday'.freeze
+  BATCH_SIZE = 10
 
   def call
     return unless today?
 
-    Dividend.issued.each do |dividend|
+    Dividend.issued.take(BATCH_SIZE).each do |dividend|
       recontribute_dividend_and_send_notification(dividend)
     end
   end

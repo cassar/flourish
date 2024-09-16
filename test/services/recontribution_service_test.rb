@@ -3,6 +3,7 @@ require 'test_helper'
 class RecontributionServiceTest < ActiveSupport::TestCase
   test 'auto recontributes dividends on recontribution day ' do
     Time.zone.stubs(:today).returns(Date.parse(RecontributionService::DAY_OF_THE_WEEK))
+    assert Dividend.issued.count < RecontributionService::BATCH_SIZE
 
     assert_equal 'issued', dividends(:issued).status
     RecontributionService.new.call
@@ -21,6 +22,16 @@ class RecontributionServiceTest < ActiveSupport::TestCase
     assert RecontributionService.new.call
   end
 
+  test 'only does one batch at a time' do
+    Time.zone.stubs(:today).returns(Date.parse(RecontributionService::DAY_OF_THE_WEEK))
+    RecontributionService::BATCH_SIZE.times do
+      distributions(:one).dividends.issued.create!(member: members(:one))
+    end
+    assert Dividend.issued.count > RecontributionService::BATCH_SIZE
+
+    assert_difference 'Dividend.issued.count', -RecontributionService::BATCH_SIZE do
+      RecontributionService.new.call
+    end
   end
 
   test 'does nothing if not day for automatic recontributions' do
