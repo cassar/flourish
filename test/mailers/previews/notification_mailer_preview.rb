@@ -3,7 +3,7 @@ class NotificationMailerPreview < ActionMailer::Preview
   def contribution_received
     user = User.new(email: 'email@example.com')
     member = Member.new(paypalmeid: 'my_paypalmeid', user:)
-    contribution = Contribution.new(amount_in_base_units: 500, member:)
+    contribution = Contribution.new(amount_in_base_units: 500, transaction_identifier: 'teuharub239', member:)
     NotificationMailer.with(contribution:).contribution_received
   end
 

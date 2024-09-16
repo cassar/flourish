@@ -1,5 +1,8 @@
 <article>
   <p>We have received your contribution.</p>
-  <p><b>Amount</b>: <%= @contribution.amount_formatted %></p>
+  <p><b>Gross Amount</b>: <%= @contribution.gross_amount_formatted %></p>
+  <p><b>Less Fees</b>: <%= @contribution.fees_formatted %></p>
+  <p><b>Net Amount Contributed to the Pool</b>: <%= @contribution.amount_formatted %></p>
+  <p><b>Transaction ID</b>: <%= @contribution.transaction_identifier %></p>
   <a><%= link_to "See your contributions", contributions_url %></a>
 </article>
