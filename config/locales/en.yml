@@ -39,3 +39,5 @@ en:
     attributes:
       member:
         paypalmeid: "PayPal.Me ID"
+      contribution:
+        transaction_identifier: 'Transaction ID'

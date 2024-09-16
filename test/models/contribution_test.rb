@@ -16,6 +16,21 @@ class ContributionTest < ActiveSupport::TestCase
     assert_equal expected_error, error.message
   end
 
+  test 'fees in base units negative integers' do
+    error = assert_raises ActiveRecord::RecordInvalid do
+      contributions(:one).update!(
+        fees_in_base_units: -1
+      )
+    end
+
+    expected_error = 'Validation failed: Fees in base units must be greater than or equal to 0'
+    assert_equal expected_error, error.message
+  end
+
+  test 'fees in base units default value' do
+    assert_equal 0, Contribution.new.fees_in_base_units
+  end
+
   test 'amount_formatted' do
     assert_equal 100, contributions(:one).amount_in_base_units
 

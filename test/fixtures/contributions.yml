@@ -3,6 +3,7 @@
 one:
   amount_in_base_units: 100
   member: one
+  transaction_identifier: contribution_one_transaction_identifier
 
 two:
   amount_in_base_units: 1

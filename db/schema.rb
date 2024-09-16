@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_04_085001) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_15_014734) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,7 +19,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_04_085001) do
     t.bigint "member_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "fees_in_base_units", default: 0
+    t.string "transaction_identifier"
     t.index ["member_id"], name: "index_contributions_on_member_id"
+    t.index ["transaction_identifier"], name: "index_contributions_on_transaction_identifier", unique: true
   end
 
   create_table "distributions", force: :cascade do |t|
