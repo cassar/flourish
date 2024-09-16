@@ -36,4 +36,17 @@ class ContributionTest < ActiveSupport::TestCase
 
     assert_equal '$1.00 AUD', contributions(:one).amount_formatted
   end
+
+  test 'fees_formatted' do
+    assert_equal 10, contributions(:one).fees_in_base_units
+
+    assert_equal '$0.10 AUD', contributions(:one).fees_formatted
+  end
+
+  test 'gross_amount_formatted' do
+    assert_equal 100, contributions(:one).amount_in_base_units
+    assert_equal 10, contributions(:one).fees_in_base_units
+
+    assert_equal '$1.10 AUD', contributions(:one).gross_amount_formatted
+  end
 end

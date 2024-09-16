@@ -8,4 +8,18 @@ class Contribution < ApplicationRecord
   def amount_formatted
     Money.from_cents(amount_in_base_units).format
   end
+
+  def fees_formatted
+    Money.from_cents(fees_in_base_units).format
+  end
+
+  def gross_amount_formatted
+    Money.from_cents(gross_amount_in_base_units).format
+  end
+
+  private
+
+  def gross_amount_in_base_units
+    amount_in_base_units + fees_in_base_units
+  end
 end
