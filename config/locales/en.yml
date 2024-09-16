@@ -5,6 +5,9 @@ en:
       dividends:
         update:
           success: "Receipt updated successfully."
+      contributions:
+        create:
+          success: "New contribution created and notification sent"
     paypalmeids:
       update:
         success: "PayPal.Me ID updated successfully."

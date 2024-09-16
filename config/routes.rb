@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :dividends, only: [:show, :update]
     resources :users, only: :index
+    resources :members, only: [] do
+      resources :contributions, only: [:new, :create]
+    end
   end
 
   get :membership, to: 'memberships#show'
