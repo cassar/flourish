@@ -10,6 +10,7 @@
         <th>Email</th>
         <th>Confirmed</th>
         <th>Last Sign In</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
@@ -18,6 +19,7 @@
           <td><%= user.email %></td>
           <td><%= user.confirmed_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
           <td><%= user.last_sign_in_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
+          <td><%= link_to "New Contribution", new_admin_member_contribution_path(user.member) %></td>
         </tr>
       <% end %>
     </tbody>

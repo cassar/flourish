@@ -4,7 +4,10 @@ module Admin
     before_action :authorise_admin!
 
     def index
-      @users = User.order(Arel.sql('last_sign_in_at DESC NULLS LAST'), Arel.sql('confirmed_at NULLS LAST'))
+      @users = User.order(
+        Arel.sql('last_sign_in_at DESC NULLS LAST'),
+        Arel.sql('confirmed_at NULLS LAST')
+      ).preload(:member)
       @total_user_count = User.count
     end
 
