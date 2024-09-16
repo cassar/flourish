@@ -17,3 +17,10 @@ unconfirmed:
 admin:
   email: <%= User::ADMIN_EMAIL %>
   confirmed_at: "2nd Oct 2023"
+
+active:
+  email: active@email.com
+  last_sign_in_at: "3rd Oct 2024"
+
+inactive:
+  email: inactive@email.com

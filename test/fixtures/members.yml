@@ -16,3 +16,9 @@ unconfirmed:
 
 admin:
   user: admin
+
+active:
+  user: active
+
+inactive:
+  user: inactive

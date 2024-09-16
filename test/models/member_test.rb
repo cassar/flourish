@@ -50,8 +50,10 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'active scope' do
-    assert_includes Member.active, members(:one)
+    assert_includes Member.active, members(:active)
+
     assert_not_includes Member.active, members(:admin)
+    assert_not_includes Member.active, members(:inactive)
   end
 
   test 'pay outs disabled when no paypal.me id' do

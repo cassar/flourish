@@ -9,6 +9,7 @@ class Member < ApplicationRecord
   scope :active, lambda {
     joins(:user)
       .where.not(users: { email: User::ADMIN_EMAIL })
+      .where.not(users: { last_sign_in_at: nil })
   }
 
   def pay_outs_disabled?
