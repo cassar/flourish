@@ -74,9 +74,6 @@ gem 'invisible_captcha'
 # Voight-Kampff is a Ruby gem that detects bots, spiders, crawlers and replicants
 gem 'voight_kampff', require: 'voight_kampff/rails'
 
-# Patch-level verification for Bundler
-gem 'bundler-audit'
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
@@ -118,6 +115,9 @@ group :development do
 
   # A static analysis security vulnerability scanner for Ruby on Rails applications 
   gem 'brakeman'
+
+  # Patch-level verification for Bundler
+  gem 'bundler-audit'
 end
 
 group :test do
