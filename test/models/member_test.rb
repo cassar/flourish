@@ -32,10 +32,10 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'enforces unique paypalmeid' do
-    assert_not_nil members(:unconfirmed).paypalmeid
+    assert_not_nil members(:has_paypalmeid).paypalmeid
 
     error = assert_raises ActiveRecord::RecordInvalid do
-      members(:one).update! paypalmeid: members(:unconfirmed).paypalmeid
+      members(:one).update! paypalmeid: members(:has_paypalmeid).paypalmeid
     end
 
     assert_match(/has already been taken/, error.message)
@@ -44,9 +44,9 @@ class MemberTest < ActiveSupport::TestCase
   test 'ignores unique validation when paypalmeid is nil' do
     assert_nil members(:one).paypalmeid
 
-    members(:unconfirmed).update! paypalmeid: nil
+    members(:has_paypalmeid).update! paypalmeid: nil
 
-    assert_nil members(:unconfirmed).reload.paypalmeid
+    assert_nil members(:has_paypalmeid).reload.paypalmeid
   end
 
   test 'active scope' do
@@ -61,6 +61,6 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'pay outs enabled when paypal.me id present' do
-    assert_not members(:unconfirmed).pay_outs_disabled?
+    assert_not members(:has_paypalmeid).pay_outs_disabled?
   end
 end

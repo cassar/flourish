@@ -10,9 +10,9 @@ one:
 two:
   user: two
 
-unconfirmed:
-  user: unconfirmed
-  paypalmeid: cecilbrown
+has_paypalmeid:
+  user: has_paypalmeid
+  paypalmeid: their_paypalmeid
 
 admin:
   user: admin

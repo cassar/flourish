@@ -8,4 +8,4 @@ one:
 
 two:
   amount_in_base_units: 1
-  member: unconfirmed
+  member: two
