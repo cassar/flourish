@@ -113,7 +113,7 @@ group :development do
   # Preview mail in the browser instead of sending.
   gem 'letter_opener'
 
-  # A static analysis security vulnerability scanner for Ruby on Rails applications 
+  # A static analysis security vulnerability scanner for Ruby on Rails applications
   gem 'brakeman'
 
   # Patch-level verification for Bundler
