@@ -10,16 +10,17 @@ class RecontributionServiceTest < ActiveSupport::TestCase
     assert_equal 'auto_recontributed', dividends(:issued).reload.status
   end
 
-  test 'sends notification after each recontribution' do
+  test 'sends notification for each recontribution' do
     Time.zone.stubs(:today).returns(Date.parse(RecontributionService::DAY_OF_THE_WEEK))
-
-    mailer_mock = mock('mailer')
-    NotificationMailer.stubs(:with).with(dividend: dividends(:one)).returns(mailer_mock)
-    NotificationMailer.stubs(:with).with(dividend: dividends(:issued)).returns(mailer_mock)
-    mailer_mock.stubs(:dividend_automatically_recontributed).returns(mailer_mock)
-    mailer_mock.stubs(:deliver_now).returns(true)
+    issued_dividends_count = Dividend.issued.count
+    assert issued_dividends_count < RecontributionService::BATCH_SIZE
 
     assert RecontributionService.new.call
+
+    assert_equal issued_dividends_count, ActionMailer::Base.deliveries.count
+    assert(ActionMailer::Base.deliveries.all? do |mail|
+      mail.subject.match?(/Your Dividend has been Automatically Recontributed/)
+    end)
   end
 
   test 'only does one batch at a time' do
