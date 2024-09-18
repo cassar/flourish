@@ -14,6 +14,9 @@ namespace :services do
 
   desc 'recontributes unclaimed dividends'
   task recontribution: :environment do
-    RecontributionService.new.call
+    mailgun_send_limit = 10
+    RecontributionService.new(
+      issued_dividends: Dividend.issued.take(mailgun_send_limit)
+    ).call
   end
 end
