@@ -1,17 +1,12 @@
 class DistributionService
-  class NotTodayError < StandardError; end
+  attr_accessor :members, :dividend_amount_in_base_units
 
-  attr_accessor :run_today, :members, :dividend_amount_in_base_units
-
-  def initialize(run_today:, members:, dividend_amount_in_base_units:)
-    @run_today = run_today
+  def initialize(members:, dividend_amount_in_base_units:)
     @members = members
     @dividend_amount_in_base_units = dividend_amount_in_base_units
   end
 
   def call
-    raise NotTodayError unless run_today
-
     MemberDividendService.new(members:, distribution:).call
   end
 

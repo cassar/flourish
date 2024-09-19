@@ -1,9 +1,10 @@
 namespace :services do
   desc 'orchestrates a distribution'
   task distribution: :environment do
+    return unless DistributionDateService.today?
+
     members = Member.active
     DistributionService.new(
-      run_today: DistributionDateService.today?,
       members:,
       dividend_amount_in_base_units: DividendAmountService.new(
         total_pool_in_base_units: TotalPoolService.balance_in_base_units,
