@@ -4,7 +4,7 @@
   <article>
     <p><b>Total Users:</b> <%= @total_user_count %></p>
   </article>
-  <table id="users">
+  <table>
     <thead>
       <tr>
         <th>Email</th>
@@ -24,9 +24,6 @@
       <% end %>
     </tbody>
   </table>
-  <script>
-      let table = new DataTable('#users');
-  </script>
 <% else %>
   <article>
     <p>No Users.</p>
