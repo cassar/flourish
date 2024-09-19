@@ -3,12 +3,16 @@ module Admin
     before_action :authenticate_user!
     before_action :authorise_admin!
 
-    def index
-      @users = User.order(
-        Arel.sql('last_sign_in_at DESC NULLS LAST'),
-        Arel.sql('confirmed_at NULLS LAST')
-      ).preload(:member)
-      @total_user_count = User.count
+    def active
+      @members = Member.active.preload(:user)
+      @total_member_count = @members.count
+      render :index
+    end
+
+    def inactive
+      @members = Member.where.not(id: Member.active).preload(:user)
+      @total_member_count = @members.count
+      render :index
     end
 
     private

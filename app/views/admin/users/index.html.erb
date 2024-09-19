@@ -1,8 +1,8 @@
 <% content_for :title, "Admin" %>
-<h1>Users</h1>
-<% if @users.any? %>
+<h1>Members</h1>
+<% if @members.any? %>
   <article>
-    <p><b>Total Users:</b> <%= @total_user_count %></p>
+    <p><b>Total Members:</b> <%= @total_member_count %></p>
   </article>
   <table>
     <thead>
@@ -14,18 +14,18 @@
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @members.each do |member| %>
         <tr>
-          <td><%= user.email %></td>
-          <td><%= user.confirmed_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
-          <td><%= user.last_sign_in_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
-          <td><%= link_to "New Contribution", new_admin_member_contribution_path(user.member) %></td>
+          <td><%= member.user.email %></td>
+          <td><%= member.user.confirmed_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
+          <td><%= member.user.last_sign_in_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
+          <td><%= link_to "New Contribution", new_admin_member_contribution_path(member) %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
   <article>
-    <p>No Users.</p>
+    <p>No Members.</p>
   </article>
 <% end %>

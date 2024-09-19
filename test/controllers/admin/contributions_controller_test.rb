@@ -51,7 +51,7 @@ module Admin
         } }
       end
 
-      assert_redirected_to admin_users_path
+      assert_redirected_to active_admin_users_path
       assert_equal 'New contribution created and notification sent', flash[:success]
       assert_equal 'xxxx', Contribution.last.transaction_identifier
     end
