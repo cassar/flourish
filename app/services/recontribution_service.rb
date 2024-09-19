@@ -7,14 +7,8 @@ class RecontributionService
 
   def call
     issued_dividends.each do |dividend|
-      recontribute_dividend_and_send_notification(dividend)
+      dividend.auto_recontributed!
+      NotificationMailer.with(dividend:).dividend_automatically_recontributed.deliver_now
     end
-  end
-
-  private
-
-  def recontribute_dividend_and_send_notification(dividend)
-    dividend.auto_recontributed!
-    NotificationMailer.with(dividend:).dividend_automatically_recontributed.deliver_now
   end
 end
