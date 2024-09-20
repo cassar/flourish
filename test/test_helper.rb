@@ -12,9 +12,6 @@ module ActiveSupport
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all
 
-    # Clear deliveries after each test
-    ActionMailer::Base.deliveries.clear
-
     # Add more helper methods to be used by all tests here...
     include Devise::Test::IntegrationHelpers
   end

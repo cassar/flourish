@@ -12,6 +12,8 @@ class RecontributionServiceTest < ActiveSupport::TestCase
   end
 
   test 'sends notification for each auto recontribution' do
+    ActionMailer::Base.deliveries.clear 
+
     assert RecontributionService.new(
       issued_dividends: [dividends(:issued)]
     ).call
