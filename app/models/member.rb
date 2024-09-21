@@ -15,14 +15,4 @@ class Member < ApplicationRecord
   def pay_outs_disabled?
     paypalmeid.blank?
   end
-
-  private
-
-  def dividend
-    DividendService::NextDividend.new(
-      total_contributions: TotalContributionsService.amount,
-      member_count:,
-      total_pool: BankAccountService.balance
-    )
-  end
 end
