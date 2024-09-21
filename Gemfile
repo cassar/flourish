@@ -54,7 +54,7 @@ gem 'sassc-rails'
 gem 'excon'
 
 # Simple Rails app configuration
-gem 'figaro', git: 'https://github.com/muhenge/figaro.git', branch: 'Muhenge-Fix'
+gem 'figaro'
 
 # Flexible authentication solution for Rails with Warden.
 gem 'devise', '~> 4.9'
