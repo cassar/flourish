@@ -1,9 +1,9 @@
 require 'test_helper'
 
 module Admin
-  class UsersControllerTest < ActionDispatch::IntegrationTest
+  class MembersControllerTest < ActionDispatch::IntegrationTest
     test 'should redirect to sign in when not authenticated for active' do
-      get active_admin_users_path
+      get active_admin_members_path
       assert_redirected_to new_user_session_path
     end
 
@@ -11,7 +11,7 @@ module Admin
       assert_not users(:one).admin?
       sign_in users(:one)
 
-      get active_admin_users_path
+      get active_admin_members_path
       assert_redirected_to root_path
     end
 
@@ -19,12 +19,12 @@ module Admin
       assert users(:admin).admin?
       sign_in users(:admin)
 
-      get active_admin_users_path
+      get active_admin_members_path
       assert_response :success
     end
 
     test 'should redirect to sign in when not authenticated for inactive' do
-      get inactive_admin_users_path
+      get inactive_admin_members_path
       assert_redirected_to new_user_session_path
     end
 
@@ -32,7 +32,7 @@ module Admin
       assert_not users(:one).admin?
       sign_in users(:one)
 
-      get inactive_admin_users_path
+      get inactive_admin_members_path
       assert_redirected_to root_path
     end
 
@@ -40,7 +40,7 @@ module Admin
       assert users(:admin).admin?
       sign_in users(:admin)
 
-      get inactive_admin_users_path
+      get inactive_admin_members_path
       assert_response :success
     end
   end

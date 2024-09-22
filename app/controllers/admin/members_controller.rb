@@ -1,5 +1,5 @@
 module Admin
-  class UsersController < ApplicationController
+  class MembersController < ApplicationController
     before_action :authenticate_user!
     before_action :authorise_admin!
 

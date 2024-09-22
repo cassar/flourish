@@ -13,7 +13,7 @@ module Admin
     def create
       if contribution.save
         flash[:success] = I18n.t('controllers.admin.contributions.create.success')
-        redirect_to active_admin_users_path
+        redirect_to active_admin_members_path
       else
         @user = member.user
         flash.now[:alert] = contribution_error_message

@@ -3,13 +3,11 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dividends, only: [:show, :update]
-    resources :users, only: [] do
+    resources :members, only: [] do
       collection do 
         get :active
         get :inactive
       end
-    end
-    resources :members, only: [] do
       resources :contributions, only: [:new, :create]
     end
   end

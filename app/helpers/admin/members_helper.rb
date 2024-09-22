@@ -1,5 +1,5 @@
 module Admin
-  module UsersHelper
+  module MembersHelper
     def paypalmeid_emoji(paypalmeid)
       if paypalmeid.present?
         '💰'
