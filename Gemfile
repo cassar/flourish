@@ -68,12 +68,6 @@ gem 'honeybadger', '~> 5.4'
 # Simple, efficient background processing for Ruby
 gem 'sidekiq'
 
-# Unobtrusive and flexible spam protection for Rails apps
-gem 'invisible_captcha'
-
-# Voight-Kampff is a Ruby gem that detects bots, spiders, crawlers and replicants
-gem 'voight_kampff', require: 'voight_kampff/rails'
-
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
