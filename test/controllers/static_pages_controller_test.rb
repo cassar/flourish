@@ -10,4 +10,9 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     get about_path
     assert_response :success
   end
+
+  test 'should get check_email_spam' do
+    get check_email_spam_path
+    assert_response :success
+  end
 end

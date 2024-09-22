@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
 
   namespace :admin do
     resources :dividends, only: [:show, :update]
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   end
 
   get :about, to: 'static_pages#about'
+  get :check_email_spam, to: 'static_pages#check_email_spam'
 
   root 'static_pages#dashboard'
 end
