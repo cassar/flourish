@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     member { patch :pay_out, :recontribute } 
   end
 
-  get :about, to: 'dashboard#about'
+  get :about, to: 'static_pages#about'
 
-  root 'dashboard#dashboard'
+  root 'static_pages#dashboard'
 end

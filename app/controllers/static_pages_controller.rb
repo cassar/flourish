@@ -1,4 +1,4 @@
-class DashboardController < ApplicationController
+class StaticPagesController < ApplicationController
   def dashboard
     @member_count = Member.active.count
     @total_pool = TotalPoolService.balance_formatted

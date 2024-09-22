@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DashboardHelperTest < ActionView::TestCase
+class StaticPagesHelperTest < ActionView::TestCase
   test 'should return next friday date' do
     DistributionDateService.stubs(:next_date).returns(Date.parse('Friday 19th Jan 2024'))
     expected_date = 'Fri, 19 Jan 2024'

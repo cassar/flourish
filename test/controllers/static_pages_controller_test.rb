@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class DashboardControllerTest < ActionDispatch::IntegrationTest
+class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   test 'should get dashboard' do
     TotalPoolService.stubs(:balance_formatted).returns('$133.00')
 
