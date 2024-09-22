@@ -3,8 +3,7 @@
   <p><b>Dashboard:</b></p>
   <ul>
   <li><b>Total Pool:</b> <%= @total_pool %></li>
-  <%= turbo_stream_from 'member_count' %>
-  <li><b>Member Count:</b> <%= render partial: 'member_count' %></li>
+  <li><b>Member Count:</b> <%= @member_count %></li>
   </ul>
 </article>
 <article>
