@@ -4,7 +4,7 @@ class Member < ApplicationRecord
   has_many :dividends, dependent: :destroy
   has_many :contributions, dependent: :destroy
 
-  validates :paypalmeid, uniqueness: true, allow_nil: true
+  validates :paypalmeid, uniqueness: { allow_nil: true, case_sensitive: false }
 
   scope :active, lambda {
     joins(:user)

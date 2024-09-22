@@ -32,8 +32,6 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'enforces unique paypalmeid' do
-    assert_not_nil members(:has_paypalmeid).paypalmeid
-
     error = assert_raises ActiveRecord::RecordInvalid do
       members(:one).update! paypalmeid: members(:has_paypalmeid).paypalmeid
     end
@@ -42,11 +40,20 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'ignores unique validation when paypalmeid is nil' do
-    assert_nil members(:one).paypalmeid
-
     members(:has_paypalmeid).update! paypalmeid: nil
 
     assert_nil members(:has_paypalmeid).reload.paypalmeid
+  end
+
+  test 'enforces case insensitive paypalmeid' do
+    upcase_duplicate_paypalid = members(:has_paypalmeid).paypalmeid.upcase
+    assert_not_equal upcase_duplicate_paypalid, members(:has_paypalmeid).paypalmeid
+
+    error = assert_raises ActiveRecord::RecordInvalid do
+      members(:one).update! paypalmeid: upcase_duplicate_paypalid
+    end
+
+    assert_match(/has already been taken/, error.message)
   end
 
   test 'active scope' do
