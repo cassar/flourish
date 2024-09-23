@@ -14,15 +14,22 @@ admin.confirm
 admin.save!
 
 1..50.times do |integer|
-  user = User.new(email: "user_#{integer}@email.com")
+  user = User.new(email: "user_#{integer}@email.com", password: "password")
   user.skip_confirmation_notification!
   user.skip_reconfirmation!
+  user.save!
+  next if (user.id % 5).zero? 
+
   user.confirm
   user.last_sign_in_at = Time.now
   user.save!
+
+  user.member.update! paypalmeid: "paypalidmember#{user.member.id}"
 end
 
-Contribution.create member: Member.first, amount_in_base_units: 20_000
+Member.take(10).each do |member|
+  member.contributions.create amount_in_base_units: 20_000 + (member.id * 10)
+end
 
 3.times do |integer|
   distribution = Distribution.create(dividend_amount_in_base_units: 1_000)
