@@ -7,12 +7,14 @@
 #   Character.create(name: "Luke", movie: movies.first)
 #
 
+puts "Making an admin"
 admin = User.new(email: User::ADMIN_EMAIL, password: 'password')
 admin.skip_confirmation_notification!
 admin.skip_reconfirmation!
 admin.confirm
 admin.save!
 
+puts "Making some users"
 1..50.times do |integer|
   user = User.new(email: "user_#{integer}@email.com", password: "password")
   user.skip_confirmation_notification!
@@ -27,10 +29,12 @@ admin.save!
   user.member.update! paypalmeid: "paypalidmember#{user.member.id}"
 end
 
+puts "Making some contributions"
 Member.take(10).each do |member|
   member.contributions.create amount_in_base_units: 20_000 + (member.id * 10)
 end
 
+puts "Making some distributions"
 3.times do |integer|
   distribution = Distribution.create(dividend_amount_in_base_units: 1_000)
 
