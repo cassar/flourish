@@ -8,10 +8,12 @@
   <body>
     <article>
   <p>We have received your contribution.</p>
-  <p><b>Gross Amount</b>: $1.10 AUD</p>
-  <p><b>Less Fees</b>: $0.10 AUD</p>
-  <p><b>Net Amount Contributed to the Pool</b>: $1.00 AUD</p>
-  <p><b>Transaction ID</b>: contribution_one_transaction_identifier</p>
+  <ul>
+    <li><b>Gross Amount</b>: $1.10 AUD</li>
+    <li><b>Less Fees</b>: $0.10 AUD</li>
+    <li><b>Net Amount Contributed to the Pool</b>: $1.00 AUD</li>
+    <li><b>Transaction ID</b>: contribution_one_transaction_identifier</li>
+  </ul>
   <a><a href="http://test.flourish.buzz/contributions">See your contributions</a></a>
 </article>
 

@@ -1,7 +1,9 @@
 <article>
   <p><b>Date</b>: <%= created_at_formatted contribution %></p> 
-  <p><b>Gross Amount</b>: <%= contribution.gross_amount_formatted %></p>
-  <p><b>Less Fees</b>: <%= contribution.fees_formatted %></p>
-  <p><b>Net Amount Contributed to the Pool</b>: <%= contribution.amount_formatted %></p>
-  <p><b>Transaction ID</b>: <%= contribution.transaction_identifier %></p>
+  <ul>
+    <li><b>Gross Amount</b>: <%= contribution.gross_amount_formatted %></li>
+    <li><b>Less Fees</b>: <%= contribution.fees_formatted %></li>
+    <li><b>Net Amount Contributed to the Pool</b>: <%= contribution.amount_formatted %></li>
+    <li><b>Transaction ID</b>: <%= contribution.transaction_identifier %></li>
+  </ul>
 </article>
