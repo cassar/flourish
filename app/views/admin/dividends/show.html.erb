@@ -2,9 +2,9 @@
 <h1>Dividend: <%= @dividend.id %></h1>
 <article>
   <p><b>Date</b>: <%= created_at_formatted @dividend %></p> 
-  <p><b>PayPal.Me ID</b>: <%= @member.paypalmeid %></p>
   <p><b>Amount</b>: <%= @distribution.dividend_amount_formatted %></p>
   <p><b>Status</b>: <%= @dividend.status.titleize %></p>
+  <p><b>PayPal.Me URL</b>: <%= link_to @member.paypalmeid, paypalme_url(paypalmeid: @member.paypalmeid, amount_in_base_units: @distribution.dividend_amount_in_base_units, dividend_id: @dividend.id), target: "_blank" %></p>
   <%= form_with model: @dividend, url: admin_dividend_path, data: { turbo: false } do |form| %>
     <article>
       <p><span>Receipt</span>: <%= form.text_area :receipt %></p>
