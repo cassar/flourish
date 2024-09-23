@@ -31,7 +31,8 @@ end
 
 puts "Making some contributions"
 Member.take(10).each do |member|
-  member.contributions.create amount_in_base_units: 20_000 + (member.id * 10)
+  contribution = member.contributions.create amount_in_base_units: 20_000 + (member.id * 10), fees_in_base_units: (member.id * 15)
+  contribution.update! transaction_identifier: "anraba#{contribution.id}2741"
 end
 
 puts "Making some distributions"
