@@ -1,0 +1,24 @@
+<% content_for :title, 'Admin'  %>
+<h1>Distributions</h1>
+<% if @distributions.any? %>
+  <% @distributions.each do |distribution| %>
+    <article>
+      <p><b>Date</b>: <%= created_at_formatted distribution %></p> 
+      <p><b>Dividend Amount</b>: <%= distribution.dividend_amount_formatted %></p>
+      <p><b>Members</b>: <%= distribution.dividends.length %></p>
+      <ul>
+        <% distribution.dividends.each do |dividend| %>
+          <% if dividend.pending_pay_out? %>
+            <li><%= link_to dividend.status, admin_dividend_path(dividend) %></li>
+          <% else %>
+            <li><%= dividend.status %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </article>
+  <% end %>
+<% else %>
+  <article>
+    <p>Distributions will appear here.</p>
+  </article>
+<% end %>

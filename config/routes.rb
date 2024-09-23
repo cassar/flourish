@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :dividends, only: [:show, :update]
+    resources :distributions, only: :index
     resources :members, only: [] do
       collection do 
         get :active
