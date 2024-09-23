@@ -9,7 +9,7 @@ class AdminNotificationMailerTest < ActionMailer::TestCase
     end
 
     assert_equal ['admin-notifications@example.com'], email.from
-    assert_equal ['admin@email.com'], email.to
+    assert_equal ["admin@#{ENV.fetch('DOMAIN', nil)}"], email.to
     assert_equal 'Pay Out Requested', email.subject
     assert_equal read_fixture('pay_out_requested.txt').join, email.body.to_s
   end

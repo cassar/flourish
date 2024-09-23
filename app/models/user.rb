@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  ADMIN_EMAIL = ENV['ADMIN_EMAIL'] || 'admin@email.com'.freeze
+  ADMIN_EMAIL = ENV['ADMIN_EMAIL'] || "admin@#{ENV.fetch('DOMAIN', nil)}".freeze
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable
