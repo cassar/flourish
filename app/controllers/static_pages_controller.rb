@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  def dashboard
+  def home
     @member_count = Member.active.count
     @total_pool = TotalPoolService.balance_formatted
     @next_dividend_amount_formatted = DividendAmountService.new(

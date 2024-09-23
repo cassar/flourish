@@ -26,5 +26,5 @@ Rails.application.routes.draw do
   get :about, to: 'static_pages#about'
   get :check_email_spam, to: 'static_pages#check_email_spam'
 
-  root 'static_pages#dashboard'
+  root 'static_pages#home'
 end
