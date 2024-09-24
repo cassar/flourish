@@ -4,8 +4,15 @@
   <% @distributions.each do |distribution| %>
     <article>
       <p><b>Date</b>: <%= created_at_formatted distribution %></p> 
-      <p><b>Dividend Amount</b>: <%= distribution.dividend_amount_formatted %></p>
-      <p><b>Members</b>: <%= distribution.dividends.length %></p>
+      <ul>
+        <li><b>Dividend</b>: <%= distribution.dividend_amount_formatted %></li>
+        <li><b>Members</b>: <%= distribution.dividends.length %></li>
+        <ul>
+          <% distribution.dividends.group(:status).count.each do |status, count| %>
+            <li><%= status.titleize %>: <%= count %></li>
+          <% end %>
+        </ul>
+      </ul>
       <% if (pending_payouts = distribution.dividends.select(&:pending_pay_out?)).any? %>
         <ul>
           <% pending_payouts.each do |dividend| %>
@@ -13,11 +20,6 @@
           <% end %>
         </ul>
       <% end %>
-      <ul>
-        <% distribution.dividends.group(:status).count.each do |status, count| %>
-          <li><%= status.titleize %>: <%= count %></li>
-        <% end %>
-      </ul>
     </article>
   <% end %>
 <% else %>
