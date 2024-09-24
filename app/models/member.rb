@@ -12,6 +12,12 @@ class Member < ApplicationRecord
       .where.not(users: { last_sign_in_at: nil })
   }
 
+  scope :inactive, lambda {
+    joins(:user)
+      .where.not(users: { email: User::ADMIN_EMAIL })
+      .where(users: { last_sign_in_at: nil })
+  }
+
   def pay_outs_disabled?
     paypalmeid.blank?
   end
