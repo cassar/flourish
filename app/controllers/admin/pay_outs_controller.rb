@@ -1,5 +1,5 @@
 module Admin
-  class DividendsController < ApplicationController
+  class PayOutsController < ApplicationController
     before_action :authenticate_user!
     before_action :authorise_admin!
 
