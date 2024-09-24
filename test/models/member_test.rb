@@ -10,8 +10,7 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'dependend destroy relationship on dividends' do
-    assert dividends(:one).present?
-    members(:one).destroy
+    members(:one).destroy!
 
     assert_raises ActiveRecord::RecordNotFound do
       dividends(:one).reload
@@ -23,8 +22,7 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'dependend destroy relationship on contributions' do
-    assert contributions(:one).present?
-    members(:one).destroy
+    members(:one).destroy!
 
     assert_raises ActiveRecord::RecordNotFound do
       contributions(:one).reload
