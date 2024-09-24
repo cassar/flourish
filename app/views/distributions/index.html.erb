@@ -5,8 +5,16 @@
   <% @distributions.each do |distribution| %>
     <article>
       <p><b>Date</b>: <%= created_at_formatted distribution %></p> 
-      <p><b>Dividend</b>: <%= distribution.dividend_amount_formatted %></p>
-      <p><b>Members</b>: <%= distribution.dividends.length %></p>
+      <ul>
+        <li><b>Dividend</b>: <%= distribution.dividend_amount_formatted %></li>
+        <li><b>Members</b>: <%= distribution.dividends.length %></li>
+        <li><b>Summary</b>:</li>
+        <ul>
+          <% distribution.dividends.group(:status).count.each do |status, count| %>
+            <li><%= status.titleize %>: <%= count %></li>
+          <% end %>
+        </ul>
+      </ul>
     </article>
   <% end %>
 <% else %>
