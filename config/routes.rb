@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       end
       resources :contributions, only: [:new, :create]
     end
+    resources :users, only: :destroy
   end
 
   get :membership, to: 'memberships#show'
