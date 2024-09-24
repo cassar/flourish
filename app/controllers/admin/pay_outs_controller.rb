@@ -5,7 +5,7 @@ module Admin
 
     attr_accessor :dividend
 
-    def show
+    def edit
       @dividend = Dividend.find params[:id]
       @member = @dividend.member
       @distribution = @dividend.distribution
@@ -18,7 +18,7 @@ module Admin
       @member = @dividend.member
       @distribution = @dividend.distribution
       flash.now[:success] = I18n.t('controllers.admin.dividends.update.success')
-      render :show
+      render :edit
     end
 
     private
