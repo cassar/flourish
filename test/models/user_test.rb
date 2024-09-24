@@ -1,9 +1,11 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test 'associations' do
+  test 'has one user association' do
     assert_equal members(:one), users(:one).member
+  end
 
+  test 'dependent destroy relationship with member' do
     users(:one).destroy!
 
     assert_raises ActiveRecord::RecordNotFound do
