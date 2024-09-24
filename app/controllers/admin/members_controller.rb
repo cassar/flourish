@@ -10,7 +10,7 @@ module Admin
     end
 
     def inactive
-      @members = Member.where.not(id: Member.active).preload(:user)
+      @members = Member.inactive.preload(:user)
       @total_member_count = @members.count
       render :index
     end
