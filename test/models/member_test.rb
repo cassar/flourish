@@ -9,24 +9,22 @@ class MemberTest < ActiveSupport::TestCase
     assert_includes members(:one).dividends, dividends(:one)
   end
 
-  test 'dependend destroy relationship on dividends' do
+  test 'dependend nullify relationship on dividends' do
+    assert_equal members(:one), dividends(:one).member
     members(:one).destroy!
 
-    assert_raises ActiveRecord::RecordNotFound do
-      dividends(:one).reload
-    end
+    assert_nil dividends(:one).reload.member
   end
 
   test 'has many contributions association' do
     assert_includes members(:one).contributions, contributions(:one)
   end
 
-  test 'dependend destroy relationship on contributions' do
+  test 'dependend nullify relationship on contributions' do
+    assert_equal members(:one), contributions(:one).member
     members(:one).destroy!
 
-    assert_raises ActiveRecord::RecordNotFound do
-      contributions(:one).reload
-    end
+    assert_nil contributions(:one).reload.member
   end
 
   test 'enforces unique paypalmeid' do

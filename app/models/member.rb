@@ -1,8 +1,8 @@
 class Member < ApplicationRecord
   belongs_to :user
 
-  has_many :dividends, dependent: :destroy
-  has_many :contributions, dependent: :destroy
+  has_many :dividends, dependent: :nullify
+  has_many :contributions, dependent: :nullify
 
   validates :paypalmeid, uniqueness: { allow_nil: true, case_sensitive: false }
 
