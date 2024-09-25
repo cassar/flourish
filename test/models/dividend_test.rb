@@ -26,4 +26,8 @@ class DividendTest < ActiveSupport::TestCase
 
     assert_predicate dividend, :pay_out_complete?
   end
+
+  test 'aggregate_status' do
+    assert_equal :paid_out, Dividend.aggregate_status(:pending_pay_out)
+  end
 end
