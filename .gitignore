@@ -33,5 +33,6 @@
 # Ignore application configuration
 /config/application.yml
 
-# Ignore the tags file
+# Ignore developer environment configurations
 tags
+.projections.json
