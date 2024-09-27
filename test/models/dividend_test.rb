@@ -18,6 +18,15 @@ class DividendTest < ActiveSupport::TestCase
     assert_not_includes Dividend.owed, Dividend.auto_recontributed.first
   end
 
+  test 'outstanding scope' do
+    assert_includes Dividend.outstanding, Dividend.issued.first
+    assert_includes Dividend.outstanding, Dividend.pending_pay_out.first
+
+    assert_not_includes Dividend.outstanding, Dividend.pay_out_complete.first
+    assert_not_includes Dividend.outstanding, Dividend.manually_recontributed.first
+    assert_not_includes Dividend.outstanding, Dividend.auto_recontributed.first
+  end
+
   test 'before save check for receipt check' do
     dividend = dividends(:pending_pay_out)
     assert_predicate dividend, :pending_pay_out?
