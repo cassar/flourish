@@ -7,6 +7,7 @@
       <ul>
         <li><b>Dividend</b>: <%= distribution.dividend_amount_formatted %></li>
         <li><b>Members</b>: <%= distribution.dividends.length %></li>
+        <li><b>Status</b>: <%= distribution_status dividend_statuses: distribution.dividends.pluck(:status) %></li>
         <ul>
           <% distribution.dividends.group(:status).count.each do |status, count| %>
             <li><%= status.titleize %>: <%= count %></li>
