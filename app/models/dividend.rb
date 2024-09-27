@@ -7,24 +7,12 @@ class Dividend < ApplicationRecord
     auto_recontributed: 4
   }
 
-  AGGREGATE_STATUSES = {
-    issued: %i[issued],
-    paid_out: %i[pending_pay_out pay_out_complete],
-    recontributed: %i[manually_recontributed auto_recontributed]
-  }.freeze
-
   belongs_to :distribution
   belongs_to :member
 
   scope :owed, -> { where(status: %i[issued pending_pay_out pay_out_complete]) }
 
   before_save :check_for_receipt
-
-  def self.aggregate_status(disaggregate_status)
-    Dividend::AGGREGATE_STATUSES.find do |aggregate_status, disaggregate_statuses|
-      return aggregate_status if disaggregate_status.in? disaggregate_statuses
-    end
-  end
 
   private
 

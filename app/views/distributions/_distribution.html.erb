@@ -5,7 +5,7 @@
     <li><b>Members</b>: <%= distribution.dividends.length %></li>
     <li><b>Status</b>: <%= distribution_status dividend_statuses: distribution.dividends.pluck(:status) %></li>
     <% disaggregate_status_counts = distribution.dividends.group(:status).count %>
-    <% if (aggregate_status_counts = aggregate_status_counts(disaggregate_status_counts)).any? %>
+    <% if (aggregate_status_counts = AggregateStatusCountsService.counts(disaggregate_status_counts)).any? %>
       <ul>
         <% aggregate_status_counts.each do |aggregate_status, count| %>
           <li><%= aggregate_status.titleize %>: <%= count %></li>
