@@ -8,7 +8,6 @@
     <thead>
       <tr>
         <th>Email</th>
-        <th>Confirmed</th>
         <th>Last Sign In</th>
         <th>PayPalMe ID</th>
         <th>Actions</th>
@@ -18,7 +17,6 @@
       <% @members.each do |member| %>
         <tr>
           <td><%= member.user.email %></td>
-          <td><%= member.user.confirmed_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
           <td><%= member.user.last_sign_in_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
           <td><%= link_to(member.paypalmeid, paypalme_url(paypalmeid: member.paypalmeid)) unless member.paypalmeid.nil? %></td>
           <td>
