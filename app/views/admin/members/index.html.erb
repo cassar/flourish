@@ -18,7 +18,7 @@
         <tr>
           <td><%= member.user.email %></td>
           <td><%= member.user.last_sign_in_at&.strftime('%a, %d %b %Y %H:%M:%S') %></td>
-          <td><%= link_to(member.paypalmeid, paypalme_url(paypalmeid: member.paypalmeid)) unless member.paypalmeid.nil? %></td>
+          <td><%= link_to(member.paypalmeid, paypalme_url(paypalmeid: member.paypalmeid), target: '_blank') unless member.paypalmeid.nil? %></td>
           <td>
             <% if action_name == 'inactive' %>
               <%= button_to "Delete Account", admin_user_path(member.user), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
