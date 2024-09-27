@@ -1,7 +1,16 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
-  test 'should get home' do
+  test 'should get home when previous distribution' do
+    assert distributions.any?
+
+    get root_path
+    assert_response :success
+  end
+
+  test 'should get home when no previous distribution' do
+    Distribution.destroy_all
+
     get root_path
     assert_response :success
   end

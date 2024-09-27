@@ -1,12 +1,21 @@
 <% content_for :title, 'Home'  %>
 <article>
-  <p><b>Next Distribution:</b></p>
-  <ul>
-    <li><b>Date:</b> <%= next_distribution_date_formatted %></li>
-    <li><b>Contributions:</b> <%= @total_pool %></li>
-    <li><b>Members:</b> <%= @member_count %></li>
-    <li><b>Dividend:</b> <%= @next_dividend_amount_formatted %></li>
-  </ul>
+  <% if @last_distribution.present? && @unsettled %>
+    <p><b>Current Distribution:</b></p>
+    <ul>
+      <li><b>Date</b>: <%= created_at_formatted @last_distribution %></li>
+      <li><b>Members</b>: <%= @last_distribution.dividends.length %></li>
+      <li><b>Dividend</b>: <%= @last_distribution.dividend_amount_formatted %></li>
+    </ul>
+  <% else%>
+    <p><b>Next Distribution:</b></p>
+    <ul>
+      <li><b>Date:</b> <%= next_distribution_date_formatted %></li>
+      <li><b>Contributions:</b> <%= @total_pool %></li>
+      <li><b>Members:</b> <%= @member_count %></li>
+      <li><b>Dividend:</b> <%= @next_dividend_amount_formatted %></li>
+    </ul>
+  <% end %>
 </article>
 <%= render partial: 'details' %>
 <nav>
