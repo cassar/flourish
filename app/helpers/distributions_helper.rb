@@ -1,7 +1,7 @@
 module DistributionsHelper
   def distribution_status(dividend_statuses:)
-    return 'Settled' if dividend_statuses.none?('issued')
+    return 'All dividends recontributed or paid out' if dividend_statuses.none?('issued')
 
-    'Awaiting action from members'
+    'Dividends issued to members'
   end
 end
