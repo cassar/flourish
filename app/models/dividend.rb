@@ -17,7 +17,6 @@ class Dividend < ApplicationRecord
   belongs_to :member
 
   scope :owed, -> { where(status: %i[issued pending_pay_out pay_out_complete]) }
-  scope :outstanding, -> { where(status: %i[issued pending_pay_out]) }
 
   before_save :check_for_receipt
 
