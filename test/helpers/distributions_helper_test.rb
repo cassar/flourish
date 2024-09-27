@@ -8,6 +8,6 @@ class DistributionsHelperTest < ActionView::TestCase
 
   test 'distribution_status when not settled' do
     dividend_statuses = %w[paid_out issued]
-    assert_equal 'Awaiting action from all members', distribution_status(dividend_statuses:)
+    assert_equal 'Awaiting action from members', distribution_status(dividend_statuses:)
   end
 end
