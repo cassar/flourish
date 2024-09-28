@@ -1,0 +1,8 @@
+<% if (aggregate_status_counts = AggregateStatusCountsService.counts(disaggregate_status_counts)).any? %>
+  <ul>
+    <% aggregate_status_counts.each do |aggregate_status, count| %>
+      <li><%= aggregate_status.titleize %>: <%= count %></li>
+    <% end %>
+  </ul>
+<% end %>
+
