@@ -4,6 +4,6 @@ module StaticPagesHelper
   end
 
   def created_at_formatted(record)
-    record.created_at.strftime("#{record.created_at.day.ordinalize} %b %Y")
+    record.created_at.strftime("%A, #{record.created_at.day.ordinalize} %b %Y")
   end
 end
