@@ -1,5 +1,6 @@
 <% content_for :title, 'Contributions'  %>
 <h1>Contributions</h1>
+<%= render partial: 'details' %>
 <% if @contributions.any? %>
   <%= render @contributions %>
 <% else %>
@@ -7,4 +8,3 @@
     <p>Your contributions will appear here.</p>
   </article>
 <% end %>
-<%= render partial: 'details' %>
