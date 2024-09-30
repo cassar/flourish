@@ -22,7 +22,10 @@ Rails.application.routes.draw do
   resources :paypalmeids, only: [:edit, :update]
 
   resources :dividends, only: [:index, :show] do
-    member { patch :pay_out, :recontribute } 
+    member do 
+      patch :pay_out
+      patch :recontribute 
+    end 
   end
 
   get :about, to: 'static_pages#about'
