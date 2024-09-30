@@ -21,8 +21,6 @@
 </article>
 <%= render partial: 'details' %>
 <nav>
-  <%= link_to distributions_path, class: 'button' do %>
-    Distributions
-  <% end %>
+  <%= link_to 'Distributions', distributions_path, class: 'button' %>
   <%= render partial: 'authentication' %>
 </nav>
