@@ -13,6 +13,10 @@ class DistributionService
   private
 
   def distribution
-    Distribution.create! dividend_amount_in_base_units:
+    Distribution.create! dividend_amount_in_base_units:, name:
+  end
+
+  def name
+    "##{Distribution.count + 1}"
   end
 end
