@@ -37,7 +37,10 @@ end
 
 puts "Making some distributions"
 3.times do |integer|
-  distribution = Distribution.create(dividend_amount_in_base_units: 1_000)
+  distribution = Distribution.create(
+    name: "##{integer}",
+    dividend_amount_in_base_units: 1_000
+  )
 
   Member.take(3).each do |member|
     Dividend.create member:, distribution:
