@@ -1,5 +1,5 @@
 <article>
-  <p><b>Distribution #<%= distribution.id %></b></p> 
+  <p><b>Distribution <%= distribution.name %></b></p> 
   <ul>
     <li><b>Date</b>: <%= created_at_formatted distribution %></li>
     <li><b>Status</b>: <%= distribution_status dividend_statuses: distribution.dividends.pluck(:status) %></li>
