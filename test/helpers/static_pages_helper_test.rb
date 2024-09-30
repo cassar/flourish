@@ -8,6 +8,6 @@ class StaticPagesHelperTest < ActionView::TestCase
   end
 
   test 'should format the created at attribute' do
-    assert_equal '8th Nov 2023', created_at_formatted(dividends(:one))
+    assert_equal 'Wednesday, 8th Nov 2023', created_at_formatted(dividends(:one))
   end
 end
