@@ -15,6 +15,10 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/tasks/services.rake'
+
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'
