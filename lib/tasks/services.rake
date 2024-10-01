@@ -24,7 +24,7 @@ namespace :services do
   end
 
   desc 'notifies users when a distribution has settled'
-  task  distribution_settled: :environment do
+  task distribution_settled: :environment do
     if RecontributionDateService.today?
       DistributionSettledService.new(
         distribution: Distribution.last,
