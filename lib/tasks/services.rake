@@ -29,7 +29,7 @@ namespace :services do
       DistributionSettledService.new(
         distribution: Distribution.last,
         users: User.joins(:member).where(member: Member.active)
-      )
+      ).call
     end
   end
 end
