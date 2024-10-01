@@ -1,5 +1,5 @@
 namespace :services do
-  desc 'orchestrates a distribution'
+  desc 'creates a distribution and dividends and notifies members'
   task distribution: :environment do
     if DistributionDateService.today?
       members = Member.active
@@ -13,7 +13,7 @@ namespace :services do
     end
   end
 
-  desc 'recontributes unclaimed dividends'
+  desc 'recontributes unclaimed dividends and notifies member'
   task recontribution: :environment do
     if RecontributionDateService.today?
       mailgun_send_limit = 10
