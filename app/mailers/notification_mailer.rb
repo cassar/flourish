@@ -31,4 +31,16 @@ class NotificationMailer < ApplicationMailer
     @user = @member.user
     mail(to: @user.email, subject: I18n.t('mailers.notification_mailer.dividend_automatically_recontributed_subject'))
   end
+
+  def distribution_settled
+    @distribution = params[:distribution]
+    @user = params[:user]
+    mail(
+      to: @user.email,
+      subject: I18n.t(
+        'mailers.notification_mailer.distribution_settled',
+        distribution_name: @distribution.name
+      )
+    )
+  end
 end

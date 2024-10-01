@@ -30,4 +30,10 @@ class NotificationMailerPreview < ActionMailer::Preview
     dividend = Dividend.new(id: 1, member:, distribution:, receipt: '172receipt_no38a')
     NotificationMailer.with(dividend:).dividend_automatically_recontributed
   end
+
+  def distribution_settled
+    distribution = Distribution.new(dividend_amount_in_base_units: 10_000, name: '#32')
+    user = User.new(email: 'email@example.com')
+    NotificationMailer.with(distribution:, user:).distribution_settled
+  end
 end

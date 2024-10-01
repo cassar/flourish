@@ -53,4 +53,17 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal 'Your Dividend has been Automatically Recontributed', email.subject
     assert_equal read_fixture('dividend_automatically_recontributed.txt').join, email.body.to_s
   end
+
+  test 'distribution_settled' do
+    email = NotificationMailer.with(distribution: distributions(:one), user: users(:one)).distribution_settled
+
+    assert_emails 1 do
+      email.deliver_now
+    end
+
+    assert_equal ['notifications@example.com'], email.from
+    assert_equal ['user@email.com'], email.to
+    assert_equal 'Distribution #1 has Settled', email.subject
+    assert_equal read_fixture('distribution_settled.txt').join, email.body.to_s
+  end
 end

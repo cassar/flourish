@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  </head>
+
+  <body>
+    <article>
+  <p>Distribution #1 has settled with all dividends being either recontributed or paid out.</p>
+  <a><a href="http://test.flourish.buzz/distributions">View All Distributions</a></a>
+</article>
+
+  </body>
+</html>
