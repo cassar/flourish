@@ -6,3 +6,4 @@ one:
 
 two:
   dividend_amount_in_base_units: 500
+  name: '#2'

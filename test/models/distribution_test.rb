@@ -11,6 +11,22 @@ class DistributionTest < ActiveSupport::TestCase
     end
   end
 
+  test 'name is nil' do
+    error = assert_raises ActiveRecord::RecordInvalid do
+      distributions(:two).update! name: nil
+    end
+
+    assert_match(/Name can't be blank/, error.message)
+  end
+
+  test 'duplicate name' do
+    error = assert_raises ActiveRecord::RecordInvalid do
+      distributions(:two).update! name: distributions(:one).name
+    end
+
+    assert_match(/has already been taken/, error.message)
+  end
+
   test 'dividend amount formatted' do
     assert_equal 500, distributions(:one).dividend_amount_in_base_units
 
