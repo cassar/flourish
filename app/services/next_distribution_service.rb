@@ -21,7 +21,7 @@ class NextDistributionService
     end
 
     def date_formatted
-      DistributionDateService.next_date.strftime('%a, %d %b %Y')
+      DistributionDateService.next_date_formatted
     end
 
     def today?
