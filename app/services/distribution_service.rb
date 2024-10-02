@@ -1,9 +1,10 @@
 class DistributionService
-  attr_accessor :members, :dividend_amount_in_base_units
+  attr_accessor :members, :dividend_amount_in_base_units, :name
 
-  def initialize(members:, dividend_amount_in_base_units:)
+  def initialize(members:, dividend_amount_in_base_units:, name:)
     @members = members
     @dividend_amount_in_base_units = dividend_amount_in_base_units
+    @name = name
   end
 
   def call
@@ -14,9 +15,5 @@ class DistributionService
 
   def distribution
     Distribution.create! dividend_amount_in_base_units:, name:
-  end
-
-  def name
-    "##{Distribution.count + 1}"
   end
 end

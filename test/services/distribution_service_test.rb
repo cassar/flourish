@@ -5,17 +5,18 @@ class DistributionServiceTest < ActiveSupport::TestCase
     assert_difference 'Distribution.count', 1 do
       DistributionService.new(
         members: [members(:one)],
+        name: '#3',
         dividend_amount_in_base_units: 1000
       ).call
     end
   end
 
-  test 'creates a distribution with a sequential name' do
-    Distribution.stubs(:count).returns(current_count = 1)
-    expected_name = "##{current_count + 1}"
+  test 'creates a distribution with a given name' do
+    expected_name = '#3'
 
     DistributionService.new(
       members: [members(:one)],
+      name: expected_name,
       dividend_amount_in_base_units: 1000
     ).call
 
@@ -27,6 +28,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
 
     DistributionService.new(
       members: [members(:one)],
+      name: '#3',
       dividend_amount_in_base_units:
     ).call
 
