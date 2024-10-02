@@ -1,17 +1,7 @@
 namespace :services do
   desc 'creates a distribution and dividends and notifies members'
   task distribution: :environment do
-    if DistributionDateService.today?
-      members = Member.active
-      DistributionService.new(
-        members:,
-        name: NextDistributionNameService.call,
-        dividend_amount_in_base_units: DividendAmountService.new(
-          total_pool_in_base_units: TotalPoolService.balance_in_base_units,
-          member_count: members.count
-        ).amount_in_base_units
-      ).call
-    end
+    NextDistributionService.distribute! if NextDistributionService.today?
   end
 
   desc 'recontributes unclaimed dividends and notifies member'
