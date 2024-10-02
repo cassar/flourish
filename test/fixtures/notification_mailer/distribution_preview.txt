@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  </head>
+
+  <body>
+    <article>
+  <p><b>Distribution #3 Preview</b></p>
+  <ul>
+    <li><b>Date:</b> Fri, 04 Oct 2024</li>
+    <li><b>Total Contributions:</b> $-18.99 AUD</li>
+    <li><b>Members:</b> 1</li>
+    <li><b>Dividend:</b> $-18.99 AUD</li>
+  </ul>
+  <a><a href="http://test.flourish.buzz/distributions">View Past Distributions</a></a>
+</article>
+
+  </body>
+</html>

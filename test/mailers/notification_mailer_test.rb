@@ -66,4 +66,18 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal 'Distribution #1 has Settled', email.subject
     assert_equal read_fixture('distribution_settled.txt').join, email.body.to_s
   end
+
+  test 'distribution_preview' do
+    email = NotificationMailer.with(user: users(:one)).distribution_preview
+    NextDistributionService.stubs(:date_formatted).returns('Fri, 04 Oct 2024')
+
+    assert_emails 1 do
+      email.deliver_now
+    end
+
+    assert_equal ['notifications@example.com'], email.from
+    assert_equal ['user@email.com'], email.to
+    assert_equal 'Distribution #3 Preview', email.subject
+    assert_equal read_fixture('distribution_preview.txt').join, email.body.to_s
+  end
 end

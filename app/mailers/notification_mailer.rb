@@ -43,4 +43,17 @@ class NotificationMailer < ApplicationMailer
       )
     )
   end
+
+  def distribution_preview
+    @user = params[:user]
+    @next_distribution = NextDistributionService
+
+    mail(
+      to: @user.email,
+      subject: I18n.t(
+        'mailers.notification_mailer.distribution_preview',
+        distribution_name: @next_distribution.name
+      )
+    )
+  end
 end

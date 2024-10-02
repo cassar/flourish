@@ -36,4 +36,9 @@ class NotificationMailerPreview < ActionMailer::Preview
     user = User.new(email: 'email@example.com')
     NotificationMailer.with(distribution:, user:).distribution_settled
   end
+
+  def distribution_preview
+    user = User.new(email: 'email@example.com')
+    NotificationMailer.with(user:).distribution_preview
+  end
 end

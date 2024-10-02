@@ -26,6 +26,7 @@ en:
       contribution_received_subject: "Your Contribution has been Received"
       dividend_automatically_recontributed_subject: "Your Dividend has been Automatically Recontributed"
       distribution_settled: "Distribution %{distribution_name} has Settled"
+      distribution_preview: "Distribution %{distribution_name} Preview"
     admin_notification_mailer:
       pay_out_requested_subject: "Pay Out Requested"
 
