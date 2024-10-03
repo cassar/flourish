@@ -22,6 +22,6 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
   end
 
   test 'integration' do
-    assert_equal String, TotalPoolService.balance_formatted.class
+    assert_instance_of String, TotalPoolService.balance_formatted
   end
 end

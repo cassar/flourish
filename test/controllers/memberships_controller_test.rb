@@ -10,6 +10,7 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
   test 'should redirect to sign in when not authenticated for show' do
     sign_out @user
     get membership_path
+
     assert_redirected_to new_user_session_path
   end
 
@@ -17,6 +18,7 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
     @member.update! paypalmeid: 'my_paypalmeid'
 
     get membership_url
+
     assert_response :success
   end
 
@@ -24,6 +26,7 @@ class MembershipsControllerTest < ActionDispatch::IntegrationTest
     assert_nil @member.paypalmeid
 
     get membership_url
+
     assert_response :success
   end
 end

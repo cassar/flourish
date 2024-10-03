@@ -16,7 +16,8 @@ class DistributionSettledServiceTest < ActiveSupport::TestCase
 
   test 'fails when distribution not settled' do
     distribution = distributions(:one)
-    assert distribution.dividends.issued.any?
+
+    assert_predicate distribution.dividends.issued, :any?
 
     assert_raises DistributionSettledService::DistributionNotSettledError do
       DistributionSettledService.new(users: [], distribution:).call

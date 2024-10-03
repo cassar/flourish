@@ -2,7 +2,7 @@ require 'test_helper'
 
 class DistributionDateServiceTest < ActiveSupport::TestCase
   test 'next date' do
-    assert_equal Date, DistributionDateService.next_date.class
+    assert_instance_of Date, DistributionDateService.next_date
   end
 
   test 'next date formatted' do
@@ -22,6 +22,6 @@ class DistributionDateServiceTest < ActiveSupport::TestCase
     Time.zone.stubs(:today).returns(Date.parse('Friday 2nd Feb 2024'))
     DistributionDateService.stubs(:next_date).returns(Date.parse('Friday 2nd Feb 2024'))
 
-    assert DistributionDateService.today?
+    assert_predicate DistributionDateService, :today?
   end
 end

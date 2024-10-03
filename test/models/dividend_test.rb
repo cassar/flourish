@@ -20,6 +20,7 @@ class DividendTest < ActiveSupport::TestCase
 
   test 'before save check for receipt check' do
     dividend = dividends(:pending_pay_out)
+
     assert_predicate dividend, :pending_pay_out?
 
     dividend.update! receipt: 'something'

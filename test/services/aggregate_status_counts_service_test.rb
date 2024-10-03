@@ -22,6 +22,7 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
     }
 
     actual_aggregate_status_counts = AggregateStatusCountsService.counts(disaggregate_status_counts)
+
     assert_equal expected_aggregate_status_counts, actual_aggregate_status_counts
   end
 

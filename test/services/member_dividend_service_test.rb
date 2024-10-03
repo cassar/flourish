@@ -10,6 +10,7 @@ class MemberDividendServiceTest < ActiveSupport::TestCase
     end
 
     dividend_members = Member.joins(:dividends).where(dividends: { distribution: })
+
     assert_includes dividend_members, members(:one)
     assert_includes dividend_members, members(:two)
   end

@@ -8,6 +8,7 @@ AllCops:
 require:
   - rubocop-rails
   - rubocop-capybara
+  - rubocop-minitest
 
 Style/FrozenStringLiteralComment:
   Enabled: false

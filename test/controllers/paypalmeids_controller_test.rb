@@ -29,6 +29,7 @@ class PaypalmeidsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to membership_path
     assert_equal 'PayPal.Me ID updated successfully.', flash[:success]
     members(:one).reload
+
     assert_equal 'new_paypalmeid', members(:one).paypalmeid
   end
 end

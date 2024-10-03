@@ -12,6 +12,6 @@ class RecontributionDateServiceTest < ActiveSupport::TestCase
     Time.zone.stubs(:today).returns(Date.parse('Tuesday 17th Sep 2024'))
     RecontributionDateService.stubs(:next_date).returns(Date.parse('Tuesday 17th Sep 2024'))
 
-    assert RecontributionDateService.today?
+    assert_predicate RecontributionDateService, :today?
   end
 end

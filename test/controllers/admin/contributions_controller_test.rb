@@ -4,6 +4,7 @@ module Admin
   class ContributionsControllerTest < ActionDispatch::IntegrationTest
     test 'not authenticated for new' do
       get new_admin_member_contribution_path(members(:one))
+
       assert_redirected_to new_user_session_path
     end
 
@@ -12,19 +13,22 @@ module Admin
       sign_in users(:one)
 
       get new_admin_member_contribution_path(members(:one))
+
       assert_redirected_to root_path
     end
 
     test 'get new' do
-      assert users(:admin).admin?
+      assert_predicate users(:admin), :admin?
       sign_in users(:admin)
 
       get new_admin_member_contribution_path(members(:one))
+
       assert_response :success
     end
 
     test 'not authenticated for create' do
       post admin_member_contributions_path(members(:one))
+
       assert_redirected_to new_user_session_path
     end
 

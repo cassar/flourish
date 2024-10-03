@@ -4,6 +4,7 @@ module Admin
   class PayOutsControllerTest < ActionDispatch::IntegrationTest
     test 'should redirect to sign in when not authenticated for show' do
       get edit_admin_pay_out_path(dividends(:one))
+
       assert_redirected_to new_user_session_path
     end
 
@@ -12,19 +13,22 @@ module Admin
       sign_in users(:one)
 
       get edit_admin_pay_out_path(dividends(:one))
+
       assert_redirected_to dividends_path
     end
 
     test 'should get show' do
-      assert users(:admin).admin?
+      assert_predicate users(:admin), :admin?
       sign_in users(:admin)
 
       get edit_admin_pay_out_path(dividends(:one))
+
       assert_response :success
     end
 
     test 'should redirect to sign in when not authenticated for update' do
       patch admin_pay_out_path(dividends(:one))
+
       assert_redirected_to new_user_session_path
     end
 
@@ -41,7 +45,7 @@ module Admin
     end
 
     test 'should patch update' do
-      assert users(:admin).admin?
+      assert_predicate users(:admin), :admin?
       sign_in users(:admin)
 
       assert_nil dividends(:one).receipt

@@ -10,11 +10,13 @@ class ContributionsControllerTest < ActionDispatch::IntegrationTest
   test 'should redirect to sign in when not authenticated for index' do
     sign_out @user
     get contributions_path
+
     assert_redirected_to new_user_session_path
   end
 
   test 'should get index' do
     get contributions_path
+
     assert_response :success
   end
 end

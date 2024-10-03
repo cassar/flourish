@@ -4,6 +4,7 @@ module Admin
   class UsersControllerTest < ActionDispatch::IntegrationTest
     test 'should redirect to sign in when not authenticated for destroy' do
       delete admin_user_path(users(:inactive))
+
       assert_redirected_to new_user_session_path
     end
 
@@ -12,11 +13,12 @@ module Admin
       sign_in users(:one)
 
       delete admin_user_path(users(:inactive))
+
       assert_redirected_to root_path
     end
 
     test 'should delete destroy as admin' do
-      assert users(:admin).admin?
+      assert_predicate users(:admin), :admin?
       sign_in users(:admin)
 
       assert_difference 'User.count', -1 do

@@ -16,11 +16,12 @@ class UserTest < ActiveSupport::TestCase
   test '#admin? should return true if admin' do
     users(:one).email = User::ADMIN_EMAIL
 
-    assert users(:one).admin?
+    assert_predicate users(:one), :admin?
   end
 
   test '#admin? should return false if not admin' do
     not_admin_email = 'not_admin@email.com'
+
     assert_not_equal not_admin_email, User::ADMIN_EMAIL
     users(:one).email = not_admin_email
 

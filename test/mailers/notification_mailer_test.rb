@@ -25,6 +25,7 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal ['user@email.com'], email.to
     assert_equal 'New Dividend Distributed', email.subject
     expected_content = read_fixture('dividend_received.txt').join.gsub('{{id}}', dividends(:one).id.to_s)
+
     assert_equal expected_content, email.body.to_s
   end
 

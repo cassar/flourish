@@ -13,6 +13,7 @@ class ContributionTest < ActiveSupport::TestCase
     end
 
     expected_error = 'Validation failed: Amount in base units must be greater than 0'
+
     assert_equal expected_error, error.message
   end
 
@@ -24,6 +25,7 @@ class ContributionTest < ActiveSupport::TestCase
     end
 
     expected_error = 'Validation failed: Fees in base units must be greater than or equal to 0'
+
     assert_equal expected_error, error.message
   end
 

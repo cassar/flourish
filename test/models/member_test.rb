@@ -43,6 +43,7 @@ class MemberTest < ActiveSupport::TestCase
 
   test 'enforces case insensitive paypalmeid' do
     upcase_duplicate_paypalid = members(:has_paypalmeid).paypalmeid.upcase
+
     assert_not_equal upcase_duplicate_paypalid, members(:has_paypalmeid).paypalmeid
 
     error = assert_raises ActiveRecord::RecordInvalid do
@@ -67,7 +68,7 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'pay outs disabled when no paypal.me id' do
-    assert members(:one).pay_outs_disabled?
+    assert_predicate members(:one), :pay_outs_disabled?
   end
 
   test 'pay outs enabled when paypal.me id present' do
