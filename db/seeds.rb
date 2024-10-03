@@ -20,6 +20,7 @@ puts "Making some users"
   user.skip_confirmation_notification!
   user.skip_reconfirmation!
   user.save!
+  user.create_member!
   next if (user.id % 5).zero? 
 
   user.confirm
