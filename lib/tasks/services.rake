@@ -19,7 +19,7 @@ namespace :services do
     if RecontributionDateService.today?
       DistributionSettledService.new(
         distribution: Distribution.last,
-        users: User.joins(:member).where(member: Member.active)
+        users: User.active
       ).call
     end
   end
