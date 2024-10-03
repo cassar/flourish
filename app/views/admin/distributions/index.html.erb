@@ -10,7 +10,7 @@
         <li><b>Dividend</b>: <%= distribution.dividend_amount_formatted %></li>
         <li><b>Members</b>: <%= distribution.dividends.length %></li>
         <ul>
-          <% distribution.dividends.group(:status).count.each do |status, count| %>
+          <% distribution.dividends.group(:status).count.sort.each do |status, count| %>
             <li><i><%= status.titleize %></i>: <%= count %></li>
           <% end %>
         </ul>
