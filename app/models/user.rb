@@ -8,8 +8,6 @@ class User < ApplicationRecord
 
   has_one :member, dependent: :destroy
 
-  after_create :create_member!
-
   def admin?
     email == ADMIN_EMAIL
   end
