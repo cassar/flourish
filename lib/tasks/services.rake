@@ -23,4 +23,13 @@ namespace :services do
       ).call
     end
   end
+
+  desc 'sends a distribution preview to all users'
+  task distribution_preview: :environment do
+    if DistributionPreviewDateService.today?
+      DistributionPreviewService.new(
+        users: User.active
+      ).call
+    end
+  end
 end
