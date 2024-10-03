@@ -11,9 +11,7 @@ class Member < ApplicationRecord
   }
 
   scope :inactive, lambda {
-    joins(:user)
-      .where.not(users: { email: User::ADMIN_EMAIL })
-      .where(users: { last_sign_in_at: nil })
+    joins(:user).merge(User.inactive)
   }
 
   def pay_outs_disabled?
