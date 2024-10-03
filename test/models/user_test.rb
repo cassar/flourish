@@ -20,6 +20,13 @@ class UserTest < ActiveSupport::TestCase
     assert_not_includes User.active, users(:inactive)
   end
 
+  test 'inactive scope' do
+    assert_includes User.inactive, users(:inactive)
+
+    assert_not_includes User.inactive, users(:active)
+    assert_not_includes User.inactive, users(:admin)
+  end
+
   test '#admin? should return true if admin' do
     users(:one).email = User::ADMIN_EMAIL
 

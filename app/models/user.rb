@@ -13,6 +13,11 @@ class User < ApplicationRecord
          .where.not(last_sign_in_at: nil)
   }
 
+  scope :inactive, lambda {
+    where.not(email: ADMIN_EMAIL)
+         .where(last_sign_in_at: nil)
+  }
+
   def admin?
     email == ADMIN_EMAIL
   end
