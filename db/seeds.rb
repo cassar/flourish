@@ -13,6 +13,7 @@ admin.skip_confirmation_notification!
 admin.skip_reconfirmation!
 admin.confirm
 admin.save!
+admin.create_member!
 
 puts "Making some users"
 1..5.times do |integer|
