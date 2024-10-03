@@ -16,6 +16,9 @@ Style/FrozenStringLiteralComment:
 Style/Documentation:
   Enabled: false
 
+Minitest/MultipleAssertions:
+  Enabled: false
+
 Metrics/BlockLength:
   Exclude:
     - 'lib/tasks/services.rake'
