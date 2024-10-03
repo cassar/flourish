@@ -15,7 +15,7 @@ admin.confirm
 admin.save!
 
 puts "Making some users"
-1..50.times do |integer|
+1..5.times do |integer|
   user = User.new(email: "user_#{integer}@email.com", password: "password")
   user.skip_confirmation_notification!
   user.skip_reconfirmation!
