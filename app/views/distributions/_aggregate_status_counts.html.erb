@@ -1,6 +1,6 @@
 <% if (aggregate_status_counts = AggregateStatusCountsService.counts(disaggregate_status_counts)).any? %>
   <ul>
-    <% aggregate_status_counts.each do |aggregate_status, count| %>
+    <% aggregate_status_counts.sort.each do |aggregate_status, count| %>
       <li><i><%= aggregate_status.titleize %></i>: <%= count %></li>
     <% end %>
   </ul>
