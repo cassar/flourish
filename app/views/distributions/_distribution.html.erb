@@ -3,8 +3,8 @@
   <ul>
     <li><b>Date</b>: <%= created_at_formatted distribution %></li>
     <li><b>Status</b>: <%= distribution_status dividend_statuses: distribution.dividends.pluck(:status) %></li>
-    <li><b>Dividend</b>: <%= distribution.dividend_amount_formatted %></li>
     <li><b>Members</b>: <%= distribution.dividends.length %></li>
+    <li><b>Dividend</b>: <%= distribution.dividend_amount_formatted %></li>
     <%= render 'aggregate_status_counts', disaggregate_status_counts: distribution.dividends.group(:status).count %>
   </ul>
 </article>
