@@ -80,9 +80,6 @@ group :development do
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
-
   # A Ruby static code analyzer and formatter, based on the community Ruby style guide.
   gem 'rubocop', require: false
 
@@ -94,18 +91,6 @@ group :development do
 
   # Code style checking for Capybara files.
   gem 'rubocop-capybara', require: false
-
-  # Guard is a command line tool to easily handle events on file system modifications.
-  gem 'guard'
-
-  # Guard::Minitest automatically run your tests with Minitest framework (much like autotest)
-  gem 'guard-minitest'
-
-  # Guard plugin for RuboCop
-  gem 'guard-rubocop'
-
-  # Guard::Bundler automatically install/update your gem bundle when needed
-  gem 'guard-bundler', require: false
 
   # Preview mail in the browser instead of sending.
   gem 'letter_opener'
