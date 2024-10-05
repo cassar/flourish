@@ -3,9 +3,9 @@ require 'test_helper'
 module Admin
   class PayOutsHelperTest < ActionView::TestCase
     test 'paypalme_url with amount in base units' do
-      expected = 'https://paypal.me/mypaypalmeid/5.50AUD'
+      expected = 'https://paypal.me/mypaypalme_handle/5.50AUD'
       actual = paypalme_url(
-        paypalmeid: 'mypaypalmeid',
+        paypalme_handle: 'mypaypalme_handle',
         amount_in_base_units: 550
       )
 
@@ -13,9 +13,9 @@ module Admin
     end
 
     test 'paypalme_url without amount in base units' do
-      expected = 'https://paypal.me/mypaypalmeid'
+      expected = 'https://paypal.me/mypaypalme_handle'
       actual = paypalme_url(
-        paypalmeid: 'mypaypalmeid'
+        paypalme_handle: 'mypaypalme_handle'
       )
 
       assert_equal expected, actual

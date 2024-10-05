@@ -11,8 +11,8 @@ one:
 two:
   email: user2@email.com
     
-has_paypalmeid:
-  email: has_paypalmeid@email.com
+has_paypalme_handle:
+  email: has_paypalme_handle@email.com
 
 admin:
   email: <%= User::ADMIN_EMAIL %>

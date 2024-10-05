@@ -1,4 +1,4 @@
-class PaypalmeidsController < ApplicationController
+class PaypalmeHandlesController < ApplicationController
   before_action :authenticate_user!
 
   def edit
@@ -8,7 +8,7 @@ class PaypalmeidsController < ApplicationController
   def update
     @member = current_user.member
     if @member.update(member_params)
-      flash[:success] = I18n.t('controllers.paypalmeids.update.success')
+      flash[:success] = I18n.t('controllers.paypalme_handles.update.success')
       redirect_to membership_path
     else
       flash.now[:error] = @member.errors.full_messages.to_sentence
@@ -19,6 +19,6 @@ class PaypalmeidsController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:paypalmeid)
+    params.require(:member).permit(:paypalme_handle)
   end
 end

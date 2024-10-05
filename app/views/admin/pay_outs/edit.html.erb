@@ -5,7 +5,7 @@
   <ul>
     <li><b>Amount</b>: <%= @distribution.dividend_amount_formatted %></li>
     <li><b>Status</b>: <%= @dividend.status.titleize %></li>
-    <li><b>PayPal.Me URL</b>: <%= link_to @member.paypalmeid, paypalme_url(paypalmeid: @member.paypalmeid, amount_in_base_units: @distribution.dividend_amount_in_base_units), target: "_blank" %></li>
+    <li><b>PayPal.Me URL</b>: <%= link_to @member.paypalme_handle, paypalme_url(paypalme_handle: @member.paypalme_handle, amount_in_base_units: @distribution.dividend_amount_in_base_units), target: "_blank" %></li>
   </ul>
   <%= form_with model: @dividend, url: admin_pay_out_path, data: { turbo: false } do |form| %>
     <article>

@@ -28,7 +28,7 @@ puts "Making some users"
   user.last_sign_in_at = Time.now
   user.save!
 
-  user.member.update! paypalmeid: "paypalidmember#{user.member.id}"
+  user.member.update! paypalme_handle: "paypalme_handle_member#{user.member.id}"
 end
 
 puts "Making some contributions"

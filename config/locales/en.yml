@@ -8,9 +8,9 @@ en:
       contributions:
         create:
           success: "New contribution created and notification sent"
-    paypalmeids:
+    paypalme_handles:
       update:
-        success: "PayPal.Me ID updated successfully."
+        success: "PayPal.Me handle updated successfully."
     dividends:
       not_authorised: "That's not your dividend. 🤨"
       already_updated: "Dividend already updated."
@@ -33,6 +33,6 @@ en:
   activerecord:
     attributes:
       member:
-        paypalmeid: "PayPal.Me ID"
+        paypalme_handle: "PayPal.Me Handle"
       contribution:
         transaction_identifier: 'Transaction ID'

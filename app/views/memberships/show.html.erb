@@ -18,11 +18,11 @@
   </p>
   <ul>
     <li>
-      <strong>PayPal.Me ID</strong>: 
-      <% if @member.paypalmeid.present? %>
-        Entered (<%= link_to 'update', edit_paypalmeid_path(@member) %>)
+      <strong>PayPal.Me Handle</strong>: 
+      <% if @member.paypalme_handle.present? %>
+        Entered (<%= link_to 'update', edit_paypalme_handle_path(@member) %>)
       <% else %>
-        <%= link_to 'Enter', edit_paypalmeid_path(@member) %>
+        <%= link_to 'Enter', edit_paypalme_handle_path(@member) %>
       <% end %>
     </li>
   </ul>

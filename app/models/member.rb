@@ -4,7 +4,7 @@ class Member < ApplicationRecord
   has_many :dividends, dependent: :nullify
   has_many :contributions, dependent: :nullify
 
-  validates :paypalmeid, uniqueness: { allow_nil: true, case_sensitive: false }
+  validates :paypalme_handle, uniqueness: { allow_nil: true, case_sensitive: false }
 
   scope :active, lambda {
     joins(:user).merge(User.active)
@@ -15,6 +15,6 @@ class Member < ApplicationRecord
   }
 
   def pay_outs_disabled?
-    paypalmeid.blank?
+    paypalme_handle.blank?
   end
 end

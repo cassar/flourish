@@ -10,9 +10,9 @@ one:
 two:
   user: two
 
-has_paypalmeid:
-  user: has_paypalmeid
-  paypalmeid: their_paypalmeid
+has_paypalme_handle:
+  user: has_paypalme_handle
+  paypalme_handle: their_paypalme_handle
 
 admin:
   user: admin

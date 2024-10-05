@@ -27,27 +27,27 @@ class MemberTest < ActiveSupport::TestCase
     assert_nil contributions(:one).reload.member
   end
 
-  test 'enforces unique paypalmeid' do
+  test 'enforces unique paypalme_handle' do
     error = assert_raises ActiveRecord::RecordInvalid do
-      members(:one).update! paypalmeid: members(:has_paypalmeid).paypalmeid
+      members(:one).update! paypalme_handle: members(:has_paypalme_handle).paypalme_handle
     end
 
     assert_match(/has already been taken/, error.message)
   end
 
-  test 'ignores unique validation when paypalmeid is nil' do
-    members(:has_paypalmeid).update! paypalmeid: nil
+  test 'ignores unique validation when paypalme_handle is nil' do
+    members(:has_paypalme_handle).update! paypalme_handle: nil
 
-    assert_nil members(:has_paypalmeid).reload.paypalmeid
+    assert_nil members(:has_paypalme_handle).reload.paypalme_handle
   end
 
-  test 'enforces case insensitive paypalmeid' do
-    upcase_duplicate_paypalid = members(:has_paypalmeid).paypalmeid.upcase
+  test 'enforces case insensitive paypalme_handle' do
+    upcase_duplicate_paypalid = members(:has_paypalme_handle).paypalme_handle.upcase
 
-    assert_not_equal upcase_duplicate_paypalid, members(:has_paypalmeid).paypalmeid
+    assert_not_equal upcase_duplicate_paypalid, members(:has_paypalme_handle).paypalme_handle
 
     error = assert_raises ActiveRecord::RecordInvalid do
-      members(:one).update! paypalmeid: upcase_duplicate_paypalid
+      members(:one).update! paypalme_handle: upcase_duplicate_paypalid
     end
 
     assert_match(/has already been taken/, error.message)
@@ -72,6 +72,6 @@ class MemberTest < ActiveSupport::TestCase
   end
 
   test 'pay outs enabled when paypal.me id present' do
-    assert_not members(:has_paypalmeid).pay_outs_disabled?
+    assert_not members(:has_paypalme_handle).pay_outs_disabled?
   end
 end
