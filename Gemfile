@@ -105,10 +105,16 @@ end
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+
+  # A browser automation framework and ecosystem.
   gem 'selenium-webdriver'
+
+  # Keep your Selenium WebDrivers updated automatically
   gem 'webdrivers'
+
   # A mocking and stubbing library for Ruby
   gem 'mocha'
+
   # Library for stubbing and setting expectations on HTTP requests in Ruby.
   gem 'webmock'
 end
