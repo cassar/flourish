@@ -16,6 +16,6 @@ class DistributionsHelperTest < ActionView::TestCase
   test 'distribution_status when some actioned' do
     dividend_statuses = %w[issued manually_recontributed]
 
-    assert_equal 'Awaiting action from members', distribution_status(dividend_statuses:)
+    assert_equal 'Awaiting member action', distribution_status(dividend_statuses:)
   end
 end
