@@ -18,12 +18,12 @@ class DividendTest < ActiveSupport::TestCase
     assert_not_includes Dividend.owed, Dividend.auto_recontributed.first
   end
 
-  test 'before save check for receipt check' do
+  test 'before save check for transaction_identifier check' do
     dividend = dividends(:pending_pay_out)
 
     assert_predicate dividend, :pending_pay_out?
 
-    dividend.update! receipt: 'something'
+    dividend.update! transaction_identifier: 'something'
 
     assert_predicate dividend, :pay_out_complete?
   end

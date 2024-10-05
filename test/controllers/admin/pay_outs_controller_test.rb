@@ -36,24 +36,26 @@ module Admin
       assert_not users(:one).admin?
       sign_in users(:one)
 
-      assert_nil dividends(:one).receipt
-      patch admin_pay_out_path(dividends(:one)), params: { dividend: { receipt: 'new_receipt' } }
+      assert_nil dividends(:one).transaction_identifier
+      patch admin_pay_out_path(dividends(:one)),
+            params: { dividend: { transaction_identifier: 'new_transaction_identifier' } }
 
       assert_redirected_to dividends_path
       assert_equal "You don't have access.", flash[:alert]
-      assert_nil dividends(:one).receipt
+      assert_nil dividends(:one).transaction_identifier
     end
 
     test 'should patch update' do
       assert_predicate users(:admin), :admin?
       sign_in users(:admin)
 
-      assert_nil dividends(:one).receipt
-      patch admin_pay_out_path(dividends(:one)), params: { dividend: { receipt: 'new_receipt' } }
+      assert_nil dividends(:one).transaction_identifier
+      patch admin_pay_out_path(dividends(:one)),
+            params: { dividend: { transaction_identifier: 'new_transaction_identifier' } }
 
       assert_response :success
       assert_equal 'Receipt updated successfully.', flash[:success]
-      assert_equal 'new_receipt', dividends(:one).reload.receipt
+      assert_equal 'new_transaction_identifier', dividends(:one).reload.transaction_identifier
     end
   end
 end

@@ -10,7 +10,7 @@
   </ul>
   <%= form_with model: @dividend, url: admin_pay_out_path, data: { turbo: false } do |form| %>
     <article>
-      <p><span>Receipt</span>: <%= form.text_area :receipt %></p>
+      <p><span>Transaction Identifier</span>: <%= form.text_field :transaction_identifier %></p>
     </article>
     <%= form.submit "Submit" %>
   <% end %>

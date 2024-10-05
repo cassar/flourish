@@ -24,7 +24,7 @@ module Admin
     private
 
     def dividend_params
-      params.require(:dividend).permit(:receipt)
+      params.require(:dividend).permit(:transaction_identifier)
     end
 
     def authorise_admin!

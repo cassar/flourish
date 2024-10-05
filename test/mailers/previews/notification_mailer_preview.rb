@@ -19,7 +19,7 @@ class NotificationMailerPreview < ActionMailer::Preview
     user = User.new(email: 'email@example.com')
     member = Member.new(user:)
     distribution = Distribution.new(dividend_amount_in_base_units: 400)
-    dividend = Dividend.new(id: 1, member:, distribution:, receipt: '172receipt_no38a')
+    dividend = Dividend.new(id: 1, member:, distribution:, transaction_identifier: '172transaction_identifier_no38a')
     NotificationMailer.with(dividend:).dividend_paid_out
   end
 
@@ -27,7 +27,7 @@ class NotificationMailerPreview < ActionMailer::Preview
     user = User.new(email: 'email@example.com')
     member = Member.new(user:)
     distribution = Distribution.new(dividend_amount_in_base_units: 400)
-    dividend = Dividend.new(id: 1, member:, distribution:, receipt: '172receipt_no38a')
+    dividend = Dividend.new(id: 1, member:, distribution:, transaction_identifier: '172transaction_identifier_no38a')
     NotificationMailer.with(dividend:).dividend_automatically_recontributed
   end
 

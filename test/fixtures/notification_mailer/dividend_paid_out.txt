@@ -9,7 +9,7 @@
     <article>
   <p>Your dividend has been paid out.</p>
   <p><b>Amount</b>: $5.00 AUD</p>
-  <p><b>Receipt</b>: This is your receipt, thank you.</p>
+  <p><b>Transaction Identifier</b>: EIUAID43723907</p>
   <a><a href="http://test.flourish.buzz/dividends/40133057">See your Dividend</a></a>
 </article>
 

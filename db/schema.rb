@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2024_10_05_031304) do
+ActiveRecord::Schema[8.0].define(version: 2024_10_05_061946) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -39,7 +39,7 @@ ActiveRecord::Schema[8.0].define(version: 2024_10_05_031304) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "member_id"
-    t.text "receipt"
+    t.string "transaction_identifier"
     t.index ["distribution_id"], name: "index_dividends_on_distribution_id"
     t.index ["member_id"], name: "index_dividends_on_member_id"
   end
