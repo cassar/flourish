@@ -3,12 +3,13 @@ require 'test_helper'
 class TotalPoolServiceTest < ActiveSupport::TestCase
   test 'balance_in_base_units' do
     Contribution.stubs(:sum).returns(10_000)
+    Expense.stubs(:sum).returns(1_000)
 
     Distribution.stubs(:joins).returns(Distribution)
     Distribution.stubs(:merge).returns(Distribution)
     Distribution.stubs(:sum).returns(1_500)
 
-    assert_equal 8_500, TotalPoolService.balance_in_base_units
+    assert_equal 7_500, TotalPoolService.balance_in_base_units
   end
 
   test 'balance in base units integration' do
