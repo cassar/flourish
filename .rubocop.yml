@@ -23,6 +23,10 @@ Metrics/BlockLength:
   Exclude:
     - 'lib/tasks/services.rake'
 
+Metrics/MethodLength:
+  Exclude:
+    - 'app/mailers/notification_mailer.rb'
+
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'

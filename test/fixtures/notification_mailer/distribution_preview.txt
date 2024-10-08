@@ -16,6 +16,31 @@
   </ul>
   <a><a href="http://test.flourish.buzz/distributions">View Past Distributions</a></a>
 </article>
+<article>
+  <p><b>Weekly Expenses Deducted from the Pool</b></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>weekly server costs</td>
+          <td>$10.00 AUD</td>
+        </tr>
+        <tr>
+          <td>weekly server costs</td>
+          <td>$11.00 AUD</td>
+        </tr>
+      <tr>
+        <td><b>Total</b></td>
+        <td><b>$21.00 AUD</b></td>
+      </tr>
+    </tbody>
+  </table>
+</article>
 
   </body>
 </html>

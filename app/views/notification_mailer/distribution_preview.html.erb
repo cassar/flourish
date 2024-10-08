@@ -8,3 +8,26 @@
   </ul>
   <a><%= link_to "View Past Distributions", distributions_url %></a>
 </article>
+<article>
+  <p><b>Weekly Expenses Deducted from the Pool</b></p>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @expenses.each do |expense| %>
+        <tr>
+          <td><%= expense.name %></td>
+          <td><%= expense.amount_formatted %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td><b>Total</b></td>
+        <td><b><%= @total_expenses_formatted %></b></td>
+      </tr>
+    </tbody>
+  </table>
+</article>

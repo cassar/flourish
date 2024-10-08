@@ -47,7 +47,8 @@ class NotificationMailer < ApplicationMailer
   def distribution_preview
     @user = params[:user]
     @next_distribution = NextDistributionService
-
+    @expenses = WeeklyExpensesService.last_weeks_expenses
+    @total_expenses_formatted = WeeklyExpensesService.last_weeks_expeneses_total_formatted
     mail(
       to: @user.email,
       subject: I18n.t(

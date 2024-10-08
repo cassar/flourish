@@ -71,6 +71,8 @@ class NotificationMailerTest < ActionMailer::TestCase
   test 'distribution_preview' do
     email = NotificationMailer.with(user: users(:one)).distribution_preview
     NextDistributionService.stubs(:date_formatted).returns('Fri, 04 Oct 2024')
+    WeeklyExpensesService.stubs(:last_weeks_expenses).returns([expenses(:one), expenses(:two)])
+    WeeklyExpensesService.stubs(:last_weeks_expeneses_total_formatted).returns('$21.00 AUD')
 
     assert_emails 1 do
       email.deliver_now
