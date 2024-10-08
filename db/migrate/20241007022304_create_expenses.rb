@@ -1,4 +1,4 @@
-class Expenses < ActiveRecord::Migration[8.0]
+class CreateExpenses < ActiveRecord::Migration[8.0]
   def change
     create_table :expenses do |t|
       t.string :name
