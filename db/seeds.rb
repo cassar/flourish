@@ -48,3 +48,7 @@ puts "Making some distributions"
     Dividend.create member:, distribution:
   end
 end
+
+puts "Making some expenses"
+Expense.create! name: "Server", amount_in_base_units: 334
+Expense.create! name: "Domain", amount_in_base_units: 678
