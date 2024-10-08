@@ -10,11 +10,25 @@ class WeeklyExpensesService
     }
   ].freeze
 
-  def self.call
-    expenses = WEEKLY_EXPENSES.map do |expense|
-      Expense.create!(expense)
+  class << self
+    def generate_and_notify
+      expenses = WEEKLY_EXPENSES.map do |expense|
+        Expense.create!(expense)
+      end
+
+      AdminNotificationMailer.with(expenses:).expenses_added.deliver_now
     end
 
-    AdminNotificationMailer.with(expenses:).expenses_added.deliver_now
+    def last_weeks_expenses
+      Expense.where(created_at: 1.week.ago..Time.current)
+    end
+
+    def last_weeks_expenses_total
+      last_weeks_expenses.sum(:amount_in_base_units)
+    end
+
+    def last_weeks_expeneses_total_formatted
+      Money.from_cents(last_weeks_expenses_total).format
+    end
   end
 end
