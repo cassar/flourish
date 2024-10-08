@@ -14,6 +14,11 @@ namespace :services do
     end
   end
 
+  desc 'creates a set of expenses every week'
+  task create_expenses: :environment do
+    WeeklyExpensesService.call if ConsolidationDateService.today?
+  end
+
   desc 'notifies users when a distribution has settled'
   task distribution_settled: :environment do
     if ConsolidationDateService.today?
