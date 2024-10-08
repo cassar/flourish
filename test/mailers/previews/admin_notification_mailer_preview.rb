@@ -6,4 +6,12 @@ class AdminNotificationMailerPreview < ActionMailer::Preview
     dividend = Dividend.new(id: 1, member:)
     AdminNotificationMailer.with(dividend:).pay_out_requested
   end
+
+  def expenses_added
+    expenses = [
+      Expense.new(amount_in_base_units: 384, name: 'Service 1'),
+      Expense.new(amount_in_base_units: 398, name: 'Service 2')
+    ]
+    AdminNotificationMailer.with(expenses:).expenses_added
+  end
 end

@@ -29,6 +29,7 @@ en:
       distribution_preview: "Distribution %{distribution_name} Preview"
     admin_notification_mailer:
       pay_out_requested_subject: "Pay Out Requested"
+      expenses_added_subject: "New Expenses Added"
 
   activerecord:
     attributes:

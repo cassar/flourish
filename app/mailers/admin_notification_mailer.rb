@@ -7,4 +7,9 @@ class AdminNotificationMailer < ApplicationMailer
     @user = @member.user
     mail(to: User::ADMIN_EMAIL, subject: I18n.t('mailers.admin_notification_mailer.pay_out_requested_subject'))
   end
+
+  def expenses_added
+    @expenses = params[:expenses]
+    mail(to: User::ADMIN_EMAIL, subject: I18n.t('mailers.admin_notification_mailer.expenses_added_subject'))
+  end
 end

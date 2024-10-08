@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://cdn.simplecss.org/simple.min.css">
+  </head>
+
+  <body>
+    <article>
+  <p>New expeneses have been added. Please deduct each item separately.</p>
+  <table>
+    <thead>
+      <tr>
+        <th>Item</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+          <td>weekly server costs</td>
+          <td>$10.00 AUD</td>
+        </tr>
+        <tr>
+          <td>weekly server costs</td>
+          <td>$11.00 AUD</td>
+        </tr>
+    </tbody>
+  </table>
+</article>
+
+
+
+  </body>
+</html>
