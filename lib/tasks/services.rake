@@ -6,7 +6,7 @@ namespace :services do
 
   desc 'recontributes unclaimed dividends and notifies member'
   task recontribution: :environment do
-    if RecontributionDateService.today?
+    if ConsolidationDateService.today?
       mailgun_send_limit = 10
       RecontributionService.new(
         issued_dividends: Dividend.issued.take(mailgun_send_limit)
@@ -16,7 +16,7 @@ namespace :services do
 
   desc 'notifies users when a distribution has settled'
   task distribution_settled: :environment do
-    if RecontributionDateService.today?
+    if ConsolidationDateService.today?
       DistributionSettledService.new(
         distribution: Distribution.last,
         users: User.active

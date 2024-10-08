@@ -1,6 +1,6 @@
 <article>
   <p>Your dividend has been recontributed.</p>
-  <p>Unclaimed dividends are automatically recontributed on the <%= RecontributionDateService::DAY_OF_THE_WEEK %> following a distribution.</p>
+  <p>Unclaimed dividends are automatically recontributed on the <%= ConsolidationDateService::DAY_OF_THE_WEEK %> following a distribution.</p>
   <p><b>Amount</b>: <%= @distribution.dividend_amount_formatted %></p>
   <a><%= link_to "View dividend", dividend_url(@dividend) %></a>
 </article>

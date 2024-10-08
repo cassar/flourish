@@ -2,5 +2,5 @@
   <p>You have received a new dividend.</p>
   <p><b>Amount</b>: <%= @distribution.dividend_amount_formatted %></p>
   <a><%= link_to "Recontribute or pay out your dividend", dividend_url(@dividend) %></a>
-  <p><b>Note</b>: All dividends will be automatically recontributed back into the pool if not claimed by the <%= RecontributionDateService::DAY_OF_THE_WEEK %> following a distribution.</p>
+  <p><b>Note</b>: All dividends will be automatically recontributed back into the pool if not claimed by the <%= ConsolidationDateService::DAY_OF_THE_WEEK %> following a distribution.</p>
 </article>

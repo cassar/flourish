@@ -1,4 +1,4 @@
-class RecontributionDateService
+class ConsolidationDateService
   DAY_OF_THE_WEEK = 'Tuesday'.freeze
 
   def self.next_date
