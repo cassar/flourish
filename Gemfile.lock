@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: be4bd3d41aa271e93b6c9bb7eae8939b08f431a2
+  revision: 57fe7e781ee37a50e54b17df24738ce6c26b22db
   branch: main
   specs:
     actioncable (8.0.0.beta1)
@@ -158,7 +158,7 @@ GEM
       logger
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
-    importmap-rails (2.0.2)
+    importmap-rails (2.0.3)
       actionpack (>= 6.0.0)
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
