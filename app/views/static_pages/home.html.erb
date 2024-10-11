@@ -10,7 +10,7 @@
       <%= render 'distributions/aggregate_status_counts', disaggregate_status_counts: @last_distribution_dividends.group(:status).count %>
     </ul>
   <% else %>
-    <p><b>Next Distribution:</b></p>
+    <p><b>Next Distribution: <%= @next_distribution.name %></b></p>
     <ul>
       <li><b>Date:</b> <%= @next_distribution.date_formatted %></li>
       <li><b>Contributions:</b> <%= @next_distribution.total_pool_formatted %></li>
