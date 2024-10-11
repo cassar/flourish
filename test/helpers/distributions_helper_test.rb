@@ -10,7 +10,7 @@ class DistributionsHelperTest < ActionView::TestCase
   test 'distribution_status when all issued' do
     dividend_statuses = %w[issued issued]
 
-    assert_equal 'Dividends issued to members', distribution_status(dividend_statuses:)
+    assert_equal 'Dividends issued', distribution_status(dividend_statuses:)
   end
 
   test 'distribution_status when some actioned' do
