@@ -17,6 +17,10 @@ class Contribution < ApplicationRecord
     Money.from_cents(gross_amount_in_base_units).format
   end
 
+  def created_at_formatted
+    created_at.strftime("%a, #{created_at.day.ordinalize} %b %Y")
+  end
+
   private
 
   def gross_amount_in_base_units

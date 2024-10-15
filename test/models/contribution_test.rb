@@ -51,4 +51,8 @@ class ContributionTest < ActiveSupport::TestCase
 
     assert_equal '$1.10 AUD', contributions(:one).gross_amount_formatted
   end
+
+  test 'created_at_formatted' do
+    assert_equal 'Mon, 14th Oct 2024', contributions(:one).created_at_formatted
+  end
 end

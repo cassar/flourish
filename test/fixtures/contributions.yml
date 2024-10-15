@@ -5,6 +5,7 @@ one:
   member: one
   transaction_identifier: contribution_one_transaction_identifier
   fees_in_base_units: 10
+  created_at: Mon, 14th Oct 2024
 
 two:
   amount_in_base_units: 1
