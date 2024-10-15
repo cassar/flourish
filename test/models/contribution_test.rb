@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class ContributionTest < ActiveSupport::TestCase
-  test 'associations' do
+  test 'belongs to member association' do
     assert_equal members(:one), contributions(:one).member
   end
 
