@@ -32,7 +32,7 @@ module Admin
     end
 
     def contribution_params
-      params.require(:contribution).permit(:amount_in_base_units, :fee_in_base_untis, :transaction_identifier)
+      params.require(:contribution).permit(:amount_in_base_units, :fees_in_base_units, :transaction_identifier)
     end
 
     def contribution_error_message
