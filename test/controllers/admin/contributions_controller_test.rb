@@ -26,6 +26,36 @@ module Admin
       assert_response :success
     end
 
+    test 'not authenticated for preview' do
+      get preview_admin_member_contributions_path(members(:one))
+
+      assert_redirected_to new_user_session_path
+    end
+
+    test 'not authorized for preview' do
+      assert_not users(:one).admin?
+      sign_in users(:one)
+
+      get preview_admin_member_contributions_path(members(:one)),
+          params: { contribution: { transaction_identifier: 'xxxx' } }
+
+      assert_redirected_to root_path
+      assert_equal "You don't have access.", flash[:alert]
+    end
+
+    test 'get preview' do
+      assert_predicate users(:admin), :admin?
+      sign_in users(:admin)
+
+      get preview_admin_member_contributions_path(members(:one)),
+          params: { contribution: {
+            transaction_identifier: 'xxxx',
+            amount_in_base_units: 5000
+          } }
+
+      assert_response :success
+    end
+
     test 'not authenticated for create' do
       post admin_member_contributions_path(members(:one))
 

@@ -10,6 +10,11 @@ module Admin
       @user = member.user
     end
 
+    def preview
+      contribution.created_at = Time.zone.now
+      @user = member.user
+    end
+
     def create
       if contribution.save
         flash[:success] = I18n.t('controllers.admin.contributions.create.success')

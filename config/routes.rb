@@ -9,7 +9,9 @@ Rails.application.routes.draw do
         get :active
         get :inactive
       end
-      resources :contributions, only: [:new, :create]
+      resources :contributions, only: [:new, :create] do
+        collection { get :preview }
+      end
     end
     resources :users, only: :destroy
   end

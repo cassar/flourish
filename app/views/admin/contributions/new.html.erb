@@ -3,7 +3,7 @@
 <article>
   <p>This form will create a contribution for a member and also send them an email notification.</p> 
 </article>
-<%= form_with model: @contribution, url: admin_member_contributions_path, data: { turbo: false } do |form| %>
+<%= form_with model: @contribution, url: preview_admin_member_contributions_path, method: :get, data: { turbo: false } do |form| %>
   <p>
     <%= form.label :amount_in_base_units %>
     <%= form.number_field :amount_in_base_units, step: 1, min: 0, required: true%>
@@ -16,5 +16,5 @@
     <%= form.label :transaction_identifier %>
     <%= form.text_field :transaction_identifier, required: true %>
   </p>
-  <%= form.submit "Submit" %>
+  <%= form.submit "Preview" %>
 <% end %>
