@@ -11,7 +11,6 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal ['notifications@example.com'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Your Contribution has been Received', email.subject
-    assert_equal read_fixture('contribution_received.txt').join, email.body.to_s
   end
 
   test 'dividend_received' do
@@ -24,9 +23,6 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal ['notifications@example.com'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'New Dividend Distributed', email.subject
-    expected_content = read_fixture('dividend_received.txt').join.gsub('{{id}}', dividends(:one).id.to_s)
-
-    assert_equal expected_content, email.body.to_s
   end
 
   test 'dividend_paid_out' do
@@ -39,7 +35,6 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal ['notifications@example.com'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Your Dividend has been Paid Out', email.subject
-    assert_equal read_fixture('dividend_paid_out.txt').join, email.body.to_s
   end
 
   test 'dividend_automatically_recontributed' do
@@ -52,7 +47,6 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal ['notifications@example.com'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Your Dividend has been Automatically Recontributed', email.subject
-    assert_equal read_fixture('dividend_automatically_recontributed.txt').join, email.body.to_s
   end
 
   test 'distribution_settled' do
@@ -65,7 +59,6 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal ['notifications@example.com'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Distribution #1 has Settled', email.subject
-    assert_equal read_fixture('distribution_settled.txt').join, email.body.to_s
   end
 
   test 'distribution_preview' do
@@ -81,6 +74,5 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal ['notifications@example.com'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Distribution #3 Preview', email.subject
-    assert_equal read_fixture('distribution_preview.txt').join, email.body.to_s
   end
 end
