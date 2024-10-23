@@ -8,8 +8,8 @@
   </ul>
   <a><%= link_to "View Past Distributions", distributions_url %></a>
 </article>
+<h2>Recent Contributions</h2>
 <article>
-  <p><b>Recent Contributions</b></p>
   <table>
     <thead>
       <tr>
@@ -27,8 +27,8 @@
     </tbody>
   </table>
 </article>
+<h2>Weekly Expenses</h2>
 <article>
-  <p><b>Weekly Expenses Deducted from the Pool</b></p>
   <table>
     <thead>
       <tr>
@@ -44,7 +44,7 @@
         </tr>
       <% end %>
       <tr>
-        <td><b>Total</b></td>
+        <td><b>Total Deducted from Pool</b></td>
         <td><b><%= @total_expenses_formatted %></b></td>
       </tr>
     </tbody>
