@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_10_25_065745) do
+ActiveRecord::Schema[8.1].define(version: 2024_10_25_071736) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -56,10 +56,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_10_25_065745) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id", null: false
-    t.string "paypalme_handle_old"
     t.string "paypalme_handle", limit: 1024
     t.index ["paypalme_handle"], name: "index_members_on_paypalme_handle", unique: true
-    t.index ["paypalme_handle_old"], name: "index_members_on_paypalme_handle_old", unique: true
     t.index ["user_id"], name: "index_members_on_user_id", unique: true
   end
 
