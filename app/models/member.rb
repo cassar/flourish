@@ -6,6 +6,9 @@ class Member < ApplicationRecord
 
   validates :paypalme_handle, uniqueness: { allow_nil: true, case_sensitive: false }
 
+  validates :paypalme_handle_new, uniqueness: { allow_nil: true, case_sensitive: false }
+  encrypts :paypalme_handle_new, deterministic: true, downcase: true
+
   scope :active, lambda {
     joins(:user).merge(User.active)
   }
