@@ -62,4 +62,8 @@ Rails.application.configure do
 
   # Raise error when a before_action's only/except options reference missing actions
   config.action_controller.raise_on_missing_callback_actions = true
+
+  # When enabled, all the encryptable attributes will be encrypted according to the 
+  # encryption settings defined in the model.
+  config.active_record.encryption.encrypt_fixtures = true
 end
