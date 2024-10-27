@@ -18,7 +18,7 @@ Check out the [Rails Guides](https://guides.rubyonrails.org/index.html) to get u
 
 ## Ruby version
 
-- `3.2.1`
+- `3.3.5`
 
 ## Database initialization and creation
 
@@ -40,9 +40,7 @@ $ rails test
 
 ## External Services
 
-hackerspace3 makes use of Mailgun and Paypal. 
-
-See the below Environment Variables section to enable specific services.
+Flourish makes use of Mailgun and Paypal. 
 
 ## Feedback
 
