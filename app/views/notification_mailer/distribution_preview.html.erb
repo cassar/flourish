@@ -1,4 +1,15 @@
 <article>
+  <p>Hey Flourishites 👋</p>
+  <p>I'm aiming to put out a message every week with the Distribution Preview from now on.</p>
+  <p>Work is underway to enable all other PayPal supported currencies, this means that members based outside of Australia (Hong Kong and Taiwan currently) will be able to participate using their home or preferred currencies.</p> 
+  <ul>
+    <li><%= link_to 'Implement Support for Non AU$ Currencies #26', 'https://github.com/cassar/flourish/issues/26' %></li>
+  </ul>
+  <p>Thank you to everyone who has offered feedback, I would like keep this going with a "User Group" session where I'd like to hear your thoughts and answer any questions. </p>
+  <p><b>Flourish User Group: November 13th at 7pm Brisbane Time [<%= link_to 'zoom link', 'https://us05web.zoom.us/j/84265872359?pwd=PKMw07cVUf6fABcqpcCipHaRRyN85d.1' %>]</b>.</p>
+  <p>-Luke-</p>
+</article>
+<article>
   <p><b>Distribution <%= @next_distribution.name %> Preview</b></p>
   <ul>
     <li><b>Date:</b> <%= @next_distribution.date_formatted %></li>
@@ -8,27 +19,31 @@
   </ul>
   <a><%= link_to "View Past Distributions", distributions_url %></a>
 </article>
-<h2>Recent Contributions</h2>
 <article>
-  <table>
-    <thead>
-      <tr>
-        <th>Date</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @recent_contributions.each do |contribution| %>
+<p><b>Recent Contributions</p></b>
+  <% if @recent_contributions.none? %>
+    <p>[No contributions in the last week]</p>
+  <% else %>
+    <table>
+      <thead>
         <tr>
-          <td><%= contribution.created_at_formatted %></td>
-          <td><%= contribution.amount_formatted %></td>
+          <th>Date</th>
+          <th>Amount</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @recent_contributions.each do |contribution| %>
+          <tr>
+            <td><%= contribution.created_at_formatted %></td>
+            <td><%= contribution.amount_formatted %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
 </article>
-<h2>Weekly Expenses</h2>
 <article>
+  <p><b>Weekly Expenses</p></b>
   <table>
     <thead>
       <tr>
