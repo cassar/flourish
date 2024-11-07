@@ -35,6 +35,9 @@ gem 'redis', '~> 4.0'
 # A Ruby Library for dealing with money and currency conversion.
 gem 'money'
 
+# Calculates the exchange rate using published rates from European Central Bank
+gem 'eu_central_bank'
+
 # Use Kredis to get higher-level data types in Redis [https://github.com/rails/kredis]
 # gem "kredis"
 
