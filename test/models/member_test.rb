@@ -53,6 +53,14 @@ class MemberTest < ActiveSupport::TestCase
     assert_match(/has already been taken/, error.message)
   end
 
+  test 'currency inclusion validation' do
+    error = assert_raises ActiveRecord::RecordInvalid do
+      members(:active).update! currency: 'FAKE'
+    end
+
+    assert_match(/Currency FAKE is not a supported currency/, error.message)
+  end
+
   test 'active scope' do
     assert_includes Member.active, members(:active)
 
