@@ -37,4 +37,9 @@ namespace :services do
       ).call
     end
   end
+
+  desc 'updates the foreign exchange rates'
+  task update_foreign_exchange_rates: :environment do
+    Money.default_bank.update_rates
+  end
 end
