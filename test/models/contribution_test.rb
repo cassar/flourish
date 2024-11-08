@@ -33,6 +33,14 @@ class ContributionTest < ActiveSupport::TestCase
     assert_equal 0, Contribution.new.fees_in_base_units
   end
 
+  test 'transaction identifier validation' do
+    error = assert_raises ActiveRecord::RecordInvalid do
+      contributions(:two).update! transaction_identifier: contributions(:one).transaction_identifier
+    end
+
+    assert_match(/Transaction ID has already been taken/, error.message)
+  end
+
   test 'amount_formatted' do
     assert_equal 100, contributions(:one).amount_in_base_units
 
