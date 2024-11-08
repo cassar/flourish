@@ -38,8 +38,5 @@ en:
       contribution:
         transaction_identifier: 'Transaction ID'
     errors:
-      models:
-        member:
-          attributes:
-            currency:
-              unsupported_currency: "%{value} is not a supported currency"
+      messages:
+        unsupported_currency: "%{value} is not a supported currency"

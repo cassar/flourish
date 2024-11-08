@@ -41,6 +41,14 @@ class ContributionTest < ActiveSupport::TestCase
     assert_match(/Transaction ID has already been taken/, error.message)
   end
 
+  test 'currency inclusion validation' do
+    error = assert_raises ActiveRecord::RecordInvalid do
+      contributions(:one).update! currency: 'FAKE'
+    end
+
+    assert_match(/Currency FAKE is not a supported currency/, error.message)
+  end
+
   test 'amount_formatted' do
     assert_equal 100, contributions(:one).amount_in_base_units
 
