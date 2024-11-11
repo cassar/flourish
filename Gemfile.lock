@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 85acb96733617b0d07b434393cb38b4506f454fc
+  revision: f5805086d8c7fe1ccce7218f85b1c254305379b7
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -105,7 +105,7 @@ GEM
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
-    benchmark (0.3.0)
+    benchmark (0.4.0)
     bigdecimal (3.1.8)
     bindex (0.8.1)
     bootsnap (1.18.4)
@@ -157,7 +157,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashdiff (1.1.1)
-    honeybadger (5.19.2)
+    honeybadger (5.20.0)
       logger
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
@@ -197,7 +197,7 @@ GEM
     money (6.19.0)
       i18n (>= 0.6.4, <= 2)
     msgpack (1.7.3)
-    net-imap (0.5.0)
+    net-imap (0.5.1)
       date
       net-protocol
     net-pop (0.1.2)
@@ -247,7 +247,7 @@ GEM
     redis-client (0.22.2)
       connection_pool
     regexp_parser (2.9.2)
-    reline (0.5.10)
+    reline (0.5.11)
       io-console (~> 0.5)
     responders (3.1.1)
       actionpack (>= 5.2)
@@ -315,7 +315,7 @@ GEM
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.6.0)
-    uri (1.0.0)
+    uri (1.0.1)
     useragent (0.16.10)
     warden (1.2.9)
       rack (>= 2.0.9)
