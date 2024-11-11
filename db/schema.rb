@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_11_08_030412) do
+ActiveRecord::Schema[8.1].define(version: 2024_11_11_102115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -41,6 +41,8 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_08_030412) do
     t.datetime "updated_at", null: false
     t.bigint "member_id"
     t.string "transaction_identifier"
+    t.integer "amount_in_base_units"
+    t.string "currency", default: "AUD"
     t.index ["distribution_id"], name: "index_dividends_on_distribution_id"
     t.index ["member_id"], name: "index_dividends_on_member_id"
   end
@@ -65,11 +67,9 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_08_030412) do
 
   create_table "pay_outs", force: :cascade do |t|
     t.bigint "dividend_id", null: false
-    t.integer "amount_in_source_currency_base_units", null: false
-    t.integer "fees_in_source_currency_base_units", default: 0
-    t.string "source_currency", default: "AUD"
-    t.integer "amount_in_target_currency_base_units", null: false
-    t.string "target_currency", default: "AUD"
+    t.integer "amount_in_base_units", null: false
+    t.integer "fees_in_base_units", default: 0
+    t.string "currency", default: "AUD"
     t.string "transaction_identifier", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

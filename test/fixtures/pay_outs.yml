@@ -2,6 +2,5 @@
 
 one: 
   dividend: pay_out_complete
-  amount_in_source_currency_base_units: 100
-  amount_in_target_currency_base_units: 100
-  transaction_identifier: 100
+  amount_in_base_units: 100
+  transaction_identifier: 28948ethq
