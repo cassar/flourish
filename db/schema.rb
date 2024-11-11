@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_11_08_023453) do
+ActiveRecord::Schema[8.1].define(version: 2024_11_08_030412) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -63,6 +63,19 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_08_023453) do
     t.index ["user_id"], name: "index_members_on_user_id", unique: true
   end
 
+  create_table "pay_outs", force: :cascade do |t|
+    t.bigint "dividend_id", null: false
+    t.integer "amount_in_source_currency_base_units", null: false
+    t.integer "fees_in_source_currency_base_units", default: 0
+    t.string "source_currency", default: "AUD"
+    t.integer "amount_in_target_currency_base_units", null: false
+    t.string "target_currency", default: "AUD"
+    t.string "transaction_identifier", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dividend_id"], name: "index_pay_outs_on_dividend_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -93,4 +106,5 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_08_023453) do
   add_foreign_key "dividends", "distributions"
   add_foreign_key "dividends", "members"
   add_foreign_key "members", "users"
+  add_foreign_key "pay_outs", "dividends"
 end

@@ -10,6 +10,8 @@ class Dividend < ApplicationRecord
   belongs_to :distribution
   belongs_to :member
 
+  has_one :pay_out, dependent: :destroy
+
   scope :owed, -> { where(status: %i[issued pending_pay_out pay_out_complete]) }
 
   before_save :check_for_transaction_identifier

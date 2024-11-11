@@ -9,6 +9,16 @@ class DividendTest < ActiveSupport::TestCase
     assert_equal members(:one), dividends(:one).member
   end
 
+  test 'has one pay out association' do
+    assert_equal pay_outs(:one), dividends(:pay_out_complete).pay_out
+
+    dividends(:pay_out_complete).destroy!
+
+    assert_raises ActiveRecord::RecordNotFound do
+      pay_outs(:one).reload
+    end
+  end
+
   test 'owed scope' do
     assert_includes Dividend.owed, Dividend.issued.first
     assert_includes Dividend.owed, Dividend.pending_pay_out.first
