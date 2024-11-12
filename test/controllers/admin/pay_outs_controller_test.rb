@@ -14,7 +14,7 @@ module Admin
 
       get edit_admin_pay_out_path(dividends(:one))
 
-      assert_redirected_to dividends_path
+      assert_redirected_to root_path
     end
 
     test 'get show' do
@@ -40,7 +40,7 @@ module Admin
       patch admin_pay_out_path(dividends(:one)),
             params: { dividend: { transaction_identifier: 'new_transaction_identifier' } }
 
-      assert_redirected_to dividends_path
+      assert_redirected_to root_path
       assert_equal "You don't have access.", flash[:alert]
       assert_nil dividends(:one).transaction_identifier
     end
