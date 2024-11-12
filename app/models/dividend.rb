@@ -13,12 +13,4 @@ class Dividend < ApplicationRecord
   has_one :pay_out, dependent: :destroy
 
   scope :owed, -> { where(status: %i[issued pending_pay_out pay_out_complete]) }
-
-  before_save :check_for_transaction_identifier
-
-  private
-
-  def check_for_transaction_identifier
-    self.status = :pay_out_complete if transaction_identifier.present?
-  end
 end
