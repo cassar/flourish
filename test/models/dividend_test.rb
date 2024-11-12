@@ -10,12 +10,12 @@ class DividendTest < ActiveSupport::TestCase
   end
 
   test 'has one pay out association' do
-    assert_equal pay_outs(:one), dividends(:pay_out_complete).pay_out
+    assert_equal pay_outs(:pay_out_complete), dividends(:pay_out_complete).pay_out
 
     dividends(:pay_out_complete).destroy!
 
     assert_raises ActiveRecord::RecordNotFound do
-      pay_outs(:one).reload
+      pay_outs(:pay_out_complete).reload
     end
   end
 
