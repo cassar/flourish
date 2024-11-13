@@ -1,5 +1,6 @@
 class Distribution < ApplicationRecord
   has_many :dividends, dependent: :destroy
+  has_many :amounts, dependent: :destroy
 
   validates :name, uniqueness: true, presence: true
 

@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_11_13_043030) do
+ActiveRecord::Schema[8.1].define(version: 2024_11_13_044602) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
+
+  create_table "amounts", force: :cascade do |t|
+    t.bigint "distribution_id", null: false
+    t.string "currency"
+    t.integer "amount_in_base_units"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["distribution_id"], name: "index_amounts_on_distribution_id"
+  end
 
   create_table "contributions", force: :cascade do |t|
     t.integer "amount_in_base_units"
@@ -41,6 +50,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_13_043030) do
     t.datetime "updated_at", null: false
     t.bigint "member_id"
     t.string "currency", default: "AUD"
+    t.bigint "amount"
     t.index ["distribution_id"], name: "index_dividends_on_distribution_id"
     t.index ["member_id"], name: "index_dividends_on_member_id"
   end
@@ -100,6 +110,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_13_043030) do
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
   end
 
+  add_foreign_key "amounts", "distributions"
   add_foreign_key "contributions", "members"
   add_foreign_key "dividends", "distributions"
   add_foreign_key "dividends", "members"

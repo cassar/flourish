@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  distribution: one
+  currency: AUD
+  amount_in_base_units: 500
+
+two:
+  distribution: one
+  currency: HKD
+  amount_in_base_units: 500
+
+three: 
+  distribution: two
+  currency: HKD
+  amount_in_base_units: 500
+
