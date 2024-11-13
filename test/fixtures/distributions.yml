@@ -1,9 +1,7 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  dividend_amount_in_base_units: 500
   name: '#1'
 
 two:
-  dividend_amount_in_base_units: 500
   name: '#2'
