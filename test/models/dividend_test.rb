@@ -1,12 +1,16 @@
 require 'test_helper'
 
 class DividendTest < ActiveSupport::TestCase
-  test 'belongs to distribution association' do
-    assert_equal distributions(:one), dividends(:one).distribution
-  end
-
   test 'belongs to member association' do
     assert_equal members(:one), dividends(:one).member
+  end
+
+  test 'belongs to amount association' do
+    assert_equal amounts(:one), dividends(:one).amount
+  end
+
+  test 'has one distribution' do
+    assert_equal distributions(:one), dividends(:one).distribution
   end
 
   test 'has one pay out association' do

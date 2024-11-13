@@ -5,9 +5,9 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
     Contribution.stubs(:sum).returns(10_000)
     Expense.stubs(:sum).returns(1_000)
 
-    Distribution.stubs(:joins).returns(Distribution)
-    Distribution.stubs(:merge).returns(Distribution)
-    Distribution.stubs(:sum).returns(1_500)
+    Amount.stubs(:joins).returns(Amount)
+    Amount.stubs(:merge).returns(Amount)
+    Amount.stubs(:sum).returns(1_500)
 
     assert_equal 7_500, TotalPoolService.balance_in_base_units
   end

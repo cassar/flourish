@@ -7,8 +7,9 @@ class Dividend < ApplicationRecord
     auto_recontributed: 4
   }
 
-  belongs_to :distribution
   belongs_to :member
+  belongs_to :amount
+  has_one :distribution, through: :amount
 
   has_one :pay_out, dependent: :destroy
 

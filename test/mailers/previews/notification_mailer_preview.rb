@@ -10,16 +10,16 @@ class NotificationMailerPreview < ActionMailer::Preview
   def dividend_received
     user = User.new(email: 'email@example.com')
     member = Member.new(user:)
-    distribution = Distribution.new(dividend_amount_in_base_units: 400)
-    dividend = Dividend.new(id: 1, member:, distribution:)
+    amount = Amount.new(amount_in_base_units: 400)
+    dividend = Dividend.new(id: 1, member:, amount:)
     NotificationMailer.with(dividend:).dividend_received
   end
 
   def dividend_paid_out
     user = User.new(email: 'email@example.com')
     member = Member.new(user:)
-    distribution = Distribution.new(dividend_amount_in_base_units: 400)
-    dividend = Dividend.new(id: 1, member:, distribution:)
+    amount = Amount.new(amount_in_base_units: 400)
+    dividend = Dividend.new(id: 1, member:, amount:)
     pay_out = PayOut.new(dividend:, transaction_identifier: 'etthu_transaction_2324')
     NotificationMailer.with(pay_out:).dividend_paid_out
   end
@@ -27,13 +27,13 @@ class NotificationMailerPreview < ActionMailer::Preview
   def dividend_automatically_recontributed
     user = User.new(email: 'email@example.com')
     member = Member.new(user:)
-    distribution = Distribution.new(dividend_amount_in_base_units: 400)
-    dividend = Dividend.new(id: 1, member:, distribution:)
+    amount = Amount.new(amount_in_base_units: 400)
+    dividend = Dividend.new(id: 1, member:, amount:)
     NotificationMailer.with(dividend:).dividend_automatically_recontributed
   end
 
   def distribution_settled
-    distribution = Distribution.new(dividend_amount_in_base_units: 10_000, name: '#32')
+    distribution = Distribution.new(name: '#32')
     user = User.new(email: 'email@example.com')
     NotificationMailer.with(distribution:, user:).distribution_settled
   end

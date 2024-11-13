@@ -43,8 +43,8 @@ class NextDistributionServiceTest < ActiveSupport::TestCase
     assert_instance_of String, result
   end
 
-  test 'dividend_amount_in_base_units' do
-    result = NextDistributionService.dividend_amount_in_base_units
+  test 'amount_in_base_units' do
+    result = NextDistributionService.amount_in_base_units
 
     assert_instance_of Integer, result
   end

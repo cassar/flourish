@@ -15,9 +15,9 @@ class TotalPoolService
     end
 
     def total_owed_in_base_units
-      Distribution.joins(:dividends)
-                  .merge(Dividend.owed)
-                  .sum(:dividend_amount_in_base_units)
+      Amount.joins(:dividends)
+            .merge(Dividend.owed)
+            .sum(:amount_in_base_units)
     end
 
     def total_expense_in_base_units

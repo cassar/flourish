@@ -5,14 +5,14 @@ class DividendsController < ApplicationController
 
   def index
     @member = current_user.member
-    @dividends = @member.dividends.order(created_at: :desc).preload(:distribution)
+    @dividends = @member.dividends.order(created_at: :desc).preload(:amount)
   end
 
   def show; end
 
   def pay_out
     dividend.pending_pay_out!
-    amount_in_base_units = dividend.distribution.dividend_amount_in_base_units
+    amount_in_base_units = dividend.amount.amount_in_base_units
     pay_out = PayOut.create!(dividend:, amount_in_base_units:)
     AdminNotificationMailer.with(pay_out:).pay_out_requested.deliver_later
     redirect_to dividends_path, notice: I18n.t('controllers.dividends.pay_out.success')

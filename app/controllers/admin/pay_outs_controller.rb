@@ -9,7 +9,8 @@ module Admin
       @pay_out = PayOut.find params[:id]
       @dividend = @pay_out.dividend
       @member = @dividend.member
-      @distribution = @dividend.distribution
+      @amount = @dividend.amount
+      @distribution = @amount.distribution
     end
 
     def update

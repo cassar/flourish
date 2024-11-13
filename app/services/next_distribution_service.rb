@@ -4,7 +4,7 @@ class NextDistributionService
       DistributionService.new(
         members:,
         name:,
-        dividend_amount_in_base_units:
+        amount_in_base_units:
       ).call
     end
 
@@ -36,9 +36,7 @@ class NextDistributionService
       dividend_amount.amount_formatted
     end
 
-    def dividend_amount_in_base_units
-      dividend_amount.amount_in_base_units
-    end
+    delegate :amount_in_base_units, to: :dividend_amount
 
     private
 

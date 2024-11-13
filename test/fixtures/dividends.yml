@@ -1,32 +1,32 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  distribution: one
+  amount: one
   status: issued
   member: one
   created_at: 8/11/2023
 
 issued:
-  distribution: two
+  amount: two
   status: issued
   member: two
 
 pending_pay_out:
-  distribution: one
+  amount: one
   status: pending_pay_out
   member: one
 
 pay_out_complete:
-  distribution: one
+  amount: one
   status: pay_out_complete
   member: one
 
 manually_recontributed:
-  distribution: one
+  amount: one
   status: manually_recontributed
   member: one
 
 auto_recontributed:
-  distribution: one
+  amount: one
   status: auto_recontributed
   member: one

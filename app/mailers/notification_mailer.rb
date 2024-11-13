@@ -11,7 +11,7 @@ class NotificationMailer < ApplicationMailer
   def dividend_received
     @dividend = params[:dividend]
     @member = @dividend.member
-    @distribution = @dividend.distribution
+    @amount = @dividend.amount
     @user = @member.user
     mail(to: @user.email, subject: I18n.t('mailers.notification_mailer.dividend_received_subject'))
   end
@@ -20,7 +20,7 @@ class NotificationMailer < ApplicationMailer
     @pay_out = params[:pay_out]
     @dividend = @pay_out.dividend
     @member = @dividend.member
-    @distribution = @dividend.distribution
+    @amount = @dividend.amount
     @user = @member.user
     mail(to: @user.email, subject: I18n.t('mailers.notification_mailer.dividend_paid_out_subject'))
   end
@@ -28,7 +28,7 @@ class NotificationMailer < ApplicationMailer
   def dividend_automatically_recontributed
     @dividend = params[:dividend]
     @member = @dividend.member
-    @distribution = @dividend.distribution
+    @amount = @dividend.amount
     @user = @member.user
     mail(to: @user.email, subject: I18n.t('mailers.notification_mailer.dividend_automatically_recontributed_subject'))
   end

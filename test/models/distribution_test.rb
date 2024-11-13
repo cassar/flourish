@@ -1,14 +1,18 @@
 require 'test_helper'
 
 class DistributionTest < ActiveSupport::TestCase
-  test 'has many dividends' do
-    assert_includes distributions(:one).dividends, dividends(:one)
+  test 'has many amounts' do
+    assert_includes distributions(:one).amounts, amounts(:one)
 
     distributions(:one).destroy!
 
     assert_raises ActiveRecord::RecordNotFound do
-      dividends(:one).reload
+      amounts(:one).reload
     end
+  end
+
+  test 'has many dividends' do
+    assert_includes distributions(:one).dividends, dividends(:one)
   end
 
   test 'name is nil' do
@@ -25,11 +29,5 @@ class DistributionTest < ActiveSupport::TestCase
     end
 
     assert_match(/has already been taken/, error.message)
-  end
-
-  test 'dividend amount formatted' do
-    assert_equal 500, distributions(:one).dividend_amount_in_base_units
-
-    assert_equal '$5.00 AUD', distributions(:one).dividend_amount_formatted
   end
 end

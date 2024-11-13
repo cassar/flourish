@@ -6,7 +6,17 @@ class DistributionServiceTest < ActiveSupport::TestCase
       DistributionService.new(
         members: [members(:one)],
         name: '#3',
-        dividend_amount_in_base_units: 1000
+        amount_in_base_units: 1000
+      ).call
+    end
+  end
+
+  test 'creates a single amount' do
+    assert_difference 'Amount.count', 1 do
+      DistributionService.new(
+        members: [members(:one)],
+        name: '#3',
+        amount_in_base_units: 1000
       ).call
     end
   end
@@ -17,21 +27,21 @@ class DistributionServiceTest < ActiveSupport::TestCase
     DistributionService.new(
       members: [members(:one)],
       name: expected_name,
-      dividend_amount_in_base_units: 1000
+      amount_in_base_units: 1000
     ).call
 
     assert_equal expected_name, Distribution.last.name
   end
 
-  test 'creates a distribution with the given dividend amount' do
-    dividend_amount_in_base_units = 1000
+  test 'creates an amount with the given dividend amount' do
+    amount_in_base_units = 1000
 
     DistributionService.new(
       members: [members(:one)],
       name: '#3',
-      dividend_amount_in_base_units:
+      amount_in_base_units:
     ).call
 
-    assert_equal dividend_amount_in_base_units, Distribution.last.dividend_amount_in_base_units
+    assert_equal amount_in_base_units, Amount.last.amount_in_base_units
   end
 end
