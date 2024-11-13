@@ -20,7 +20,6 @@ pay_out_complete:
   distribution: one
   status: pay_out_complete
   member: one
-  transaction_identifier: EIUAID43723907 
 
 manually_recontributed:
   distribution: one
