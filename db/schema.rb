@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_11_13_053836) do
+ActiveRecord::Schema[8.1].define(version: 2024_11_13_055055) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -45,7 +45,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_13_053836) do
 
   create_table "dividends", force: :cascade do |t|
     t.integer "status", default: 0
-    t.bigint "distribution_id", null: false
+    t.bigint "distribution_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "member_id"
@@ -112,7 +112,6 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_13_053836) do
   add_foreign_key "amounts", "distributions"
   add_foreign_key "contributions", "members"
   add_foreign_key "dividends", "amounts"
-  add_foreign_key "dividends", "distributions"
   add_foreign_key "dividends", "members"
   add_foreign_key "members", "users"
   add_foreign_key "pay_outs", "dividends"
