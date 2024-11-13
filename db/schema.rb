@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_11_13_044602) do
+ActiveRecord::Schema[8.1].define(version: 2024_11_13_052220) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
   create_table "amounts", force: :cascade do |t|
     t.bigint "distribution_id", null: false
-    t.string "currency"
+    t.string "currency", default: "AUD"
     t.integer "amount_in_base_units"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
