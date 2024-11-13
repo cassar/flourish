@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_11_13_052220) do
+ActiveRecord::Schema[8.1].define(version: 2024_11_13_053355) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -49,8 +49,7 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_13_052220) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "member_id"
-    t.string "currency", default: "AUD"
-    t.bigint "amount"
+    t.bigint "amount_id"
     t.index ["distribution_id"], name: "index_dividends_on_distribution_id"
     t.index ["member_id"], name: "index_dividends_on_member_id"
   end
