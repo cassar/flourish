@@ -3,28 +3,27 @@ module Admin
     before_action :authenticate_user!
     before_action :authorise_admin!
 
-    attr_accessor :dividend
+    attr_accessor :pay_out
 
     def edit
-      @dividend = Dividend.find params[:id]
+      @pay_out = PayOut.find params[:id]
+      @dividend = @pay_out.dividend
       @member = @dividend.member
       @distribution = @dividend.distribution
     end
 
     def update
-      @dividend = Dividend.find params[:id]
-      @dividend.update!(dividend_params)
-      NotificationMailer.with(dividend:).dividend_paid_out.deliver_later
-      @member = @dividend.member
-      @distribution = @dividend.distribution
-      flash.now[:success] = I18n.t('controllers.admin.dividends.update.success')
-      render :edit
+      @pay_out = PayOut.find params[:id]
+      @pay_out.update!(pay_out_params)
+      NotificationMailer.with(pay_out:).dividend_paid_out.deliver_later
+      flash[:success] = I18n.t('controllers.admin.dividends.update.success')
+      redirect_to edit_admin_pay_out_path(@pay_out)
     end
 
     private
 
-    def dividend_params
-      params.require(:dividend).permit(:transaction_identifier)
+    def pay_out_params
+      params.require(:pay_out).permit(:transaction_identifier)
     end
 
     def authorise_admin!

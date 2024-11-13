@@ -8,7 +8,7 @@
     <li data-controller="clipboard"><strong>Note:</strong> "<span data-clipboard-target="source">Flourish Distribution <%= @distribution.name %> Dividend</span>" <a href="#" data-action="clipboard#copy" style="text-decoration: none">📋</a></li>
     <li><b>PayPal.Me URL</b>: <%= link_to @member.paypalme_handle, paypalme_url(paypalme_handle: @member.paypalme_handle, amount_in_base_units: @distribution.dividend_amount_in_base_units), target: "_blank" %></li>
   </ul>
-  <%= form_with model: @dividend, url: admin_pay_out_path, data: { turbo: false } do |form| %>
+  <%= form_with model: @pay_out, url: admin_pay_out_path, data: { turbo: false } do |form| %>
     <article>
       <p><span>Transaction Identifier</span>: <%= form.text_field :transaction_identifier %></p>
     </article>

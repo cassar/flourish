@@ -12,7 +12,9 @@ class DividendsController < ApplicationController
 
   def pay_out
     dividend.pending_pay_out!
-    AdminNotificationMailer.with(dividend:).pay_out_requested.deliver_later
+    amount_in_base_units = dividend.distribution.dividend_amount_in_base_units
+    pay_out = PayOut.create!(dividend:, amount_in_base_units:)
+    AdminNotificationMailer.with(pay_out:).pay_out_requested.deliver_later
     redirect_to dividends_path, notice: I18n.t('controllers.dividends.pay_out.success')
   end
 

@@ -5,7 +5,7 @@
   <li><b>Distribution</b>: <%= dividend.distribution.name %></li>
   <li><b>Status</b>: <%= dividend.status.titleize %></li>
   <% if dividend.pay_out_complete? %>
-    <li><b>Transaction Identifier</b>: <%= dividend.transaction_identifier %></li>
+    <li><b>Transaction Identifier</b>: <%= dividend.pay_out.transaction_identifier %></li>
   <% end %>
   </ul>
   <% if dividend.issued? %>

@@ -1,7 +1,7 @@
 <article>
   <p>Your dividend has been paid out.</p>
   <p><b>Amount</b>: <%= @distribution.dividend_amount_formatted %></p>
-  <p><b>Transaction Identifier</b>: <%= @dividend.transaction_identifier %></p>
+  <p><b>Transaction Identifier</b>: <%= @pay_out.transaction_identifier %></p>
   <a><%= link_to "See your Dividend", dividend_url(@dividend) %></a>
 </article>
 

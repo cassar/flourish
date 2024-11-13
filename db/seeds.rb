@@ -39,13 +39,18 @@ end
 
 puts "Making some distributions"
 3.times do |integer|
+  dividend_amount_in_base_units = amount_in_base_units = 1_000 * integer
+
   distribution = Distribution.create(
     name: "##{integer}",
-    dividend_amount_in_base_units: 1_000
+    dividend_amount_in_base_units: 
   )
 
   Member.take(3).each do |member|
-    Dividend.create member:, distribution:
+    dividend = Dividend.create!(member:, distribution:)
+    next if (member.id % 2).zero?
+
+    PayOut.create! dividend:, amount_in_base_units:, transaction_identifier: "reference for dividend: #{dividend.id}"
   end
 end
 

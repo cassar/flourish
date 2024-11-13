@@ -4,7 +4,7 @@ module Admin
     before_action :authorise_admin!
 
     def index
-      @distributions = Distribution.order(created_at: :desc).preload(:dividends)
+      @distributions = Distribution.order(created_at: :desc).preload(dividends: :pay_out)
     end
 
     private

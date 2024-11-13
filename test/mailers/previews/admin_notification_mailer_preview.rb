@@ -3,8 +3,9 @@ class AdminNotificationMailerPreview < ActionMailer::Preview
   def pay_out_requested
     user = User.new(email: 'email@example.com')
     member = Member.new(user:)
-    dividend = Dividend.new(id: 1, member:)
-    AdminNotificationMailer.with(dividend:).pay_out_requested
+    dividend = Dividend.new(member:)
+    pay_out = PayOut.new(id: 1, dividend:)
+    AdminNotificationMailer.with(pay_out:).pay_out_requested
   end
 
   def expenses_added

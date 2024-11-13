@@ -17,7 +17,8 @@ class NotificationMailer < ApplicationMailer
   end
 
   def dividend_paid_out
-    @dividend = params[:dividend]
+    @pay_out = params[:pay_out]
+    @dividend = @pay_out.dividend
     @member = @dividend.member
     @distribution = @dividend.distribution
     @user = @member.user
