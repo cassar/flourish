@@ -80,6 +80,7 @@ module Admin
 
       assert_difference 'Contribution.count' do
         post admin_member_contributions_path(members(:one)), params: { contribution: {
+          currency: 'USD',
           amount_in_base_units: 4000,
           fees_in_base_units: 50,
           transaction_identifier: 'xxxx'
@@ -88,6 +89,7 @@ module Admin
 
       assert_redirected_to active_admin_members_path
       assert_equal 'New contribution created and notification sent', flash[:success]
+      assert_equal 'USD', Contribution.last.currency
       assert_equal 4000, Contribution.last.amount_in_base_units
       assert_equal 50, Contribution.last.fees_in_base_units
       assert_equal 'xxxx', Contribution.last.transaction_identifier
