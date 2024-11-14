@@ -23,4 +23,16 @@ class PayOutTest < ActiveSupport::TestCase
     @currency_capable = pay_outs(:pay_out_complete)
     currency_inclusion_validation
   end
+
+  test 'amount_formatted' do
+    assert_equal 100, pay_outs(:pay_out_complete).amount_in_base_units
+
+    assert_equal '$1.00 AUD', pay_outs(:pay_out_complete).amount_formatted
+  end
+
+  test 'fees_formatted' do
+    assert_equal 0, pay_outs(:pay_out_complete).fees_in_base_units
+
+    assert_equal '$0.00 AUD', pay_outs(:pay_out_complete).fees_formatted
+  end
 end
