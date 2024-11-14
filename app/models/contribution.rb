@@ -4,10 +4,8 @@ class Contribution < ApplicationRecord
   validates :amount_in_base_units, numericality: { only_integer: true, greater_than: 0 }
   validates :fees_in_base_units, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :transaction_identifier, uniqueness: true
-  validates :currency, inclusion: {
-    in: Currencies::SUPPORTED_CURRENCIES,
-    message: :unsupported_currency
-  }
+
+  include CurrencyValidator
 
   def amount_formatted
     Money.from_cents(amount_in_base_units).format

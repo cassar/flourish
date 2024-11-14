@@ -1,6 +1,9 @@
 require 'test_helper'
+require_relative 'concerns/currency_validator_test'
 
 class ContributionTest < ActiveSupport::TestCase
+  include CurrencyValidatorTest
+
   test 'belongs to member association' do
     assert_equal members(:one), contributions(:one).member
   end
@@ -42,11 +45,8 @@ class ContributionTest < ActiveSupport::TestCase
   end
 
   test 'currency inclusion validation' do
-    error = assert_raises ActiveRecord::RecordInvalid do
-      contributions(:one).update! currency: 'FAKE'
-    end
-
-    assert_match(/Currency FAKE is not a supported currency/, error.message)
+    @currency_capable = contributions(:one)
+    currency_inclusion_validation
   end
 
   test 'amount_formatted' do
