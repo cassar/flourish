@@ -5,7 +5,7 @@ class Contribution < ApplicationRecord
   validates :fees_in_base_units, numericality: { only_integer: true, greater_than_or_equal_to: 0 }
   validates :transaction_identifier, uniqueness: true
   validates :currency, inclusion: {
-    in: Paypal::SUPPORTED_CURRENCIES,
+    in: Currencies::SUPPORTED_CURRENCIES,
     message: :unsupported_currency
   }
 

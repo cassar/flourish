@@ -8,7 +8,7 @@ class Member < ApplicationRecord
   encrypts :paypalme_handle, deterministic: true, downcase: true
 
   validates :currency, inclusion: {
-    in: Paypal::SUPPORTED_CURRENCIES,
+    in: Currencies::SUPPORTED_CURRENCIES,
     message: :unsupported_currency
   }
 
