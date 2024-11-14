@@ -5,6 +5,6 @@ class Amount < ApplicationRecord
   include CurrencyValidator
 
   def amount_formatted
-    Money.from_cents(amount_in_base_units).format
+    Money.new(amount_in_base_units, currency).format
   end
 end

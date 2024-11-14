@@ -8,15 +8,15 @@ class Contribution < ApplicationRecord
   include CurrencyValidator
 
   def amount_formatted
-    Money.from_cents(amount_in_base_units).format
+    Money.new(amount_in_base_units, currency).format
   end
 
   def fees_formatted
-    Money.from_cents(fees_in_base_units).format
+    Money.new(fees_in_base_units, currency).format
   end
 
   def gross_amount_formatted
-    Money.from_cents(gross_amount_in_base_units).format
+    Money.new(gross_amount_in_base_units, currency).format
   end
 
   def created_at_formatted

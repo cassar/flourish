@@ -5,7 +5,7 @@ class TotalPoolService
     end
 
     def balance_formatted
-      Money.from_cents(balance_in_base_units).format
+      Money.new(balance_in_base_units, 'AUD').format
     end
 
     private

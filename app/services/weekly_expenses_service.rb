@@ -28,7 +28,7 @@ class WeeklyExpensesService
     end
 
     def last_weeks_expeneses_total_formatted
-      Money.from_cents(last_weeks_expenses_total).format
+      Money.new(last_weeks_expenses_total, 'AUD').format
     end
   end
 end
