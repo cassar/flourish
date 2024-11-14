@@ -9,7 +9,7 @@ class PayOutTest < ActiveSupport::TestCase
   end
 
   test 'currency inclusion validation' do
-    @currency_capable = pay_outs(:pending_pay_out)
+    @currency_capable = pay_outs(:pay_out_complete)
     currency_inclusion_validation
   end
 end
