@@ -6,7 +6,7 @@
 <%= form_with model: @contribution, url: preview_admin_member_contributions_path, method: :get, data: { turbo: false } do |form| %>
   <p>
     <%= form.label :amount_in_base_units %>
-    <%= form.number_field :amount_in_base_units, step: 1, min: 0, required: true%>
+    <%= form.number_field :amount_in_base_units, step: 1, min: 0, required: true %>
   </p>
   <p>
     <%= form.label :fees_in_base_units %>
