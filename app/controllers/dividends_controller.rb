@@ -5,7 +5,7 @@ class DividendsController < ApplicationController
 
   def index
     @member = current_user.member
-    @dividends = @member.dividends.order(created_at: :desc).preload(:amount)
+    @dividends = @member.dividends.order(created_at: :desc).preload(:amount, :distribution)
   end
 
   def show; end
