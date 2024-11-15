@@ -2,9 +2,9 @@ en:
   controllers:
     admin:
       not_authorised: "You don't have access."
-      dividends:
-        update:
-          success: "Receipt updated successfully."
+      pay_outs:
+        create:
+          success: "Pay out created successfully"
       contributions:
         create:
           success: "New contribution created and notification sent"

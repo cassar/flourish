@@ -77,9 +77,7 @@ class DividendsControllerTest < ActionDispatch::IntegrationTest
     assert_predicate @dividend, :issued?
     assert_equal @dividend.member, @member
 
-    assert_difference 'PayOut.count' do
-      patch pay_out_dividend_path(@dividend)
-    end
+    patch pay_out_dividend_path(@dividend)
 
     assert_redirected_to dividends_path
     assert_equal 'Dividend marked for pay out.', flash[:notice]

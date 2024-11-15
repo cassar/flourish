@@ -18,7 +18,7 @@
       <% if (pending_payouts = distribution.dividends.select(&:pending_pay_out?)).any? %>
         <ul>
           <% pending_payouts.each do |dividend| %>
-            <li><%= link_to 'Pay Out Requested', edit_admin_pay_out_path(dividend.pay_out) %></li>
+            <li><%= link_to 'Pay Out Requested', new_admin_dividend_pay_out_path(dividend) %></li>
           <% end %>
         </ul>
       <% end %>

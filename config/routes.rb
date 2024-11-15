@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: 'users/registrations' }
 
   namespace :admin do
-    resources :pay_outs, only: [:edit, :update]
+    resources :dividends, only: [] do
+      resources :pay_outs, only: [:new, :create] do
+        collection { get :preview }
+      end
+    end
     resources :distributions, only: :index
     resources :members, only: [] do
       collection do 

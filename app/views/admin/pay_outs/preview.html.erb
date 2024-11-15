@@ -1,0 +1,18 @@
+<% content_for :title, "Admin" %>
+<h1>Preview Pay Out</h1>
+<%= render partial: 'dividends/dividend', locals: { dividend: @dividend } %>
+<article>
+  <p><strong>Source Currency</strong></p>
+  <ul>
+    <li><b>Amount</b>: <%= @pay_out.amount_formatted %></li>
+    <li><b>Fees</b>: <%= @pay_out.fees_formatted %></li>
+  </ul>
+</article>
+<%= form_with model: @pay_out, url: admin_dividend_pay_outs_path(@dividend), data: { turbo: false } do |form| %>
+  <%= form.hidden_field :currency %>
+  <%= form.hidden_field :amount_in_base_units %>
+  <%= form.hidden_field :fees_in_base_units %>
+  <%= form.hidden_field :transaction_identifier %>
+  <%= form.submit "Submit and Notify" %>
+<% end %>
+

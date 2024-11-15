@@ -1,0 +1,36 @@
+<% content_for :title, "Admin" %>
+<h1>Dividend Payout</h1>
+<article>
+  <p>This form will create a pay out for a member and also send them an email notification.</p> 
+</article>
+<article>
+  <p><b>Date</b>: <%= created_at_formatted @dividend %></p> 
+  <ul>
+    <li><b>Amount</b>: <%= @amount.amount_formatted %></li>
+    <li><b>Status</b>: <%= @dividend.status.titleize %></li>
+    <li data-controller="clipboard"><strong>Note:</strong> "<span data-clipboard-target="source">Flourish Distribution <%= @distribution.name %> Dividend</span>" <a href="#" data-action="clipboard#copy" style="text-decoration: none">📋</a></li>
+    <li><b>PayPal.Me URL</b>: <%= link_to @member.paypalme_handle, paypalme_url(paypalme_handle: @member.paypalme_handle, amount_in_base_units: @amount.amount_in_base_units, currency: @amount.currency), target: "_blank" %></li>
+  </ul>
+</article>
+<article>
+  <p><strong>Paypal Confirmation</strong></p>
+  <%= form_with model: @pay_out, url: preview_admin_dividend_pay_outs_path(@dividend), method: :get, data: { turbo: false } do |form| %>
+    <p>
+      <%= form.label :currency %>
+      <%= form.select :currency, Currencies::SUPPORTED_CURRENCIES %>
+    </p>
+    <p>
+      <%= form.label :amount_in_base_units %>
+      <%= form.number_field :amount_in_base_units, step: 1, min: 0, required: true %>
+    </p>
+    <p>
+      <%= form.label :fees_in_base_units %>
+      <%= form.number_field :fees_in_base_units, step: 1, min: 0  %>
+    </p>
+    <p>
+      <%= form.label :transaction_identifier %>
+      <%= form.text_field :transaction_identifier, required: true %>
+    </p>
+    <%= form.submit "Preview" %>
+  <% end %>
+</article>
