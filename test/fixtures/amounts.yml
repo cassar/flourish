@@ -15,3 +15,8 @@ three:
   currency: HKD
   amount_in_base_units: 500
 
+four: 
+  distribution: two
+  currency: AUD
+  amount_in_base_units: 500
+
