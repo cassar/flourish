@@ -98,6 +98,7 @@ module Admin
       assert_equal 3, PayOut.last.fees_in_base_units
       assert_equal 'USD', PayOut.last.currency
       assert_equal 'new_transaction_identifier', PayOut.last.transaction_identifier
+      assert_predicate dividends(:pending_pay_out).reload, :pay_out_complete?
     end
 
     test 'post create invalid' do
@@ -113,6 +114,7 @@ module Admin
 
       assert_response :success
       assert_equal 'Amount in base units is not a number', flash[:error]
+      assert_predicate dividends(:pending_pay_out).reload, :pending_pay_out?
     end
   end
 end

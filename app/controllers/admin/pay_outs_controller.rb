@@ -48,6 +48,7 @@ module Admin
     def notify_member
       return unless @pay_out.persisted?
 
+      @dividend.pay_out_complete!
       NotificationMailer.with(pay_out:).dividend_paid_out.deliver_later
     end
   end
