@@ -3,4 +3,8 @@ class Distribution < ApplicationRecord
   has_many :dividends, through: :amounts
 
   validates :name, uniqueness: true, presence: true
+
+  def default_amount
+    amounts.find_by currency: Currencies::DEFAULT
+  end
 end

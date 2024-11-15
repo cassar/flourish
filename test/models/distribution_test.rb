@@ -15,6 +15,12 @@ class DistributionTest < ActiveSupport::TestCase
     assert_includes distributions(:one).dividends, dividends(:one)
   end
 
+  test 'has one default amount' do
+    assert_equal Currencies::DEFAULT, amounts(:one).currency
+
+    assert_equal amounts(:one), distributions(:one).default_amount
+  end
+
   test 'name is nil' do
     error = assert_raises ActiveRecord::RecordInvalid do
       distributions(:two).update! name: nil
