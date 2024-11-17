@@ -2,46 +2,54 @@ require 'test_helper'
 
 class DistributionServiceTest < ActiveSupport::TestCase
   test 'creates a single distribution' do
-    assert_difference 'Distribution.count', 1 do
-      DistributionService.new(
-        members: [members(:one)],
-        name: '#3',
-        amount_in_base_units: 1000
-      ).call
-    end
-  end
-
-  test 'creates a single amount' do
-    assert_difference 'Amount.count', 1 do
-      DistributionService.new(
-        members: [members(:one)],
-        name: '#3',
-        amount_in_base_units: 1000
-      ).call
-    end
-  end
-
-  test 'creates a distribution with a given name' do
     expected_name = '#3'
 
-    DistributionService.new(
-      members: [members(:one)],
-      name: expected_name,
-      amount_in_base_units: 1000
-    ).call
+    assert_difference 'Distribution.count', 1 do
+      DistributionService.new(
+        name: expected_name,
+        members: [members(:one)],
+        amounts: [amounts(:one)]
+      ).call
+    end
 
     assert_equal expected_name, Distribution.last.name
   end
 
-  test 'creates an amount with the given dividend amount' do
-    amount_in_base_units = 1000
+  test 'saves given amounts' do
+    amount = Amount.new(amount_in_base_units: 500)
 
-    DistributionService.new(
-      members: [members(:one)],
+    assert_difference 'Amount.count', 1 do
+      DistributionService.new(
+        name: '#3',
+        members: [members(:one)],
+        amounts: [amount]
+      ).call
+    end
+
+    assert_predicate amount, :persisted?
+  end
+
+  test 'calls member dividend service' do
+    MemberDividendService.any_instance.stubs(:call).returns([]).once
+
+    assert DistributionService.new(
       name: '#3',
-      amount_in_base_units:
+      members: [members(:one)],
+      amounts: [amounts(:one)]
     ).call
+  end
 
-    assert_equal amount_in_base_units, Amount.last.amount_in_base_units
+  test 'sends a notification to each member' do
+    members = [members(:one)]
+    mailer_mock = mock('mailer')
+    NotificationMailer.stubs(:with).returns(mailer_mock)
+    mailer_mock.stubs(:dividend_received).returns(mailer_mock)
+    mailer_mock.stubs(:deliver_later).returns(true).times(members.count)
+
+    assert DistributionService.new(
+      name: '#3',
+      members:,
+      amounts: [amounts(:one)]
+    ).call
   end
 end

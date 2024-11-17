@@ -1,20 +1,40 @@
 class DistributionService
-  attr_accessor :members, :amount_in_base_units, :name
+  attr_reader :name, :members, :amounts
+  attr_accessor :distribution, :dividends
 
-  def initialize(members:, amount_in_base_units:, name:)
-    @members = members
-    @amount_in_base_units = amount_in_base_units
+  def initialize(name:, members:, amounts:)
     @name = name
+    @members = members
+    @amounts = amounts
   end
 
   def call
-    MemberDividendService.new(members:, amount:).call
+    create_distribution
+    save_amounts
+    create_dividends
+    notify_members
   end
 
   private
 
-  def amount
-    distribution = Distribution.create!(name:)
-    distribution.amounts.create! amount_in_base_units:
+  def create_distribution
+    @distribution = Distribution.create!(name:)
+  end
+
+  def save_amounts
+    amounts.each do |amount|
+      amount.distribution = distribution
+      amount.save
+    end
+  end
+
+  def create_dividends
+    @dividends = MemberDividendService.new(members:, amounts:).call
+  end
+
+  def notify_members
+    dividends.map do |dividend|
+      NotificationMailer.with(dividend:).dividend_received.deliver_later
+    end
   end
 end

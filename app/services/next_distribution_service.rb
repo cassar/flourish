@@ -4,7 +4,7 @@ class NextDistributionService
       DistributionService.new(
         members:,
         name:,
-        amount_in_base_units:
+        amounts:
       ).call
     end
 
@@ -39,6 +39,13 @@ class NextDistributionService
     delegate :amount_in_base_units, to: :dividend_amount
 
     private
+
+    def amounts
+      DividendAmountsService.new(
+        amount_in_base_units:,
+        currency: 'AUD'
+      ).call
+    end
 
     def dividend_amount
       DividendAmountService.new(

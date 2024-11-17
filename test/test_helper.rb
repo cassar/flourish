@@ -14,5 +14,13 @@ module ActiveSupport
 
     # Add more helper methods to be used by all tests here...
     include Devise::Test::IntegrationHelpers
+
+    # Configure Money gem to use the exchange rates file
+    bank = Money::Bank::VariableExchange.new
+    rates_file = Rails.root.join('test/fixtures/files/exchange_rates.json')
+
+    # Load exchange rates
+    bank.import_rates(:json, rates_file)
+    Money.default_bank = bank
   end
 end

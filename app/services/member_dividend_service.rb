@@ -1,25 +1,27 @@
 class MemberDividendService
   class NoMembersError < StandardError; end
+  class NoAmountError < StandardError; end
 
-  attr_accessor :members, :amount
+  attr_accessor :members, :amounts
 
-  def initialize(members:, amount:)
+  def initialize(members:, amounts:)
     @members = members
-    @amount = amount
+    @amounts = amounts
   end
 
   def call
     raise NoMembersError if members.empty?
 
-    members.each do |member|
-      create_dividend_and_send_notification(member)
+    members.map do |member|
+      member.dividends.create!(amount: amount(member.currency))
     end
   end
 
   private
 
-  def create_dividend_and_send_notification(member)
-    dividend = member.dividends.create!(amount:)
-    NotificationMailer.with(dividend:).dividend_received.deliver_now
+  def amount(currency)
+    amounts.find do |amount|
+      amount.currency == currency
+    end || raise(NoAmountError)
   end
 end

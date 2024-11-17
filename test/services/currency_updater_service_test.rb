@@ -2,6 +2,8 @@ require 'test_helper'
 
 class CurrencyUpdaterServiceTest < ActiveSupport::TestCase
   test 'call' do
+    Money.default_bank = EuCentralBank.new
+
     stub_request(:get, 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml')
       .with(
         headers: {

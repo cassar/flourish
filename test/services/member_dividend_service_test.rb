@@ -3,42 +3,38 @@ require 'test_helper'
 class MemberDividendServiceTest < ActiveSupport::TestCase
   test 'creates a dividend for each member' do
     members = [members(:one), members(:two)]
-    amount = amounts(:one)
+    amounts = [amounts(:one), amounts(:two)]
 
     assert_difference 'Dividend.count', members.count do
-      MemberDividendService.new(members:, amount:).call
+      MemberDividendService.new(members:, amounts:).call
     end
 
-    dividend_members = Member.joins(:dividends).where(dividends: { amount: })
+    dividend_members = Member.joins(:dividends).where(dividends: { amount: amounts })
 
     assert_includes dividend_members, members(:one)
     assert_includes dividend_members, members(:two)
   end
 
-  test 'sends a notification to each member' do
-    members = [members(:one), members(:two)]
-    amount = amounts(:one)
-
-    mailer_mock = mock('mailer')
-    NotificationMailer.stubs(:with).returns(mailer_mock)
-    mailer_mock.stubs(:dividend_received).returns(mailer_mock)
-    mailer_mock.stubs(:deliver_now).returns(true).times(members.count)
-
-    assert MemberDividendService.new(members:, amount:).call
-  end
-
-  test 'fails when no members' do
-    amount = amounts(:one)
+  test 'members is empty' do
+    amounts = [amounts(:one)]
 
     assert_raises MemberDividendService::NoMembersError do
-      MemberDividendService.new(members: [], amount:).call
+      MemberDividendService.new(members: [], amounts:).call
+    end
+  end
+
+  test 'no amount' do
+    members = [members(:one), members(:two)]
+
+    assert_raises MemberDividendService::NoAmountError do
+      MemberDividendService.new(members:, amounts: []).call
     end
   end
 
   test 'all dependent services respond' do
     members = [members(:one)]
-    amount = amounts(:one)
+    amounts = [amounts(:one)]
 
-    assert MemberDividendService.new(members:, amount:).call
+    assert MemberDividendService.new(members:, amounts:).call
   end
 end

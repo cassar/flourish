@@ -9,6 +9,7 @@ one:
 
 two:
   user: two
+  currency: HKD
 
 has_paypalme_handle:
   user: has_paypalme_handle
