@@ -2,8 +2,8 @@ class NextDistributionService
   class << self
     def distribute!
       DistributionService.new(
-        members:,
         name:,
+        members:,
         amounts:
       ).call
     end
