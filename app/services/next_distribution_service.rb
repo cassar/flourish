@@ -36,8 +36,6 @@ class NextDistributionService
       dividend_amount.amount_formatted
     end
 
-    delegate :amount_in_base_units, to: :dividend_amount
-
     private
 
     def amounts
@@ -46,6 +44,8 @@ class NextDistributionService
         currency: 'AUD'
       ).call
     end
+
+    delegate :amount_in_base_units, to: :dividend_amount
 
     def dividend_amount
       DividendAmountService.new(
