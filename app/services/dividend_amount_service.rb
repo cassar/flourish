@@ -12,7 +12,7 @@ class DividendAmountService
     total_pool_in_base_units / member_count
   end
 
-  def amount_formatted
-    Money.new(amount_in_base_units, 'AUD').format
+  def amount_formatted(currency)
+    Money.new(amount_in_base_units, 'AUD').exchange_to(currency).format
   end
 end

@@ -23,9 +23,9 @@
   <p><b>Distribution <%= @next_distribution.name %> Preview</b></p>
   <ul>
     <li><b>Date:</b> <%= @next_distribution.date_formatted %></li>
-    <li><b>Total Contributions:</b> <%= @next_distribution.total_pool_formatted %></li>
+    <li><b>Total Contributions:</b> <%= @next_distribution.total_pool_formatted(@member.currency) %></li>
     <li><b>Members:</b> <%= @next_distribution.member_count %></li>
-    <li><b>Dividend:</b> <%= @next_distribution.dividend_amount_formatted %></li>
+    <li><b>Dividend:</b> <%= @next_distribution.dividend_amount_formatted(@member.currency) %></li>
   </ul>
   <a><%= link_to "View Past Distributions", distributions_url %></a>
 </article>

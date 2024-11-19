@@ -26,6 +26,6 @@ class DividendAmountServiceTest < ActiveSupport::TestCase
     assert_equal '$50.00 AUD', DividendAmountService.new(
       total_pool_in_base_units: 10_000,
       member_count: 2
-    ).amount_formatted
+    ).amount_formatted('AUD')
   end
 end

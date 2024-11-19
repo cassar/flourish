@@ -4,8 +4,8 @@ class TotalPoolService
       total_contributed_in_base_units - total_owed_in_base_units - total_expense_in_base_units
     end
 
-    def balance_formatted
-      Money.new(balance_in_base_units, 'AUD').format
+    def balance_formatted(currency)
+      Money.new(balance_in_base_units, 'AUD').exchange_to(currency).format
     end
 
     private

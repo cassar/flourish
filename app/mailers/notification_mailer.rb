@@ -47,6 +47,7 @@ class NotificationMailer < ApplicationMailer
 
   def distribution_preview
     @user = params[:user]
+    @member = @user.member
     @next_distribution = NextDistributionService
     @recent_contributions = Contribution.where(created_at: 1.week.ago..Time.zone.now)
     @expenses = WeeklyExpensesService.last_weeks_expenses

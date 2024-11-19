@@ -32,13 +32,13 @@ class NextDistributionServiceTest < ActiveSupport::TestCase
   end
 
   test 'total_pool_formatted' do
-    result = NextDistributionService.total_pool_formatted
+    result = NextDistributionService.total_pool_formatted('AUD')
 
     assert_instance_of String, result
   end
 
   test 'dividend_amount_formatted' do
-    result = NextDistributionService.dividend_amount_formatted
+    result = NextDistributionService.dividend_amount_formatted('HKD')
 
     assert_instance_of String, result
   end

@@ -13,8 +13,10 @@ class StaticPagesController < ApplicationController
   private
 
   def authenticated_user
-    return unless user_signed_in?
-
-    @member = current_user.member
+    @member = if user_signed_in?
+                current_user.member
+              else
+                Member.new(currency: 'AUD')
+              end
   end
 end

@@ -28,12 +28,12 @@ class NextDistributionService
       DistributionDateService.today?
     end
 
-    def total_pool_formatted
-      total_pool.balance_formatted
+    def total_pool_formatted(currency)
+      total_pool.balance_formatted(currency)
     end
 
-    def dividend_amount_formatted
-      dividend_amount.amount_formatted
+    def dividend_amount_formatted(currency)
+      dividend_amount.amount_formatted(currency)
     end
 
     private
