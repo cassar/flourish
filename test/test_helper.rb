@@ -15,12 +15,16 @@ module ActiveSupport
     # Add more helper methods to be used by all tests here...
     include Devise::Test::IntegrationHelpers
 
-    # Configure Money gem to use the exchange rates file
-    bank = Money::Bank::VariableExchange.new
-    rates_file = Rails.root.join('test/fixtures/files/exchange_rates.json')
-
-    # Load exchange rates
-    bank.import_rates(:json, rates_file)
-    Money.default_bank = bank
+    def stub_eu_central_bank_request
+      stub_request(:get, 'https://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml')
+        .with(
+          headers: {
+            'Accept' => '*/*',
+            'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+            'User-Agent' => 'Ruby'
+          }
+        )
+        .to_return(status: 200, body: File.read('test/fixtures/files/eurofxref-daily.xml'), headers: {})
+    end
   end
 end

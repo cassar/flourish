@@ -2,6 +2,8 @@ require 'test_helper'
 
 class NextDistributionServiceTest < ActiveSupport::TestCase
   test 'distribute!' do
+    stub_eu_central_bank_request
+
     assert_instance_of Array, NextDistributionService.distribute!
   end
 
