@@ -1,4 +1,6 @@
 module Currencies
-  SUPPORTED_CURRENCIES = YAML.load_file('app/services/paypal_supported_currencies.yml')
+  PAYPAL_SUPPORTED_CURRENCIES = YAML.load_file('app/services/paypal_supported_currencies.yml')
+  EU_CENTRAL_BANK_UNSUPPORTED_CURRENCIES = ['TWD'].freeze
+  SUPPORTED_CURRENCIES = PAYPAL_SUPPORTED_CURRENCIES - EU_CENTRAL_BANK_UNSUPPORTED_CURRENCIES
   DEFAULT = 'AUD'.freeze
 end
