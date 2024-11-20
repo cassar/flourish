@@ -14,6 +14,6 @@ class CurrencyUpdaterServiceTest < ActiveSupport::TestCase
       )
       .to_return(status: 200, body: File.read('test/fixtures/files/eurofxref-daily.xml'), headers: {})
 
-    assert CurrencyUpdaterService.new.call
+    assert CurrencyUpdaterService.call
   end
 end

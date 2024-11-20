@@ -40,6 +40,6 @@ namespace :services do
 
   desc 'updates the foreign exchange rates'
   task update_foreign_exchange_rates: :environment do
-    CurrencyUpdaterService.new.call
+    CurrencyUpdaterService.call
   end
 end
