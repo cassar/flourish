@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   resources :distributions, only: :index
   resources :pay_outs, only: :index
   resources :paypalme_handles, only: [:edit, :update]
+  resources :currencies, only: [:edit, :update]
 
   resources :dividends, only: [:index, :show] do
     member do 

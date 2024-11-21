@@ -1,0 +1,14 @@
+<% content_for :title, 'Update Currency' %>
+<h1>Currency</h1>
+<%= render partial: 'details' %>
+<%= form_with model: @member, url: currency_path do |form| %>
+  <article>
+    <p>
+      <span>Currency: </span>
+      <%= form.select :currency, Currencies::SUPPORTED_CURRENCIES %>
+    </p>
+  </article>
+  <%= form.submit "Submit" %>
+  <%= link_to 'Cancel', membership_path, class: 'button' %>
+<% end %>
+

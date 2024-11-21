@@ -7,6 +7,9 @@
     <li>
       <strong>Email</strong>: Confirmed 
     </li>
+    <li>
+      <strong>Currency</strong>: <%= @member.currency %> (<%= link_to 'update', edit_currency_path(@member) %>)
+    </li>
   </ul>
   <p>
   <strong><%= link_to 'Contributions', contributions_path %></strong> and <strong><%= link_to 'Pay Outs', pay_outs_path %></strong>: 
