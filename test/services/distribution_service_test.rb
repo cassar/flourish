@@ -44,7 +44,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     mailer_mock = mock('mailer')
     NotificationMailer.stubs(:with).returns(mailer_mock)
     mailer_mock.stubs(:dividend_received).returns(mailer_mock)
-    mailer_mock.stubs(:deliver_later).returns(true).times(members.count)
+    mailer_mock.stubs(:deliver_now).returns(true).times(members.count)
 
     assert DistributionService.new(
       name: '#3',

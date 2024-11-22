@@ -34,7 +34,7 @@ class DistributionService
 
   def notify_members
     dividends.map do |dividend|
-      NotificationMailer.with(dividend:).dividend_received.deliver_later
+      NotificationMailer.with(dividend:).dividend_received.deliver_now
     end
   end
 end
