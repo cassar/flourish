@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 6695ac7f71a148e262810396830ce5230082a450
+  revision: 2ab0094ab6e94d30a5a424dc93c2aeb1066cc76b
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -148,7 +148,7 @@ GEM
     eu_central_bank (1.7.0)
       money (~> 6.13, >= 6.13.6)
       nokogiri (~> 1.9)
-    excon (1.2.1)
+    excon (1.2.2)
     ffi (1.17.0-arm64-darwin)
     ffi (1.17.0-x86_64-darwin)
     ffi (1.17.0-x86_64-linux-gnu)
@@ -157,7 +157,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashdiff (1.1.2)
-    honeybadger (5.25.0)
+    honeybadger (5.26.0)
       logger
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
@@ -263,7 +263,7 @@ GEM
       rubocop-ast (>= 1.36.1, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.36.1)
+    rubocop-ast (1.36.2)
       parser (>= 3.3.1.0)
     rubocop-capybara (2.21.0)
       rubocop (~> 1.41)
