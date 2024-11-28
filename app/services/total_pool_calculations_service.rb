@@ -12,5 +12,11 @@ class TotalPoolCalculationsService
             .group(:currency)
             .sum(:amount_in_base_units)
     end
+
+    def total_paid_out_by_currency
+      PayOut
+        .group(:currency)
+        .sum(:amount_in_base_units)
+    end
   end
 end

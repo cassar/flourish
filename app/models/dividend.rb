@@ -13,5 +13,5 @@ class Dividend < ApplicationRecord
 
   has_one :pay_out, dependent: :destroy
 
-  scope :owed, -> { where(status: %i[issued pending_pay_out pay_out_complete]) }
+  scope :owed, -> { where(status: %i[issued pending_pay_out]) }
 end

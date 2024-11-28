@@ -1,7 +1,7 @@
 class TotalPoolService
   class << self
     def balance_in_base_units
-      Integer(total_contributed_in_base_units - total_owed_in_base_units - total_expense_in_base_units)
+      Integer(total_assets_in_base_units - total_liabilites_in_base_units)
     end
 
     def balance_formatted(currency)
@@ -10,12 +10,28 @@ class TotalPoolService
 
     private
 
+    def total_assets_in_base_units
+      total_contributed_in_base_units
+    end
+
+    def total_liabilites_in_base_units
+      [
+        total_owed_in_base_units,
+        total_paid_out_in_base_units,
+        total_expense_in_base_units
+      ].sum
+    end
+
     def total_contributed_in_base_units
       in_aud_base_units total_contributions_by_currency
     end
 
     def total_owed_in_base_units
       in_aud_base_units total_owed_dividends_by_currency
+    end
+
+    def total_paid_out_in_base_units
+      in_aud_base_units total_paid_out_by_currency
     end
 
     def total_expense_in_base_units
@@ -34,6 +50,10 @@ class TotalPoolService
 
     def total_owed_dividends_by_currency
       TotalPoolCalculationsService.total_owed_dividends_by_currency
+    end
+
+    def total_paid_out_by_currency
+      TotalPoolCalculationsService.total_paid_out_by_currency
     end
   end
 end
