@@ -115,9 +115,6 @@ group :test do
   # A browser automation framework and ecosystem.
   gem 'selenium-webdriver'
 
-  # Keep your Selenium WebDrivers updated automatically
-  gem 'webdrivers'
-
   # A mocking and stubbing library for Ruby
   gem 'mocha'
 
