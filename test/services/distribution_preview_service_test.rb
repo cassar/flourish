@@ -13,6 +13,8 @@ class DistributionPreviewServiceTest < ActiveSupport::TestCase
   end
 
   test 'all dependent services respond' do
+    stub_eu_central_bank_request
+
     assert DistributionPreviewService.new(users: [users(:one)]).call
   end
 end

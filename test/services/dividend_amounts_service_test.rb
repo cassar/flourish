@@ -2,6 +2,8 @@ require 'test_helper'
 
 class DividendAmountsServiceTest < ActiveSupport::TestCase
   test 'returns an amount for each currency' do
+    stub_eu_central_bank_request
+
     results = DividendAmountsService.new(
       amount_in_base_units: 500,
       currency: 'AUD'
@@ -11,6 +13,8 @@ class DividendAmountsServiceTest < ActiveSupport::TestCase
   end
 
   test 'returns correct base units' do
+    stub_eu_central_bank_request
+
     results = DividendAmountsService.new(
       amount_in_base_units: 500,
       currency: 'AUD'

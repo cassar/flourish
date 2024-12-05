@@ -15,7 +15,11 @@ class DividendAmountsService
   private
 
   def amount_from(currency)
-    Money.new(amount_in_base_units, orginal_currency).exchange_to(currency).fractional
+    CurrencyConverter.new(
+      from_currency: orginal_currency,
+      amount_in_base_units:,
+      to_currency: currency
+    ).amount_in_base_units
   end
 
   def currencies

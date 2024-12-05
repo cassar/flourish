@@ -62,6 +62,8 @@ class NotificationMailerTest < ActionMailer::TestCase
   end
 
   test 'distribution_preview' do
+    stub_eu_central_bank_request
+
     email = NotificationMailer.with(user: users(:one)).distribution_preview
     NextDistributionService.stubs(:date_formatted).returns('Fri, 04 Oct 2024')
     WeeklyExpensesService.stubs(:last_weeks_expenses).returns([expenses(:one), expenses(:two)])

@@ -29,6 +29,8 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
   end
 
   test 'balance formatted integration' do
+    stub_eu_central_bank_request
+
     assert_instance_of String, TotalPoolService.balance_formatted('AUD')
   end
 end

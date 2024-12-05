@@ -34,18 +34,24 @@ class NextDistributionServiceTest < ActiveSupport::TestCase
   end
 
   test 'total_pool_formatted' do
+    stub_eu_central_bank_request
+
     result = NextDistributionService.total_pool_formatted('AUD')
 
     assert_instance_of String, result
   end
 
   test 'dividend_amount_formatted' do
+    stub_eu_central_bank_request
+
     result = NextDistributionService.dividend_amount_formatted('HKD')
 
     assert_instance_of String, result
   end
 
   test 'amount_in_base_units' do
+    stub_eu_central_bank_request
+
     result = NextDistributionService.amount_in_base_units
 
     assert_instance_of Integer, result

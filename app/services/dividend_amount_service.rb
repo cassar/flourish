@@ -13,6 +13,10 @@ class DividendAmountService
   end
 
   def amount_formatted(currency)
-    Money.new(amount_in_base_units, 'AUD').exchange_to(currency).format
+    CurrencyConverter.new(
+      from_currency: 'AUD',
+      amount_in_base_units:,
+      to_currency: currency
+    ).format
   end
 end
