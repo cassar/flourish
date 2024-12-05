@@ -10,6 +10,10 @@ class StaticPagesController < ApplicationController
     authenticated_user
   end
 
+  def about
+    @active_member_count = Member.active.count
+  end
+
   private
 
   def authenticated_user

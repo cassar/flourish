@@ -1,8 +1,9 @@
 <% content_for :title, 'About'  %>
 <h1>About</h1>
-<article>
-  <p>Flourish is a project aiming to make it easier for everyone to support each other.</p>
-  <p>Currently it is just this <a href="https://github.com/cassar/flourish" target="_blank">web application</a> developed by <a href="https://www.linkedin.com/in/luke-cassar-17885a29/" target="_blank">some dude in Australia</a>.</p>
+<article data-controller="cooperative">
+  <p>Flourish is a project aiming to make it easier for everyone to support each other. It, in turn, is supported by its <%= @active_member_count %> active members and its <a href="https://www.linkedin.com/in/luke-cassar-17885a29/" target="_blank">lone web developer and admin.</a></p>
+  <p>If you are interested in helping Flourish grow, we'd love to hear from you at the below.</p>
+  <p><strong>Email:</strong> <span data-cooperative-target="email"></span></p>
 </article>
 <%= render partial: 'static_pages/details' %>
 <%= render partial: 'devise/registrations/details' %>
