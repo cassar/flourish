@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 4dd8fb30986f7b1f824ebad5d5ec7620685071d4
+  revision: 91d456366638ac6c3f6dec38670c8ada5e7c69b1
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -191,7 +191,7 @@ GEM
     marcel (1.0.4)
     matrix (0.4.2)
     mini_mime (1.1.5)
-    minitest (5.25.3)
+    minitest (5.25.4)
     mocha (2.6.1)
       ruby2_keywords (>= 0.0.5)
     money (6.19.0)
@@ -289,7 +289,9 @@ GEM
       sprockets-rails
       tilt
     securerandom (0.4.0)
-    selenium-webdriver (4.10.0)
+    selenium-webdriver (4.27.0)
+      base64 (~> 0.2)
+      logger (~> 1.4)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -320,7 +322,7 @@ GEM
       unicode-emoji (~> 4.0, >= 4.0.4)
     unicode-emoji (4.0.4)
     uri (1.0.2)
-    useragent (0.16.10)
+    useragent (0.16.11)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
