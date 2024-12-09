@@ -7,4 +7,8 @@ class Distribution < ApplicationRecord
   def default_amount
     amounts.find_by currency: Currencies::DEFAULT
   end
+
+  def settled?
+    dividends.issued.none?
+  end
 end
