@@ -12,6 +12,31 @@ class TotalPoolService
       ).format
     end
 
+    def total_contributed_and_recontributed_formatted(currency)
+      amount_in_base_units = total_contributed_in_base_units + total_recontributed_in_base_units
+      CurrencyConverter.new(
+        from_currency: 'AUD',
+        amount_in_base_units:,
+        to_currency: currency
+      ).format
+    end
+
+    def total_paid_out_formatted(currency)
+      CurrencyConverter.new(
+        from_currency: 'AUD',
+        amount_in_base_units: total_paid_out_in_base_units,
+        to_currency: currency
+      ).format
+    end
+
+    def total_dividends_formatted(currency)
+      CurrencyConverter.new(
+        from_currency: 'AUD',
+        amount_in_base_units: total_dividends_in_base_units,
+        to_currency: currency
+      ).format
+    end
+
     private
 
     def total_assets_in_base_units
@@ -38,6 +63,14 @@ class TotalPoolService
       in_aud_base_units total_paid_out_by_currency
     end
 
+    def total_recontributed_in_base_units
+      in_aud_base_units total_recontributions_by_currency
+    end
+
+    def total_dividends_in_base_units
+      in_aud_base_units total_dividends_by_currency
+    end
+
     def total_expense_in_base_units
       Expense.sum(:amount_in_base_units)
     end
@@ -62,6 +95,14 @@ class TotalPoolService
 
     def total_paid_out_by_currency
       TotalPoolCalculationsService.total_paid_out_by_currency
+    end
+
+    def total_recontributions_by_currency
+      TotalPoolCalculationsService.total_recontributions_by_currency
+    end
+
+    def total_dividends_by_currency
+      TotalPoolCalculationsService.total_dividends_by_currency
     end
   end
 end
