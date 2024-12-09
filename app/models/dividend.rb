@@ -9,8 +9,8 @@ class Dividend < ApplicationRecord
 
   belongs_to :member
   belongs_to :amount
-  has_one :distribution, through: :amount
 
+  has_one :distribution, through: :amount
   has_one :pay_out, dependent: :destroy
 
   scope :owed, -> { where(status: %i[issued pending_pay_out]) }
