@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class StaticPagesControllerTest < ActionDispatch::IntegrationTest
+  setup do
+    stub_eu_central_bank_request
+  end
+
   test 'should get home when previous distribution with issued dividends' do
     assert Distribution.last
     assert_predicate Distribution.last.dividends.issued, :any?

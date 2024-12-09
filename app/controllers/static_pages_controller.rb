@@ -4,9 +4,9 @@ class StaticPagesController < ApplicationController
     unless @last_distribution.settled?
       @last_amount = @last_distribution.default_amount
       @last_distribution_dividends = @last_distribution.dividends
-    else
-      @next_distribution = NextDistributionService
     end
+    @next_distribution = NextDistributionService
+    @total_pool = TotalPoolService
     authenticated_user
   end
 

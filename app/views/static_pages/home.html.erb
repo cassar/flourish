@@ -1,25 +1,14 @@
 <% content_for :title, 'Home' %>
 <article>
-  <% if @last_distribution.present? && @unsettled %>
-    <p><b>Current Distribution: <%= @last_distribution.name %></b></p>
-    <ul>
-      <li><b>Date</b>: <%= created_at_formatted @last_distribution %></li>
-      <li><b>Status</b>: <%= distribution_status dividend_statuses: @last_distribution_dividends.pluck(:status) %></li>
-      <li><b>Members</b>: <%= @last_distribution_dividends.length %></li>
-      <li><b>Dividend</b>: <%= @last_amount.amount_formatted %></li>
-      <%= render 'distributions/aggregate_status_counts', disaggregate_status_counts: @last_distribution_dividends.group(:status).count %>
-    </ul>
+    <%= render partial: 'welcome', locals: { next_distribution: @next_distribution, total_pool: @total_pool, member: @member } %>
+</article>
+<article>
+  <% if @last_distribution.settled? %>
+    <%= render partial: 'next_distribution', locals: { next_distribution: @next_distribution, member: @member } %>
   <% else %>
-    <p><b>Next Distribution: <%= @next_distribution.name %></b></p>
-    <ul>
-      <li><b>Date:</b> <%= @next_distribution.date_formatted %></li>
-      <li><b>Contributions:</b> <%= @next_distribution.total_pool_formatted(@member.currency) %></li>
-      <li><b>Members:</b> <%= @next_distribution.member_count %></li>
-      <li><b>Dividend:</b> <%= @next_distribution.dividend_amount_formatted(@member.currency) %></li>
-    </ul>
+    <%= render partial: 'current_distribution', locals: { last_distribution: @last_distribution, last_distribution_dividends: @last_distribution_dividends, last_amount: @last_amount } %>
   <% end %>
 </article>
-<%= render partial: 'details' %>
 <nav>
   <%= link_to 'About', about_path, class: 'button' %>
   <%= render partial: 'authentication' %>
