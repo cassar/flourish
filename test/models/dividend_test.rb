@@ -31,4 +31,13 @@ class DividendTest < ActiveSupport::TestCase
     assert_not_includes Dividend.owed, Dividend.manually_recontributed.first
     assert_not_includes Dividend.owed, Dividend.auto_recontributed.first
   end
+
+  test 'recontributed scope' do
+    assert_includes Dividend.recontributed, Dividend.manually_recontributed.first
+    assert_includes Dividend.recontributed, Dividend.auto_recontributed.first
+
+    assert_not_includes Dividend.recontributed, Dividend.issued.first
+    assert_not_includes Dividend.recontributed, Dividend.pending_pay_out.first
+    assert_not_includes Dividend.recontributed, Dividend.pay_out_complete.first
+  end
 end

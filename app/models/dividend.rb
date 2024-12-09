@@ -14,4 +14,5 @@ class Dividend < ApplicationRecord
   has_one :pay_out, dependent: :destroy
 
   scope :owed, -> { where(status: %i[issued pending_pay_out]) }
+  scope :recontributed, -> { where(status: %i[manually_recontributed auto_recontributed]) }
 end
