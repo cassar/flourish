@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 410ad1c8a18ebf7f544d77d2cb82de2a0e87d23a
+  revision: ad370656a4baecbcb92c243f0213c926ed3b28fc
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -192,7 +192,7 @@ GEM
     matrix (0.4.2)
     mini_mime (1.1.5)
     minitest (5.25.4)
-    mocha (2.7.0)
+    mocha (2.7.1)
       ruby2_keywords (>= 0.0.5)
     money (6.19.0)
       i18n (>= 0.6.4, <= 2)
@@ -207,11 +207,11 @@ GEM
     net-smtp (0.5.0)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.17.0-arm64-darwin)
+    nokogiri (1.17.1-arm64-darwin)
       racc (~> 1.4)
-    nokogiri (1.17.0-x86_64-darwin)
+    nokogiri (1.17.1-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.17.0-x86_64-linux)
+    nokogiri (1.17.1-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     ostruct (0.6.1)
@@ -246,7 +246,7 @@ GEM
     rdoc (6.8.1)
       psych (>= 4.0.0)
     redis (4.8.1)
-    redis-client (0.22.2)
+    redis-client (0.23.0)
       connection_pool
     regexp_parser (2.9.3)
     reline (0.5.12)
