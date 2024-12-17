@@ -9,9 +9,9 @@ module Admin
 
     def new
       @dividend = Dividend.find params[:dividend_id]
-      @pay_out = @dividend.build_pay_out
       @member = @dividend.member
       @amount = @dividend.amount
+      @pay_out = @dividend.build_pay_out amount_in_base_units: @amount.amount_in_base_units
       @distribution = @amount.distribution
     end
 
