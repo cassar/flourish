@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: a725732b3dee53a102d62cb193c02dc886bbb7ea
+  revision: 6a470391d5127fa2635a43a7992923817d734d36
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -157,7 +157,7 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashdiff (1.1.2)
-    honeybadger (5.26.0)
+    honeybadger (5.26.1)
       logger
     i18n (1.14.6)
       concurrent-ruby (~> 1.0)
@@ -295,7 +295,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.3.6)
+    sidekiq (7.3.7)
       connection_pool (>= 2.3.0)
       logger
       rack (>= 2.2.4)
