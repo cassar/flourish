@@ -20,10 +20,11 @@ nav a, nav form {
 }
 
 .header-title {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 .header-title:hover, .header-title:active, .header-title:focus, .header-title:visited {
-	text-decoration: none;
-	color: inherit;
+  text-decoration: none;
+  color: inherit;
+}
 }
