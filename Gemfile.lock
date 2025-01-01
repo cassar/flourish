@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 92b3160dd65f31143fe238b27632bafddbfd1d62
+  revision: 93de878d016e325ad3209337d6c28192de2871ad
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -110,7 +110,7 @@ GEM
     bindex (0.8.1)
     bootsnap (1.18.4)
       msgpack (~> 1.2)
-    brakeman (6.2.2)
+    brakeman (7.0.0)
       racc
     builder (3.3.0)
     bundler-audit (0.9.2)
@@ -149,9 +149,9 @@ GEM
       money (~> 6.13, >= 6.13.6)
       nokogiri (~> 1.9)
     excon (1.2.2)
-    ffi (1.17.0-arm64-darwin)
-    ffi (1.17.0-x86_64-darwin)
-    ffi (1.17.0-x86_64-linux-gnu)
+    ffi (1.17.1-arm64-darwin)
+    ffi (1.17.1-x86_64-darwin)
+    ffi (1.17.1-x86_64-linux-gnu)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
     globalid (1.2.1)
