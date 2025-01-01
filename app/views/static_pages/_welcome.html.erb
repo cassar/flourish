@@ -1,7 +1,7 @@
 <p><strong>Welcome!</strong></p>
 <p>Flourish is a member funded Unconditional Universal Income project.</p>
+<strong>How does it work?</strong>
+<%= render partial: 'how_does_it_work' %>
 <strong>What have been the results?</strong>
 <p>To date, our <strong><%= next_distribution.member_count %></strong> members have contributed <strong><%= total_pool.total_contributed_and_recontributed_formatted(member.currency) %></strong> in funds.</p>
 <p>The project has issued <strong><%= total_pool.total_dividends_formatted(member.currency) %></strong> in dividends, with <strong><%= total_pool.total_paid_out_formatted(member.currency) %></strong> of that being paid out as cash to member's accounts.</p>
-<strong>How does it work?</strong>
-<%= render partial: 'how_does_it_work' %>
