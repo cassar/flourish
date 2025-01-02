@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 93de878d016e325ad3209337d6c28192de2871ad
+  revision: 9ea0a7678de87463e6bebb2e6512b88019d1262d
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -180,7 +180,7 @@ GEM
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
     logger (1.6.4)
-    loofah (2.23.1)
+    loofah (2.24.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
     mail (2.8.1)
