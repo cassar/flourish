@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      <%= yield(:title).presence || 'Buzz' %> | Flourish
-    </title>
+    <title><%= title_text yield(:title) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= render 'application/favicon' %>
     <%= csrf_meta_tags %>
