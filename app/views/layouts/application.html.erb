@@ -13,11 +13,7 @@
   </head>
 
   <body>
-    <% if current_page?(root_path) %>
-      <%= render 'layouts/root_page' %>
-    <% else %>
-      <%= render 'layouts/app_page' %>
-    <% end %>
+    <%= render layout_path %>
     <%= render 'layouts/footer' %>
   </body>
 </html>
