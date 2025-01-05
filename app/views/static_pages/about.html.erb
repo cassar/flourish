@@ -1,6 +1,6 @@
 <% content_for :title, 'About'  %>
 <h1>About</h1>
-<article data-controller="cooperative">
+<article>
   <p><strong>Flourishites</strong></p>
   <p>The project is supported by its <%= @active_member_count %> members and its lone web developer and admin.</p>
   <p><i>LinkedIn:</i> <%= link_to 'Luke Cassar - Developer and Admin', "https://www.linkedin.com/in/luke-cassar-17885a29/", target: "_blank" %></p>
@@ -9,7 +9,7 @@
   <p><i>GitHub:</i> <%= link_to 'Flourish Code Repository', "https://github.com/cassar/flourish", target: "_blank" %></p>
   <p><strong>Get in Contact</strong></p>
   <p>If you are interested in helping Flourish grow, we'd love to hear from you at the below.</p>
-  <p><i>Email:</i> <span data-cooperative-target="email"></span></p>
+  <p><i>Email:</i> <span data-controller="cooperative" data-cooperative-target="email"></span></p>
   <p><strong>Stay in Contact</strong></p>
   <p>If you would like to keep up to date with the project, simply sign up, members receive a, 'Distribution Preview', email every <%= DistributionPreviewDateService::DAY_OF_THE_WEEK %> which has the latest Flourish news.</p>
   <p><i>Flourish:</i> <%= link_to 'Sign Up Page', new_user_registration_path %></span></p>
