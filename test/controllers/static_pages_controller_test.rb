@@ -41,4 +41,10 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+  test 'should get privacy_statement' do
+    get privacy_statement_path
+
+    assert_response :success
+  end
 end

@@ -36,6 +36,7 @@ Rails.application.routes.draw do
   get :about, to: 'static_pages#about'
   get :mission, to: 'static_pages#mission'
   get :check_email_spam, to: 'static_pages#check_email_spam'
+  get :privacy_statement, to: 'static_pages#privacy_statement'
 
   root 'static_pages#home'
 end
