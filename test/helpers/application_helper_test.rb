@@ -6,7 +6,7 @@ class ApplicationHelperTest < ActionView::TestCase
   end
 
   test 'title text without title' do
-    assert_equal 'Flourish', title_text(nil)
+    assert_equal 'Flourish', title_text('')
   end
 
   test 'layout_path as root' do
