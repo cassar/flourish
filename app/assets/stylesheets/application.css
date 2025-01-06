@@ -29,3 +29,7 @@ nav a, nav form {
   color: inherit;
 }
 
+ul.notification_preferences {
+  list-style-type: none;
+}
+

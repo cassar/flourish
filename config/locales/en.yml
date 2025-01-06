@@ -14,6 +14,9 @@ en:
     currencies:
       update:
         success: "Currency updated successfully."
+    notification_preferences:
+      update:
+        success: "Preferences updated successfully."
     dividends:
       not_authorised: "That's not your dividend. 🤨"
       already_updated: "Dividend already updated."

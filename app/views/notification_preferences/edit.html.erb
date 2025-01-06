@@ -1,0 +1,14 @@
+<% content_for :title, "Notification Preferences" %>
+<h1>Notification Preferences</h1>
+<%= form_with model: @member, url: notification_preferences_path, method: :patch do |member_form| %>
+  <% @notification_preferences.each do |notification_preference| %>
+    <%= member_form.fields_for :notification_preferences_attributes, notification_preference, index: notification_preference.id do |notification_preference_form| %>
+      <p>
+        <%= notification_preference_form.hidden_field :id %>
+        <%= notification_preference_form.checkbox :enabled %>
+        <%= notification_preference_form.label :notification_name, notification_preference.notification_name.titleize %>
+      </p>
+    <% end %>
+  <% end %>
+  <%= member_form.submit "Update" %>
+<% end %>

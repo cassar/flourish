@@ -30,6 +30,28 @@ class MemberTest < ActiveSupport::TestCase
     assert_nil contributions(:one).reload.member
   end
 
+  test 'has many notification preferences association' do
+    assert_includes members(:one).notification_preferences, notification_preferences(:contribution_received)
+  end
+
+  test 'dependent destroy relationship on notification preferences' do
+    members(:one).destroy!
+
+    assert_raises ActiveRecord::RecordNotFound do
+      notification_preferences(:contribution_received).reload
+    end
+  end
+
+  test 'accepts nested attributes for notification preferences' do
+    assert_predicate notification_preferences(:contribution_received), :enabled
+
+    members(:one).update!(notification_preferences_attributes: {
+      '1' => { id: notification_preferences(:contribution_received).id, enabled: false }
+    })
+
+    assert_not_predicate notification_preferences(:contribution_received).reload, :enabled
+  end
+
   test 'enforces unique paypalme_handle' do
     error = assert_raises ActiveRecord::RecordInvalid do
       members(:one).update! paypalme_handle: members(:has_paypalme_handle).paypalme_handle

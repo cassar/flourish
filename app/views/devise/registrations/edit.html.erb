@@ -32,6 +32,16 @@
 <% end %>
 
 <div class="notice">
+  <p><strong>Email Notification Preferences</strong></p>
+  <ul class='notification_preferences'>
+    <% resource.member.notification_preferences.order(:notification_name).each do |notification| %>
+      <li><%= "#{notification_emoji notification.enabled} #{notification.notification_name.titleize}" %></li>
+    <% end %>
+  </ul>
+  <%= link_to "Edit", notification_preferences_path, class: 'button' %>
+</div>
+
+<div class="notice">
   <p><strong>Log Out</strong></p>
   <p>Log out of this session.</p>
 

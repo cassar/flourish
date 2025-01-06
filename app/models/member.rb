@@ -3,6 +3,9 @@ class Member < ApplicationRecord
 
   has_many :dividends, dependent: :nullify
   has_many :contributions, dependent: :nullify
+  has_many :notification_preferences, dependent: :destroy
+
+  accepts_nested_attributes_for :notification_preferences
 
   validates :paypalme_handle, uniqueness: { allow_nil: true, case_sensitive: false }
   encrypts :paypalme_handle, deterministic: true, downcase: true
