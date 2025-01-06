@@ -38,7 +38,7 @@ Member.take(10).each do |member|
 end
 
 puts "Making some distributions"
-3.times do |integer|
+(1..3).each do |integer|
   distribution = Distribution.create(
     name: "##{integer}",
   )
