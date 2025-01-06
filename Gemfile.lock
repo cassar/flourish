@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: e64e5d31cdeafee142e32e604b513a39de779651
+  revision: ea5db080a390eb094a75e8c1b0aaff31bf48e20e
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -280,7 +280,7 @@ GEM
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
-    rubyzip (2.4)
+    rubyzip (2.4.1)
     sassc (2.4.0)
       ffi (~> 1.9)
     sassc-rails (2.1.2)
