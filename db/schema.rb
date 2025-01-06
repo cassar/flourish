@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2024_11_14_051022) do
+ActiveRecord::Schema[8.1].define(version: 2025_01_04_042644) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -70,6 +70,16 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_14_051022) do
     t.index ["user_id"], name: "index_members_on_user_id", unique: true
   end
 
+  create_table "notification_preferences", force: :cascade do |t|
+    t.bigint "member_id", null: false
+    t.integer "notification_name", null: false
+    t.boolean "enabled", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_notification_preferences_on_member_id"
+    t.index ["notification_name", "member_id"], name: "idx_on_notification_name_member_id_d786d07610", unique: true
+  end
+
   create_table "pay_outs", force: :cascade do |t|
     t.bigint "dividend_id", null: false
     t.integer "amount_in_base_units", null: false
@@ -113,5 +123,6 @@ ActiveRecord::Schema[8.1].define(version: 2024_11_14_051022) do
   add_foreign_key "dividends", "amounts"
   add_foreign_key "dividends", "members"
   add_foreign_key "members", "users"
+  add_foreign_key "notification_preferences", "members"
   add_foreign_key "pay_outs", "dividends"
 end

@@ -1,0 +1,61 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+contribution_received:
+  member: one
+  notification_name: 0
+  enabled: true
+
+dividend_received:
+  member: one
+  notification_name: 1
+  enabled: true
+
+dividend_paid_out:
+  member: one
+  notification_name: 2
+  enabled: true
+
+dividend_automatically_recontributed:
+  member: one
+  notification_name: 3
+  enabled: true
+
+distribution_settled:
+  member: one
+  notification_name: 4
+  enabled: true
+
+distribution_preview:
+  member: one
+  notification_name: 5
+  enabled: true
+
+contribution_received_disabled:
+  member: two
+  notification_name: 0
+  enabled: false
+
+dividend_received_disabled:
+  member: two
+  notification_name: 1
+  enabled: false
+
+dividend_paid_out_disabled:
+  member: two
+  notification_name: 2
+  enabled: false
+
+dividend_automatically_recontributed_disabled:
+  member: two
+  notification_name: 3
+  enabled: false
+
+distribution_settled_disabled:
+  member: two
+  notification_name: 4
+  enabled: false
+
+distribution_preview_disabled:
+  member: two
+  notification_name: 5
+  enabled: false
