@@ -2,7 +2,10 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     def create
       super do |user|
-        user.create_member! if user.persisted?
+        return unless user.persisted?
+
+        user.create_member!
+        user.member.create_notification_preferences!
       end
     end
 

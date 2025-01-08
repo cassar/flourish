@@ -18,6 +18,16 @@ module Users
       assert_not_nil member
     end
 
+    test 'should create member notification preferences' do
+      assert_difference 'NotificationPreference.count', NotificationPreference.notification_names.count do
+        post user_registration_path, params: { user: {
+          email: 'test@example.com',
+          password: 'password123',
+          password_confirmation: 'password123'
+        } }
+      end
+    end
+
     test 'should redirect to check spam folder after successful registration' do
       assert_difference 'User.count' do
         post user_registration_path, params: { user: {

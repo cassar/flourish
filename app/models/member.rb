@@ -20,4 +20,10 @@ class Member < ApplicationRecord
   def pay_outs_disabled?
     paypalme_handle.blank?
   end
+
+  def create_notification_preferences!
+    NotificationPreference.notification_names.each_key do |notification_name|
+      notification_preferences.create! notification_name:
+    end
+  end
 end

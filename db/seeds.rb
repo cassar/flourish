@@ -14,6 +14,7 @@ admin.skip_reconfirmation!
 admin.confirm
 admin.save!
 admin.create_member!
+admin.member.create_notification_preferences!
 
 puts "Making some users"
 1..5.times do |integer|
@@ -22,6 +23,7 @@ puts "Making some users"
   user.skip_reconfirmation!
   user.save!
   user.create_member!
+  user.member.create_notification_preferences!
   next if (user.id % 5).zero? 
 
   user.confirm

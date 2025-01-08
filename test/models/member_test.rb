@@ -82,4 +82,18 @@ class MemberTest < ActiveSupport::TestCase
   test 'pay outs enabled when paypal.me id present' do
     assert_not members(:has_paypalme_handle).pay_outs_disabled?
   end
+
+  test 'create_notification_preferences! success' do
+    assert_difference 'NotificationPreference.count', NotificationPreference.notification_names.count do
+      members(:active).create_notification_preferences!
+    end
+  end
+
+  test 'create_notification_preferences! error' do
+    error = assert_raises ActiveRecord::RecordInvalid do
+      members(:one).create_notification_preferences!
+    end
+
+    assert_match 'Notification name has already been taken', error.message
+  end
 end
