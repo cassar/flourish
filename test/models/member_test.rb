@@ -12,7 +12,7 @@ class MemberTest < ActiveSupport::TestCase
     assert_includes members(:one).dividends, dividends(:one)
   end
 
-  test 'dependend nullify relationship on dividends' do
+  test 'dependent nullify relationship on dividends' do
     assert_equal members(:one), dividends(:one).member
     members(:one).destroy!
 
@@ -23,7 +23,7 @@ class MemberTest < ActiveSupport::TestCase
     assert_includes members(:one).contributions, contributions(:one)
   end
 
-  test 'dependend nullify relationship on contributions' do
+  test 'dependent nullify relationship on contributions' do
     assert_equal members(:one), contributions(:one).member
     members(:one).destroy!
 
