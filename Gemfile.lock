@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: ea5db080a390eb094a75e8c1b0aaff31bf48e20e
+  revision: eb6183ffe1ffbfe31573d024ce82ea2a71f5bca0
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -128,7 +128,7 @@ GEM
     childprocess (5.1.0)
       logger (~> 1.5)
     concurrent-ruby (1.3.4)
-    connection_pool (2.4.1)
+    connection_pool (2.5.0)
     crack (1.0.0)
       bigdecimal
       rexml
