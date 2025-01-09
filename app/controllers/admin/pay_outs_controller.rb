@@ -3,9 +3,9 @@ module Admin
     before_action :authenticate_user!
     before_action :authorise_admin!
 
-    attr_accessor :pay_out
+    attr_accessor :pay_out, :dividend, :member
 
-    after_action :notify_member, only: :create
+    after_action :wrap_up, only: :create, if: -> { pay_out.persisted? }
 
     def new
       @dividend = Dividend.find params[:dividend_id]
@@ -22,12 +22,15 @@ module Admin
     end
 
     def create
-      new
+      @dividend = Dividend.find params[:dividend_id]
+      @member = @dividend.member
       @pay_out = @dividend.build_pay_out(pay_out_params)
       if @pay_out.save
         flash[:success] = I18n.t('controllers.admin.pay_outs.create.success')
         redirect_to admin_distributions_path
       else
+        @amount = @dividend.amount
+        @distribution = @amount.distribution
         flash.now[:error] = @pay_out.errors.full_messages.to_sentence
         render :new
       end
@@ -45,10 +48,9 @@ module Admin
       redirect_to root_path, alert: I18n.t('controllers.admin.not_authorised')
     end
 
-    def notify_member
-      return unless @pay_out.persisted?
+    def wrap_up
+      dividend.pay_out_complete!
 
-      @dividend.pay_out_complete!
       NotificationMailer.with(pay_out:).dividend_paid_out.deliver_later
     end
   end

@@ -19,6 +19,10 @@ Style/Documentation:
 Minitest/MultipleAssertions:
   Enabled: false
 
+Metrics/AbcSize:
+  Exclude:
+    - 'app/controllers/admin/pay_outs_controller.rb'
+
 Metrics/BlockLength:
   Exclude:
     - 'lib/tasks/services.rake'
@@ -26,6 +30,7 @@ Metrics/BlockLength:
 Metrics/MethodLength:
   Exclude:
     - 'app/mailers/notification_mailer.rb'
+    - 'app/controllers/admin/pay_outs_controller.rb'
 
 Rails/LexicallyScopedActionFilter:
   Exclude:
