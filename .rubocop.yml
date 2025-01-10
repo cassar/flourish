@@ -13,6 +13,9 @@ require:
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
 
+Layout/FirstHashElementIndentation:
+  EnforcedStyle: consistent
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
