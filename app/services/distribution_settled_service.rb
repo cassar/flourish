@@ -9,7 +9,7 @@ class DistributionSettledService
   end
 
   def call
-    raise DistributionNotSettledError unless @distribution.settled?
+    raise DistributionNotSettledError unless distribution.settled?
 
     users.each do |user|
       NotificationMailer.with(distribution:, user:).distribution_settled.deliver_now
