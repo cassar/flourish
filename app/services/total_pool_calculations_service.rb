@@ -8,9 +8,9 @@ class TotalPoolCalculationsService
 
     def total_owed_dividends_by_currency
       Amount.joins(:dividends)
-            .merge(Dividend.owed)
-            .group(:currency)
-            .sum(:amount_in_base_units)
+        .merge(Dividend.owed)
+        .group(:currency)
+        .sum(:amount_in_base_units)
     end
 
     def total_paid_out_by_currency
@@ -21,16 +21,16 @@ class TotalPoolCalculationsService
 
     def total_recontributions_by_currency
       Amount.joins(:dividends)
-            .merge(Dividend.recontributed)
-            .group(:currency)
-            .sum(:amount_in_base_units)
+        .merge(Dividend.recontributed)
+        .group(:currency)
+        .sum(:amount_in_base_units)
     end
 
     def total_dividends_by_currency
       Amount.joins(:dividends)
-            .merge(Dividend.all)
-            .group(:currency)
-            .sum(:amount_in_base_units)
+        .merge(Dividend.all)
+        .group(:currency)
+        .sum(:amount_in_base_units)
     end
   end
 end

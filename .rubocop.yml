@@ -10,6 +10,9 @@ require:
   - rubocop-capybara
   - rubocop-minitest
 
+Layout/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+
 Style/FrozenStringLiteralComment:
   Enabled: false
 
