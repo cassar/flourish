@@ -4,7 +4,8 @@ class NextDistributionService
       DistributionService.new(
         name:,
         members:,
-        amounts:
+        amounts:,
+        notification_enabled_member_ids:
       ).call
     end
 
@@ -60,6 +61,16 @@ class NextDistributionService
 
     def total_pool
       TotalPoolService
+    end
+
+    def notification_enabled_member_ids
+      members
+        .joins(:notification_preferences)
+        .where(notification_preferences: {
+          id: NotificationPreference.dividend_received,
+          enabled: true
+        })
+        .pluck(:id)
     end
   end
 end

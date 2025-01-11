@@ -8,7 +8,8 @@ class DistributionServiceTest < ActiveSupport::TestCase
       DistributionService.new(
         name: expected_name,
         members: [members(:one)],
-        amounts: [amounts(:one)]
+        amounts: [amounts(:one)],
+        notification_enabled_member_ids: []
       ).call
     end
 
@@ -22,7 +23,8 @@ class DistributionServiceTest < ActiveSupport::TestCase
       DistributionService.new(
         name: '#3',
         members: [members(:one)],
-        amounts: [amount]
+        amounts: [amount],
+        notification_enabled_member_ids: []
       ).call
     end
 
@@ -35,21 +37,37 @@ class DistributionServiceTest < ActiveSupport::TestCase
     assert DistributionService.new(
       name: '#3',
       members: [members(:one)],
-      amounts: [amounts(:one)]
+      amounts: [amounts(:one)],
+      notification_enabled_member_ids: []
     ).call
   end
 
-  test 'sends a notification to each member' do
-    members = [members(:one)]
-    mailer_mock = mock('mailer')
-    NotificationMailer.stubs(:with).returns(mailer_mock)
-    mailer_mock.stubs(:dividend_received).returns(mailer_mock)
-    mailer_mock.stubs(:deliver_now).returns(true).times(members.count)
+  test 'sends notification for preference enabled' do
+    ActionMailer::Base.deliveries.clear
 
-    assert DistributionService.new(
+    DistributionService.new(
       name: '#3',
-      members:,
-      amounts: [amounts(:one)]
+      members: [members(:one)],
+      amounts: [amounts(:one)],
+      notification_enabled_member_ids: [members(:one).id]
     ).call
+
+    assert_equal 1, ActionMailer::Base.deliveries.count
+    assert(ActionMailer::Base.deliveries.all? do |mail|
+      mail.subject.match?(/New Dividend Distributed/)
+    end)
+  end
+
+  test 'does not send a notification for preference disabled' do
+    ActionMailer::Base.deliveries.clear
+
+    DistributionService.new(
+      name: '#3',
+      members: [members(:one)],
+      amounts: [amounts(:one)],
+      notification_enabled_member_ids: []
+    ).call
+
+    assert_equal 0, ActionMailer::Base.deliveries.count
   end
 end

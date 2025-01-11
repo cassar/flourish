@@ -1,11 +1,12 @@
 class DistributionService
   attr_reader :name, :members, :amounts
-  attr_accessor :distribution, :dividends
+  attr_accessor :distribution, :dividends, :notification_enabled_member_ids
 
-  def initialize(name:, members:, amounts:)
+  def initialize(name:, members:, amounts:, notification_enabled_member_ids:)
     @name = name
     @members = members
     @amounts = amounts
+    @notification_enabled_member_ids = notification_enabled_member_ids
   end
 
   def call
@@ -33,8 +34,14 @@ class DistributionService
   end
 
   def notify_members
-    dividends.map do |dividend|
+    notification_enabled_dividends.map do |dividend|
       NotificationMailer.with(dividend:).dividend_received.deliver_now
+    end
+  end
+
+  def notification_enabled_dividends
+    dividends.select do |dividend|
+      dividend.member_id.in? notification_enabled_member_ids
     end
   end
 end
