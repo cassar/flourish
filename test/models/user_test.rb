@@ -33,6 +33,12 @@ class UserTest < ActiveSupport::TestCase
     assert_not_includes User.distribution_preview_notify_enabled, users(:two)
   end
 
+  test 'distribution_settled_notify_enabled' do
+    assert_includes User.distribution_settled_notify_enabled, users(:one)
+
+    assert_not_includes User.distribution_settled_notify_enabled, users(:two)
+  end
+
   test '#admin? should return true if admin' do
     users(:one).email = User::ADMIN_EMAIL
 

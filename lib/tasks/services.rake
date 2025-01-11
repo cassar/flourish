@@ -24,10 +24,9 @@ namespace :services do
   desc 'notifies users when a distribution has settled'
   task distribution_settled: :environment do
     if ConsolidationDateService.today?
-      DistributionSettledService.new(
-        distribution: Distribution.last,
-        users: User.active
-      ).call
+      users = User.active.distribution_settled_notify_enabled
+
+      DistributionSettledService.new(distribution: Distribution.last, users:).call
     end
   end
 

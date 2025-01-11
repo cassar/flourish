@@ -26,6 +26,14 @@ class User < ApplicationRecord
       })
   }
 
+  scope :distribution_settled_notify_enabled, lambda {
+    joins(member: :notification_preferences)
+      .where(notification_preferences: {
+        id: NotificationPreference.distribution_settled,
+        enabled: true
+      })
+  }
+
   def admin?
     email == ADMIN_EMAIL
   end
