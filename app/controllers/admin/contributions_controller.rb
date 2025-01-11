@@ -46,6 +46,8 @@ module Admin
     end
 
     def send_notification
+      return unless member.notification_preferences.contribution_received.all?(&:enabled)
+
       NotificationMailer.with(contribution:).contribution_received.deliver_later
     end
 

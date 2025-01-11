@@ -96,18 +96,49 @@ module Admin
       assert_equal members(:one), Contribution.last.member
     end
 
-    test 'sends a notification on post create on valid record ' do
+    test 'sends notification for preference enabled' do
+      ActionMailer::Base.deliveries.clear
       sign_in users(:admin)
+      notification_preference = notification_preferences(:contribution_received)
+      member = members(:one)
 
-      mailer_mock = mock('mailer')
-      NotificationMailer.stubs(:with).returns(mailer_mock).once
-      mailer_mock.stubs(:contribution_received).returns(mailer_mock).once
-      mailer_mock.stubs(:deliver_later).returns(true).once
+      assert_equal member, notification_preference.member
+      assert_predicate notification_preference, :enabled
 
-      post admin_member_contributions_path(members(:one)), params: { contribution: {
-        transaction_identifier: 'xxxx',
-        amount_in_base_units: 4000
-      } }
+      perform_enqueued_jobs do
+        post admin_member_contributions_path(member), params: { contribution: {
+          currency: 'USD',
+          amount_in_base_units: 4000,
+          fees_in_base_units: 50,
+          transaction_identifier: 'xxxx'
+        } }
+      end
+
+      assert_equal 1, ActionMailer::Base.deliveries.count
+      assert(ActionMailer::Base.deliveries.all? do |mail|
+        mail.subject.match?(/Your Contribution has been Received/)
+      end)
+    end
+
+    test 'does not send a notification for preference disabled' do
+      ActionMailer::Base.deliveries.clear
+      sign_in users(:admin)
+      notification_preference = notification_preferences(:contribution_received_disabled)
+      member = members(:two)
+
+      assert_equal member, notification_preference.member
+      assert_not_predicate notification_preference, :enabled
+
+      perform_enqueued_jobs do
+        post admin_member_contributions_path(member), params: { contribution: {
+          currency: 'USD',
+          amount_in_base_units: 4000,
+          fees_in_base_units: 50,
+          transaction_identifier: 'xxxx'
+        } }
+      end
+
+      assert_equal 0, ActionMailer::Base.deliveries.count
     end
 
     test 'post create on invalid record' do
