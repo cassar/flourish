@@ -101,6 +101,53 @@ module Admin
       assert_predicate dividends(:pending_pay_out).reload, :pay_out_complete?
     end
 
+    test 'sends notification for preference enabled' do
+      ActionMailer::Base.deliveries.clear
+      sign_in users(:admin)
+      notification_preference = notification_preferences(:dividend_paid_out)
+      dividend = dividends(:pending_pay_out)
+
+      assert_equal dividend.member, notification_preference.member
+      assert_predicate notification_preference, :enabled
+
+      perform_enqueued_jobs do
+        post admin_dividend_pay_outs_path(dividend),
+             params: { pay_out: {
+               currency: 'USD',
+               amount_in_base_units: 500,
+               fees_in_base_units: 3,
+               transaction_identifier: 'new_transaction_identifier'
+             } }
+      end
+
+      assert_equal 1, ActionMailer::Base.deliveries.count
+      assert(ActionMailer::Base.deliveries.all? do |mail|
+        mail.subject.match?(/Your Dividend has been Paid Out/)
+      end)
+    end
+
+    test 'does not send a notification for preference disabled' do
+      ActionMailer::Base.deliveries.clear
+      sign_in users(:admin)
+      notification_preference = notification_preferences(:dividend_paid_out_disabled)
+      dividend = dividends(:pending_pay_out_two)
+
+      assert_equal dividend.member, notification_preference.member
+      assert_not_predicate notification_preference, :enabled
+
+      perform_enqueued_jobs do
+        post admin_dividend_pay_outs_path(dividend),
+             params: { pay_out: {
+               currency: 'USD',
+               amount_in_base_units: 500,
+               fees_in_base_units: 3,
+               transaction_identifier: 'new_transaction_identifier'
+             } }
+      end
+
+      assert_equal 0, ActionMailer::Base.deliveries.count
+    end
+
     test 'post create invalid' do
       assert_predicate users(:admin), :admin?
       sign_in users(:admin)

@@ -41,6 +41,8 @@ Metrics/MethodLength:
 Metrics/ClassLength:
   Exclude:
     - 'test/controllers/admin/contributions_controller_test.rb'
+    - 'test/controllers/admin/pay_outs_controller_test.rb'
+
 Rails/LexicallyScopedActionFilter:
   Exclude:
     - 'app/controllers/users/registrations_controller.rb'

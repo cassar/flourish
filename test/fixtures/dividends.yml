@@ -30,3 +30,8 @@ auto_recontributed:
   amount: one
   status: auto_recontributed
   member: one
+
+pending_pay_out_two:
+  amount: two
+  status: pending_pay_out
+  member: two

@@ -50,6 +50,7 @@ module Admin
 
     def wrap_up
       dividend.pay_out_complete!
+      return unless member.notification_preferences.dividend_paid_out.all?(&:enabled)
 
       NotificationMailer.with(pay_out:).dividend_paid_out.deliver_later
     end
