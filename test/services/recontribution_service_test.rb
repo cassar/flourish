@@ -5,17 +5,19 @@ class RecontributionServiceTest < ActiveSupport::TestCase
     assert_equal 'issued', dividends(:issued).status
 
     RecontributionService.new(
-      issued_dividends: [dividends(:issued)]
+      issued_dividends: [dividends(:issued)],
+      notify_enabled_dividends: []
     ).call
 
     assert_equal 'auto_recontributed', dividends(:issued).reload.status
   end
 
-  test 'sends notification for each auto recontribution' do
+  test 'sends notification to each subscribed member' do
     ActionMailer::Base.deliveries.clear
 
-    assert RecontributionService.new(
-      issued_dividends: [dividends(:issued)]
+    RecontributionService.new(
+      issued_dividends: [],
+      notify_enabled_dividends: [dividends(:one)]
     ).call
 
     assert_equal 1, ActionMailer::Base.deliveries.count

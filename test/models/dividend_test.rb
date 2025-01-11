@@ -40,4 +40,10 @@ class DividendTest < ActiveSupport::TestCase
     assert_not_includes Dividend.recontributed, Dividend.pending_pay_out.first
     assert_not_includes Dividend.recontributed, Dividend.pay_out_complete.first
   end
+
+  test 'automatically_recontributed_notify_enabled scope' do
+    assert_includes Dividend.automatically_recontributed_notify_enabled, dividends(:one)
+
+    assert_not_includes Dividend.automatically_recontributed_notify_enabled, dividends(:issued)
+  end
 end

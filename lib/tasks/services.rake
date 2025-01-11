@@ -4,13 +4,15 @@ namespace :services do
     NextDistributionService.distribute! if NextDistributionService.today?
   end
 
-  desc 'recontributes unclaimed dividends and notifies member'
+  desc 'recontributes unclaimed dividends and notifies subscribed members'
   task recontribution: :environment do
     if ConsolidationDateService.today?
       mailgun_send_limit = 10
-      RecontributionService.new(
-        issued_dividends: Dividend.issued.take(mailgun_send_limit)
-      ).call
+      issued_dividends = Dividend.issued.take(mailgun_send_limit)
+      notify_enabled_dividends = issued_dividends
+        .automatically_recontributed_notify_enabled
+
+      RecontributionService.new(issued_dividends:, notify_enabled_dividends:).call
     end
   end
 
