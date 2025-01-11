@@ -31,12 +31,12 @@ namespace :services do
     end
   end
 
-  desc 'sends a distribution preview to all users'
+  desc 'sends a distribution preview to all subscribed users'
   task distribution_preview: :environment do
     if DistributionPreviewDateService.today?
-      DistributionPreviewService.new(
-        users: User.active
-      ).call
+      users = User.active.distribution_preview_notify_enabled
+
+      DistributionPreviewService.new(users:).call
     end
   end
 

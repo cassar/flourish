@@ -27,6 +27,12 @@ class UserTest < ActiveSupport::TestCase
     assert_not_includes User.inactive, users(:admin)
   end
 
+  test 'distribution_preview_notify_enabled scope' do
+    assert_includes User.distribution_preview_notify_enabled, users(:one)
+
+    assert_not_includes User.distribution_preview_notify_enabled, users(:two)
+  end
+
   test '#admin? should return true if admin' do
     users(:one).email = User::ADMIN_EMAIL
 
