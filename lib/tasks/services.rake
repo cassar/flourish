@@ -9,7 +9,7 @@ namespace :services do
     if ConsolidationDateService.today?
       mailgun_send_limit = 10
       issued_dividends = Dividend.issued.take(mailgun_send_limit)
-      notify_enabled_dividends = issued_dividends
+      notify_enabled_dividends = Dividend.where(id: issued_dividends)
         .automatically_recontributed_notify_enabled
 
       RecontributionService.new(issued_dividends:, notify_enabled_dividends:).call
