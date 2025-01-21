@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class TotalPoolServiceTest < ActiveSupport::TestCase
-  test 'balance_in_base_units' do
+  test 'balance_in_aud_base_units' do
     TotalPoolCalculationsService.stubs(:total_contributions_by_currency)
       .returns({ 'AUD' => 10_000 })
 
@@ -13,17 +13,17 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
 
     Expense.stubs(:sum).returns(1_000).once
 
-    assert_equal 7_500, TotalPoolService.balance_in_base_units
+    assert_equal 7_500, TotalPoolService.balance_in_aud_base_units
   end
 
   test 'balance in base units integration' do
     stub_eu_central_bank_request
 
-    assert_instance_of Integer, TotalPoolService.balance_in_base_units
+    assert_instance_of Integer, TotalPoolService.balance_in_aud_base_units
   end
 
   test 'balance_formatted' do
-    TotalPoolService.stubs(:balance_in_base_units).returns(10_000)
+    TotalPoolService.stubs(:balance_in_aud_base_units).returns(10_000)
 
     assert_equal '$100.00 AUD', TotalPoolService.balance_formatted('AUD')
   end

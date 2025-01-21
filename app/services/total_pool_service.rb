@@ -1,13 +1,13 @@
 class TotalPoolService
   class << self
-    def balance_in_base_units
+    def balance_in_aud_base_units
       Integer(total_assets_in_base_units - total_liabilites_in_base_units)
     end
 
     def balance_formatted(currency)
       CurrencyConverter.new(
         from_currency: 'AUD',
-        amount_in_base_units: balance_in_base_units,
+        amount_in_base_units: balance_in_aud_base_units,
         to_currency: currency
       ).format
     end

@@ -58,7 +58,7 @@ class NextDistributionService
     end
 
     def total_pool_in_aud_base_units
-      total_pool.balance_in_base_units
+      total_pool.balance_in_aud_base_units
     end
 
     def total_pool
