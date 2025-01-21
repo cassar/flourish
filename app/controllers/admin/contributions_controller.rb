@@ -37,8 +37,8 @@ module Admin
     end
 
     def contribution_params
-      params.require(:contribution).permit(:currency, :amount_in_base_units, :fees_in_base_units,
-                                           :transaction_identifier)
+      params.expect(contribution: %i[currency amount_in_base_units fees_in_base_units
+                                     transaction_identifier])
     end
 
     def contribution_error_message

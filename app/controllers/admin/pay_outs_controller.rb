@@ -39,7 +39,7 @@ module Admin
     private
 
     def pay_out_params
-      params.require(:pay_out).permit(:currency, :amount_in_base_units, :fees_in_base_units, :transaction_identifier)
+      params.expect(pay_out: %i[currency amount_in_base_units fees_in_base_units transaction_identifier])
     end
 
     def authorise_admin!

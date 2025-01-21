@@ -19,6 +19,6 @@ class CurrenciesController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:currency)
+    params.expect(member: [:currency])
   end
 end

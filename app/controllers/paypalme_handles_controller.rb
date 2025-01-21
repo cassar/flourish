@@ -19,6 +19,6 @@ class PaypalmeHandlesController < ApplicationController
   private
 
   def member_params
-    params.require(:member).permit(:paypalme_handle)
+    params.expect(member: [:paypalme_handle])
   end
 end
