@@ -5,7 +5,7 @@ namespace :services do
   end
 
   desc 'recontributes unclaimed dividends and notifies subscribed members'
-  task recontribution: :environment do
+  task recontribute_dividends: :environment do
     if ConsolidationDateService.today?
       mailgun_send_limit = 10
       issued_dividends = Dividend.issued.take(mailgun_send_limit)
