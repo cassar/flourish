@@ -1,6 +1,6 @@
 namespace :services do
   desc 'creates a distribution and dividends and notifies members'
-  task distribution: :environment do
+  task distribute_dividends: :environment do
     NextDistributionService.distribute! if NextDistributionService.today?
   end
 
