@@ -46,16 +46,18 @@ class NextDistributionService
       ).call
     end
 
-    delegate :amount_in_base_units, to: :dividend_amount
+    def amount_in_base_units
+      dividend_amount.amount_in_aud_base_units
+    end
 
     def dividend_amount
       DividendAmountService.new(
-        total_pool_in_base_units:,
+        total_pool_in_aud_base_units:,
         member_count:
       )
     end
 
-    def total_pool_in_base_units
+    def total_pool_in_aud_base_units
       total_pool.balance_in_base_units
     end
 

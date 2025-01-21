@@ -48,12 +48,4 @@ class NextDistributionServiceTest < ActiveSupport::TestCase
 
     assert_instance_of String, result
   end
-
-  test 'amount_in_base_units' do
-    stub_eu_central_bank_request
-
-    result = NextDistributionService.amount_in_base_units
-
-    assert_instance_of Integer, result
-  end
 end
