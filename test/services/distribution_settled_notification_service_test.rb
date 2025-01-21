@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class DistributionSettledServiceTest < ActiveSupport::TestCase
+class DistributionSettledNotificationServiceTest < ActiveSupport::TestCase
   test 'fails when distribution not settled' do
     distribution = distributions(:one)
 
     assert_predicate distribution.dividends.issued, :any?
 
-    assert_raises DistributionSettledService::DistributionNotSettledError do
-      DistributionSettledService.new(users: [], distribution:).call
+    assert_raises DistributionSettledNotificationService::DistributionNotSettledError do
+      DistributionSettledNotificationService.new(users: [], distribution:).call
     end
   end
 
@@ -16,7 +16,7 @@ class DistributionSettledServiceTest < ActiveSupport::TestCase
     users = [users(:one), users(:two)]
     distribution = distributions(:two)
 
-    DistributionSettledService.new(users:, distribution:).call
+    DistributionSettledNotificationService.new(users:, distribution:).call
 
     assert_equal users.length, ActionMailer::Base.deliveries.count
     assert(ActionMailer::Base.deliveries.all? do |mail|

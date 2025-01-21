@@ -1,4 +1,4 @@
-class DistributionSettledService
+class DistributionSettledNotificationService
   class DistributionNotSettledError < StandardError; end
 
   attr_accessor :users, :distribution

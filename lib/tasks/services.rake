@@ -26,7 +26,7 @@ namespace :services do
     if ConsolidationDateService.today?
       users = User.active.distribution_settled_notify_enabled
 
-      DistributionSettledService.new(distribution: Distribution.last, users:).call
+      DistributionSettledNotificationService.new(distribution: Distribution.last, users:).call
     end
   end
 
