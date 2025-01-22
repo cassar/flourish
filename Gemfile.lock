@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: d4acb7aed7c48c3a884cb0ee52f6de6aa3607f3c
+  revision: 79f7c97ae57df2edda66265fef4944a50268284e
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -170,7 +170,8 @@ GEM
       activesupport (>= 6.0.0)
       railties (>= 6.0.0)
     io-console (0.8.0)
-    irb (1.14.3)
+    irb (1.15.0)
+      pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
     jbuilder (2.13.0)
@@ -225,6 +226,9 @@ GEM
       ast (~> 2.4.1)
       racc
     pg (1.5.9)
+    pp (0.6.2)
+      prettyprint
+    prettyprint (0.2.0)
     psych (5.2.3)
       date
       stringio
