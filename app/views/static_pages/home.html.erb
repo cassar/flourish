@@ -8,6 +8,13 @@
 <article>
   <%= render partial: 'welcome', locals: { next_distribution: @next_distribution, total_pool: @total_pool, member: @member } %>
 </article>
+<article>
+  <% if @last_distribution.settled? %>
+    <%= render partial: 'last_distribution', locals: { last_distribution: @last_distribution, last_distribution_dividends: @last_distribution_dividends, last_amount: @last_amount } %>
+  <% else %>
+    <%= render partial: 'next_distribution', locals: { next_distribution: @next_distribution, member: @member } %>
+  <% end %>
+</article>
 <nav>
   <%= link_to 'About', about_path, class: 'button' %>
   <%= render partial: 'authentication' %>
