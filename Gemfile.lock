@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: e3cf59212be585df91e1f1ccc7b76d08fb28402b
+  revision: 4d42d34adda4011e770c18136966cb5df08c9220
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -237,7 +237,7 @@ GEM
     puma (6.6.0)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.1.8)
+    rack (3.1.9)
     rack-session (2.1.0)
       base64 (>= 0.1.0)
       rack (>= 3.0.0)
@@ -266,14 +266,14 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.4.0)
-    rubocop (1.71.0)
+    rubocop (1.71.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
       parallel (~> 1.10)
       parser (>= 3.3.0.2)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 2.9.3, < 3.0)
-      rubocop-ast (>= 1.36.2, < 2.0)
+      rubocop-ast (>= 1.38.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
     rubocop-ast (1.38.0)
