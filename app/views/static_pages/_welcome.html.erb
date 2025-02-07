@@ -1,7 +1,7 @@
 <p><strong>Welcome!</strong></p>
 <p>Flourish is a social change project encouraging us to rethink the way we interact with each other.</p>
-<strong>How does it work?</strong>
+<p><strong>How does it work?</strong></p>
 <%= render partial: 'how_does_it_work' %>
-<strong>What have been the results?</strong>
+<p><strong>What have been the results?</strong></p>
 <p>To date, the project has issued <strong><%= total_pool.total_dividends_formatted(member.currency) %></strong> in dividends, with <strong><%= total_pool.total_paid_out_formatted(member.currency) %></strong> of that being paid out as cash to member's accounts.</p>
 <p>This has been achieved with <strong><%= total_pool.total_contributed_and_recontributed_formatted(member.currency) %></strong> in funds contributed from our <strong><%= next_distribution.member_count %></strong> members.</p>
