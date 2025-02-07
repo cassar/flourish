@@ -1,7 +1,8 @@
 <p><b>Next Distribution: <%= next_distribution.name %></b></p>
+<p class="amount"><strong><%= next_distribution.dividend_amount_formatted(member.currency) %></strong></p>
+<p class="amount-label"><i>Dividend</i></p>
 <ul>
   <li><b>Date:</b> <%= next_distribution.date_formatted %></li>
   <li><b>Contributions:</b> <%= next_distribution.total_pool_formatted(member.currency) %></li>
   <li><b>Members:</b> <%= next_distribution.member_count %></li>
-  <li><b>Dividend:</b> <%= next_distribution.dividend_amount_formatted(member.currency) %></li>
 </ul>

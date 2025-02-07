@@ -1,9 +1,10 @@
 <article>
-  <p><b>Date</b>: <%= created_at_formatted dividend %></p> 
+  <p><b>Distribution: <%= dividend.distribution.name %></b></p> 
+  <p class="amount"><strong><%= dividend.amount.amount_formatted %></strong></p>
+  <p class="amount-label"><i>Dividend</i></p>
   <ul>
-  <li><b>Amount</b>: <%= dividend.amount.amount_formatted %></li>
-  <li><b>Distribution</b>: <%= dividend.distribution.name %></li>
-  <li><b>Status</b>: <%= dividend.status.titleize %></li>
+    <li><b>Date</b>: <%= created_at_formatted dividend %></li>
+    <li><b>Status</b>: <%= dividend.status.titleize %></li>
   <% if dividend.pay_out_complete? %>
     <li><b>Transaction Identifier</b>: <%= dividend.pay_out.transaction_identifier %></li>
   <% end %>
