@@ -3,5 +3,11 @@
 <p><strong>How does it work?</strong></p>
 <%= render partial: 'how_does_it_work' %>
 <p><strong>What have been the results?</strong></p>
-<p>To date, the project has issued <strong><%= total_pool.total_dividends_formatted(member.currency) %></strong> in dividends, with <strong><%= total_pool.total_paid_out_formatted(member.currency) %></strong> of that being paid out as cash to member's accounts.</p>
-<p>This has been achieved with <strong><%= total_pool.total_contributed_and_recontributed_formatted(member.currency) %></strong> in funds contributed from our <strong><%= next_distribution.member_count %></strong> members.</p>
+<p class="amount"><strong><%= next_distribution.member_count %></strong></p>
+<p class="amount-label"><i>Participating Members</i></p>
+<p class="amount"><strong><%= total_pool.total_contributed_and_recontributed_formatted(member.currency) %></strong></p>
+<p class="amount-label"><i>in Contributions Received</i></p>
+<p class="amount"><strong><%= total_pool.total_dividends_formatted(member.currency) %></strong></p>
+<p class="amount-label"><i>in Dividends Issued</i></p>
+<p class="amount"><strong><%= total_pool.total_paid_out_formatted(member.currency) %></strong></p>
+<p class="amount-label"><i>in Cash Paid Out</i></p>
