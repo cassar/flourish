@@ -42,4 +42,12 @@ class DistributionTest < ActiveSupport::TestCase
 
     assert_not distributions(:one).settled?
   end
+
+  test 'number persisted' do
+    assert_equal '1', distributions(:one).number
+  end
+
+  test 'number new' do
+    assert_equal '0', Distribution.new.number
+  end
 end

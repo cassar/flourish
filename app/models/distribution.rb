@@ -11,4 +11,8 @@ class Distribution < ApplicationRecord
   def settled?
     dividends.issued.none?
   end
+
+  def number
+    name&.delete('#') || '0'
+  end
 end
