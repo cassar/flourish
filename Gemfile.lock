@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: ad0105c13f61d145a659004efb928a643104e973
+  revision: 730e815ccc65523c7fc012a2ce154e96d78d49d0
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -203,7 +203,7 @@ GEM
       ruby2_keywords (>= 0.0.5)
     money (6.19.0)
       i18n (>= 0.6.4, <= 2)
-    msgpack (1.7.5)
+    msgpack (1.8.0)
     net-imap (0.5.5)
       date
       net-protocol
@@ -254,7 +254,7 @@ GEM
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
     rainbow (3.1.1)
     rake (13.2.1)
-    rdoc (6.11.0)
+    rdoc (6.12.0)
       psych (>= 4.0.0)
     redis (4.8.1)
     redis-client (0.23.2)
@@ -289,7 +289,7 @@ GEM
       rubocop (>= 1.52.0, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     ruby-progressbar (1.13.0)
-    ruby-vips (2.2.2)
+    ruby-vips (2.2.3)
       ffi (~> 1.12)
       logger
     ruby2_keywords (0.0.5)
@@ -345,7 +345,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webmock (3.24.0)
+    webmock (3.25.0)
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
