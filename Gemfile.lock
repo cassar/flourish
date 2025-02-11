@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 851b9d4c55c1fced6150c2283e5c2744d785c18f
+  revision: 986d7dfe372430dabd95f71db2e1573b22e2b069
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -157,13 +157,13 @@ GEM
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashdiff (1.1.2)
-    honeybadger (5.26.2)
+    honeybadger (5.26.3)
       logger
       ostruct
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
-    image_processing (1.13.0)
-      mini_magick (>= 4.9.5, < 5)
+    image_processing (1.14.0)
+      mini_magick (>= 4.9.5, < 6)
       ruby-vips (>= 2.0.17, < 3)
     importmap-rails (2.1.0)
       actionpack (>= 6.0.0)
@@ -177,7 +177,7 @@ GEM
     jbuilder (2.13.0)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    json (2.9.1)
+    json (2.10.1)
     language_server-protocol (3.17.0.4)
     launchy (3.1.0)
       addressable (~> 2.8)
@@ -196,7 +196,9 @@ GEM
       net-smtp
     marcel (1.0.4)
     matrix (0.4.2)
-    mini_magick (4.13.2)
+    mini_magick (5.1.2)
+      benchmark
+      logger
     mini_mime (1.1.5)
     minitest (5.25.4)
     mocha (2.7.1)
