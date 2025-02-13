@@ -1,70 +1,62 @@
-<article>
-  <p>Hey Flourishites!</p>
-  <p>Welcome to this week's Distribution Preview 😁</p>
-  <p>Got some feedback on the visual layout of the home page the other day from one member and decided to give it a bit of a facelift:</p>
-  <ul>
-    <li>The dividend amounts have been made more prominent and moved to the top of their sections.</li>
-    <li>And also, the summary amounts (total contributions, member count etc) have been given the same styling and now stand out a lot more.</li>
-  </ul>
-  </p>
-  <p>Please check it out and let me know what you think. 🙏</p>
-  <p>Next I'm just itching to redo the email styling to make it consintent with the rest of the app.</p>
-  <p>Enjoy the rest of your week!</p>
-  <p>-Luke-</p>
-</article>
-<article>
-  <p><b>Distribution <%= @next_distribution.name %> Preview</b></p>
-  <ul>
-    <li><b>Date:</b> <%= @next_distribution.date_formatted %></li>
-    <li><b>Total Contributions:</b> <%= @next_distribution.total_pool_formatted(@member.currency) %></li>
-    <li><b>Members:</b> <%= @next_distribution.member_count %></li>
-    <li><b>Dividend:</b> <%= @next_distribution.dividend_amount_formatted(@member.currency) %></li>
-  </ul>
-  <a><%= link_to "View Past Distributions", distributions_url %></a>
-</article>
-<article>
+<p>Hey Flourishites!</p>
+<p>Welcome to this week's Distribution Preview 😁</p>
+<p>Got some feedback on the visual layout of the home page the other day from one member and decided to give it a bit of a facelift:</p>
+<ul>
+  <li>The dividend amounts have been made more prominent and moved to the top of their sections.</li>
+  <li>And also, the summary amounts (total contributions, member count etc) have been given the same styling and now stand out a lot more.</li>
+</ul>
+</p>
+<p>Please check it out and let me know what you think. 🙏</p>
+<p>Next I'm just itching to redo the email styling to make it consintent with the rest of the app.</p>
+<p>Enjoy the rest of your week!</p>
+<p>-Luke-</p>
+<p><b>Distribution <%= @next_distribution.name %> Preview</b></p>
+<ul>
+  <li><b>Date:</b> <%= @next_distribution.date_formatted %></li>
+  <li><b>Total Contributions:</b> <%= @next_distribution.total_pool_formatted(@member.currency) %></li>
+  <li><b>Members:</b> <%= @next_distribution.member_count %></li>
+  <li><b>Dividend:</b> <%= @next_distribution.dividend_amount_formatted(@member.currency) %></li>
+</ul>
+<a><%= link_to "View Past Distributions", distributions_url %></a>
 <p><b>Recent Contributions</p></b>
-  <% if @recent_contributions.none? %>
-    <p>[No contributions in the last week]</p>
-  <% else %>
-    <table>
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @recent_contributions.each do |contribution| %>
-          <tr>
-            <td><%= contribution.created_at_formatted %></td>
-            <td><%= contribution.amount_formatted %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</article>
-<article>
-  <p><b>Weekly Expenses</p></b>
+<% if @recent_contributions.none? %>
+  <p>[No contributions in the last week]</p>
+<% else %>
   <table>
     <thead>
       <tr>
-        <th>Item</th>
+        <th>Date</th>
         <th>Amount</th>
       </tr>
     </thead>
     <tbody>
-      <% @expenses.each do |expense| %>
+      <% @recent_contributions.each do |contribution| %>
         <tr>
-          <td><%= expense.name %></td>
-          <td><%= expense.amount_formatted %></td>
+          <td><%= contribution.created_at_formatted %></td>
+          <td><%= contribution.amount_formatted %></td>
         </tr>
       <% end %>
-      <tr>
-        <td><b>Total Deducted from Pool</b></td>
-        <td><b><%= @total_expenses_formatted %></b></td>
-      </tr>
     </tbody>
   </table>
-</article>
+<% end %>
+<p><b>Weekly Expenses</p></b>
+<table>
+  <thead>
+    <tr>
+      <th>Item</th>
+      <th>Amount</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @expenses.each do |expense| %>
+      <tr>
+        <td><%= expense.name %></td>
+        <td><%= expense.amount_formatted %></td>
+      </tr>
+    <% end %>
+    <tr>
+      <td><b>Total Deducted from Pool</b></td>
+      <td><b><%= @total_expenses_formatted %></b></td>
+    </tr>
+  </tbody>
+</table>
