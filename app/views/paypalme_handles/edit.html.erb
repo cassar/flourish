@@ -8,11 +8,8 @@
 </details>
 <%= form_with model: @member, url: paypalme_handle_path do |form| %>
   <article>
-    <p>
-      <span>PayPal.Me Handle:</span>
-      <%= form.text_field :paypalme_handle %>
-    </p>
+    <p><span><strong><%= paypalme_url %></strong></span><%= form.text_field :paypalme_handle %></p>
   </article>
-  <%= form.submit "Submit" %>
+  <%= form.submit "Update" %>
   <%= link_to 'Cancel', membership_path, class: 'button' %>
 <% end %>
