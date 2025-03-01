@@ -5,10 +5,12 @@ AllCops:
     - 'config/**/*'
     - 'bin/**/*'
 
-require:
+plugins:
   - rubocop-rails
-  - rubocop-capybara
   - rubocop-minitest
+
+require:
+  - rubocop-capybara
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented
