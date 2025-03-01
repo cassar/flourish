@@ -58,7 +58,7 @@ gem 'excon'
 gem 'figaro'
 
 # Flexible authentication solution for Rails with Warden.
-gem 'devise', '~> 4.9'
+gem 'devise', github: 'heartcombo/devise', branch: 'main'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 1.2'
