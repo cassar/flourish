@@ -13,6 +13,13 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test 'admin scope' do
+    assert_includes User.admin, users(:admin)
+
+    assert_not_includes User.admin, users(:inactive)
+    assert_not_includes User.admin, users(:active)
+  end
+
   test 'active scope' do
     assert_includes User.active, users(:active)
 

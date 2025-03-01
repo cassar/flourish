@@ -8,6 +8,10 @@ class User < ApplicationRecord
 
   has_one :member, dependent: :destroy
 
+  scope :admin, lambda {
+    where(email: ADMIN_EMAIL)
+  }
+
   scope :active, lambda {
     where.not(email: ADMIN_EMAIL)
       .where.not(last_sign_in_at: nil)
