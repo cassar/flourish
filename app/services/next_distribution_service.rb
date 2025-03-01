@@ -33,6 +33,8 @@ class NextDistributionService
       dividend_amount.amount_formatted(currency)
     end
 
+    delegate :today?, to: :DistributionDateService
+
     private
 
     def amounts
@@ -70,7 +72,5 @@ class NextDistributionService
         })
         .pluck(:id)
     end
-
-    delegate :today?, to: :DistributionDateService
   end
 end
