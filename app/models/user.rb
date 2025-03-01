@@ -13,12 +13,12 @@ class User < ApplicationRecord
   }
 
   scope :active, lambda {
-    where.not(email: ADMIN_EMAIL)
+    admin.invert_where
       .where.not(last_sign_in_at: nil)
   }
 
   scope :inactive, lambda {
-    where.not(email: ADMIN_EMAIL)
+    admin.invert_where
       .where(last_sign_in_at: nil)
   }
 
