@@ -25,10 +25,6 @@ class NextDistributionService
       DistributionDateService.next_date_formatted
     end
 
-    def today?
-      DistributionDateService.today?
-    end
-
     def total_pool_formatted(currency)
       total_pool.balance_formatted(currency)
     end
@@ -74,5 +70,7 @@ class NextDistributionService
         })
         .pluck(:id)
     end
+
+    delegate :today?, to: :DistributionDateService
   end
 end
