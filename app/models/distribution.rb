@@ -15,4 +15,8 @@ class Distribution < ApplicationRecord
   def name
     "##{number || 0}"
   end
+
+  def to_param
+    number.to_s
+  end
 end

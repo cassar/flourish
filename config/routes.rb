@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :contributions, only: :index
-  resources :distributions, only: :index
+  resources :distributions, only: [:index, :show]
   resources :pay_outs, only: :index
   resources :paypalme_handles, only: [:edit, :update]
   resources :currencies, only: [:edit, :update]

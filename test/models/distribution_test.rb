@@ -50,4 +50,8 @@ class DistributionTest < ActiveSupport::TestCase
   test 'name new' do
     assert_equal '#0', Distribution.new.name
   end
+
+  test 'to_param' do
+    assert_equal '1', distributions(:one).to_param
+  end
 end

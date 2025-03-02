@@ -6,4 +6,10 @@ class DistributionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+  test 'should get show' do
+    get distribution_path(distributions(:one))
+
+    assert_response :success
+  end
 end
