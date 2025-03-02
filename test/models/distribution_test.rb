@@ -21,17 +21,17 @@ class DistributionTest < ActiveSupport::TestCase
     assert_equal amounts(:one), distributions(:one).default_amount
   end
 
-  test 'name is nil' do
+  test 'number is nil' do
     error = assert_raises ActiveRecord::RecordInvalid do
-      distributions(:two).update! name: nil
+      distributions(:two).update! number: nil
     end
 
-    assert_match(/Name can't be blank/, error.message)
+    assert_match(/Number can't be blank/, error.message)
   end
 
-  test 'duplicate name' do
+  test 'duplicate number' do
     error = assert_raises ActiveRecord::RecordInvalid do
-      distributions(:two).update! name: distributions(:one).name
+      distributions(:two).update! number: distributions(:one).number
     end
 
     assert_match(/has already been taken/, error.message)
@@ -43,11 +43,11 @@ class DistributionTest < ActiveSupport::TestCase
     assert_not distributions(:one).settled?
   end
 
-  test 'number persisted' do
-    assert_equal '1', distributions(:one).number
+  test 'name persisted' do
+    assert_equal '#1', distributions(:one).name
   end
 
-  test 'number new' do
-    assert_equal '0', Distribution.new.number
+  test 'name new' do
+    assert_equal '#0', Distribution.new.name
   end
 end

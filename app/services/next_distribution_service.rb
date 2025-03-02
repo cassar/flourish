@@ -2,7 +2,7 @@ class NextDistributionService
   class << self
     def distribute!
       DistributionService.new(
-        name:,
+        number:,
         members:,
         amounts:,
         notification_enabled_member_ids:
@@ -18,7 +18,7 @@ class NextDistributionService
     end
 
     def name
-      NextDistributionNameService.call
+      Distribution.new(number:).name
     end
 
     def date_formatted
@@ -36,6 +36,10 @@ class NextDistributionService
     delegate :today?, to: :DistributionDateService
 
     private
+
+    def number
+      NextDistributionNumberService.call
+    end
 
     def amounts
       DividendAmountsService.new(

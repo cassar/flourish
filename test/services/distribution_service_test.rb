@@ -2,18 +2,18 @@ require 'test_helper'
 
 class DistributionServiceTest < ActiveSupport::TestCase
   test 'creates a single distribution' do
-    expected_name = '#3'
+    expected_number = 3
 
     assert_difference 'Distribution.count', 1 do
       DistributionService.new(
-        name: expected_name,
+        number: expected_number,
         members: [members(:one)],
         amounts: [amounts(:one)],
         notification_enabled_member_ids: []
       ).call
     end
 
-    assert_equal expected_name, Distribution.last.name
+    assert_equal expected_number, Distribution.last.number
   end
 
   test 'saves given amounts' do
@@ -21,7 +21,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
 
     assert_difference 'Amount.count', 1 do
       DistributionService.new(
-        name: '#3',
+        number: 3,
         members: [members(:one)],
         amounts: [amount],
         notification_enabled_member_ids: []
@@ -35,7 +35,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     MemberDividendService.any_instance.stubs(:call).returns([]).once
 
     assert DistributionService.new(
-      name: '#3',
+      number: 3,
       members: [members(:one)],
       amounts: [amounts(:one)],
       notification_enabled_member_ids: []
@@ -46,7 +46,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     ActionMailer::Base.deliveries.clear
 
     DistributionService.new(
-      name: '#3',
+      number: 3,
       members: [members(:one)],
       amounts: [amounts(:one)],
       notification_enabled_member_ids: [members(:one).id]
@@ -62,7 +62,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     ActionMailer::Base.deliveries.clear
 
     DistributionService.new(
-      name: '#3',
+      number: 3,
       members: [members(:one)],
       amounts: [amounts(:one)],
       notification_enabled_member_ids: []

@@ -2,7 +2,7 @@ class Distribution < ApplicationRecord
   has_many :amounts, dependent: :destroy
   has_many :dividends, through: :amounts
 
-  validates :name, uniqueness: true, presence: true
+  validates :number, uniqueness: true, presence: true
 
   def default_amount
     amounts.find_by currency: Currencies::DEFAULT
@@ -12,7 +12,7 @@ class Distribution < ApplicationRecord
     dividends.issued.none?
   end
 
-  def number
-    name&.delete('#') || '0'
+  def name
+    "##{number || 0}"
   end
 end

@@ -40,12 +40,10 @@ Member.take(10).each do |member|
 end
 
 puts "Making some distributions"
-(1..3).each do |integer|
-  distribution = Distribution.create(
-    name: "##{integer}",
-  )
+(1..3).each do |number|
+  distribution = Distribution.create(number:)
 
-  amount_in_base_units = 1_000 * integer
+  amount_in_base_units = 1_000 * number
   amount = distribution.amounts.create!(amount_in_base_units:)
 
   Member.take(3).each do |member|
