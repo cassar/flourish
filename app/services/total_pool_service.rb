@@ -13,10 +13,9 @@ class TotalPoolService
     end
 
     def total_contributed_and_recontributed_formatted(currency)
-      amount_in_base_units = total_contributed_in_aud_base_units + total_recontributed_in_aud_base_units
       CurrencyConverter.new(
         from_currency: 'AUD',
-        amount_in_base_units:,
+        amount_in_base_units: total_contributed_and_recontributed_in_aud_base_units,
         to_currency: currency
       ).format
     end
@@ -49,6 +48,13 @@ class TotalPoolService
         total_paid_out_in_aud_base_units,
         total_pay_out_fees_in_aud_base_units,
         total_expense_in_aud_base_units
+      ].sum
+    end
+
+    def total_contributed_and_recontributed_in_aud_base_units
+      [
+        total_contributed_in_aud_base_units,
+        total_recontributed_in_aud_base_units
       ].sum
     end
 
