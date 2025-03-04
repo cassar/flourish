@@ -19,6 +19,12 @@ class TotalPoolCalculationsService
         .sum(:amount_in_base_units)
     end
 
+    def total_pay_out_fees_by_currency
+      PayOut
+        .group(:currency)
+        .sum(:fees_in_base_units)
+    end
+
     def total_recontributions_by_currency
       Amount.joins(:dividends)
         .merge(Dividend.recontributed)

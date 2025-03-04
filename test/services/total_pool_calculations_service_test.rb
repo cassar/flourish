@@ -13,6 +13,10 @@ class TotalPoolCalculationsServiceTest < ActiveSupport::TestCase
     assert_instance_of Hash, TotalPoolCalculationsService.total_paid_out_by_currency
   end
 
+  test 'total_pay_out_fees_by_currency' do
+    assert_instance_of Hash, TotalPoolCalculationsService.total_pay_out_fees_by_currency
+  end
+
   test 'total_recontributions_by_currency' do
     assert_instance_of Hash, TotalPoolCalculationsService.total_recontributions_by_currency
   end

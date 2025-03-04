@@ -11,9 +11,12 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
     TotalPoolCalculationsService.stubs(:total_paid_out_by_currency)
       .returns({ 'AUD' => 1_000 })
 
+    TotalPoolCalculationsService.stubs(:total_pay_out_fees_by_currency)
+      .returns({ 'AUD' => 100 })
+
     Expense.stubs(:sum).returns(1_000).once
 
-    assert_equal 7_500, TotalPoolService.balance_in_aud_base_units
+    assert_equal 7_400, TotalPoolService.balance_in_aud_base_units
   end
 
   test 'balance in base units integration' do

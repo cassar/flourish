@@ -47,6 +47,7 @@ class TotalPoolService
       [
         total_owed_in_aud_base_units,
         total_paid_out_in_aud_base_units,
+        total_pay_out_fees_in_aud_base_units,
         total_expense_in_aud_base_units
       ].sum
     end
@@ -61,6 +62,10 @@ class TotalPoolService
 
     def total_paid_out_in_aud_base_units
       in_aud_base_units total_paid_out_by_currency
+    end
+
+    def total_pay_out_fees_in_aud_base_units
+      in_aud_base_units total_pay_out_fees_by_currency
     end
 
     def total_recontributed_in_aud_base_units
@@ -95,6 +100,10 @@ class TotalPoolService
 
     def total_paid_out_by_currency
       TotalPoolCalculationsService.total_paid_out_by_currency
+    end
+
+    def total_pay_out_fees_by_currency
+      TotalPoolCalculationsService.total_pay_out_fees_by_currency
     end
 
     def total_recontributions_by_currency
