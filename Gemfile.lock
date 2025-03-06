@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 7a031e38921bac41a6a97bbba861b406caebe164
+  revision: 954a3be7eadd62a19d62cd31dbd232b185a827e5
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -267,7 +267,7 @@ GEM
     rdoc (6.12.0)
       psych (>= 4.0.0)
     redis (4.8.1)
-    redis-client (0.23.2)
+    redis-client (0.24.0)
       connection_pool
     regexp_parser (2.10.0)
     reline (0.6.0)
@@ -322,12 +322,12 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (7.3.9)
-      base64
-      connection_pool (>= 2.3.0)
-      logger
-      rack (>= 2.2.4)
-      redis-client (>= 0.22.2)
+    sidekiq (8.0.0)
+      connection_pool (>= 2.5.0)
+      json (>= 2.9.0)
+      logger (>= 1.6.2)
+      rack (>= 3.1.0)
+      redis-client (>= 0.23.2)
     sprockets (4.2.1)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
