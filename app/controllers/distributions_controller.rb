@@ -5,5 +5,7 @@ class DistributionsController < ApplicationController
 
   def show
     @distribution = Distribution.find_by number: params[:id]
+    previous_distribution = Distribution.find_by(number: @distribution.number - 1) || Distribution.new
+    @contributions = Contribution.where(created_at: previous_distribution.created_at..@distribution.created_at)
   end
 end
