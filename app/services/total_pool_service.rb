@@ -17,11 +17,7 @@ class TotalPoolService
     end
 
     def total_paid_out_formatted(currency)
-      CurrencyConverter.new(
-        from_currency: 'AUD',
-        amount_in_base_units: total_paid_out_in_aud_base_units,
-        to_currency: currency
-      ).format
+      TotalPayOutsCalculator.formatted(currency)
     end
 
     def total_dividends_formatted(currency)
