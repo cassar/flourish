@@ -12,7 +12,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 954a3be7eadd62a19d62cd31dbd232b185a827e5
+  revision: 182503ca27d4b940da925fb7374b69c4bcebd322
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -322,7 +322,7 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
-    sidekiq (8.0.0)
+    sidekiq (8.0.1)
       connection_pool (>= 2.5.0)
       json (>= 2.9.0)
       logger (>= 1.6.2)
