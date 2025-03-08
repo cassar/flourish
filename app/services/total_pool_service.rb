@@ -25,11 +25,7 @@ class TotalPoolService
     end
 
     def total_dividends_formatted(currency)
-      CurrencyConverter.new(
-        from_currency: 'AUD',
-        amount_in_base_units: total_dividends_in_aud_base_units,
-        to_currency: currency
-      ).format
+      TotalDividendsCalculator.formatted(currency)
     end
 
     private
@@ -63,10 +59,6 @@ class TotalPoolService
       in_aud_base_units total_pay_out_fees_by_currency
     end
 
-    def total_dividends_in_aud_base_units
-      in_aud_base_units total_dividends_by_currency
-    end
-
     def total_expense_in_aud_base_units
       Expense.sum(:amount_in_base_units)
     end
@@ -95,10 +87,6 @@ class TotalPoolService
 
     def total_pay_out_fees_by_currency
       TotalPoolCalculationsService.total_pay_out_fees_by_currency
-    end
-
-    def total_dividends_by_currency
-      TotalPoolCalculationsService.total_dividends_by_currency
     end
   end
 end

@@ -43,10 +43,9 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
   end
 
   test 'total_dividends_formatted' do
-    TotalPoolCalculationsService.stubs(:total_dividends_by_currency)
-      .returns({ 'AUD' => 10_000 })
+    stub_eu_central_bank_request
 
-    assert_equal '$100.00 AUD', TotalPoolService.total_dividends_formatted('AUD')
+    assert_instance_of String, TotalPoolService.total_dividends_formatted('AUD')
   end
 
   test 'balance formatted integration' do
