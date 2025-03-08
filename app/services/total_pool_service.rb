@@ -13,11 +13,7 @@ class TotalPoolService
     end
 
     def total_contributed_and_recontributed_formatted(currency)
-      CurrencyConverter.new(
-        from_currency: 'AUD',
-        amount_in_base_units: total_contributed_and_recontributed_in_aud_base_units,
-        to_currency: currency
-      ).format
+      TotalContributedAndRecontributedCalculator.formatted(currency)
     end
 
     def total_paid_out_formatted(currency)
@@ -51,13 +47,6 @@ class TotalPoolService
       ].sum
     end
 
-    def total_contributed_and_recontributed_in_aud_base_units
-      [
-        total_contributed_in_aud_base_units,
-        total_recontributed_in_aud_base_units
-      ].sum
-    end
-
     def total_contributed_in_aud_base_units
       in_aud_base_units total_contributions_by_currency
     end
@@ -72,10 +61,6 @@ class TotalPoolService
 
     def total_pay_out_fees_in_aud_base_units
       in_aud_base_units total_pay_out_fees_by_currency
-    end
-
-    def total_recontributed_in_aud_base_units
-      in_aud_base_units total_recontributions_by_currency
     end
 
     def total_dividends_in_aud_base_units
@@ -110,10 +95,6 @@ class TotalPoolService
 
     def total_pay_out_fees_by_currency
       TotalPoolCalculationsService.total_pay_out_fees_by_currency
-    end
-
-    def total_recontributions_by_currency
-      TotalPoolCalculationsService.total_recontributions_by_currency
     end
 
     def total_dividends_by_currency
