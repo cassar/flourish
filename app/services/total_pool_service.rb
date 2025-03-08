@@ -32,7 +32,7 @@ class TotalPoolService
 
     def total_liabilites_in_aud_base_units
       [
-        total_owed_in_aud_base_units,
+        total_owed_dividends_in_aud_base_units,
         total_paid_out_in_aud_base_units,
         total_pay_out_fees_in_aud_base_units,
         total_expense_in_aud_base_units
@@ -43,7 +43,7 @@ class TotalPoolService
       TotalContributionsCalculator.aud_base_units
     end
 
-    def total_owed_in_aud_base_units
+    def total_owed_dividends_in_aud_base_units
       in_aud_base_units total_owed_dividends_by_currency
     end
 
