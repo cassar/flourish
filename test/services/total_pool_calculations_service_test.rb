@@ -9,6 +9,10 @@ class TotalPoolCalculationsServiceTest < ActiveSupport::TestCase
     assert_instance_of Hash, TotalPoolCalculationsService.total_owed_dividends_by_currency
   end
 
+  test 'recontributions_by_currency for a distribution' do
+    assert_instance_of Hash, TotalPoolCalculationsService.recontributions_by_currency(distributions(:one))
+  end
+
   test 'total_paid_out_by_currency' do
     assert_instance_of Hash, TotalPoolCalculationsService.total_paid_out_by_currency
   end

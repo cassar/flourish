@@ -13,6 +13,14 @@ class TotalPoolCalculationsService
         .sum(:amount_in_base_units)
     end
 
+    def recontributions_by_currency(distribution)
+      distribution.amounts
+        .joins(:dividends)
+        .merge(Dividend.recontributed)
+        .group(:currency)
+        .sum(:amount_in_base_units)
+    end
+
     def total_paid_out_by_currency
       PayOut
         .group(:currency)
