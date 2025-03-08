@@ -2,8 +2,8 @@ require 'test_helper'
 
 class TotalPoolServiceTest < ActiveSupport::TestCase
   test 'balance_in_aud_base_units' do
-    TotalPoolCalculationsService.stubs(:total_contributions_by_currency)
-      .returns({ 'AUD' => 10_000 })
+    TotalContributionsCalculator.stubs(:aud_base_units)
+      .returns(10_000)
 
     TotalPoolCalculationsService.stubs(:total_owed_dividends_by_currency)
       .returns({ 'AUD' => 500 })

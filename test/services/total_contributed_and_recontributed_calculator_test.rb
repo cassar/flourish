@@ -2,8 +2,8 @@ require 'test_helper'
 
 class TotalContributedAndRecontributedCalculatorTest < ActiveSupport::TestCase
   test 'formatted' do
-    TotalPoolCalculationsService.stubs(:total_contributions_by_currency)
-      .returns({ 'AUD' => 10_000 })
+    TotalContributionsCalculator.stubs(:aud_base_units)
+      .returns(10_000)
 
     TotalPoolCalculationsService.stubs(:total_recontributions_by_currency)
       .returns({ 'AUD' => 10_000 })

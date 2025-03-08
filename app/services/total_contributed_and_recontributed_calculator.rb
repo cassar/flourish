@@ -18,7 +18,7 @@ class TotalContributedAndRecontributedCalculator
     end
 
     def total_contributed_in_aud_base_units
-      in_aud_base_units total_contributions_by_currency
+      TotalContributionsCalculator.aud_base_units
     end
 
     def total_recontributed_in_aud_base_units
@@ -33,10 +33,6 @@ class TotalContributedAndRecontributedCalculator
           to_currency: 'AUD'
         ).amount_in_base_units
       end
-    end
-
-    def total_contributions_by_currency
-      TotalPoolCalculationsService.total_contributions_by_currency
     end
 
     def total_recontributions_by_currency

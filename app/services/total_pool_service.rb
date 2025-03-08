@@ -40,7 +40,7 @@ class TotalPoolService
     end
 
     def total_contributed_in_aud_base_units
-      in_aud_base_units total_contributions_by_currency
+      TotalContributionsCalculator.aud_base_units
     end
 
     def total_owed_in_aud_base_units
@@ -67,10 +67,6 @@ class TotalPoolService
           to_currency: 'AUD'
         ).amount_in_base_units
       end
-    end
-
-    def total_contributions_by_currency
-      TotalPoolCalculationsService.total_contributions_by_currency
     end
 
     def total_owed_dividends_by_currency
