@@ -50,4 +50,4 @@ General questions and thoughts can be posted in [discussions](https://github.com
 
 ## Design Documents
 
-Design documents documenting project and intent and idosyncracies and design decisions can be found in the [repo wiki](https://github.com/cassar/flourish/wiki).
+Design documents documenting project and intent and idiosyncrasies and design decisions can be found in the [repo wiki](https://github.com/cassar/flourish/wiki).
