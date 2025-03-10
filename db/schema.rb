@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_03_02_023228) do
+ActiveRecord::Schema[8.1].define(version: 2025_03_10_113752) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -27,10 +27,12 @@ ActiveRecord::Schema[8.1].define(version: 2025_03_02_023228) do
     t.integer "amount_in_base_units"
     t.datetime "created_at", null: false
     t.string "currency", default: "AUD"
+    t.bigint "distribution_id", null: false
     t.integer "fees_in_base_units", default: 0
     t.bigint "member_id"
     t.string "transaction_identifier"
     t.datetime "updated_at", null: false
+    t.index ["distribution_id"], name: "index_contributions_on_distribution_id"
     t.index ["member_id"], name: "index_contributions_on_member_id"
     t.index ["transaction_identifier"], name: "index_contributions_on_transaction_identifier", unique: true
   end
@@ -119,6 +121,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_03_02_023228) do
   end
 
   add_foreign_key "amounts", "distributions"
+  add_foreign_key "contributions", "distributions"
   add_foreign_key "contributions", "members"
   add_foreign_key "dividends", "amounts"
   add_foreign_key "dividends", "members"
