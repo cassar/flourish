@@ -8,8 +8,6 @@ AllCops:
 plugins:
   - rubocop-rails
   - rubocop-minitest
-
-require:
   - rubocop-capybara
 
 Layout/MultilineMethodCallIndentation:
