@@ -1,16 +1,5 @@
+<%= render @distribution %>
 <article>
-  <p class="amount"><strong><%= @distribution.default_amount.amount_formatted %></strong></p>
-  <p class="amount-label"><i>Dividend</i></p>
-  <ul>
-    <li><b>Date</b>: <%= created_at_formatted @distribution %></li>
-    <li><b>Distribution: <%= @distribution.name %></b></li> 
-    <li><b>Status</b>: <%= distribution_status dividend_statuses: @distribution.dividends.pluck(:status) %></li>
-    <li><b>Dividends</b>: <%= @distribution.dividends.length %></li>
-    <%= render 'aggregate_status_counts', disaggregate_status_counts: @distribution.dividends.group(:status).count %>
-  </ul>
-  <ul>
-    <li><b>Total Recontributions from Distribution <%= @previous_distribution.name %></b>: <%= @total_recontributions_formatted %></li>
-  </ul>
   <h2>Contributions</h2>
   <% if @contributions.none? %>
     <p>[No contributions in the last week]</p>
@@ -32,4 +21,7 @@
       </tbody>
     </table>
   <% end %>
+  <ul>
+    <li><b>Total Recontributions from Distribution <%= @previous_distribution.name %></b>: <%= @total_recontributions_formatted %></li>
+  </ul>
 </article>
