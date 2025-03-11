@@ -2,6 +2,7 @@
 
 one:
   amount_in_base_units: 100
+  distribution: one
   member: one
   transaction_identifier: contribution_one_transaction_identifier
   fees_in_base_units: 10
@@ -10,4 +11,5 @@ one:
 two:
   amount_in_base_units: 1
   member: two
+  distribution: two
   created_at: Mon, 14th Oct 2024

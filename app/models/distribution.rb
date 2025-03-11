@@ -1,6 +1,7 @@
 class Distribution < ApplicationRecord
   has_many :amounts, dependent: :destroy
   has_many :dividends, through: :amounts
+  has_many :contributions, dependent: :nullify
 
   validates :number, uniqueness: true, presence: true
 

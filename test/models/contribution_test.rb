@@ -8,6 +8,16 @@ class ContributionTest < ActiveSupport::TestCase
     assert_equal members(:one), contributions(:one).member
   end
 
+  test 'belongs to distribution association' do
+    assert_equal distributions(:one), contributions(:one).distribution
+  end
+
+  test 'optional for distribution' do
+    assert_nothing_raised do
+      contributions(:one).update! distribution: nil
+    end
+  end
+
   test 'amount in base units non positive integers' do
     error = assert_raises ActiveRecord::RecordInvalid do
       contributions(:one).update!(

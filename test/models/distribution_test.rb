@@ -15,6 +15,16 @@ class DistributionTest < ActiveSupport::TestCase
     assert_includes distributions(:one).dividends, dividends(:one)
   end
 
+  test 'has many contributions' do
+    assert_includes distributions(:one).contributions, contributions(:one)
+  end
+
+  test 'dependent nullify contributions' do
+    distributions(:one).destroy!
+
+    assert_nil contributions(:one).reload.distribution
+  end
+
   test 'has one default amount' do
     assert_equal Currencies::DEFAULT, amounts(:one).currency
 
