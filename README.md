@@ -1,8 +1,6 @@
 # Flourish
 
-Universal Income Application
-
-This project centres around the idea of universal basic income.
+Social Change Application
 
 Members will make contributions, and the pool of contributions will be split evenly between members each week.
 
@@ -10,7 +8,7 @@ Members will make contributions, and the pool of contributions will be split eve
 
 Flourish is a [Ruby on Rails application](https://rubyonrails.org/)
 
-Current major version is 7.2.1
+Current major version is 8.1.0.alpha
 
 Check out the [Rails Guides](https://guides.rubyonrails.org/index.html) to get up and running.
 
@@ -18,7 +16,7 @@ Check out the [Rails Guides](https://guides.rubyonrails.org/index.html) to get u
 
 ## Ruby version
 
-- `3.3.5`
+- `3.4.2`
 
 ## Database initialization and creation
 
