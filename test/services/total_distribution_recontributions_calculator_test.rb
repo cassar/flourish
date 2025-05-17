@@ -9,6 +9,8 @@ class TotalDistributionRecontributionsCalculatorTest < ActiveSupport::TestCase
   end
 
   test 'formatted intergration' do
+    stub_eu_central_bank_request
+
     assert_instance_of String, TotalDistributionRecontributionsCalculator.new(distributions(:one)).formatted('AUD')
   end
 end

@@ -13,8 +13,8 @@ class Dividend < ApplicationRecord
   has_one :distribution, through: :amount
   has_one :pay_out, dependent: :destroy
 
-  scope :owed, -> { where(status: %i[issued pending_pay_out]) }
-  scope :recontributed, -> { where(status: %i[manually_recontributed auto_recontributed]) }
+  scope :owed, -> { where(status: %i[pending_pay_out]) }
+  scope :recontributed, -> { where(status: %i[issued manually_recontributed auto_recontributed]) }
 
   scope :automatically_recontributed_notify_enabled, lambda {
     joins(member: :notification_preferences)
