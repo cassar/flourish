@@ -12,6 +12,8 @@ class TotalContributedAndRecontributedCalculatorTest < ActiveSupport::TestCase
   end
 
   test 'formatted intergration' do
+    stub_eu_central_bank_request
+
     assert_instance_of String, TotalContributedAndRecontributedCalculator.formatted('AUD')
   end
 end

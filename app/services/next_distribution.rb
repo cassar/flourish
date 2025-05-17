@@ -1,4 +1,4 @@
-class NextDistributionService
+class NextDistribution
   class << self
     def distribute!
       DistributionService.new(

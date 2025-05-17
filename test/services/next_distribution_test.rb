@@ -1,42 +1,42 @@
 require 'test_helper'
 
-class NextDistributionServiceTest < ActiveSupport::TestCase
+class NextDistributionTest < ActiveSupport::TestCase
   test 'distribute!' do
     stub_eu_central_bank_request
 
-    assert_instance_of Array, NextDistributionService.distribute!
+    assert_instance_of Array, NextDistribution.distribute!
   end
 
   test 'members' do
-    assert NextDistributionService.members
+    assert NextDistribution.members
   end
 
   test 'member_count' do
-    result = NextDistributionService.member_count
+    result = NextDistribution.member_count
 
     assert_instance_of Integer, result
   end
 
   test 'name' do
-    result = NextDistributionService.name
+    result = NextDistribution.name
 
     assert_instance_of String, result
   end
 
   test 'date_formatted' do
-    result = NextDistributionService.date_formatted
+    result = NextDistribution.date_formatted
 
     assert_instance_of String, result
   end
 
   test 'today?' do
-    assert_not_nil NextDistributionService.today?
+    assert_not_nil NextDistribution.today?
   end
 
   test 'total_pool_formatted' do
     stub_eu_central_bank_request
 
-    result = NextDistributionService.total_pool_formatted('AUD')
+    result = NextDistribution.total_pool_formatted('AUD')
 
     assert_instance_of String, result
   end
@@ -44,7 +44,7 @@ class NextDistributionServiceTest < ActiveSupport::TestCase
   test 'dividend_amount_formatted' do
     stub_eu_central_bank_request
 
-    result = NextDistributionService.dividend_amount_formatted('HKD')
+    result = NextDistribution.dividend_amount_formatted('HKD')
 
     assert_instance_of String, result
   end
