@@ -4,7 +4,7 @@ namespace :services do
     WeeklyExpensesService.generate_and_notify if ConsolidationDateService.today?
   end
 
-  desc 'sends a distribution preview to all subscribed users'
+  desc 'sends a distribution preview email to all subscribed members'
   task distribution_preview: :environment do
     if DistributionPreviewDateService.today?
       users = User.active.distribution_preview_notify_enabled
@@ -13,12 +13,12 @@ namespace :services do
     end
   end
 
-  desc 'creates a distribution and dividends and notifies members'
+  desc 'creates a distribution and dividends and email notifies subscribed members'
   task distribute_dividends: :environment do
     NextDistribution.distribute! if NextDistribution.today?
   end
 
-  desc 'recontributes unclaimed dividends and notifies subscribed members'
+  desc 'recontributes unclaimed dividends and email notifies subscribed members'
   task recontribute_dividends: :environment do
     if ConsolidationDateService.today?
       mailgun_send_limit = 10
@@ -30,7 +30,7 @@ namespace :services do
     end
   end
 
-  desc 'notifies users when a distribution has settled'
+  desc 'email notifies subscribed members when a distribution has settled'
   task distribution_settled: :environment do
     if ConsolidationDateService.today?
       users = User.active.distribution_settled_notify_enabled
