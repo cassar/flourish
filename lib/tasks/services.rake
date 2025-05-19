@@ -1,4 +1,18 @@
 namespace :services do
+  desc 'creates a set of expenses every week'
+  task create_expenses: :environment do
+    WeeklyExpensesService.generate_and_notify if ConsolidationDateService.today?
+  end
+
+  desc 'sends a distribution preview to all subscribed users'
+  task distribution_preview: :environment do
+    if DistributionPreviewDateService.today?
+      users = User.active.distribution_preview_notify_enabled
+
+      DistributionPreviewService.new(users:).call
+    end
+  end
+
   desc 'creates a distribution and dividends and notifies members'
   task distribute_dividends: :environment do
     NextDistribution.distribute! if NextDistribution.today?
@@ -16,26 +30,12 @@ namespace :services do
     end
   end
 
-  desc 'creates a set of expenses every week'
-  task create_expenses: :environment do
-    WeeklyExpensesService.generate_and_notify if ConsolidationDateService.today?
-  end
-
   desc 'notifies users when a distribution has settled'
   task distribution_settled: :environment do
     if ConsolidationDateService.today?
       users = User.active.distribution_settled_notify_enabled
 
       DistributionSettledNotificationService.new(distribution: Distribution.last, users:).call
-    end
-  end
-
-  desc 'sends a distribution preview to all subscribed users'
-  task distribution_preview: :environment do
-    if DistributionPreviewDateService.today?
-      users = User.active.distribution_preview_notify_enabled
-
-      DistributionPreviewService.new(users:).call
     end
   end
 
