@@ -148,6 +148,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
+    csv (3.3.4)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -170,6 +171,10 @@ GEM
     honeybadger (5.28.0)
       logger
       ostruct
+    httparty (0.23.1)
+      csv
+      mini_mime (>= 1.0.0)
+      multi_xml (>= 0.5.2)
     i18n (1.14.7)
       concurrent-ruby (~> 1.0)
     image_processing (1.14.0)
@@ -217,6 +222,8 @@ GEM
     money (6.19.0)
       i18n (>= 0.6.4, <= 2)
     msgpack (1.8.0)
+    multi_xml (0.7.2)
+      bigdecimal (~> 3.1)
     net-imap (0.5.8)
       date
       net-protocol
@@ -397,6 +404,7 @@ DEPENDENCIES
   excon
   figaro
   honeybadger (~> 5.4)
+  httparty
   image_processing (~> 1.2)
   importmap-rails
   jbuilder
