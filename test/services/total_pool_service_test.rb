@@ -32,6 +32,8 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
   end
 
   test 'total_contributed_and_recontributed_formatted intergration' do
+    stub_eu_central_bank_request
+
     assert_instance_of String, TotalPoolService.total_contributed_and_recontributed_formatted('AUD')
   end
 
