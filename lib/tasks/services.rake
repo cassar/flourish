@@ -6,7 +6,7 @@ namespace :services do
 
   desc 'sends a distribution preview email to all subscribed members'
   task distribution_preview: :environment do
-    if DistributionPreviewDateService.today?
+    if DistributionPreviewDate.today?
       users = User.active.distribution_preview_notify_enabled
 
       DistributionPreviewService.new(users:).call
@@ -15,7 +15,7 @@ namespace :services do
 
   desc 'posts a distribution preview to bluesky'
   task bluesky_distribution_preview: :environment do
-    BlueskyDistributionPreview.new.call if DistributionPreviewDateService.today?
+    BlueskyDistributionPreview.new.call if DistributionPreviewDate.today?
   end
 
   desc 'creates a distribution and dividends and email notifies subscribed members'

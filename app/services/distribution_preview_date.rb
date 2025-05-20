@@ -1,4 +1,4 @@
-class DistributionPreviewDateService
+class DistributionPreviewDate
   DAY_OF_THE_WEEK = 'Wednesday'.freeze
 
   class << self
