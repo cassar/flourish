@@ -7,6 +7,8 @@ class BlueskyPosterTest < ActiveSupport::TestCase
   end
 
   test 'post_text' do
+    BlueskyLinkFacetCollector.any_instance.stubs(:call).returns([])
+
     stub_request(:post, 'https://bsky.social/xrpc/com.atproto.repo.createRecord')
       .with(
         headers: {
@@ -20,7 +22,7 @@ class BlueskyPosterTest < ActiveSupport::TestCase
           repo: 'test_bluesky_handle',
           collection: 'app.bsky.feed.post',
           record: {
-            type: 'app.bsky.feed.post',
+            '$type': 'app.bsky.feed.post',
             text: 'my test post',
             createdAt: '2023-12-25T10:00:00Z'
           }
@@ -30,7 +32,9 @@ class BlueskyPosterTest < ActiveSupport::TestCase
     assert BlueskyPoster.new('my test post').call
   end
 
-  test 'post_text error' do
+  test 'post_text facets' do
+    BlueskyLinkFacetCollector.any_instance.stubs(:call).returns([{ facet_one: 'facet_one' }])
+
     stub_request(:post, 'https://bsky.social/xrpc/com.atproto.repo.createRecord')
       .with(
         headers: {
@@ -44,7 +48,34 @@ class BlueskyPosterTest < ActiveSupport::TestCase
           repo: 'test_bluesky_handle',
           collection: 'app.bsky.feed.post',
           record: {
-            type: 'app.bsky.feed.post',
+            '$type': 'app.bsky.feed.post',
+            text: 'my test post',
+            createdAt: '2023-12-25T10:00:00Z',
+            facets: [{ facet_one: 'facet_one' }]
+          }
+        }.to_json
+      ).to_return(status: 200, body: '', headers: {})
+
+    assert BlueskyPoster.new('my test post').call
+  end
+
+  test 'post_text error' do
+    BlueskyLinkFacetCollector.any_instance.stubs(:call).returns([])
+
+    stub_request(:post, 'https://bsky.social/xrpc/com.atproto.repo.createRecord')
+      .with(
+        headers: {
+          'Accept' => '*/*',
+          'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Authorization' => 'Bearer test_bluesky_access_token',
+          'Content-Type' => 'application/json',
+          'User-Agent' => 'Ruby'
+        },
+        body: {
+          repo: 'test_bluesky_handle',
+          collection: 'app.bsky.feed.post',
+          record: {
+            '$type': 'app.bsky.feed.post',
             text: 'my test post',
             createdAt: '2023-12-25T10:00:00Z'
           }

@@ -6,10 +6,10 @@ class BlueskyPoster
 
   class Error < StandardError; end
 
-  attr_reader :text
+  attr_reader :original_text
 
-  def initialize(text)
-    @text = text
+  def initialize(original_text)
+    @original_text = original_text
   end
 
   def call
@@ -33,12 +33,30 @@ class BlueskyPoster
     {
       repo: HANDLE,
       collection: 'app.bsky.feed.post',
-      record: {
-        type: 'app.bsky.feed.post',
-        text: text,
-        createdAt: Time.now.utc.iso8601
-      }
+      record:
     }.to_json
+  end
+
+  def record
+    return record_with_no_facets if facets.empty?
+
+    record_with_no_facets.merge(facets:)
+  end
+
+  def record_with_no_facets
+    {
+      '$type': 'app.bsky.feed.post',
+      text:,
+      createdAt: Time.now.utc.iso8601
+    }
+  end
+
+  def facets
+    BlueskyLinkFacetCollector.new(original_text).call
+  end
+
+  def text
+    BlueskyLinkFacetParser.new(original_text).plain_text
   end
 
   def access_token
