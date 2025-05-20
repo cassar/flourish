@@ -13,6 +13,11 @@ namespace :services do
     end
   end
 
+  desc 'posts a distribution preview to bluesky'
+  task bluesky_distribution_preview: :environment do
+    BlueskyDistributionPreview.new.call if DistributionPreviewDateService.today?
+  end
+
   desc 'creates a distribution and dividends and email notifies subscribed members'
   task distribute_dividends: :environment do
     NextDistribution.distribute! if NextDistribution.today?
