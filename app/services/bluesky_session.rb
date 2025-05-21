@@ -7,7 +7,7 @@ class BlueskySession
   class Error < StandardError; end
 
   def access_token
-    ENV['BLUESKY_ACCESS_TOKEN'] || session['accessJwt']
+    session['accessJwt']
   end
 
   private
