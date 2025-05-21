@@ -5,6 +5,8 @@ class BlueskyDistributionPreview
     BlueskyPoster.new(message_text).call
   end
 
+  private
+
   def message_text
     ERB.new(template).result_with_hash({
       next_distribution: NextDistribution
