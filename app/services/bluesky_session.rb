@@ -21,9 +21,17 @@ class BlueskySession
   end
 
   def create_session
-    self.class.post('/com.atproto.server.createSession', body: {
-      identifier: HANDLE,
-      password: APP_PASSWORD
-    }.to_json, headers: { 'Content-Type' => 'application/json' })
+    self.class.post('/com.atproto.server.createSession', body:, headers:)
+  end
+
+  def headers
+    {
+      'Content-Type' => 'application/json',
+      'User-Agent' => 'flourish-bsky-bot/1.0'
+    }
+  end
+
+  def body
+    { identifier: HANDLE, password: APP_PASSWORD }.to_json
   end
 end
