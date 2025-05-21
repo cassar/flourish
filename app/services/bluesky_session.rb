@@ -7,14 +7,12 @@ class BlueskySession
   class Error < StandardError; end
 
   def access_token
-    session['accessJwt']
+    ENV['BLUESKY_ACCESS_TOKEN'] || session['accessJwt']
   end
 
   private
 
   def session
-    return ENV['BLUESKY_ACCESS_TOKEN'] if ENV['BLUESKY_ACCESS_TOKEN'].present?
-
     response = create_session
 
     return response.parsed_response if response.success?
