@@ -25,10 +25,7 @@ class BlueskySession
   end
 
   def headers
-    {
-      'Content-Type' => 'application/json',
-      'User-Agent' => 'flourish-bsky-bot/1.0'
-    }
+    { 'Content-Type' => 'application/json' }
   end
 
   def body
