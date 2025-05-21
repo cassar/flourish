@@ -18,6 +18,11 @@ namespace :services do
     BlueskyDistributionPreview.new.call if DistributionPreviewDate.today?
   end
 
+  desc 'posts a distribution preview to mastodon'
+  task mastodon_distribution_preview: :environment do
+    MastodonDistributionPreview.new.call if DistributionPreviewDate.today?
+  end
+
   desc 'creates a distribution and dividends and email notifies subscribed members'
   task distribute_dividends: :environment do
     NextDistribution.distribute! if NextDistribution.today?
