@@ -1,5 +1,5 @@
 class AdminNotificationMailer < ApplicationMailer
-  default from: "Flourish Admin <#{ENV['DEFAULT_ADMIN_NOTIFICATION_EMAIL'] || 'admin-notifications@example.com'}>"
+  default from: "Flourish Admin <#{ENV['DEFAULT_ADMIN_NOTIFICATION_EMAIL'] || 'admin-notifications@flourish.test'}>"
 
   def pay_out_requested
     @dividend = params[:dividend]
