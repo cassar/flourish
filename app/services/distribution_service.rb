@@ -15,6 +15,7 @@ class DistributionService
     create_dividends
     notify_members
     post_to_bluesky
+    post_to_mastodon
   end
 
   private
@@ -48,5 +49,9 @@ class DistributionService
 
   def post_to_bluesky
     BlueskyNewDividendDistribution.new(distribution:).call
+  end
+
+  def post_to_mastodon
+    MastodonNewDividendDistribution.new(distribution:).call
   end
 end
