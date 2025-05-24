@@ -11,6 +11,13 @@ GIT
       warden (~> 1.2.3)
 
 GIT
+  remote: https://github.com/laserlemon/figaro
+  revision: 5756dfde97b157343215bf740c9ac6efec4f95e7
+  specs:
+    figaro (1.2.0)
+      thor (>= 0.14.0, < 2)
+
+GIT
   remote: https://github.com/rails/rails.git
   revision: c1d7d56e831acf0aff5f3e27a6b384f543f358d0
   branch: main
@@ -164,8 +171,6 @@ GEM
     ffi (1.17.2-arm64-darwin)
     ffi (1.17.2-x86_64-darwin)
     ffi (1.17.2-x86_64-linux-gnu)
-    figaro (1.2.0)
-      thor (>= 0.14.0, < 2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     hashdiff (1.2.0)
@@ -404,7 +409,7 @@ DEPENDENCIES
   devise!
   eu_central_bank
   excon
-  figaro
+  figaro!
   honeybadger (~> 5.4)
   httparty
   image_processing (~> 1.2)

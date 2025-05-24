@@ -55,7 +55,7 @@ gem 'sassc-rails'
 gem 'excon'
 
 # Simple Rails app configuration
-gem 'figaro'
+gem 'figaro', git: 'https://github.com/laserlemon/figaro'
 
 # Flexible authentication solution for Rails with Warden.
 gem 'devise', github: 'heartcombo/devise', branch: 'main'
