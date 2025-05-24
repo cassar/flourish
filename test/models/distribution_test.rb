@@ -31,6 +31,12 @@ class DistributionTest < ActiveSupport::TestCase
     assert_equal amounts(:one), distributions(:one).default_amount
   end
 
+  test 'date_formatted' do
+    distribution = Distribution.new(created_at: '1st January 2023 5:30am')
+
+    assert_equal 'Sun, 01 Jan 2023', distribution.date_formatted
+  end
+
   test 'number is nil' do
     error = assert_raises ActiveRecord::RecordInvalid do
       distributions(:two).update! number: nil

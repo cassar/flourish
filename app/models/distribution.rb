@@ -9,6 +9,10 @@ class Distribution < ApplicationRecord
     amounts.find_by currency: Currencies::DEFAULT
   end
 
+  def date_formatted
+    created_at.strftime('%a, %d %b %Y')
+  end
+
   def settled?
     dividends.issued.none?
   end
