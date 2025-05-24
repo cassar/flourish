@@ -14,6 +14,7 @@ class DistributionService
     save_amounts
     create_dividends
     notify_members
+    post_to_bluesky
   end
 
   private
@@ -43,5 +44,9 @@ class DistributionService
     dividends.select do |dividend|
       dividend.member_id.in? notification_enabled_member_ids
     end
+  end
+
+  def post_to_bluesky
+    BlueskyNewDividendDistribution.new(distribution:).call
   end
 end

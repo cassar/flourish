@@ -3,8 +3,9 @@ require 'test_helper'
 class NextDistributionTest < ActiveSupport::TestCase
   test 'distribute!' do
     stub_eu_central_bank_request
+    BlueskyNewDividendDistribution.any_instance.stubs(:call).returns(true)
 
-    assert_instance_of Array, NextDistribution.distribute!
+    assert_instance_of TrueClass, NextDistribution.distribute!
   end
 
   test 'members' do
