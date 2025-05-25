@@ -1,3 +1,4 @@
+<% content_for :title, 'Social Change'  %>
 <article>
   <% if @last_distribution.settled? %>
     <%= render partial: 'next_distribution', locals: { next_distribution: @next_distribution, member: @member } %>
