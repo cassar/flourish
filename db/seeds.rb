@@ -36,8 +36,8 @@ puts "Making some expenses, contributions, and distributions"
     contribution.update! transaction_identifier: "anraba#{contribution.id}2741"
   end
 
-  Expense.create! name: "Server", amount_in_base_units: 334
-  Expense.create! name: "Domain", amount_in_base_units: 678
+  Expense.create! name: "Hosting and Infrastructure", amount_in_base_units: 889
+  Expense.create! name: "Domain Registration", amount_in_base_units: 116
 
   distribution = Distribution.create(number:)
 
