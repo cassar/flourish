@@ -8,6 +8,10 @@ class Amount < ApplicationRecord
     money.format
   end
 
+  def amount_formatted_without_currency
+    money.format(with_currency: false)
+  end
+
   def currency_name
     money.currency.name
   end

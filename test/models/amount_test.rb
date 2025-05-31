@@ -29,6 +29,12 @@ class AmountTest < ActiveSupport::TestCase
     assert_equal '$5.00 AUD', result
   end
 
+  test 'amount_formatted_without_currency' do
+    result = Amount.new(amount_in_base_units: 500).amount_formatted_without_currency
+
+    assert_equal '$5.00', result
+  end
+
   test 'currency_name' do
     assert_equal 'Australian Dollar', Amount.new.currency_name
   end
