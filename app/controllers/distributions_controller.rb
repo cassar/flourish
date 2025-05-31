@@ -15,6 +15,15 @@ class DistributionsController < ApplicationController
     @contributions = Contribution.where(created_at: @previous_distribution.created_at..@distribution.created_at)
     @expenses = Expense.where(created_at: @previous_distribution.created_at..@distribution.created_at)
     @amounts = @distribution.amounts
+    totals
+  end
+
+  def totals
+    @total_expenses_formatted = CurrencyConverter.new(
+      from_currency: Currencies::DEFAULT,
+      amount_in_base_units: @expenses.sum(:amount_in_base_units),
+      to_currency: current_currency
+    ).format
     @total_recontributions_formatted = TotalDistributionRecontributionsCalculator
       .new(@previous_distribution)
       .formatted(current_currency)
