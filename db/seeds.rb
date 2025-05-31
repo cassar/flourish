@@ -27,14 +27,15 @@ puts "Making some users"
   user.member.update! paypalme_handle: "paypalme_handle_member#{user.member.id}"
 end
 
-puts "Making some contributions"
-Member.take(10).each do |member|
-  contribution = member.contributions.create amount_in_base_units: 20_000 + (member.id * 10), fees_in_base_units: (member.id * 15)
-  contribution.update! transaction_identifier: "anraba#{contribution.id}2741"
-end
 
-puts "Making some expenses and distributions"
+
+puts "Making some expenses, contributions, and distributions"
 (1..3).each do |number|
+  Member.take(2).each do |member|
+    contribution = member.contributions.create amount_in_base_units: 20_000 + (member.id * 10), fees_in_base_units: (member.id * 15)
+    contribution.update! transaction_identifier: "anraba#{contribution.id}2741"
+  end
+
   Expense.create! name: "Server", amount_in_base_units: 334
   Expense.create! name: "Domain", amount_in_base_units: 678
 
