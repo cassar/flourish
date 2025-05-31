@@ -40,11 +40,22 @@
 </article>
 <article>
   <h2>Amounts</h2>
-  <ul>
-  <% @amounts.each do |amount| %>
-    <li><%= amount.amount_formatted %></li>
-  <% end %>
-  </ul>
+  <table>
+    <thead>
+      <tr>
+        <th>Currency</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @amounts.each do |amount| %>
+        <tr>
+          <td><%= amount.currency_name %></td>
+          <td><%= amount.amount_formatted_without_currency %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </article>
 <article>
   <h2>Expenses</h2>
