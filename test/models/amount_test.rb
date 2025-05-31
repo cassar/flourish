@@ -28,4 +28,8 @@ class AmountTest < ActiveSupport::TestCase
 
     assert_equal '$5.00 AUD', result
   end
+
+  test 'currency_name' do
+    assert_equal 'Australian Dollar', Amount.new.currency_name
+  end
 end
