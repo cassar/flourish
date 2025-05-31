@@ -33,8 +33,11 @@ Member.take(10).each do |member|
   contribution.update! transaction_identifier: "anraba#{contribution.id}2741"
 end
 
-puts "Making some distributions"
+puts "Making some expenses and distributions"
 (1..3).each do |number|
+  Expense.create! name: "Server", amount_in_base_units: 334
+  Expense.create! name: "Domain", amount_in_base_units: 678
+
   distribution = Distribution.create(number:)
 
   amount_in_base_units = 1_000 * number
@@ -47,7 +50,3 @@ puts "Making some distributions"
     PayOut.create! dividend:, amount_in_base_units:, transaction_identifier: "reference for dividend: #{dividend.id}"
   end
 end
-
-puts "Making some expenses"
-Expense.create! name: "Server", amount_in_base_units: 334
-Expense.create! name: "Domain", amount_in_base_units: 678
