@@ -33,3 +33,7 @@ ul.notification_preferences {
   list-style-type: none;
 }
 
+.distribution-table {
+  width: 100%;
+}
+

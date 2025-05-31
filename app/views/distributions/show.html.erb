@@ -17,7 +17,7 @@
 </article>
 <article>
   <h2>Dividend Amounts</h2>
-  <table>
+  <table class="distribution-table">
     <thead>
       <tr>
         <th>Currency</th>
@@ -36,7 +36,7 @@
 </article>
 <article>
   <h2>Expenses</h2>
-  <table>
+  <table class="distribution-table">
     <thead>
       <tr>
         <th>Item</th>
@@ -62,7 +62,7 @@
   <% if @contributions.none? %>
     <p>[No contributions in the last week]</p>
   <% else %>
-    <table>
+    <table class="distribution-table">
       <thead>
         <tr>
           <th>Date</th>
