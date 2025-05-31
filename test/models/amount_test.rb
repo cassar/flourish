@@ -24,8 +24,8 @@ class AmountTest < ActiveSupport::TestCase
   end
 
   test 'amount formatted' do
-    assert_equal 500, amounts(:one).amount_in_base_units
+    result = Amount.new(amount_in_base_units: 500).amount_formatted
 
-    assert_equal '$5.00 AUD', amounts(:one).amount_formatted
+    assert_equal '$5.00 AUD', result
   end
 end
