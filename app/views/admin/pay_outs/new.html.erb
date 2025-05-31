@@ -17,7 +17,7 @@
   <%= form_with model: @pay_out, url: preview_admin_dividend_pay_outs_path(@dividend), method: :get, data: { turbo: false } do |form| %>
     <p>
       <%= form.label :currency %>
-      <%= form.select :currency, Currencies::SUPPORTED_CURRENCIES %>
+      <%= form.select :currency, Currencies::SUPPORTED %>
     </p>
     <p>
       <%= form.label :amount_in_base_units %>

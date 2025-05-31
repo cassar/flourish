@@ -3,7 +3,7 @@ module CurrencyValidator
 
   included do
     validates :currency, inclusion: {
-      in: Currencies::SUPPORTED_CURRENCIES,
+      in: Currencies::SUPPORTED,
       message: :unsupported_currency
     }
   end

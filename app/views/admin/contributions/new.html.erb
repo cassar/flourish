@@ -6,7 +6,7 @@
 <%= form_with model: @contribution, url: preview_admin_member_contributions_path, method: :get, data: { turbo: false } do |form| %>
   <p>
     <%= form.label :currency %>
-    <%= form.select :currency, Currencies::SUPPORTED_CURRENCIES %>
+    <%= form.select :currency, Currencies::SUPPORTED %>
   </p>
   <p>
     <%= form.label :amount_in_base_units %>

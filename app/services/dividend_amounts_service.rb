@@ -23,6 +23,6 @@ class DividendAmountsService
   end
 
   def currencies
-    Currencies::SUPPORTED_CURRENCIES
+    Currencies::SUPPORTED
   end
 end

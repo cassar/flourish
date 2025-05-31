@@ -9,7 +9,7 @@ class DividendAmountsServiceTest < ActiveSupport::TestCase
       currency: 'AUD'
     ).call
 
-    assert_equal Currencies::SUPPORTED_CURRENCIES.count, results.length
+    assert_equal Currencies::SUPPORTED.count, results.length
   end
 
   test 'returns correct base units' do

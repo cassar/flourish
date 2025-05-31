@@ -2,7 +2,7 @@ require 'test_helper'
 
 class CurrenciesTest < ActiveSupport::TestCase
   test 'supported currencies' do
-    not_supported = Currencies::SUPPORTED_CURRENCIES - eu_central_bank_currency_codes
+    not_supported = Currencies::SUPPORTED - eu_central_bank_currency_codes
 
     assert_empty not_supported, 'Some currencies are not supported in the eu central bank gem'
   end
