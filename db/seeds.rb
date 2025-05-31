@@ -42,6 +42,9 @@ puts "Making some expenses and distributions"
 
   amount_in_base_units = 1_000 * number
   amount = distribution.amounts.create!(amount_in_base_units:)
+  (Currencies::SUPPORTED - [Currencies::DEFAULT]).each do |currency|
+    amount = distribution.amounts.create!(amount_in_base_units:, currency:)
+  end
 
   Member.take(3).each do |member|
     dividend = amount.dividends.create!(member:)
