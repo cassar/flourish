@@ -11,6 +11,11 @@
   </ul>
 </article>
 <article>
+  <ul>
+    <li><b>Total Recontributions from Distribution <%= @previous_distribution.name %></b>: <%= @total_recontributions_formatted %></li>
+  </ul>
+</article>
+<article>
   <h2>Contributions</h2>
   <% if @contributions.none? %>
     <p>[No contributions in the last week]</p>
@@ -32,9 +37,6 @@
       </tbody>
     </table>
   <% end %>
-  <ul>
-    <li><b>Total Recontributions from Distribution <%= @previous_distribution.name %></b>: <%= @total_recontributions_formatted %></li>
-  </ul>
 </article>
 <article>
   <h2>Amounts</h2>
