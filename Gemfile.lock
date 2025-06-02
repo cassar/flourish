@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 0ac3fba6ee5f7d1680024a4925eee6069095487b
+  revision: 80650283b5710a0035d7ed05da21b43ce11e8417
   branch: main
   specs:
     actioncable (8.1.0.alpha)
@@ -155,7 +155,7 @@ GEM
       bigdecimal
       rexml
     crass (1.0.6)
-    csv (3.3.4)
+    csv (3.3.5)
     date (3.4.1)
     debug (1.10.0)
       irb (~> 1.10)
@@ -311,7 +311,7 @@ GEM
     rubocop-capybara (2.22.1)
       lint_roller (~> 1.1)
       rubocop (~> 1.72, >= 1.72.1)
-    rubocop-minitest (0.38.0)
+    rubocop-minitest (0.38.1)
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
