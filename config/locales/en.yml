@@ -24,6 +24,9 @@ en:
         success: "Dividend marked for pay out."
       recontribute: 
         success: "Dividend recontributed."
+    users:
+      registrations:
+        alert: "hCaptcha was incorrect, please try again."
         
   mailers:
     notification_mailer:

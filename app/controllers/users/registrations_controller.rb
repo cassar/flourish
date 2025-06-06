@@ -20,7 +20,7 @@ module Users
     def check_hcaptcha
       return if verify_hcaptcha
 
-      redirect_to new_user_registration_path, alert: "hCaptcha was incorrect, please try again."
+      redirect_to new_user_registration_path, alert: I18n.t('controllers.users.registrations.alert')
     end
   end
 end
