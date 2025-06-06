@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: { 
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations'
+  }
 
   namespace :admin do
     resources :distributions, only: :index

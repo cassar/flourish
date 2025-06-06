@@ -24,3 +24,7 @@ active:
 
 inactive:
   email: inactive@email.com
+
+unconfirmed:
+  email: unconfirmed@email.com
+  confirmation_token: my_confirmation_token
