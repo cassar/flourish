@@ -3,6 +3,9 @@
   <head>
     <title><%= title_text yield(:title) %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <% if yield(:page_reload) %>
+      <meta name="turbo-visit-control" content="reload">
+    <% end %>
     <%= render 'application/favicon' %>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

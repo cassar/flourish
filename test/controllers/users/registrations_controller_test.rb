@@ -2,6 +2,20 @@ require 'test_helper'
 
 module Users
   class RegistrationsControllerTest < ActionDispatch::IntegrationTest
+    test 'should redirect if hcaptcha fails' do
+      Hcaptcha.configuration.skip_verify_env.delete('test')
+
+      assert_no_difference 'User.count' do
+        post user_registration_path, params: { user: {
+          email: 'test@example.com',
+          password: 'password123',
+          password_confirmation: 'password123'
+        } }
+      end
+
+      assert_redirected_to new_user_registration_path
+    end
+
     test 'should create user and member' do
       assert_difference 'Member.count', 1 do
         post user_registration_path, params: { user: {
