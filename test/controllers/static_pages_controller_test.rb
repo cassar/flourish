@@ -15,7 +15,7 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get home when last distribution is settled' do
-    Distribution.destroy_all
+    Dividend.issued.each(&:auto_recontributed!)
 
     get root_path
 
