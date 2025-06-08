@@ -1,4 +1,4 @@
-class TotalPoolService
+class TotalPool
   class << self
     def balance_in_aud_base_units
       Integer(total_assets_in_aud_base_units - total_liabilites_in_aud_base_units)

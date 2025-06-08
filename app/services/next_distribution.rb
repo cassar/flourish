@@ -64,7 +64,7 @@ class NextDistribution
     end
 
     def total_pool
-      TotalPoolService
+      TotalPool
     end
 
     def notification_enabled_member_ids

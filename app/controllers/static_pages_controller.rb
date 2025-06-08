@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
     @last_amount = @last_distribution.default_amount || Amount.new(amount_in_base_units: 0)
     @last_distribution_dividends = @last_distribution.dividends
     @next_distribution = NextDistribution
-    @total_pool = TotalPoolService
+    @total_pool = TotalPool
     authenticated_user
   end
 
