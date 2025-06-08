@@ -70,15 +70,15 @@ class TotalPoolService
     end
 
     def total_owed_dividends_by_currency
-      TotalPoolCalculationsService.total_owed_dividends_by_currency
+      TotalPoolCalculations.total_owed_dividends_by_currency
     end
 
     def total_paid_out_by_currency
-      TotalPoolCalculationsService.total_paid_out_by_currency
+      TotalPoolCalculations.total_paid_out_by_currency
     end
 
     def total_pay_out_fees_by_currency
-      TotalPoolCalculationsService.total_pay_out_fees_by_currency
+      TotalPoolCalculations.total_pay_out_fees_by_currency
     end
   end
 end

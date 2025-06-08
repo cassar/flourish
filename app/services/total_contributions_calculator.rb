@@ -17,7 +17,7 @@ class TotalContributionsCalculator
     end
 
     def total_contributions_by_currency
-      TotalPoolCalculationsService.total_contributions_by_currency
+      TotalPoolCalculations.total_contributions_by_currency
     end
   end
 end

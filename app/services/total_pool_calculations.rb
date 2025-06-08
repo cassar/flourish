@@ -1,4 +1,4 @@
-class TotalPoolCalculationsService
+class TotalPoolCalculations
   class << self
     def total_contributions_by_currency
       Contribution

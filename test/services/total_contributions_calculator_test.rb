@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TotalContributionsCalculatorTest < ActiveSupport::TestCase
   test 'aud_base_units' do
-    TotalPoolCalculationsService.stubs(:total_contributions_by_currency)
+    TotalPoolCalculations.stubs(:total_contributions_by_currency)
       .returns({ 'AUD' => 10_000 })
 
     assert_equal 10_000, TotalContributionsCalculator.aud_base_units

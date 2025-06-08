@@ -2,7 +2,7 @@ require 'test_helper'
 
 class TotalDividendsCalculatorTest < ActiveSupport::TestCase
   test 'formatted' do
-    TotalPoolCalculationsService.stubs(:total_dividends_by_currency)
+    TotalPoolCalculations.stubs(:total_dividends_by_currency)
       .returns({ 'AUD' => 10_000 })
 
     assert_equal '$100.00 AUD', TotalDividendsCalculator.formatted('AUD')

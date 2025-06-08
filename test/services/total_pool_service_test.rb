@@ -5,13 +5,13 @@ class TotalPoolServiceTest < ActiveSupport::TestCase
     TotalContributionsCalculator.stubs(:aud_base_units)
       .returns(10_000)
 
-    TotalPoolCalculationsService.stubs(:total_owed_dividends_by_currency)
+    TotalPoolCalculations.stubs(:total_owed_dividends_by_currency)
       .returns({ 'AUD' => 500 })
 
-    TotalPoolCalculationsService.stubs(:total_paid_out_by_currency)
+    TotalPoolCalculations.stubs(:total_paid_out_by_currency)
       .returns({ 'AUD' => 1_000 })
 
-    TotalPoolCalculationsService.stubs(:total_pay_out_fees_by_currency)
+    TotalPoolCalculations.stubs(:total_pay_out_fees_by_currency)
       .returns({ 'AUD' => 100 })
 
     Expense.stubs(:sum).returns(1_000).once

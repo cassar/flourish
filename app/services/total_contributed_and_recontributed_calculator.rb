@@ -36,7 +36,7 @@ class TotalContributedAndRecontributedCalculator
     end
 
     def total_recontributions_by_currency
-      TotalPoolCalculationsService.total_recontributions_by_currency
+      TotalPoolCalculations.total_recontributions_by_currency
     end
   end
 end

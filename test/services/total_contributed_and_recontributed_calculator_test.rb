@@ -5,7 +5,7 @@ class TotalContributedAndRecontributedCalculatorTest < ActiveSupport::TestCase
     TotalContributionsCalculator.stubs(:aud_base_units)
       .returns(10_000)
 
-    TotalPoolCalculationsService.stubs(:total_recontributions_by_currency)
+    TotalPoolCalculations.stubs(:total_recontributions_by_currency)
       .returns({ 'AUD' => 10_000 })
 
     assert_equal '$200.00 AUD', TotalContributedAndRecontributedCalculator.formatted('AUD')

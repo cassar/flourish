@@ -25,7 +25,7 @@ class TotalDividendsCalculator
     end
 
     def total_dividends_by_currency
-      TotalPoolCalculationsService.total_dividends_by_currency
+      TotalPoolCalculations.total_dividends_by_currency
     end
   end
 end
