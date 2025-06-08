@@ -3,7 +3,7 @@ require 'test_helper'
 module Users
   class RegistrationsControllerTest < ActionDispatch::IntegrationTest
     test 'should redirect if hcaptcha fails' do
-      Hcaptcha.configuration.skip_verify_env.delete('test')
+      RegistrationsController.any_instance.stubs(:verify_hcaptcha).returns(false)
 
       assert_no_difference 'User.count' do
         post user_registration_path, params: { user: {
