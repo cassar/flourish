@@ -7,3 +7,4 @@
   <li><b>Dividends</b>: <%= last_distribution_dividends.length %></li>
   <%= render 'distributions/aggregate_status_counts', disaggregate_status_counts: last_distribution_dividends.group(:status).count %>
 </ul>
+<%= link_to "Distribution", distribution_path(last_distribution), class: 'button' %>
