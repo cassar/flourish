@@ -33,7 +33,7 @@ class NotificationMailerPreview < ActionMailer::Preview
   end
 
   def distribution_settled
-    distribution = Distribution.new(name: '#32')
+    distribution = Distribution.new(number: 32)
     user = User.new(email: 'email@example.com')
     NotificationMailer.with(distribution:, user:).distribution_settled
   end
