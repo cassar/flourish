@@ -1,4 +1,4 @@
-class AggregateStatusCountsService
+class AggregateStatusCounts
   AGGREGATE_STATUSES = {
     'issued' => %w[issued],
     'paid_out' => %w[pending_pay_out pay_out_complete],

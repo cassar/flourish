@@ -1,9 +1,9 @@
 require 'test_helper'
 
-class AggregateStatusCountsServiceTest < ActiveSupport::TestCase
+class AggregateStatusCountsTest < ActiveSupport::TestCase
   test 'all disaggregate statuses accounted for' do
     all_statuses = Dividend.statuses.keys
-    declared_statuses = AggregateStatusCountsService::AGGREGATE_STATUSES.values.flatten
+    declared_statuses = AggregateStatusCounts::AGGREGATE_STATUSES.values.flatten
     new_statuses = all_statuses - declared_statuses
 
     assert_empty new_statuses, 'Add the new dividend statuses to AGGREGATE_STATUSES'
@@ -21,12 +21,12 @@ class AggregateStatusCountsServiceTest < ActiveSupport::TestCase
       'recontributed' => 7
     }
 
-    actual_aggregate_status_counts = AggregateStatusCountsService.counts(disaggregate_status_counts)
+    actual_aggregate_status_counts = AggregateStatusCounts.counts(disaggregate_status_counts)
 
     assert_equal expected_aggregate_status_counts, actual_aggregate_status_counts
   end
 
   test 'aggregate_status' do
-    assert_equal 'paid_out', AggregateStatusCountsService.aggregate_status('pending_pay_out')
+    assert_equal 'paid_out', AggregateStatusCounts.aggregate_status('pending_pay_out')
   end
 end
