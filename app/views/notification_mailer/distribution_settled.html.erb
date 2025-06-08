@@ -1,2 +1,2 @@
 <p>Distribution <%= @distribution.name %> has settled with all dividends being either recontributed or paid out.</p>
-<a><%= link_to "View All Distributions", distributions_url %></a>
+<p><%= link_to "See full details for Distribution #{@distribution.name}", distribution_url(@distribution) %></p>
