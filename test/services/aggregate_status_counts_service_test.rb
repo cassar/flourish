@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TotalPoolServiceTest < ActiveSupport::TestCase
+class AggregateStatusCountsServiceTest < ActiveSupport::TestCase
   test 'all disaggregate statuses accounted for' do
     all_statuses = Dividend.statuses.keys
     declared_statuses = AggregateStatusCountsService::AGGREGATE_STATUSES.values.flatten
