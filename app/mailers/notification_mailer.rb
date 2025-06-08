@@ -1,5 +1,6 @@
 class NotificationMailer < ApplicationMailer
   default from: "Flourish Notifications <#{ENV.fetch('DEFAULT_FROM_EMAIL', 'notifications@example.com')}>"
+  layout 'notification_mailer'
 
   def contribution_received
     @contribution = params[:contribution]
