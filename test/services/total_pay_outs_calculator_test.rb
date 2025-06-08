@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class TotalPoolServiceTest < ActiveSupport::TestCase
+class TotalPayOutsCalculatorTest < ActiveSupport::TestCase
   test 'formatted' do
     TotalPoolCalculations.stubs(:total_paid_out_by_currency)
       .returns({ 'AUD' => 10_000 })
