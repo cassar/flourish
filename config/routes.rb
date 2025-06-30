@@ -43,11 +43,6 @@ Rails.application.routes.draw do
   get :notification_preferences, to: 'notification_preferences#edit'
   patch :notification_preferences, to: 'notification_preferences#update'
 
-  resources :corners, only: [] do
-    collection do
-      get :nonviolent_communication
-    end
-  end
-
+  resources :corners, only: :index
   root 'static_pages#home'
 end
