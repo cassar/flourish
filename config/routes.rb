@@ -40,6 +40,7 @@ Rails.application.routes.draw do
   get :mission, to: 'static_pages#mission'
   get :check_email_spam, to: 'static_pages#check_email_spam'
   get :privacy_statement, to: 'static_pages#privacy_statement'
+  get :post_fear, to: 'static_pages#post_fear'
   get :notification_preferences, to: 'notification_preferences#edit'
   patch :notification_preferences, to: 'notification_preferences#update'
 

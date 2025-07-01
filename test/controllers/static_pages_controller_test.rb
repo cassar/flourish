@@ -47,4 +47,10 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+  test 'should get post_fear' do
+    get post_fear_path
+
+    assert_response :success
+  end
 end
