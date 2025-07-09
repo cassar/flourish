@@ -48,8 +48,8 @@ class StaticPagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should get post_fear' do
-    get post_fear_path
+  test 'should get snippets' do
+    get snippets_path
 
     assert_response :success
   end
