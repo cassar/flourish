@@ -1,6 +1,6 @@
 <% content_for :title, "Admin" %>
 <h1>Preview Contribution for <%= @user.email %></h1>
-<%= render partial: 'contributions/contribution', locals: { contribution: @contribution } %>
+<%= render partial: 'membership/contributions/contribution', locals: { contribution: @contribution } %>
 <%= form_with model: @contribution, url: admin_member_contributions_path, data: { turbo: false } do |form| %>
   <%= form.hidden_field :currency %>
   <%= form.hidden_field :amount_in_base_units %>

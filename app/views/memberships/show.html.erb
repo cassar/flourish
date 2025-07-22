@@ -12,7 +12,7 @@
     </li>
   </ul>
   <p>
-  <strong><%= link_to 'Contributions', contributions_path %></strong> and <strong><%= link_to 'Pay Outs', pay_outs_path %></strong>: 
+  <strong><%= link_to 'Contributions', membership_contributions_path %></strong> and <strong><%= link_to 'Pay Outs', pay_outs_path %></strong>: 
     <% if @member.pay_outs_disabled? %> 
       Not Enabled
     <% else %>

@@ -23,7 +23,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :contributions, only: :index
+  namespace :membership do
+    resources :contributions, only: :index
+  end
+
   resources :distributions, only: [:index, :show]
   resources :pay_outs, only: :index
   resources :paypalme_handles, only: [:edit, :update]
