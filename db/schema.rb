@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2025_03_11_115548) do
+ActiveRecord::Schema[8.1].define(version: 2025_07_23_134035) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -32,6 +32,7 @@ ActiveRecord::Schema[8.1].define(version: 2025_03_11_115548) do
     t.bigint "member_id"
     t.string "transaction_identifier"
     t.datetime "updated_at", null: false
+    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
     t.index ["distribution_id"], name: "index_contributions_on_distribution_id"
     t.index ["member_id"], name: "index_contributions_on_member_id"
     t.index ["transaction_identifier"], name: "index_contributions_on_transaction_identifier", unique: true
