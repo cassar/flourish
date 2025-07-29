@@ -1,5 +1,6 @@
 class MastodonPoster
   include HTTParty
+
   base_uri 'https://mastodon.social'
 
   attr_reader :status
