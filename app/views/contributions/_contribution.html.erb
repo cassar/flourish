@@ -4,7 +4,5 @@
     <li><b>Gross Amount</b>: <%= contribution.gross_amount_formatted %></li>
     <li><b>Less Fees</b>: <%= contribution.fees_formatted %></li>
     <li><b>Net Contributed</b>: <%= contribution.amount_formatted %></li>
-    <li><b>Transaction ID</b>: <%= contribution.transaction_identifier %></li>
   </ul>
-  <%= link_to 'Share', contribution_path(contribution.uuid), class: 'button' %>
 </article>

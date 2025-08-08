@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :contributions, only: :index
   end
 
+  resources :contributions, only: :show, param: :uuid
   resources :distributions, only: [:index, :show]
   resources :pay_outs, only: :index
   resources :paypalme_handles, only: [:edit, :update]

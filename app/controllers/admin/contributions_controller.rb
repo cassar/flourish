@@ -12,6 +12,7 @@ module Admin
 
     def preview
       contribution.created_at = Time.zone.now
+      contribution.uuid = SecureRandom.uuid
       @user = member.user
     end
 

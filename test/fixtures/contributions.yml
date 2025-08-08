@@ -7,6 +7,7 @@ one:
   transaction_identifier: contribution_one_transaction_identifier
   fees_in_base_units: 10
   created_at: Mon, 14th Oct 2024
+  uuid: d47bdcfb-bd9b-48d8-83f9-f927ebbf8c25
 
 two:
   amount_in_base_units: 1
