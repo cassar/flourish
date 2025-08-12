@@ -6,5 +6,7 @@
     <li><b>Net Contributed</b>: <%= contribution.amount_formatted %></li>
     <li><b>Transaction ID</b>: <%= contribution.transaction_identifier %></li>
   </ul>
-  <%= link_to 'Share', contribution_path(contribution.uuid), class: 'button' %>
+  <% if contribution.uuid %>
+    <%= link_to 'Share', contribution_path(contribution.uuid), class: 'button' %>
+  <% end %>
 </article>
