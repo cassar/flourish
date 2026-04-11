@@ -1,8 +1,14 @@
-<p class="amount"><strong><%= next_distribution.dividend_amount_formatted(member.currency) %></strong></p>
-<p class="amount-label"><i>Next Dividend</i></p>
-<ul>
-  <li><b>Date:</b> <%= next_distribution.date_formatted %></li>
-  <li><b>Distribution:</b> <%= next_distribution.name %></li>
-  <li><b>Members:</b> <%= next_distribution.member_count %></li>
-  <li><b>Contributions:</b> <%= next_distribution.total_pool_formatted(member.currency) %></li>
-</ul>
+<div class="card bg-base-200 border border-secondary/30 shadow-md shadow-secondary/10">
+  <div class="card-body">
+    <div class="text-xs font-semibold text-secondary uppercase tracking-widest">Next Dividend</div>
+    <div class="text-5xl font-bold text-secondary drop-shadow-[0_0_20px_rgba(88,199,243,0.5)] mt-1">
+      <%= next_distribution.dividend_amount_formatted(member.currency) %>
+    </div>
+    <ul class="mt-4 space-y-1 text-sm text-base-content/80">
+      <li><span class="font-semibold text-base-content">Date:</span> <%= next_distribution.date_formatted %></li>
+      <li><span class="font-semibold text-base-content">Distribution:</span> <%= next_distribution.name %></li>
+      <li><span class="font-semibold text-base-content">Members:</span> <%= next_distribution.member_count %></li>
+      <li><span class="font-semibold text-base-content">Contributions:</span> <%= next_distribution.total_pool_formatted(member.currency) %></li>
+    </ul>
+  </div>
+</div>

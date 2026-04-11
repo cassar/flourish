@@ -1,12 +1,6 @@
 <% if user_signed_in? %>
-  <%= link_to membership_path, class: 'button' do %>
-    Membership
-  <% end %>
+  <%= link_to 'Membership', membership_path, class: 'btn btn-primary' %>
 <% else %>
-  <%= link_to new_user_registration_path, class: 'button' do %>
-    Sign up
-  <% end %>
-  <%= link_to new_user_session_path, class: 'button' do %>
-    Log in
-  <% end %>
+  <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary' %>
+  <%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline btn-primary' %>
 <% end %>

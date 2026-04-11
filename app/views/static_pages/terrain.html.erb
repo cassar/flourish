@@ -1,106 +1,82 @@
-<% content_for :title, 'The Terrain'  %>
-<h1>The Terrain</h1>
-<article>
-  <h2>The Wasteland</h2>
-  <h3>The Surface</h3>
-  <ul>
-    <li>Factory farming</li>
-    <li>Pandemics</li>
-    <li>Fossil fuel industry</li>
-    <li>Climate change</li>
-    <li>Wars</li>
-    <li>Mass media</li>
-    <li>Gambling industry</li>
-    <li>Planned obsolesence</li>
-    <li>Retributive justice</li>
-    <li>Maintained Scarcity</li>
-    <li>Mass incarceration</li>
-    <li>Factory education</li>
-    <li>Worker exploitation</li>
-    <li>Welfare industry</li>
-    <li>Bullshit jobs</li>
-    <li>Obesity epidemic</li>
-    <li>Poverty</li>
-  </ul>
-  <h4>Characteristics</h4>
-  <ul>
-    <li>Wasted human potential</li>
-    <li>Scarcity mentality</li>
-    <li>High distance from harm</li>
-    <li>Restricted access</li>
-  </ul>
-  <h3>The Mechanics</h3>
-  <h4>Silos</h4>
-  <p>Stockpiles of resources.</p>
-  <h5>Examples</h5>
-  <ul>
-    <li>Banking</li>
-    <li>Property market</li>
-    <li>Asset market</li>
-    <li>Nation states</li>
-  </ul>
-  <h4>Fear</h4>
-  <p>These are the bricks that constitute it's structure.</p>
-  <h5>Examples</h5>
-  <ul>
-    <li>Discrimination</li>
-    <li>Racism</li>
-    <li>Sexism</li>
-    <li>Nationalism</li>
-    <li>Paternalism</li>
-    <li>Classism</li>
-  </ul>
-  <h4>Exchange</h4>
-  <p>This is the mortar between the bricks.</p>
-  <h5>Examples</h5>
-  <ul>
-    <li>Currencies</li>
-    <li>Credit</li>
-    <li>Contracts</li>
-  </ul>
-</article>
-<article>
-  <h2>Flourish</h2>
-  <h3>Characteristics</h3>
-  <h4>Feedback View</h4>
-  <p>See the world become a better place, Paradise, in real time.</p>
-  <h4>Rolling Election</h4>
-  <p>We get to choose what kind of world we want.</p>
-  <h4>Evangelism</h4>
-  <p>Help people connect the dots.</p>
-</article>
-<article>
-  <h2>Paradise</h2>
-  <h3>The Surface</h3>
-  <ul>
-    <li>Abundant Housing</li>
-    <li>Fresh Food</li>
-    <li>Built to Last</li>
-    <li>Rewilding</li>
-    <li>Mega Projects</li>
-    <li>Restorative justice</li>
-    <li>Planetary equilibrium</li>
-  </ul>
-  <h4>Characteristics</h4>
-  <ul>
-    <li>Fullfilling human potential</li>
-    <li>Lasting political change</li>
-    <li>Abundance mentality</li>
-    <li>Low distance to harm</li>
-    <li>Open access</li>
-    <li>Meaningful work</li>
-  </ul>
-  <h3>The Mechanics</h3>
-  <h4>Trust</h4>
-  <p>We trust in human goodness, to meet needs, and pursue meaningful work.</p>
-  <h4>Contribution</h4>
-  <p>In one's labour and goods.</p>
-  <p>We're more open to contributing where we see a need.</p>
-  <p>We take what we need and contribute our surplus to the commons.</p>
-  <h4>Common Resources</h4>
-  <p>Resources free at the point of use to meet needs.</p>
-</article>
-<nav>
-  <%= link_to 'Mission', mission_path, class: 'button' %>
-  <%= render partial: 'authentication' %>
-</nav>
+<% content_for :title, 'The Terrain' %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">The Terrain</h1>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body space-y-4">
+      <h2 class="text-xl font-bold text-error/80">The Wasteland</h2>
+      <div>
+        <h3 class="font-semibold text-secondary mb-1">The Surface</h3>
+        <ul class="list-disc list-inside text-base-content/80 space-y-0.5 text-sm columns-2">
+          <li>Factory farming</li><li>Pandemics</li><li>Fossil fuel industry</li>
+          <li>Climate change</li><li>Wars</li><li>Mass media</li>
+          <li>Gambling industry</li><li>Planned obsolescence</li><li>Retributive justice</li>
+          <li>Maintained Scarcity</li><li>Mass incarceration</li><li>Factory education</li>
+          <li>Worker exploitation</li><li>Welfare industry</li><li>Bullshit jobs</li>
+          <li>Obesity epidemic</li><li>Poverty</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-secondary mb-1">Characteristics</h4>
+        <ul class="list-disc list-inside text-base-content/80 space-y-0.5 text-sm">
+          <li>Wasted human potential</li><li>Scarcity mentality</li>
+          <li>High distance from harm</li><li>Restricted access</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-secondary mt-2 mb-1">The Mechanics</h3>
+        <h4 class="font-medium text-accent mb-0.5">Silos</h4>
+        <p class="text-sm text-base-content/80">Stockpiles of resources. Examples: Banking, Property market, Asset market, Nation states.</p>
+        <h4 class="font-medium text-accent mt-2 mb-0.5">Fear</h4>
+        <p class="text-sm text-base-content/80">These are the bricks that constitute its structure. Examples: Discrimination, Racism, Sexism, Nationalism, Paternalism, Classism.</p>
+        <h4 class="font-medium text-accent mt-2 mb-0.5">Exchange</h4>
+        <p class="text-sm text-base-content/80">This is the mortar between the bricks. Examples: Currencies, Credit, Contracts.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 border border-primary/20 shadow-sm">
+    <div class="card-body space-y-3">
+      <h2 class="text-xl font-bold text-primary">Flourish</h2>
+      <div>
+        <h3 class="font-semibold text-secondary mb-1">Characteristics</h3>
+        <p class="text-sm text-base-content/80"><span class="font-medium text-accent">Feedback View:</span> See the world become a better place, Paradise, in real time.</p>
+        <p class="text-sm text-base-content/80 mt-1"><span class="font-medium text-accent">Rolling Election:</span> We get to choose what kind of world we want.</p>
+        <p class="text-sm text-base-content/80 mt-1"><span class="font-medium text-accent">Evangelism:</span> Help people connect the dots.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 border border-success/20 shadow-sm">
+    <div class="card-body space-y-4">
+      <h2 class="text-xl font-bold text-success">Paradise</h2>
+      <div>
+        <h3 class="font-semibold text-secondary mb-1">The Surface</h3>
+        <ul class="list-disc list-inside text-base-content/80 space-y-0.5 text-sm columns-2">
+          <li>Abundant Housing</li><li>Fresh Food</li><li>Built to Last</li>
+          <li>Rewilding</li><li>Mega Projects</li><li>Restorative justice</li>
+          <li>Planetary equilibrium</li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-semibold text-secondary mb-1">Characteristics</h4>
+        <ul class="list-disc list-inside text-base-content/80 space-y-0.5 text-sm">
+          <li>Fulfilling human potential</li><li>Lasting political change</li>
+          <li>Abundance mentality</li><li>Low distance to harm</li>
+          <li>Open access</li><li>Meaningful work</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="font-semibold text-secondary mt-2 mb-1">The Mechanics</h3>
+        <p class="text-sm text-base-content/80"><span class="font-medium text-accent">Trust:</span> We trust in human goodness, to meet needs, and pursue meaningful work.</p>
+        <p class="text-sm text-base-content/80 mt-1"><span class="font-medium text-accent">Contribution:</span> In one's labour and goods. We're more open to contributing where we see a need. We take what we need and contribute our surplus to the commons.</p>
+        <p class="text-sm text-base-content/80 mt-1"><span class="font-medium text-accent">Common Resources:</span> Resources free at the point of use to meet needs.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <%= link_to 'Mission', mission_path, class: 'btn btn-outline btn-secondary' %>
+    <%= render partial: 'authentication' %>
+  </div>
+</div>

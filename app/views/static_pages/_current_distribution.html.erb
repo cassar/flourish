@@ -1,10 +1,20 @@
-<p class="amount"><strong><%= last_amount.amount_formatted %></strong></p>
-<p class="amount-label"><i>Current Dividend</i></p>
-<ul>
-  <li><b>Date</b>: <%= created_at_formatted last_distribution %></li>
-  <li><b>Distribution</b>: <%= last_distribution.name %></li>
-  <li><b>Status</b>: <%= distribution_status dividend_statuses: last_distribution_dividends.pluck(:status) %></li>
-  <li><b>Dividends</b>: <%= last_distribution_dividends.length %></li>
-  <%= render 'distributions/aggregate_status_counts', disaggregate_status_counts: last_distribution_dividends.group(:status).count %>
-</ul>
-<%= link_to "Distribution", distribution_path(last_distribution), class: 'button' %>
+<div class="card bg-base-200 border border-primary/30 shadow-md shadow-primary/10">
+  <div class="card-body">
+    <div class="text-xs font-semibold text-primary uppercase tracking-widest">Current Dividend</div>
+    <div class="text-5xl font-bold text-primary drop-shadow-[0_0_20px_rgba(231,121,193,0.5)] mt-1">
+      <%= last_amount.amount_formatted %>
+    </div>
+    <ul class="mt-4 space-y-1 text-sm text-base-content/80">
+      <li><span class="font-semibold text-base-content">Date:</span> <%= created_at_formatted last_distribution %></li>
+      <li><span class="font-semibold text-base-content">Distribution:</span> <%= last_distribution.name %></li>
+      <li><span class="font-semibold text-base-content">Status:</span>
+        <span class="badge badge-primary badge-outline badge-sm ml-1"><%= distribution_status dividend_statuses: last_distribution_dividends.pluck(:status) %></span>
+      </li>
+      <li><span class="font-semibold text-base-content">Dividends:</span> <%= last_distribution_dividends.length %></li>
+      <%= render 'distributions/aggregate_status_counts', disaggregate_status_counts: last_distribution_dividends.group(:status).count %>
+    </ul>
+    <div class="card-actions mt-4">
+      <%= link_to "View Distribution", distribution_path(last_distribution), class: 'btn btn-primary btn-sm' %>
+    </div>
+  </div>
+</div>

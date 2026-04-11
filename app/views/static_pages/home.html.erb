@@ -1,22 +1,21 @@
-<% content_for :title, 'Social Change'  %>
-<article>
+<% content_for :title, 'Social Change' %>
+<div class="space-y-6">
   <% if @last_distribution.settled? %>
     <%= render partial: 'next_distribution', locals: { next_distribution: @next_distribution, member: @member } %>
   <% else %>
     <%= render partial: 'current_distribution', locals: { last_distribution: @last_distribution, last_distribution_dividends: @last_distribution_dividends, last_amount: @last_amount } %>
   <% end %>
-</article>
-<article>
+
   <%= render partial: 'welcome', locals: { next_distribution: @next_distribution, total_pool: @total_pool, member: @member } %>
-</article>
-<article>
+
   <% if @last_distribution.settled? %>
     <%= render partial: 'last_distribution', locals: { last_distribution: @last_distribution, last_distribution_dividends: @last_distribution_dividends, last_amount: @last_amount } %>
   <% else %>
     <%= render partial: 'next_distribution', locals: { next_distribution: @next_distribution, member: @member } %>
   <% end %>
-</article>
-<nav>
-  <%= link_to 'About', about_path, class: 'button' %>
-  <%= render partial: 'authentication' %>
-</nav>
+
+  <div class="flex flex-wrap gap-3 pt-2">
+    <%= link_to 'About', about_path, class: 'btn btn-outline btn-secondary' %>
+    <%= render partial: 'authentication' %>
+  </div>
+</div>

@@ -1,15 +1,39 @@
-<p><strong>Welcome!</strong></p>
-<p>Flourish is a social change project encouraging us to rethink the way we interact with each other.</p>
-<p><strong>How does it work?</strong></p>
-<%= render partial: 'how_does_it_work' %>
-<p><strong>What have been the results?</strong></p>
-<p class="amount"><strong><%= next_distribution.member_count %></strong></p>
-<p class="amount-label"><i>Participating Members</i></p>
-<p class="amount"><strong><%= total_pool.total_contributed_and_recontributed_formatted(member.currency) %></strong></p>
-<p class="amount-label"><i>in Contributions Received</i></p>
-<p class="amount"><strong><%= total_pool.total_dividends_formatted(member.currency) %></strong></p>
-<p class="amount-label"><i>in Dividends Issued</i></p>
-<p class="amount"><strong><%= total_pool.total_paid_out_formatted(member.currency) %></strong></p>
-<p class="amount-label"><i>in Cash Paid Out</i></p>
-<p class="amount"><strong><%= @last_distribution.number %></strong></p>
-<p class="amount-label"><i>Distribution Weeks</i></p>
+<div class="card bg-base-200 shadow-md">
+  <div class="card-body">
+    <h2 class="card-title text-2xl text-primary">Welcome!</h2>
+    <p class="text-base-content/80">Flourish is a social change project encouraging us to rethink the way we interact with each other.</p>
+
+    <h3 class="font-semibold mt-2 text-secondary">How does it work?</h3>
+    <%= render partial: 'how_does_it_work' %>
+
+    <div class="divider opacity-30"></div>
+    <h3 class="font-semibold text-secondary">Results to date</h3>
+
+    <div class="stats stats-vertical sm:stats-horizontal w-full bg-base-300 shadow">
+      <div class="stat">
+        <div class="stat-title">Members</div>
+        <div class="stat-value text-primary"><%= next_distribution.member_count %></div>
+        <div class="stat-desc">Participating</div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">Contributions Received</div>
+        <div class="stat-value text-secondary text-2xl"><%= total_pool.total_contributed_and_recontributed_formatted(member.currency) %></div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">Dividends Issued</div>
+        <div class="stat-value text-accent text-2xl"><%= total_pool.total_dividends_formatted(member.currency) %></div>
+      </div>
+    </div>
+
+    <div class="stats stats-vertical sm:stats-horizontal w-full bg-base-300 shadow">
+      <div class="stat">
+        <div class="stat-title">Cash Paid Out</div>
+        <div class="stat-value text-primary text-2xl"><%= total_pool.total_paid_out_formatted(member.currency) %></div>
+      </div>
+      <div class="stat">
+        <div class="stat-title">Distribution Weeks</div>
+        <div class="stat-value text-secondary"><%= @last_distribution.number %></div>
+      </div>
+    </div>
+  </div>
+</div>

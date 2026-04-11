@@ -1,30 +1,47 @@
-<% content_for :title, 'About'  %>
-<h1>About</h1>
-<article>
-  <p><strong>Flourishites</strong></p>
-  <p>The project is supported by its <%= @active_member_count %> members and its lone web developer and admin.</p>
-  <p><i>LinkedIn:</i> <%= link_to 'Developer and Admin', "https://www.linkedin.com/in/luke-cassar-17885a29/", target: "_blank" %></p>
-  <p><strong>Development</strong></p>
-  <p>The project is open source, and issues can be raises and discussed on our GitHub repository page.</p>
-  <p><i>GitHub:</i> <%= link_to 'Flourish Code Repository', "https://github.com/cassar/flourish", target: "_blank" %></p>
-  <p><strong>Get in Contact</strong></p>
-  <p>If you are interested in helping Flourish grow, we'd love to hear from you at the below.</p>
-  <p><i>Email:</i> <span data-controller="cooperative" data-cooperative-target="email"></span></p>
-  <p><strong>Stay in Contact</strong></p>
-  <p>If you would like to keep up to date with the project, simply sign up, members receive a, 'Distribution Preview', email every <%= DistributionPreviewDate::DAY_OF_THE_WEEK %> which has the latest Flourish news.</p>
-  <p><i>Flourish:</i> <%= link_to 'Sign Up Page', new_user_registration_path %></span></p>
-  <p><strong>Social Media</strong></p>
-  <p>We also post distribution notifications to our <%= link_to 'Bluesky', 'https://bsky.app/profile/flourish.buzz', target: '_blank' %> and <%= link_to 'Mastodon', 'https://mastodon.social/@flourish_buzz', target: '_blank' %> accounts if you'd like to follow along.</p>
-</article>
-<%= render partial: 'static_pages/details' %>
-<%= render partial: 'devise/registrations/details' %>
-<%= render partial: 'distributions/details' %>
-<%= render partial: 'dividends/details' %>
-<%= render partial: 'pay_outs/details' %>
-<%= render partial: 'membership/contributions/details' %>
-<%= render partial: 'currencies/details' %>
-<%= render partial: 'static_pages/costs' %>
-<nav>
-  <%= link_to 'Mission', mission_path, class: 'button' %>
-  <%= render partial: 'authentication' %>
-</nav>
+<% content_for :title, 'About' %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">About</h1>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body space-y-4">
+      <div>
+        <h3 class="font-bold text-secondary mb-1">Flourishites</h3>
+        <p class="text-base-content/80">The project is supported by its <%= @active_member_count %> members and its lone web developer and admin.</p>
+        <p class="text-sm mt-1"><span class="text-base-content/50 italic">LinkedIn:</span> <%= link_to 'Developer and Admin', "https://www.linkedin.com/in/luke-cassar-17885a29/", target: "_blank", class: 'link link-primary' %></p>
+      </div>
+      <div>
+        <h3 class="font-bold text-secondary mb-1">Development</h3>
+        <p class="text-base-content/80">The project is open source, and issues can be raised and discussed on our GitHub repository page.</p>
+        <p class="text-sm mt-1"><span class="text-base-content/50 italic">GitHub:</span> <%= link_to 'Flourish Code Repository', "https://github.com/cassar/flourish", target: "_blank", class: 'link link-primary' %></p>
+      </div>
+      <div>
+        <h3 class="font-bold text-secondary mb-1">Get in Contact</h3>
+        <p class="text-base-content/80">If you are interested in helping Flourish grow, we'd love to hear from you at the below.</p>
+        <p class="text-sm mt-1"><span class="text-base-content/50 italic">Email:</span> <span data-controller="cooperative" data-cooperative-target="email"></span></p>
+      </div>
+      <div>
+        <h3 class="font-bold text-secondary mb-1">Stay in Contact</h3>
+        <p class="text-base-content/80">If you would like to keep up to date with the project, simply sign up &mdash; members receive a Distribution Preview email every <%= DistributionPreviewDate::DAY_OF_THE_WEEK %> with the latest Flourish news.</p>
+        <p class="text-sm mt-1"><span class="text-base-content/50 italic">Flourish:</span> <%= link_to 'Sign Up Page', new_user_registration_path, class: 'link link-primary' %></p>
+      </div>
+      <div>
+        <h3 class="font-bold text-secondary mb-1">Social Media</h3>
+        <p class="text-base-content/80">We post distribution notifications to our <%= link_to 'Bluesky', 'https://bsky.app/profile/flourish.buzz', target: '_blank', class: 'link link-secondary' %> and <%= link_to 'Mastodon', 'https://mastodon.social/@flourish_buzz', target: '_blank', class: 'link link-secondary' %> accounts.</p>
+      </div>
+    </div>
+  </div>
+
+  <%= render partial: 'static_pages/details' %>
+  <%= render partial: 'devise/registrations/details' %>
+  <%= render partial: 'distributions/details' %>
+  <%= render partial: 'dividends/details' %>
+  <%= render partial: 'pay_outs/details' %>
+  <%= render partial: 'membership/contributions/details' %>
+  <%= render partial: 'currencies/details' %>
+  <%= render partial: 'static_pages/costs' %>
+
+  <div class="flex flex-wrap gap-3">
+    <%= link_to 'Mission', mission_path, class: 'btn btn-outline btn-secondary' %>
+    <%= render partial: 'authentication' %>
+  </div>
+</div>
