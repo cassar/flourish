@@ -4,8 +4,8 @@
   "type": "module",
   "scripts": {
     "build": "./node_modules/.bin/esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=/assets",
-    "build:css": "if [ \"$NODE_ENV\" = \"production\" ]; then ./node_modules/.bin/tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --config ./tailwind.config.js --minify; else ./node_modules/.bin/tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --config ./tailwind.config.js; fi",
-    "build:css:dev": "./node_modules/.bin/tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --config ./tailwind.config.js"
+    "build:css": "if [ \"$NODE_ENV\" = \"production\" ]; then ./node_modules/.bin/tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css --minify; else ./node_modules/.bin/tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css; fi",
+    "build:css:dev": "./node_modules/.bin/tailwindcss -i ./app/assets/stylesheets/application.tailwind.css -o ./app/assets/builds/application.css"
   },
   "dependencies": {
     "@hotwired/stimulus": "^3.2.2",
