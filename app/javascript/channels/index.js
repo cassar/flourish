@@ -1,1 +1,1 @@
-// Import all the channels to be used by Action Cable
+// Import all channels to be used by Action Cable
