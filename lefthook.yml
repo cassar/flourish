@@ -1,0 +1,25 @@
+# Lefthook git hooks configuration
+# https://github.com/evilmartians/lefthook
+#
+# Skip all hooks: LEFTHOOK=0 git commit
+# Skip specific groups: LEFTHOOK_EXCLUDE=security,lint,tests git commit
+
+pre-commit:
+  parallel: false
+  commands:
+    brakeman:
+      tags: security
+      run: bundle exec brakeman --no-pager --quiet
+    bundler-audit:
+      tags: security
+      run: bundle exec bundler-audit
+    rubocop:
+      tags: lint
+      glob: "*.rb"
+      run: RUBOCOP_CACHE_ROOT=tmp/rubocop bundle exec rubocop -f github {staged_files}
+    rails-test:
+      tags: tests
+      run: bin/rails db:test:prepare && bin/rails test
+    system-test:
+      tags: tests
+      run: bin/rails test:system
