@@ -17,6 +17,10 @@ pre-commit:
       tags: lint
       glob: "*.rb"
       run: RUBOCOP_CACHE_ROOT=tmp/rubocop bundle exec rubocop -f github {staged_files}
+    eslint:
+      tags: lint
+      glob: "*.js"
+      run: bin/with-node yarn lint:js
     rails-test:
       tags: tests
       run: bin/rails db:test:prepare && bin/rails test

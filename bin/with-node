@@ -1,0 +1,26 @@
+#!/bin/bash
+# Run a command with the correct Node version from .node-version
+
+# Capture the command before sourcing nvm
+CMD=("$@")
+
+# Read version from .node-version if it exists
+NODE_VERSION=""
+if [ -f .node-version ]; then
+  NODE_VERSION=$(cat .node-version)
+fi
+
+if [ -s "$HOME/.nvm/nvm.sh" ]; then
+  export NVM_DIR="$HOME/.nvm"
+  . "$NVM_DIR/nvm.sh" --no-use
+  if [ -n "$NODE_VERSION" ]; then
+    nvm use "$NODE_VERSION" >/dev/null 2>&1 || true
+  fi
+elif command -v fnm >/dev/null 2>&1; then
+  eval "$(fnm env)"
+  if [ -n "$NODE_VERSION" ]; then
+    fnm use "$NODE_VERSION" >/dev/null 2>&1 || true
+  fi
+fi
+
+exec "${CMD[@]}"
