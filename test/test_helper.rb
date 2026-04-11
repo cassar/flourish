@@ -1,3 +1,19 @@
+require 'simplecov'
+
+SimpleCov.start 'rails' do
+  enable_coverage :branch
+  merge_timeout 3600
+  minimum_coverage line: 80, branch: 80
+
+  add_group 'Models',      'app/models'
+  add_group 'Controllers', 'app/controllers'
+  add_group 'Services',    'app/services'
+  add_group 'Jobs',        'app/jobs'
+  add_group 'Helpers',     'app/helpers'
+
+  add_filter 'app/mailers/application_mailer.rb'
+end
+
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
 require 'rails/test_help'
@@ -8,6 +24,14 @@ module ActiveSupport
   class TestCase
     # Run tests in parallel with specified workers
     parallelize(workers: :number_of_processors)
+
+    parallelize_setup do |worker|
+      SimpleCov.command_name "#{SimpleCov.command_name}-#{worker}"
+    end
+
+    parallelize_teardown do
+      SimpleCov.result
+    end
 
     # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
     fixtures :all

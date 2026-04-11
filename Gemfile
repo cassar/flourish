@@ -114,6 +114,9 @@ group :development do
 end
 
 group :test do
+  # Code coverage analysis tool for Ruby
+  gem 'simplecov', require: false
+
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
 
