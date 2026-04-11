@@ -15,8 +15,11 @@ gem 'pg', '~> 1.1'
 # Use the Puma web server [https://github.com/puma/puma]
 gem 'puma', '~> 6.0'
 
-# Use JavaScript with ESM import maps [https://github.com/rails/importmap-rails]
-gem 'importmap-rails'
+# Use JavaScript with esbuild [https://github.com/rails/jsbundling-rails]
+gem 'jsbundling-rails'
+
+# Use CSS bundling with Tailwind [https://github.com/rails/cssbundling-rails]
+gem 'cssbundling-rails'
 
 # Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
 gem 'turbo-rails'
@@ -47,9 +50,6 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
-
-# Use Sass to process CSS
-gem 'sassc-rails'
 
 # Usable, fast, simple HTTP 1.1 for Ruby
 gem 'excon'
@@ -84,6 +84,9 @@ end
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
+
+  # Git hooks manager
+  gem 'lefthook', require: false
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
