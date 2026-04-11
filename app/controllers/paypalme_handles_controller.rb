@@ -12,7 +12,7 @@ class PaypalmeHandlesController < ApplicationController
       redirect_to membership_path
     else
       flash.now[:error] = @member.errors.full_messages.to_sentence
-      render :edit
+      render :edit, status: :unprocessable_content
     end
   end
 

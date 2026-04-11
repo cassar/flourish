@@ -42,6 +42,16 @@ module Users
       end
     end
 
+    test 'should not create member when registration fails' do
+      assert_no_difference 'Member.count' do
+        post user_registration_path, params: { user: {
+          email: users(:one).email,
+          password: 'password123',
+          password_confirmation: 'password123'
+        } }
+      end
+    end
+
     test 'should redirect to check spam folder after successful registration' do
       assert_difference 'User.count' do
         post user_registration_path, params: { user: {

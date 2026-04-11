@@ -21,6 +21,15 @@ class PaypalmeHandlesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
+  test 'should render edit when update fails' do
+    sign_in users(:one)
+
+    patch paypalme_handle_path(members(:one)), params: { member: { paypalme_handle: 'their_paypalme_handle' } }
+
+    assert_response :unprocessable_content
+    assert_not_nil flash[:error]
+  end
+
   test 'should update paypalme_handle' do
     sign_in users(:one)
 

@@ -13,7 +13,7 @@ class NotificationPreferencesController < ApplicationController
       redirect_to edit_user_registration_path
     else
       @notification_preferences = @member.notification_preferences.order(:notification_name)
-      render :edit
+      render :edit, status: :unprocessable_content
     end
   end
 

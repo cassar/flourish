@@ -21,6 +21,17 @@ class CurrenciesControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to new_user_session_path
   end
 
+  test 'should render edit when update fails' do
+    sign_in users(:one)
+
+    Member.any_instance.stubs(:update).returns(false)
+
+    patch currency_path(members(:one)), params: { member: { currency: 'HKD' } }
+
+    assert_response :unprocessable_content
+    assert_not_nil flash[:error]
+  end
+
   test 'should update currency' do
     sign_in users(:one)
 

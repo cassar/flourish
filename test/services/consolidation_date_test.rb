@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class ConsolidationDateTest < ActiveSupport::TestCase
+  test 'next_date is a Tuesday' do
+    assert_equal 'Tuesday', ConsolidationDate.next_date.strftime('%A')
+  end
+
   test 'consolidation is not today' do
     Time.zone.stubs(:today).returns(Date.parse('Monday 29th Jan 2024'))
     ConsolidationDate.stubs(:next_date).returns(Date.parse('Tuesday 30th Jan 2024'))
