@@ -1,12 +1,33 @@
-<article>
-  <p><b>Date</b>: <%= created_at_formatted contribution %></p> 
-  <ul>
-    <li><b>Gross Amount</b>: <%= contribution.gross_amount_formatted %></li>
-    <li><b>Less Fees</b>: <%= contribution.fees_formatted %></li>
-    <li><b>Net Contributed</b>: <%= contribution.amount_formatted %></li>
-    <li><b>Transaction ID</b>: <%= contribution.transaction_identifier %></li>
-  </ul>
-  <% if contribution.uuid %>
-    <%= link_to 'Share', contribution_path(contribution.uuid), class: 'button' %>
-  <% end %>
-</article>
+<div class="card bg-base-200 border border-base-300 shadow-sm">
+  <div class="card-body">
+    <div class="text-xs font-semibold text-accent/70 uppercase tracking-widest mb-1">Contribution</div>
+    <div class="text-sm text-base-content/70 mb-3"><span class="font-semibold text-base-content/90">Date:</span> <%= created_at_formatted contribution %></div>
+    <div class="overflow-x-auto">
+      <table class="table table-sm">
+        <tbody>
+          <tr>
+            <td class="font-semibold text-base-content/80">Gross Amount</td>
+            <td class="font-mono"><%= contribution.gross_amount_formatted %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-base-content/80">Less Fees</td>
+            <td class="font-mono text-error/70"><%= contribution.fees_formatted %></td>
+          </tr>
+          <tr class="font-bold">
+            <td class="text-base-content">Net Contributed</td>
+            <td class="font-mono text-accent"><%= contribution.amount_formatted %></td>
+          </tr>
+          <tr>
+            <td class="font-semibold text-base-content/80">Transaction ID</td>
+            <td class="font-mono text-xs text-base-content/60"><%= contribution.transaction_identifier %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <% if contribution.uuid %>
+      <div class="card-actions mt-2">
+        <%= link_to 'Share', contribution_path(contribution.uuid), class: 'btn btn-outline btn-accent btn-sm' %>
+      </div>
+    <% end %>
+  </div>
+</div>

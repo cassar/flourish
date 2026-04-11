@@ -1,10 +1,16 @@
-<% content_for :title, 'Contributions'  %>
-<h1>Contributions</h1>
-<%= render partial: 'details' %>
-<% if @contributions.any? %>
-  <%= render @contributions %>
-<% else %>
-  <article>
-    <p>Your contributions will appear here.</p>
-  </article>
-<% end %>
+<% content_for :title, 'Contributions' %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">Contributions</h1>
+  <%= render partial: 'details' %>
+  <% if @contributions.any? %>
+    <div class="space-y-4">
+      <%= render @contributions %>
+    </div>
+  <% else %>
+    <div class="card bg-base-200 shadow-sm">
+      <div class="card-body">
+        <p class="text-base-content/60 italic">Your contributions will appear here.</p>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -1,36 +1,59 @@
-<% content_for :title, 'Membership'  %>
-<h1>Membership</h1>
-<%= render partial: 'details' %>
-<article>
-  <p><strong><%= link_to 'Dividends', dividends_path %></strong>: Enabled</p>
-  <ul>
-    <li>
-      <strong>Email</strong>: Confirmed 
-    </li>
-    <li>
-      <strong>Currency</strong>: <%= @member.currency %> (<%= link_to 'update', edit_currency_path(@member) %>)
-    </li>
-  </ul>
-  <p>
-  <strong><%= link_to 'Contributions', membership_contributions_path %></strong> and <strong><%= link_to 'Pay Outs', pay_outs_path %></strong>: 
-    <% if @member.pay_outs_disabled? %> 
-      Not Enabled
-    <% else %>
-      Enabled
-    <% end %>
-  </p>
-  <ul>
-    <li>
-      <strong>PayPal.Me Handle</strong>: 
-      <% if @member.paypalme_handle.present? %>
-        Entered (<%= link_to 'update', edit_paypalme_handle_path(@member) %>)
-      <% else %>
-        <%= link_to 'Enter', edit_paypalme_handle_path(@member) %>
-      <% end %>
-    </li>
-  </ul>
-</article>
-<nav>
-  <%= link_to 'Account', edit_user_registration_path, class: 'button' %>
-  <%= link_to 'Distributions', distributions_path, class: 'button' %>
-</nav>
+<% content_for :title, 'Membership' %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">Membership</h1>
+  <%= render partial: 'details' %>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body space-y-4">
+
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <h2 class="font-bold text-secondary"><%= link_to 'Dividends', dividends_path, class: 'link link-secondary' %></h2>
+          <span class="badge badge-success badge-sm">Enabled</span>
+        </div>
+        <ul class="text-sm text-base-content/80 space-y-1 ml-1">
+          <li><span class="font-semibold">Email:</span> Confirmed</li>
+          <li>
+            <span class="font-semibold">Currency:</span>
+            <%= @member.currency %>
+            <span class="ml-2"><%= link_to 'Update', edit_currency_path(@member), class: 'link link-primary text-xs' %></span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="divider my-0 opacity-20"></div>
+
+      <div>
+        <div class="flex items-center gap-2 mb-1">
+          <h2 class="font-bold text-secondary">
+            <%= link_to 'Contributions', membership_contributions_path, class: 'link link-secondary' %>
+            &amp;
+            <%= link_to 'Pay Outs', pay_outs_path, class: 'link link-secondary' %>
+          </h2>
+          <% if @member.pay_outs_disabled? %>
+            <span class="badge badge-warning badge-sm">Not Enabled</span>
+          <% else %>
+            <span class="badge badge-success badge-sm">Enabled</span>
+          <% end %>
+        </div>
+        <ul class="text-sm text-base-content/80 space-y-1 ml-1">
+          <li>
+            <span class="font-semibold">PayPal.Me Handle:</span>
+            <% if @member.paypalme_handle.present? %>
+              Entered
+              <span class="ml-2"><%= link_to 'Update', edit_paypalme_handle_path(@member), class: 'link link-primary text-xs' %></span>
+            <% else %>
+              <%= link_to 'Enter Handle', edit_paypalme_handle_path(@member), class: 'link link-warning text-xs' %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <%= link_to 'Account', edit_user_registration_path, class: 'btn btn-outline btn-secondary' %>
+    <%= link_to 'Distributions', distributions_path, class: 'btn btn-outline btn-secondary' %>
+  </div>
+</div>

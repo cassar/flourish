@@ -1,10 +1,16 @@
-<% content_for :title, 'Pay Outs'  %>
-<h1>Pay Outs</h1>
-<%= render partial: 'details' %>
-<% if @dividends.any? %>
-  <%= render @dividends %>
-<% else %>
-  <article>
-    <p>Your pay outs will appear here.</p>
-  </article>
-<% end %>
+<% content_for :title, 'Pay Outs' %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">Pay Outs</h1>
+  <%= render partial: 'details' %>
+  <% if @dividends.any? %>
+    <div class="space-y-4">
+      <%= render @dividends %>
+    </div>
+  <% else %>
+    <div class="card bg-base-200 shadow-sm">
+      <div class="card-body">
+        <p class="text-base-content/60 italic">Your pay outs will appear here.</p>
+      </div>
+    </div>
+  <% end %>
+</div>

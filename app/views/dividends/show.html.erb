@@ -1,10 +1,14 @@
-<h1>Dividend</h1>
-<%= render @dividend %>
-<% if @dividend.issued? %>
-  <details>
-    <summary>Claiming your Dividend</summary>
-    <p>Choose to have this dividend paid out to your PayPal account or recontributed to next week's pool.</p>
-    <p>In order to request a pay out, a <a href="https://www.paypal.com/au/digital-wallet/send-receive-money/paypal-me" target="_blank">PayPal.Me</a> handle needs to be entered in the <%= link_to 'Membership', membership_path %> section.</p>
-    <p>All dividends will be automatically recontributed back into the pool if not claimed by the Tuesday following a distribution.</p>
-  </details>
-<% end %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">Dividend</h1>
+  <%= render @dividend %>
+  <% if @dividend.issued? %>
+    <details class="collapse collapse-arrow bg-base-200 border border-base-300">
+      <summary class="collapse-title font-semibold text-secondary">Claiming your Dividend</summary>
+      <div class="collapse-content text-sm text-base-content/80 space-y-2">
+        <p>Choose to have this dividend paid out to your PayPal account or recontributed to next week's pool.</p>
+        <p>In order to request a pay out, a <%= link_to 'PayPal.Me', 'https://www.paypal.com/au/digital-wallet/send-receive-money/paypal-me', target: '_blank', class: 'link link-primary' %> handle needs to be entered in the <%= link_to 'Membership', membership_path, class: 'link link-secondary' %> section.</p>
+        <p>All dividends will be automatically recontributed back into the pool if not claimed by the Tuesday following a distribution.</p>
+      </div>
+    </details>
+  <% end %>
+</div>

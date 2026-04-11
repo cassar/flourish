@@ -1,13 +1,19 @@
-<% content_for :title, 'Distributions'  %>
-<h1>Distributions</h1>
-<%= render partial: 'details' %>
-<% if @distributions.any? %>
-  <%= render @distributions %>
-<% else %>
-  <article>
-    <p>Distributions will appear here.</p>
-  </article>
-<% end %>
-<nav>
-  <%= render partial: 'static_pages/authentication' %>
-</nav>
+<% content_for :title, 'Distributions' %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">Distributions</h1>
+  <%= render partial: 'details' %>
+  <% if @distributions.any? %>
+    <div class="space-y-4">
+      <%= render @distributions %>
+    </div>
+  <% else %>
+    <div class="card bg-base-200 shadow-sm">
+      <div class="card-body">
+        <p class="text-base-content/60 italic">Distributions will appear here.</p>
+      </div>
+    </div>
+  <% end %>
+  <div class="flex flex-wrap gap-3">
+    <%= render partial: 'static_pages/authentication' %>
+  </div>
+</div>

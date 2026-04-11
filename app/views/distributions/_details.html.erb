@@ -1,6 +1,8 @@
-<details>
-  <summary>What happens for a distribution?</summary>
-  <p>Every <%= DistributionDateService::DAY_OF_THE_WEEK %> the contributions pool is divided equally between all members and distributed as dividends.</p>
-  <p>After being notified by email, members can then choose to have their dividend paid out as cash, or, can choose to recontribute it back into the pool for the next week's distribution.</p>
-  <p>Every <%= ConsolidationDate::DAY_OF_THE_WEEK %> following a distribution, all unactioned dividends will be automatically recontributed back into the pool.</p>
+<details class="collapse collapse-arrow bg-base-200 border border-base-300 mb-3">
+  <summary class="collapse-title font-semibold text-secondary text-sm">What happens for a distribution?</summary>
+  <div class="collapse-content text-sm text-base-content/80 space-y-2">
+    <p>Every <%= DistributionDateService::DAY_OF_THE_WEEK %> the contributions pool is divided equally between all members and distributed as dividends.</p>
+    <p>After being notified by email, members can then choose to have their dividend paid out as cash, or, can choose to recontribute it back into the pool for the next week's distribution.</p>
+    <p>Every <%= ConsolidationDate::DAY_OF_THE_WEEK %> following a distribution, all unactioned dividends will be automatically recontributed back into the pool.</p>
+  </div>
 </details>

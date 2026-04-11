@@ -1,86 +1,122 @@
-<% content_for :title, "Distribution #{@distribution.name}"  %>
-<h1>Distribution <%= @distribution.name %></h1> 
-<article>
-  <p class="amount"><strong><%= @distribution.default_amount.amount_formatted %></strong></p>
-  <p class="amount-label"><i>Dividend</i></p>
-  <ul>
-    <li><b>Date</b>: <%= created_at_formatted @distribution %></li>
-    <li><b>Status</b>: <%= distribution_status dividend_statuses: @distribution.dividends.pluck(:status) %></li>
-    <li><b>Dividends</b>: <%= @distribution.dividends.length %></li>
-    <%= render 'aggregate_status_counts', disaggregate_status_counts: @distribution.dividends.group(:status).count %>
-  </ul>
-</article>
-<article>
-  <ul>
-    <li><b>Total Recontributions from Distribution <%= @previous_distribution.name %></b>: <%= @total_recontributions_formatted %></li>
-  </ul>
-</article>
-<article>
-  <h2>Dividend Amounts</h2>
-  <table class="distribution-table">
-    <thead>
-      <tr>
-        <th>Currency</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @amounts.each do |amount| %>
-        <tr>
-          <td><%= amount.currency_name %></td>
-          <td><%= amount.amount_formatted_without_currency %></td>
-        </tr>
+<% content_for :title, "Distribution #{@distribution.name}" %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">Distribution <%= @distribution.name %></h1>
+
+  <div class="stats stats-vertical sm:stats-horizontal w-full bg-base-200 shadow">
+    <div class="stat">
+      <div class="stat-title">Dividend</div>
+      <div class="stat-value text-primary"><%= @distribution.default_amount.amount_formatted %></div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Status</div>
+      <div class="stat-value text-sm font-semibold text-secondary"><%= distribution_status dividend_statuses: @distribution.dividends.pluck(:status) %></div>
+    </div>
+    <div class="stat">
+      <div class="stat-title">Dividends</div>
+      <div class="stat-value text-accent"><%= @distribution.dividends.length %></div>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body">
+      <ul class="space-y-1 text-sm text-base-content/80">
+        <li><span class="font-semibold text-base-content">Date:</span> <%= created_at_formatted @distribution %></li>
+        <%= render 'aggregate_status_counts', disaggregate_status_counts: @distribution.dividends.group(:status).count %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body">
+      <p class="text-sm text-base-content/80">
+        <span class="font-semibold text-base-content">Total Recontributions from Distribution <%= @previous_distribution.name %>:</span>
+        <%= @total_recontributions_formatted %>
+      </p>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-secondary">Dividend Amounts</h2>
+      <div class="overflow-x-auto">
+        <table class="table table-zebra">
+          <thead>
+            <tr>
+              <th>Currency</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @amounts.each do |amount| %>
+              <tr>
+                <td><%= amount.currency_name %></td>
+                <td class="font-mono"><%= amount.amount_formatted_without_currency %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-secondary">Expenses</h2>
+      <div class="overflow-x-auto">
+        <table class="table table-zebra">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @expenses.each do |expense| %>
+              <tr>
+                <td><%= expense.name %></td>
+                <td class="font-mono"><%= expense.amount_formatted %></td>
+              </tr>
+            <% end %>
+            <tr class="font-bold text-base-content">
+              <td>Total Deducted from Pool</td>
+              <td class="font-mono"><%= @total_expenses_formatted %></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-secondary">Contributions</h2>
+      <% if @contributions.none? %>
+        <p class="text-base-content/50 italic text-sm">No contributions in the last week.</p>
+      <% else %>
+        <div class="overflow-x-auto">
+          <table class="table table-zebra">
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @contributions.each do |contribution| %>
+                <tr>
+                  <td><%= contribution.created_at_formatted %></td>
+                  <td class="font-mono"><%= contribution.amount_formatted %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       <% end %>
-    </tbody>
-  </table>
-</article>
-<article>
-  <h2>Expenses</h2>
-  <table class="distribution-table">
-    <thead>
-      <tr>
-        <th>Item</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @expenses.each do |expense| %>
-        <tr>
-          <td><%= expense.name %></td>
-          <td><%= expense.amount_formatted %></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td><b>Total Deducted from Pool</b></td>
-        <td><b><%= @total_expenses_formatted %></b></td>
-      </tr>
-    </tbody>
-  </table>
-</article>
-<article>
-  <h2>Contributions</h2>
-  <% if @contributions.none? %>
-    <p>[No contributions in the last week]</p>
-  <% else %>
-    <table class="distribution-table">
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Amount</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @contributions.each do |contribution| %>
-          <tr>
-            <td><%= contribution.created_at_formatted %></td>
-            <td><%= contribution.amount_formatted %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  <% end %>
-</article>
-<nav>
-  <%= link_to 'Distributions', distributions_path, class: 'button' %>
-  <%= render partial: 'static_pages/authentication' %>
-</nav>
+    </div>
+  </div>
+
+  <div class="flex flex-wrap gap-3">
+    <%= link_to 'Distributions', distributions_path, class: 'btn btn-outline btn-secondary' %>
+    <%= render partial: 'static_pages/authentication' %>
+  </div>
+</div>

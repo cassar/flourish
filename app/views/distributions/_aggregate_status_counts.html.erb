@@ -1,8 +1,8 @@
 <% if (aggregate_status_counts = AggregateStatusCounts.counts(disaggregate_status_counts)).any? %>
-  <ul>
-    <% aggregate_status_counts.sort.each do |aggregate_status, count| %>
-      <li><i><%= aggregate_status.titleize %></i>: <%= count %></li>
-    <% end %>
-  </ul>
+  <% aggregate_status_counts.sort.each do |aggregate_status, count| %>
+    <li class="text-base-content/60">
+      <span class="italic"><%= aggregate_status.titleize %></span>:
+      <span class="font-mono"><%= count %></span>
+    </li>
+  <% end %>
 <% end %>
-
