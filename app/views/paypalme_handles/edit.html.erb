@@ -1,15 +1,39 @@
 <% content_for :title, 'Update PayPal.Me Handle' %>
-<h1>PayPal.Me Handle</h1>
-<details>
-  <summary>What's a PayPal.Me Handle?</summary>
-  <p>A <%= link_to 'PayPal.Me', 'https://www.paypal.com/au/digital-wallet/send-receive-money/paypal-me', target: '_blank' %> handle allows members to receive pay outs to their PayPal accounts.</p>
-  <p>The handle is the identifier at the end of the link:</p>
-  <p><i>https://www.paypal.com/paypalme/</i><mark>flourishbuzz</mark></p>
-</details>
-<%= form_with model: @member, url: paypalme_handle_path do |form| %>
-  <article>
-    <p><span><strong><%= paypalme_url %></strong></span><%= form.text_field :paypalme_handle %></p>
-  </article>
-  <%= form.submit "Update" %>
-  <%= link_to 'Cancel', membership_path, class: 'button' %>
-<% end %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">PayPal.Me Handle</h1>
+
+  <details class="collapse collapse-arrow bg-base-200 border border-base-300">
+    <summary class="collapse-title font-semibold text-secondary">What's a PayPal.Me Handle?</summary>
+    <div class="collapse-content text-sm text-base-content/80 space-y-2">
+      <p>A <%= link_to 'PayPal.Me', 'https://www.paypal.com/au/digital-wallet/send-receive-money/paypal-me', target: '_blank', class: 'link link-primary' %> handle allows members to receive pay outs to their PayPal accounts.</p>
+      <p>The handle is the identifier at the end of the link:</p>
+      <p class="font-mono text-xs bg-base-300 rounded p-2">
+        <span class="text-base-content/50">https://www.paypal.com/paypalme/</span><mark class="bg-primary/30 text-primary rounded px-1">flourishbuzz</mark>
+      </p>
+    </div>
+  </details>
+
+  <%= form_with model: @member, url: paypalme_handle_path do |form| %>
+    <div class="card bg-base-200 shadow-sm max-w-md">
+      <div class="card-body">
+        <div class="form-control w-full">
+          <label class="label pb-1">
+            <span class="label-text font-semibold">Handle</span>
+          </label>
+          <div class="join w-full">
+            <span class="join-item btn btn-disabled btn-sm h-auto px-3 font-mono text-xs text-base-content/40 normal-case">
+              <%= paypalme_url %>
+            </span>
+            <%= form.text_field :paypalme_handle,
+                class: 'join-item input input-bordered w-full',
+                placeholder: 'yourhandle' %>
+          </div>
+        </div>
+        <div class="card-actions mt-4 gap-3">
+          <%= form.submit "Update", class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', membership_path, class: 'btn btn-ghost' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

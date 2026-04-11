@@ -1,14 +1,23 @@
 <% content_for :title, 'Update Currency' %>
-<h1>Currency</h1>
-<%= render partial: 'details' %>
-<%= form_with model: @member, url: currency_path do |form| %>
-  <article>
-    <p>
-      <span>Currency: </span>
-      <%= form.select :currency, Currencies::SUPPORTED %>
-    </p>
-  </article>
-  <%= form.submit "Submit" %>
-  <%= link_to 'Cancel', membership_path, class: 'button' %>
-<% end %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">Currency</h1>
+  <%= render partial: 'details' %>
 
+  <%= form_with model: @member, url: currency_path do |form| %>
+    <div class="card bg-base-200 shadow-sm max-w-md">
+      <div class="card-body">
+        <div class="form-control w-full">
+          <label class="label pb-1">
+            <span class="label-text font-semibold">Currency</span>
+          </label>
+          <%= form.select :currency, Currencies::SUPPORTED, {},
+              class: 'select select-bordered w-full' %>
+        </div>
+        <div class="card-actions mt-4 gap-3">
+          <%= form.submit "Save", class: 'btn btn-primary' %>
+          <%= link_to 'Cancel', membership_path, class: 'btn btn-ghost' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

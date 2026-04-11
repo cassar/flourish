@@ -1,57 +1,93 @@
-<% content_for :title, 'Account'  %>
-<h1>Account</h1>
+<% content_for :title, 'Account' %>
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">Account</h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="card bg-base-200 shadow-sm max-w-md">
+    <div class="card-body">
+      <h2 class="card-title text-secondary text-base">Update Details</h2>
 
-  <p>
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </p>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+        <div class="form-control w-full mb-3">
+          <%= f.label :email, class: 'label pb-1' do %>
+            <span class="label-text font-semibold">Email</span>
+          <% end %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+              class: 'input input-bordered w-full' %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div class="label">
+              <span class="label-text-alt text-warning">Awaiting confirmation for: <%= resource.unconfirmed_email %></span>
+            </div>
+          <% end %>
+        </div>
 
-  <p>
-    <%= f.label :password %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </p>
+        <div class="form-control w-full mb-3">
+          <%= f.label :password, class: 'label pb-1' do %>
+            <span class="label-text font-semibold">New Password</span>
+            <span class="label-text-alt text-base-content/40">leave blank to keep current</span>
+          <% end %>
+          <%= f.password_field :password, autocomplete: "new-password",
+              class: 'input input-bordered w-full' %>
+        </div>
 
-  <p>
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </p>
+        <div class="form-control w-full mb-3">
+          <%= f.label :password_confirmation, class: 'label pb-1' do %>
+            <span class="label-text font-semibold">Confirm New Password</span>
+          <% end %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",
+              class: 'input input-bordered w-full' %>
+        </div>
 
-  <p>
-    <%= f.label :current_password %> 
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </p>
+        <div class="form-control w-full mb-4">
+          <%= f.label :current_password, class: 'label pb-1' do %>
+            <span class="label-text font-semibold">Current Password</span>
+            <span class="label-text-alt text-base-content/40">required to save changes</span>
+          <% end %>
+          <%= f.password_field :current_password, autocomplete: "current-password",
+              class: 'input input-bordered w-full' %>
+        </div>
 
-  <%= f.submit "Update" %>
-<% end %>
+        <%= f.submit "Update", class: 'btn btn-primary w-full' %>
+      <% end %>
+    </div>
+  </div>
 
-<div class="notice">
-  <p><strong>Email Notification Preferences</strong></p>
-  <ul class='notification_preferences'>
-    <% resource.member.notification_preferences.order(:notification_name).each do |notification| %>
-      <li><%= "#{notification_emoji notification.enabled} #{notification.notification_name.titleize}" %></li>
-    <% end %>
-  </ul>
-  <%= link_to "Edit", notification_preferences_path, class: 'button' %>
+  <div class="card bg-base-200 shadow-sm max-w-md">
+    <div class="card-body">
+      <h2 class="card-title text-secondary text-base">Notification Preferences</h2>
+      <ul class="space-y-1 text-sm text-base-content/80">
+        <% resource.member.notification_preferences.order(:notification_name).each do |notification| %>
+          <li><%= "#{notification_emoji notification.enabled} #{notification.notification_name.titleize}" %></li>
+        <% end %>
+      </ul>
+      <div class="card-actions mt-3">
+        <%= link_to "Edit Preferences", notification_preferences_path, class: 'btn btn-outline btn-secondary btn-sm' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 shadow-sm max-w-md">
+    <div class="card-body">
+      <h2 class="card-title text-secondary text-base">Log Out</h2>
+      <p class="text-sm text-base-content/70">Log out of this session.</p>
+      <div class="card-actions mt-2">
+        <%= button_to "Log Out", destroy_user_session_path, method: :delete,
+            class: 'btn btn-outline btn-sm' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 border border-error/20 shadow-sm max-w-md">
+    <div class="card-body">
+      <h2 class="card-title text-error text-base">Delete Account</h2>
+      <p class="text-sm text-base-content/70">Permanently delete all account information.</p>
+      <div class="card-actions mt-2">
+        <%= button_to "Delete Account", registration_path(resource_name),
+            data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" },
+            method: :delete,
+            class: 'btn btn-error btn-outline btn-sm' %>
+      </div>
+    </div>
+  </div>
 </div>
-
-<div class="notice">
-  <p><strong>Log Out</strong></p>
-  <p>Log out of this session.</p>
-
-  <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
-</div>
-
-<div class="notice">
-  <p><strong>Delete Account</strong></p>
-  <p>Delete all account information.</p>
-
-  <%= button_to "Delete Account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
-</div>
-

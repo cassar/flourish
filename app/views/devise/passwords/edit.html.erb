@@ -1,25 +1,38 @@
-<h2>Change your password</h2>
+<div class="flex justify-center">
+  <div class="card bg-base-200 shadow-md w-full max-w-md">
+    <div class="card-body">
+      <h1 class="card-title text-2xl text-primary mb-2">Change Password</h1>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
+        <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
+        <div class="form-control w-full mb-3">
+          <%= f.label :password, "New password", class: 'label pb-1' do %>
+            <span class="label-text font-semibold">New Password</span>
+            <% if @minimum_password_length %>
+              <span class="label-text-alt text-base-content/40"><%= @minimum_password_length %> characters minimum</span>
+            <% end %>
+          <% end %>
+          <%= f.password_field :password, autofocus: true, autocomplete: "new-password",
+              class: 'input input-bordered w-full' %>
+        </div>
+
+        <div class="form-control w-full mb-4">
+          <%= f.label :password_confirmation, "Confirm new password", class: 'label pb-1' do %>
+            <span class="label-text font-semibold">Confirm New Password</span>
+          <% end %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password",
+              class: 'input input-bordered w-full' %>
+        </div>
+
+        <%= f.submit "Change my password", class: 'btn btn-primary w-full' %>
+      <% end %>
+
+      <div class="divider text-xs text-base-content/40">or</div>
+      <div class="text-sm text-center">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>

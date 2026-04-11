@@ -1,14 +1,26 @@
-<h1>Password reset</h1>
+<div class="flex justify-center">
+  <div class="card bg-base-200 shadow-md w-full max-w-md">
+    <div class="card-body">
+      <h1 class="card-title text-2xl text-primary mb-2">Reset Password</h1>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <p>
-  <%= f.label :email %>
-  <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </p>
+        <div class="form-control w-full mb-4">
+          <%= f.label :email, class: 'label pb-1' do %>
+            <span class="label-text font-semibold">Email</span>
+          <% end %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+              class: 'input input-bordered w-full' %>
+        </div>
 
-  <%= f.submit "Send me reset password instructions" %>
-<% end %>
+        <%= f.submit "Send reset instructions", class: 'btn btn-primary w-full' %>
+      <% end %>
 
-<%= render "devise/shared/links" %>
+      <div class="divider text-xs text-base-content/40">or</div>
+      <div class="text-sm text-center">
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+</div>
