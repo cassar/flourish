@@ -1,37 +1,20 @@
-<footer>
-  <details>
-    <summary>Got Feedback?</summary>
-    <p>Any and all suggestions are greatly appreciated 🙏</p>
-    <p><strong>Email:</strong> <span data-controller="feedback" data-feedback-target="email"></span></p>
-  </details>
-  <nav>
-    <ul>
-      <li><%= link_to 'Home', root_path %></li>
-      <li><%= link_to 'About', about_path %></li>
-      <li><%= link_to 'Mission', mission_path %></li>
-      <li><%= link_to 'Privacy Statement', privacy_statement_path %></li>
-      <li><%= link_to 'Distributions', distributions_path %></li>
-    </ul>
-    <% if user_signed_in? %>
-      <ul>
-        <li><%= link_to 'Membership', membership_path %></li>
-        <li><%= link_to 'Account', edit_user_registration_path %></li>
-        <li><%= link_to 'Dividends', dividends_path %></li>
-        <li><%= link_to 'Pay Outs', pay_outs_path %></li>
-        <li><%= link_to 'Contributions', membership_contributions_path %></li>
+<footer class="bg-base-200 border-t border-base-300 mt-12 py-8 px-4">
+  <div class="container mx-auto max-w-4xl">
+    <details class="mb-4">
+      <summary class="cursor-pointer text-sm font-semibold text-base-content/60 hover:text-base-content transition-colors">Got Feedback?</summary>
+      <div class="mt-2 text-sm text-base-content/70 space-y-1 pl-2">
+        <p>Any and all suggestions are greatly appreciated 🙏</p>
+        <p><strong>Email:</strong> <span data-controller="feedback" data-feedback-target="email"></span></p>
+      </div>
+    </details>
+    <nav>
+      <ul class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-base-content/40">
+        <li><%= link_to 'Home', root_path, class: 'link link-hover' %></li>
+        <li><%= link_to 'About', about_path, class: 'link link-hover' %></li>
+        <li><%= link_to 'Mission', mission_path, class: 'link link-hover' %></li>
+        <li><%= link_to 'Privacy', privacy_statement_path, class: 'link link-hover' %></li>
+        <li><%= link_to 'Distributions', distributions_path, class: 'link link-hover' %></li>
       </ul>
-      <% if current_user.admin? %>
-        <ul>
-          <li><%= link_to 'Active Members', active_admin_members_path %></li>
-          <li><%= link_to 'Inactive Members', inactive_admin_members_path %></li>
-          <li><%= link_to 'Distributions', admin_distributions_path %></li>
-        </ul>
-      <% end %>
-    <% else %>
-      <ul>
-        <li><%= link_to 'Sign up', new_user_registration_path %></li>
-        <li><%= link_to 'Log in', new_user_session_path %></li> 
-      </ul>
-    <% end %>
-  </nav>
+    </nav>
+  </div>
 </footer>

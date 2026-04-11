@@ -1,5 +1,11 @@
-<main>
-  <h1 id="logo">Flourish</h1>
-  <%= render 'layouts/flash' %>
-  <%= yield %>
-</main>
+<div class="min-h-screen flex flex-col items-center justify-center bg-base-100">
+  <main class="container mx-auto px-4 py-16 max-w-4xl w-full">
+    <div class="text-center mb-10">
+      <h1 class="text-7xl sm:text-9xl font-bold text-primary tracking-widest drop-shadow-[0_0_40px_rgba(231,121,193,0.6)]">
+        Flourish
+      </h1>
+    </div>
+    <%= render 'layouts/flash' %>
+    <%= yield %>
+  </main>
+</div>

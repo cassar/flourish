@@ -1,7 +1,78 @@
-<header>
-  <h1><%= link_to 'Flourish', root_path, class: 'header-title' %></h1>
-</header>
-<main>
-  <%= render 'layouts/flash' %>
-  <%= yield %>
-</main>
+<div class="drawer">
+  <input id="nav-drawer" type="checkbox" class="drawer-toggle" />
+  <div class="drawer-content flex flex-col min-h-screen">
+
+    <nav class="navbar bg-base-100 border-b border-base-300 sticky top-0 z-40">
+      <div class="navbar-start">
+        <label for="nav-drawer" class="btn btn-ghost btn-square drawer-button lg:hidden" aria-label="Open menu">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block size-5 stroke-current">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </label>
+        <%= link_to root_path, class: 'btn btn-ghost text-primary font-bold text-xl tracking-wider' do %>
+          Flourish
+        <% end %>
+      </div>
+
+      <div class="navbar-center hidden lg:flex">
+        <ul class="menu menu-horizontal px-1 gap-1 text-sm">
+          <li><%= link_to 'Home', root_path %></li>
+          <li><%= link_to 'About', about_path %></li>
+          <li><%= link_to 'Distributions', distributions_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to 'Membership', membership_path %></li>
+            <li><%= link_to 'Dividends', dividends_path %></li>
+            <li><%= link_to 'Pay Outs', pay_outs_path %></li>
+          <% end %>
+        </ul>
+      </div>
+
+      <div class="navbar-end gap-2">
+        <% if user_signed_in? %>
+          <%= link_to 'Account', edit_user_registration_path, class: 'btn btn-ghost btn-sm hidden lg:inline-flex' %>
+        <% else %>
+          <%= link_to 'Log in', new_user_session_path, class: 'btn btn-ghost btn-sm hidden lg:inline-flex' %>
+          <%= link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-sm hidden lg:inline-flex' %>
+        <% end %>
+      </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 max-w-4xl w-full flex-1">
+      <%= render 'layouts/flash' %>
+      <%= yield %>
+    </main>
+
+  </div>
+
+  <div class="drawer-side z-50">
+    <label for="nav-drawer" aria-label="Close menu" class="drawer-overlay"></label>
+    <div class="bg-base-200 min-h-full w-72 p-4 flex flex-col gap-1">
+      <div class="text-primary font-bold text-xl tracking-wider p-2 mb-2">Flourish</div>
+      <ul class="menu w-full">
+        <li><%= link_to 'Home', root_path %></li>
+        <li><%= link_to 'About', about_path %></li>
+        <li><%= link_to 'Mission', mission_path %></li>
+        <li><%= link_to 'Privacy Statement', privacy_statement_path %></li>
+        <li><%= link_to 'Distributions', distributions_path %></li>
+        <% if user_signed_in? %>
+          <li class="menu-title pt-2">Member</li>
+          <li><%= link_to 'Membership', membership_path %></li>
+          <li><%= link_to 'Account', edit_user_registration_path %></li>
+          <li><%= link_to 'Dividends', dividends_path %></li>
+          <li><%= link_to 'Pay Outs', pay_outs_path %></li>
+          <li><%= link_to 'Contributions', membership_contributions_path %></li>
+          <% if current_user.admin? %>
+            <li class="menu-title pt-2">Admin</li>
+            <li><%= link_to 'Active Members', active_admin_members_path %></li>
+            <li><%= link_to 'Inactive Members', inactive_admin_members_path %></li>
+            <li><%= link_to 'Admin Distributions', admin_distributions_path %></li>
+          <% end %>
+        <% else %>
+          <li class="menu-title pt-2">Account</li>
+          <li><%= link_to 'Sign up', new_user_registration_path %></li>
+          <li><%= link_to 'Log in', new_user_session_path %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>
