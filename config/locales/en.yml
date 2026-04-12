@@ -2,6 +2,9 @@ en:
   controllers:
     admin:
       not_authorised: "You don't have access."
+      webhook_configurations:
+        update:
+          success: "Webhook URL updated."
       pay_outs:
         create:
           success: "Pay out created successfully"

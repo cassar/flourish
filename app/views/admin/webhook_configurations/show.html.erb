@@ -1,0 +1,94 @@
+<% content_for :title, 'Admin – Webhook' %>
+
+<div class="space-y-6">
+  <h1 class="text-3xl font-bold text-primary">Webhook Configuration</h1>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-secondary">Endpoint URL</h2>
+      <p class="text-sm text-base-content/70">
+        Paste a webhook URL from focus_machine (or any compatible endpoint) to receive Flourish activity events in real time.
+        The payload format is <code class="kbd kbd-sm">{ "content": "message" }</code>.
+      </p>
+
+      <%= form_with model: @webhook_configuration, url: admin_webhook_configuration_path, method: :patch, class: 'mt-4 space-y-4' do |f| %>
+        <fieldset>
+          <%= f.label :url, 'Webhook URL', class: 'label font-semibold' %>
+          <%= f.url_field :url,
+                placeholder: 'https://example.com/webhooks/your-token',
+                class: 'input input-bordered w-full' %>
+        </fieldset>
+        <div>
+          <%= f.submit 'Save', class: 'btn btn-primary' %>
+          <% if @webhook_configuration.configured? %>
+            <span class="badge badge-success badge-sm ml-2">Connected</span>
+          <% else %>
+            <span class="badge badge-neutral badge-sm ml-2">Not configured</span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body">
+      <h2 class="card-title text-secondary">Events sent to this webhook</h2>
+      <div class="overflow-x-auto">
+        <table class="table table-zebra">
+          <thead>
+            <tr>
+              <th>Event</th>
+              <th>Example message</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="badge badge-outline">Contribution received</span></td>
+              <td class="text-base-content/70 italic text-sm">Contribution of $50.00 received from member@example.com</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-outline">Distribution created</span></td>
+              <td class="text-base-content/70 italic text-sm">Distribution #12 created</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-outline">Payout completed</span></td>
+              <td class="text-base-content/70 italic text-sm">Payout of $50.00 to member@example.com completed</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-outline">Payout requested</span></td>
+              <td class="text-base-content/70 italic text-sm">Payout requested by member@example.com</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-outline">Dividend manually recontributed</span></td>
+              <td class="text-base-content/70 italic text-sm">Dividend manually recontributed by member@example.com</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-outline">Dividend auto-recontributed</span></td>
+              <td class="text-base-content/70 italic text-sm">Dividend automatically recontributed for member@example.com</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-outline">Membership viewed</span></td>
+              <td class="text-base-content/70 italic text-sm">member@example.com viewed their membership</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-outline">Dividends browsed</span></td>
+              <td class="text-base-content/70 italic text-sm">member@example.com browsed their dividends</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-outline">Distribution viewed</span></td>
+              <td class="text-base-content/70 italic text-sm">member@example.com viewed distribution #12</td>
+            </tr>
+            <tr>
+              <td><span class="badge badge-outline">Contribution viewed</span></td>
+              <td class="text-base-content/70 italic text-sm">member@example.com viewed a contribution</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to 'View Activity Log', admin_activity_logs_path, class: 'btn btn-outline btn-secondary' %>
+  </div>
+</div>

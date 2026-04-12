@@ -29,6 +29,18 @@
 
       <div class="navbar-end gap-2">
         <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <div class="dropdown dropdown-end hidden lg:block">
+              <div tabindex="0" role="button" class="btn btn-ghost btn-sm">Admin</div>
+              <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                <li><%= link_to 'Active Members', active_admin_members_path %></li>
+                <li><%= link_to 'Inactive Members', inactive_admin_members_path %></li>
+                <li><%= link_to 'Distributions', admin_distributions_path %></li>
+                <li><%= link_to 'Activity Log', admin_activity_logs_path %></li>
+                <li><%= link_to 'Webhook', admin_webhook_configuration_path %></li>
+              </ul>
+            </div>
+          <% end %>
           <%= link_to 'Account', edit_user_registration_path, class: 'btn btn-ghost btn-sm hidden lg:inline-flex' %>
         <% else %>
           <%= link_to 'Log in', new_user_session_path, class: 'btn btn-ghost btn-sm hidden lg:inline-flex' %>
@@ -66,6 +78,8 @@
             <li><%= link_to 'Active Members', active_admin_members_path %></li>
             <li><%= link_to 'Inactive Members', inactive_admin_members_path %></li>
             <li><%= link_to 'Admin Distributions', admin_distributions_path %></li>
+            <li><%= link_to 'Activity Log', admin_activity_logs_path %></li>
+            <li><%= link_to 'Webhook', admin_webhook_configuration_path %></li>
           <% end %>
         <% else %>
           <li class="menu-title pt-2">Account</li>

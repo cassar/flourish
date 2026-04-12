@@ -1,0 +1,39 @@
+<% content_for :title, 'Admin – Activity Log' %>
+
+<div class="space-y-6">
+  <div class="flex items-center justify-between">
+    <h1 class="text-3xl font-bold text-primary">Activity Log</h1>
+    <span class="badge badge-neutral"><%= @activity_logs.size %> recent events</span>
+  </div>
+
+  <div class="card bg-base-200 shadow-sm">
+    <div class="card-body">
+      <% if @activity_logs.any? %>
+        <div class="overflow-x-auto">
+          <table class="table table-zebra">
+            <thead>
+              <tr>
+                <th class="w-48">Time</th>
+                <th>Event</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @activity_logs.each do |log| %>
+                <tr>
+                  <td class="text-sm text-base-content/60 font-mono whitespace-nowrap"><%= log.created_at.strftime('%d %b %Y %H:%M:%S') %></td>
+                  <td class="text-sm"><%= log.message %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      <% else %>
+        <p class="text-base-content/50 italic text-sm">No activity logged yet.</p>
+      <% end %>
+    </div>
+  </div>
+
+  <div>
+    <%= link_to 'Webhook Settings', admin_webhook_configuration_path, class: 'btn btn-outline btn-secondary' %>
+  </div>
+</div>
