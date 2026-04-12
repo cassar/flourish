@@ -297,7 +297,8 @@ GEM
       erb
       psych (>= 4.0.0)
       tsort
-    redis (4.8.1)
+    redis (5.4.1)
+      redis-client (>= 0.22.0)
     redis-client (0.28.0)
       connection_pool
     regexp_parser (2.12.0)
@@ -435,7 +436,7 @@ DEPENDENCIES
   pg (~> 1.1)
   puma (~> 6.0)
   rails!
-  redis (~> 4.0)
+  redis (~> 5.4)
   rubocop
   rubocop-capybara
   rubocop-minitest
