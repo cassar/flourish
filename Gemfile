@@ -64,7 +64,7 @@ gem 'devise', github: 'heartcombo/devise', branch: 'main'
 gem 'image_processing', '~> 1.2'
 
 # Ruby exception and error tracking
-gem 'honeybadger', '~> 5.4'
+gem 'honeybadger', '~> 6.5'
 
 # Simple, efficient background processing for Ruby
 gem 'sidekiq'
