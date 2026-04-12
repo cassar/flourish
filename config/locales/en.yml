@@ -51,3 +51,4 @@ en:
     errors:
       messages:
         unsupported_currency: "%{value} is not a supported currency"
+        invalid_url: 'must be a valid URL'

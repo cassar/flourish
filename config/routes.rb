@@ -1,22 +1,25 @@
+# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
-  devise_for :users, controllers: { 
+  devise_for :users, controllers: {
     registrations: 'users/registrations',
     confirmations: 'users/confirmations'
   }
 
   namespace :admin do
+    resource :webhook_configuration, only: %i[show update]
+    resources :activity_logs, only: :index
     resources :distributions, only: :index
     resources :users, only: :destroy
     resources :dividends, only: [] do
-      resources :pay_outs, only: [:new, :create] do
+      resources :pay_outs, only: %i[new create] do
         collection { get :preview }
       end
     end
     resources :members, only: [] do
-      resources :contributions, only: [:new, :create] do
+      resources :contributions, only: %i[new create] do
         collection { get :preview }
       end
-      collection do 
+      collection do
         get :active
         get :inactive
       end
@@ -28,15 +31,15 @@ Rails.application.routes.draw do
   end
 
   resources :contributions, only: :show, param: :uuid
-  resources :distributions, only: [:index, :show]
+  resources :distributions, only: %i[index show]
   resources :pay_outs, only: :index
-  resources :paypalme_handles, only: [:edit, :update]
-  resources :currencies, only: [:edit, :update]
-  resources :dividends, only: [:index, :show] do
-    member do 
+  resources :paypalme_handles, only: %i[edit update]
+  resources :currencies, only: %i[edit update]
+  resources :dividends, only: %i[index show] do
+    member do
       patch :pay_out
-      patch :recontribute 
-    end 
+      patch :recontribute
+    end
   end
 
   get :membership, to: 'memberships#show'
@@ -50,3 +53,4 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 end
+# rubocop:enable Metrics/BlockLength
