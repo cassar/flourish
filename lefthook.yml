@@ -16,7 +16,7 @@ pre-commit:
     rubocop:
       tags: lint
       glob: "*.rb"
-      run: RUBOCOP_CACHE_ROOT=tmp/rubocop bundle exec rubocop -f github {staged_files}
+      run: RUBOCOP_CACHE_ROOT=tmp/rubocop bundle exec rubocop --force-exclusion -f github {staged_files}
     eslint:
       tags: lint
       glob: "*.js"

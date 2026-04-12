@@ -1,4 +1,3 @@
-# rubocop:disable Metrics/BlockLength
 Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations',
@@ -53,4 +52,3 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
 end
-# rubocop:enable Metrics/BlockLength

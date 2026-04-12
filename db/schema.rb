@@ -10,7 +10,6 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-# rubocop:disable Metrics/BlockLength, Rails/ThreeStateBooleanColumn
 ActiveRecord::Schema[8.2].define(version: 20_260_412_000_002) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'pg_catalog.plpgsql'
@@ -143,4 +142,3 @@ ActiveRecord::Schema[8.2].define(version: 20_260_412_000_002) do
   add_foreign_key 'notification_preferences', 'members'
   add_foreign_key 'pay_outs', 'dividends'
 end
-# rubocop:enable Metrics/BlockLength, Rails/ThreeStateBooleanColumn
