@@ -7,11 +7,19 @@ class PayOut < ApplicationRecord
 
   include CurrencyValidator
 
+  after_create_commit :log_activity
+
   def amount_formatted
     Money.new(amount_in_base_units, currency).format
   end
 
   def fees_formatted
     Money.new(fees_in_base_units, currency).format
+  end
+
+  private
+
+  def log_activity
+    ActivityLog.create(message: "Payout of #{amount_formatted} to #{dividend.member.user.email} completed")
   end
 end

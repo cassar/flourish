@@ -46,4 +46,42 @@ class DividendTest < ActiveSupport::TestCase
 
     assert_not_includes Dividend.automatically_recontributed_notify_enabled, dividends(:issued)
   end
+
+  test 'logs activity when status changes to pending_pay_out' do
+    dividend = dividends(:one)
+
+    assert_difference 'ActivityLog.count' do
+      dividend.update!(status: :pending_pay_out)
+    end
+
+    assert_match(/Payout requested by/, ActivityLog.last.message)
+  end
+
+  test 'logs activity when status changes to manually_recontributed' do
+    dividend = dividends(:pending_pay_out)
+
+    assert_difference 'ActivityLog.count' do
+      dividend.update!(status: :manually_recontributed)
+    end
+
+    assert_match(/Dividend manually recontributed by/, ActivityLog.last.message)
+  end
+
+  test 'logs activity when status changes to auto_recontributed' do
+    dividend = dividends(:pending_pay_out_two)
+
+    assert_difference 'ActivityLog.count' do
+      dividend.update!(status: :auto_recontributed)
+    end
+
+    assert_match(/Dividend automatically recontributed for/, ActivityLog.last.message)
+  end
+
+  test 'does not log activity when status changes to pay_out_complete' do
+    dividend = dividends(:pending_pay_out)
+
+    assert_no_difference 'ActivityLog.count' do
+      dividend.update!(status: :pay_out_complete)
+    end
+  end
 end

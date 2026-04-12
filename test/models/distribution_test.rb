@@ -70,4 +70,12 @@ class DistributionTest < ActiveSupport::TestCase
   test 'to_param' do
     assert_equal '1', distributions(:one).to_param
   end
+
+  test 'logs activity after creation' do
+    assert_difference 'ActivityLog.count' do
+      Distribution.create!(number: 999)
+    end
+
+    assert_equal 'Distribution #999 created', ActivityLog.last.message
+  end
 end

@@ -81,4 +81,17 @@ class ContributionTest < ActiveSupport::TestCase
   test 'created_at_formatted' do
     assert_equal 'Mon, 14th Oct 2024', contributions(:one).created_at_formatted
   end
+
+  test 'logs activity after creation' do
+    assert_difference 'ActivityLog.count' do
+      members(:one).contributions.create!(
+        currency: 'AUD',
+        amount_in_base_units: 5000,
+        fees_in_base_units: 0,
+        transaction_identifier: 'activity_log_test_txn'
+      )
+    end
+
+    assert_match(/Contribution of .* received from/, ActivityLog.last.message)
+  end
 end

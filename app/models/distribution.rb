@@ -5,6 +5,8 @@ class Distribution < ApplicationRecord
 
   validates :number, uniqueness: true, presence: true
 
+  after_create_commit :log_activity
+
   def default_amount
     amounts.find_by currency: Currencies::DEFAULT
   end
@@ -23,5 +25,11 @@ class Distribution < ApplicationRecord
 
   def to_param
     number.to_s
+  end
+
+  private
+
+  def log_activity
+    ActivityLog.create(message: "Distribution #{name} created")
   end
 end

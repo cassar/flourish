@@ -63,4 +63,17 @@ class PayOutTest < ActiveSupport::TestCase
 
     assert_equal '$0.00 AUD', pay_outs(:pay_out_complete).fees_formatted
   end
+
+  test 'logs activity after creation' do
+    assert_difference 'ActivityLog.count' do
+      dividends(:issued).create_pay_out!(
+        currency: 'AUD',
+        amount_in_base_units: 5000,
+        fees_in_base_units: 0,
+        transaction_identifier: 'pay_out_activity_log_test'
+      )
+    end
+
+    assert_match(/Payout of .* to .* completed/, ActivityLog.last.message)
+  end
 end

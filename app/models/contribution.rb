@@ -8,6 +8,8 @@ class Contribution < ApplicationRecord
 
   include CurrencyValidator
 
+  after_create_commit :log_activity
+
   def amount_formatted
     Money.new(amount_in_base_units, currency).format
   end
@@ -25,6 +27,10 @@ class Contribution < ApplicationRecord
   end
 
   private
+
+  def log_activity
+    ActivityLog.create(message: "Contribution of #{amount_formatted} received from #{member.user.email}")
+  end
 
   def gross_amount_in_base_units
     amount_in_base_units + fees_in_base_units
