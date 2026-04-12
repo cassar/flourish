@@ -3,7 +3,7 @@
   <h1 class="text-3xl font-bold text-primary">Notification Preferences</h1>
 
   <%= form_with model: @member, url: notification_preferences_path, method: :patch do |member_form| %>
-    <div class="card bg-base-200 shadow-sm max-w-md">
+    <div class="card bg-base-200 shadow-sm">
       <div class="card-body">
         <% @notification_preferences.each do |notification_preference| %>
           <%= member_form.fields_for :notification_preferences_attributes, notification_preference, index: notification_preference.id do |np_form| %>
