@@ -3,7 +3,7 @@ require 'simplecov'
 SimpleCov.start 'rails' do
   enable_coverage :branch
   merge_timeout 3600
-  minimum_coverage line: 98, branch: 92
+  minimum_coverage line: 100, branch: 100
 
   add_group 'Models',      'app/models'
   add_group 'Controllers', 'app/controllers'

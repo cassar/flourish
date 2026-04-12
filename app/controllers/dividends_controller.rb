@@ -6,11 +6,11 @@ class DividendsController < ApplicationController
   def index
     @member = current_user.member
     @dividends = @member.dividends.order(created_at: :desc).preload(:amount, :distribution)
-    log_page_view "#{current_user.email} browsed their dividends"
+    log_page_view { "#{current_user.email} browsed their dividends" }
   end
 
   def show
-    log_page_view "#{current_user.email} viewed dividend ##{dividend.id}"
+    log_page_view { "#{current_user.email} viewed dividend ##{dividend.id}" }
   end
 
   def pay_out

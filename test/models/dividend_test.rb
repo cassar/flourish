@@ -84,4 +84,12 @@ class DividendTest < ActiveSupport::TestCase
       dividend.update!(status: :pay_out_complete)
     end
   end
+
+  test 'does not log activity when status changes to issued' do
+    dividend = dividends(:pending_pay_out)
+
+    assert_no_difference 'ActivityLog.count' do
+      dividend.update!(status: :issued)
+    end
+  end
 end

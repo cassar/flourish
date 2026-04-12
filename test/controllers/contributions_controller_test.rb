@@ -6,4 +6,12 @@ class ContributionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
   end
+
+  test 'should get show when signed in' do
+    sign_in users(:one)
+
+    get contribution_path(contributions(:one).uuid)
+
+    assert_response :success
+  end
 end
