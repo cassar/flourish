@@ -7,6 +7,7 @@ class DistributionsController < ApplicationController
     @distribution = Distribution.find_by number: params[:id]
     @previous_distribution = Distribution.find_by(number: @distribution.number - 1) || Distribution.new
     summary_information
+    log_page_view "#{current_user.email} viewed distribution #{@distribution.name}" if user_signed_in?
   end
 
   private

@@ -3,5 +3,6 @@ class MembershipsController < ApplicationController
 
   def show
     @member = current_user.member
+    log_page_view "#{current_user.email} viewed their membership"
   end
 end

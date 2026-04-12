@@ -6,4 +6,10 @@ class ApplicationController < ActionController::Base
 
     current_user.member.currency
   end
+
+  def log_page_view(message)
+    return unless user_signed_in?
+
+    ActivityLog.create(message:)
+  end
 end
