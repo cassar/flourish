@@ -103,6 +103,9 @@ group :development do
   # Code style checking for Capybara files.
   gem 'rubocop-capybara', require: false
 
+  # RuboCop extension for packaging-related linting (required by rubocop-rails).
+  gem 'rubocop-packaging', require: false
+
   # Preview mail in the browser instead of sending.
   gem 'letter_opener'
 
