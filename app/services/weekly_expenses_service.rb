@@ -12,8 +12,9 @@ class WeeklyExpensesService
 
   class << self
     def generate_and_notify
+      current_distribution = Distribution.order(:number).last
       expenses = WEEKLY_EXPENSES.map do |expense|
-        Expense.create!(expense)
+        Expense.create!(expense.merge(distribution: current_distribution))
       end
 
       AdminNotificationMailer.with(expenses:).expenses_added.deliver_now

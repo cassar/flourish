@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_04_12_000002) do
+ActiveRecord::Schema[8.2].define(version: 2026_04_18_122636) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
 
@@ -64,8 +64,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_04_12_000002) do
   create_table "expenses", force: :cascade do |t|
     t.integer "amount_in_base_units"
     t.datetime "created_at", null: false
+    t.bigint "distribution_id"
     t.string "name"
     t.datetime "updated_at", null: false
+    t.index ["distribution_id"], name: "index_expenses_on_distribution_id"
   end
 
   create_table "members", force: :cascade do |t|
@@ -138,6 +140,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_04_12_000002) do
   add_foreign_key "contributions", "members"
   add_foreign_key "dividends", "amounts"
   add_foreign_key "dividends", "members"
+  add_foreign_key "expenses", "distributions"
   add_foreign_key "members", "users"
   add_foreign_key "notification_preferences", "members"
   add_foreign_key "pay_outs", "dividends"
