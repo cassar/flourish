@@ -106,6 +106,9 @@ group :development do
   # RuboCop extension for packaging-related linting (required by rubocop-rails).
   gem 'rubocop-packaging', require: false
 
+  # RuboCop extension for performance-related linting (required by rubocop-rails plugin system).
+  gem 'rubocop-performance', require: false
+
   # Preview mail in the browser instead of sending.
   gem 'letter_opener'
 
