@@ -11,4 +11,12 @@ class NotificationPreference < ApplicationRecord
     distribution_settled: 4,
     distribution_preview: 5
   }
+
+  DISPLAY_NAMES = {
+    'dividend_received' => 'Dividend Issued'
+  }.freeze
+
+  def display_name
+    DISPLAY_NAMES[notification_name] || notification_name.titleize
+  end
 end

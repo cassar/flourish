@@ -11,7 +11,7 @@
               <label class="label cursor-pointer justify-start gap-4">
                 <%= np_form.hidden_field :id %>
                 <%= np_form.checkbox :enabled, class: 'checkbox checkbox-primary' %>
-                <span class="label-text"><%= notification_preference.notification_name.titleize %></span>
+                <span class="label-text"><%= notification_preference.display_name %></span>
               </label>
             </div>
           <% end %>

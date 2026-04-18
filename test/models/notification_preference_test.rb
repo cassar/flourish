@@ -14,6 +14,14 @@ class NotificationPreferenceTest < ActiveSupport::TestCase
     assert_match 'Notification name has already been taken', error.message
   end
 
+  test 'display_name returns custom label for dividend_received' do
+    assert_equal 'Dividend Issued', notification_preferences(:dividend_received).display_name
+  end
+
+  test 'display_name falls back to titleize for other notification names' do
+    assert_equal 'Contribution Received', notification_preferences(:contribution_received).display_name
+  end
+
   test 'validates notification name reused across members' do
     first_member_preference = notification_preferences(:contribution_received)
     second_member_preference = notification_preferences(:contribution_received_disabled)

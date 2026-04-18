@@ -1,4 +1,4 @@
-<p>You have received a new dividend.</p>
+<p>A new dividend has been issued to you.</p>
 <p><b>Amount</b>: <%= @amount.amount_formatted %></p>
 <a><%= link_to "Claim Your Dividend", membership_dividend_url(@dividend) %></a>
 <p><b>Note</b>: All dividends will be automatically recontributed back into the pool if not claimed by the <%= ConsolidationDate::DAY_OF_THE_WEEK %> following a distribution.</p>
