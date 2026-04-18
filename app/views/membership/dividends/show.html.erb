@@ -1,6 +1,6 @@
 <div class="space-y-6">
   <h1 class="text-3xl font-bold text-primary">Dividend</h1>
-  <%= render @dividend %>
+  <%= render partial: 'membership/dividends/dividend', locals: { dividend: @dividend } %>
   <% if @dividend.issued? %>
     <details class="collapse collapse-arrow bg-base-200 border border-base-300">
       <summary class="collapse-title font-semibold text-secondary">Claiming your Dividend</summary>

@@ -24,10 +24,10 @@
     </ul>
     <% if dividend.issued? %>
       <div class="card-actions mt-4 gap-2">
-        <%= button_to "Pay Out", pay_out_dividend_path(dividend), method: :patch,
+        <%= button_to "Pay Out", pay_out_membership_dividend_path(dividend), method: :patch,
             class: "btn btn-primary btn-sm #{'btn-disabled' if @member.pay_outs_disabled?}",
             disabled: @member.pay_outs_disabled? %>
-        <%= button_to "Recontribute", recontribute_dividend_path(dividend), method: :patch,
+        <%= button_to "Recontribute", recontribute_membership_dividend_path(dividend), method: :patch,
             class: 'btn btn-outline btn-secondary btn-sm' %>
       </div>
     <% end %>

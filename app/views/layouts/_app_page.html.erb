@@ -21,8 +21,8 @@
           <li><%= link_to 'Distributions', distributions_path %></li>
           <% if user_signed_in? %>
             <li><%= link_to 'Membership', membership_path %></li>
-            <li><%= link_to 'Dividends', dividends_path %></li>
-            <li><%= link_to 'Pay Outs', pay_outs_path %></li>
+            <li><%= link_to 'Dividends', membership_dividends_path %></li>
+            <li><%= link_to 'Pay Outs', membership_pay_outs_path %></li>
           <% end %>
         </ul>
       </div>
@@ -70,8 +70,8 @@
           <li class="menu-title pt-2">Member</li>
           <li><%= link_to 'Membership', membership_path %></li>
           <li><%= link_to 'Account', edit_user_registration_path %></li>
-          <li><%= link_to 'Dividends', dividends_path %></li>
-          <li><%= link_to 'Pay Outs', pay_outs_path %></li>
+          <li><%= link_to 'Dividends', membership_dividends_path %></li>
+          <li><%= link_to 'Pay Outs', membership_pay_outs_path %></li>
           <li><%= link_to 'Contributions', membership_contributions_path %></li>
           <% if current_user.admin? %>
             <li class="menu-title pt-2">Admin</li>

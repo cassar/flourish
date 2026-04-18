@@ -27,19 +27,19 @@ Rails.application.routes.draw do
 
   namespace :membership do
     resources :contributions, only: :index
+    resources :dividends, only: %i[index show] do
+      member do
+        patch :pay_out
+        patch :recontribute
+      end
+    end
+    resources :pay_outs, only: :index
   end
 
   resources :contributions, only: :show, param: :uuid
   resources :distributions, only: %i[index show]
-  resources :pay_outs, only: :index
   resources :paypalme_handles, only: %i[edit update]
   resources :currencies, only: %i[edit update]
-  resources :dividends, only: %i[index show] do
-    member do
-      patch :pay_out
-      patch :recontribute
-    end
-  end
 
   get :membership, to: 'memberships#show'
   get :about, to: 'static_pages#about'

@@ -8,7 +8,7 @@
 
       <div>
         <div class="flex items-center gap-2 mb-1">
-          <h2 class="font-bold text-secondary"><%= link_to 'Dividends', dividends_path, class: 'link link-secondary' %></h2>
+          <h2 class="font-bold text-secondary"><%= link_to 'Dividends', membership_dividends_path, class: 'link link-secondary' %></h2>
           <span class="badge badge-success badge-sm">Enabled</span>
         </div>
         <ul class="text-sm text-base-content/80 space-y-1 ml-1">
@@ -28,7 +28,7 @@
           <h2 class="font-bold text-secondary">
             <%= link_to 'Contributions', membership_contributions_path, class: 'link link-secondary' %>
             &amp;
-            <%= link_to 'Pay Outs', pay_outs_path, class: 'link link-secondary' %>
+            <%= link_to 'Pay Outs', membership_pay_outs_path, class: 'link link-secondary' %>
           </h2>
           <% if @member.pay_outs_disabled? %>
             <span class="badge badge-warning badge-sm">Not Enabled</span>
