@@ -30,8 +30,9 @@ gem 'stimulus-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
-# Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 5.4'
+gem 'solid_queue'
+gem 'solid_cable'
+gem 'solid_cache'
 
 # A Ruby Library for dealing with money and currency conversion.
 gem 'money'
@@ -65,9 +66,6 @@ gem 'image_processing', '~> 1.2'
 
 # Ruby exception and error tracking
 gem 'honeybadger', '~> 6.5'
-
-# Simple, efficient background processing for Ruby
-gem 'sidekiq'
 
 # OpenStruct implementation
 gem 'ostruct'
