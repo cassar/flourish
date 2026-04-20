@@ -1,0 +1,36 @@
+<button onclick="recent_activity_modal.showModal()" class="btn btn-outline btn-secondary btn-sm">Recent Activity</button>
+
+<dialog id="recent_activity_modal" class="modal">
+  <div class="modal-box">
+    <h3 class="text-lg font-bold text-primary mb-4">Recent Activity</h3>
+
+    <% if recent_activities.any? %>
+      <ul class="space-y-2">
+        <% recent_activities.each do |activity| %>
+          <li class="flex items-center gap-3 text-sm">
+            <span class="badge badge-sm badge-outline shrink-0
+              <%= case activity[:type]
+                  when :contribution   then 'badge-success'
+                  when :recontribution then 'badge-accent'
+                  when :distribution   then 'badge-secondary'
+                  when :pay_out        then 'badge-primary'
+                  end %>">
+              <%= activity[:type].to_s.humanize %>
+            </span>
+            <span class="text-base-content/80 grow"><%= activity[:label] %></span>
+            <span class="text-base-content/40 shrink-0"><%= time_ago_in_words(activity[:at]) %> ago</span>
+          </li>
+        <% end %>
+      </ul>
+    <% else %>
+      <p class="text-base-content/50 text-sm">No activity yet.</p>
+    <% end %>
+
+    <div class="modal-action">
+      <form method="dialog">
+        <button class="btn btn-sm btn-outline">Close</button>
+      </form>
+    </div>
+  </div>
+  <form method="dialog" class="modal-backdrop"><button>close</button></form>
+</dialog>

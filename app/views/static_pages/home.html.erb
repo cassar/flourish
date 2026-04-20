@@ -16,6 +16,7 @@
 
   <div class="flex flex-wrap gap-3 pt-2">
     <%= link_to 'About', about_path, class: 'btn btn-outline btn-secondary' %>
+    <%= render partial: 'recent_activity', locals: { recent_activities: @recent_activities } %>
     <%= render partial: 'authentication' %>
   </div>
 </div>
