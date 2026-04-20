@@ -34,6 +34,15 @@ gem 'solid_queue'
 gem 'solid_cable'
 gem 'solid_cache'
 
+# Deploy with Kamal [https://kamal-deploy.org]
+gem 'kamal', require: false
+
+# HTTP asset caching/X-Sendfile acceleration [https://github.com/basecamp/thruster]
+gem 'thruster', require: false
+
+# AWS S3 for Active Storage
+gem 'aws-sdk-s3', require: false
+
 # A Ruby Library for dealing with money and currency conversion.
 gem 'money'
 

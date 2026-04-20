@@ -1,0 +1,48 @@
+service: flourish
+image: flourish
+
+servers:
+  web:
+    - 15.135.194.185
+
+proxy:
+  ssl: true
+  host: flourish.buzz
+
+registry:
+  server: 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
+  username: AWS
+  password:
+    - KAMAL_REGISTRY_PASSWORD
+
+env:
+  secret:
+    - RAILS_MASTER_KEY
+    - DATABASE_URL
+    - MAILGUN_SMTP_PORT
+    - MAILGUN_SMTP_SERVER
+    - MAILGUN_SMTP_LOGIN
+    - MAILGUN_SMTP_PASSWORD
+    - MAILGUN_DOMAIN
+    - HONEYBADGER_API_KEY
+  clear:
+    SOLID_QUEUE_IN_PUMA: true
+    DOMAIN: flourish.buzz
+
+aliases:
+  console: app exec --interactive --reuse "bin/rails console"
+  shell: app exec --interactive --reuse "bash"
+  logs: app logs -f
+  dbc: app exec --interactive --reuse "bin/rails dbconsole --include-password"
+
+asset_path: /rails/public/assets
+
+builder:
+  arch: amd64
+  driver: docker
+  remote: ssh://ubuntu@15.135.194.185
+
+ssh:
+  user: ubuntu
+  keys:
+    - ~/.ssh/cassar-code.pem

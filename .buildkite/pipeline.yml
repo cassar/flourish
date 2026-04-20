@@ -1,0 +1,24 @@
+steps:
+  - label: ":docker: Build & Push"
+    key: build
+    command:
+      - docker system prune -af
+      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
+      - docker build --label service=flourish --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest .
+      - docker push 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT
+      - docker push 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest
+    agents:
+      queue: default-queue
+
+  - wait
+
+  - label: ":rocket: Deploy"
+    key: deploy
+    command:
+      - cp /home/ubuntu/.kamal-secrets-flourish .kamal/secrets
+      - export KAMAL_REGISTRY_PASSWORD=$$(aws ecr get-login-password --region ap-southeast-2)
+      - echo "KAMAL_REGISTRY_PASSWORD=$$KAMAL_REGISTRY_PASSWORD" >> .kamal/secrets
+      - kamal deploy --skip-push
+    agents:
+      queue: default-queue
+    branches: main

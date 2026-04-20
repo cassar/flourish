@@ -42,3 +42,6 @@ tags
 
 # Ignore SimpleCov coverage output
 /coverage
+
+# Ignore Kamal secrets
+/.kamal/secrets
