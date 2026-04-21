@@ -4,7 +4,7 @@ steps:
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       CI_IMAGE=$$ECR/flourish-ci:latest
-      docker system prune -f
+      docker image prune -af --filter "label!=service=flourish_ci"
       aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin $$ECR
       docker pull $$CI_IMAGE 2>/dev/null || true
       docker build -f Dockerfile.ci --cache-from $$CI_IMAGE --label service=flourish_ci -t $$CI_IMAGE .
