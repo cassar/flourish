@@ -4,7 +4,7 @@ image: flourish
 servers:
   web:
     hosts:
-      - 15.135.194.185
+      - 52.62.31.62
     options:
       memory: 512m
 
