@@ -33,6 +33,7 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/credentials/*.key
+!/config/credentials/test.key
 
 # Ignore application configuration
 /config/application.yml
@@ -46,3 +47,8 @@ tags
 
 # Ignore Kamal secrets
 /.kamal/secrets
+
+# Ignore key files for decrypting credentials and more.
+/config/credentials/*.key
+!/config/credentials/test.key
+
