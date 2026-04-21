@@ -20,7 +20,7 @@
             <tbody>
               <% @activity_logs.each do |log| %>
                 <tr>
-                  <td class="text-sm text-base-content/60 font-mono whitespace-nowrap"><%= log.created_at.strftime('%d %b %Y %H:%M:%S') %></td>
+                  <td class="text-sm text-base-content/60 font-mono whitespace-nowrap"><%= log.created_at.to_datetime.strftime('%d %b %Y %H:%M:%S') %></td>
                   <td class="text-sm"><%= log.message %></td>
                 </tr>
               <% end %>
