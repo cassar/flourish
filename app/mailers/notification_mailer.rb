@@ -1,5 +1,7 @@
 class NotificationMailer < ApplicationMailer
-  default from: "Flourish Notifications <#{ENV.fetch('DEFAULT_FROM_EMAIL', 'notifications@example.com')}>"
+  FROM_ADDRESS = (Rails.application.credentials.default_from_email ||
+                  'notifications@example.com').freeze
+  default from: "Flourish Notifications <#{FROM_ADDRESS}>"
   layout 'notification_mailer'
 
   def contribution_received

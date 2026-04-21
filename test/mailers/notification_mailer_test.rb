@@ -8,7 +8,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       email.deliver_now
     end
 
-    assert_equal ['notifications@example.com'], email.from
+    assert_equal ['notifications@flourish.buzz'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Your Contribution has been Received', email.subject
   end
@@ -20,7 +20,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       email.deliver_now
     end
 
-    assert_equal ['notifications@example.com'], email.from
+    assert_equal ['notifications@flourish.buzz'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'New Dividend Distributed', email.subject
   end
@@ -32,7 +32,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       email.deliver_now
     end
 
-    assert_equal ['notifications@example.com'], email.from
+    assert_equal ['notifications@flourish.buzz'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Your Dividend has been Paid Out', email.subject
   end
@@ -44,7 +44,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       email.deliver_now
     end
 
-    assert_equal ['notifications@example.com'], email.from
+    assert_equal ['notifications@flourish.buzz'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Your Dividend has been Automatically Recontributed', email.subject
   end
@@ -56,7 +56,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       email.deliver_now
     end
 
-    assert_equal ['notifications@example.com'], email.from
+    assert_equal ['notifications@flourish.buzz'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Distribution #1 has Settled', email.subject
   end
@@ -73,7 +73,7 @@ class NotificationMailerTest < ActionMailer::TestCase
       email.deliver_now
     end
 
-    assert_equal ['notifications@example.com'], email.from
+    assert_equal ['notifications@flourish.buzz'], email.from
     assert_equal ['user@email.com'], email.to
     assert_equal 'Distribution #3 Preview', email.subject
   end

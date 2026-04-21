@@ -8,8 +8,8 @@ class AdminNotificationMailerTest < ActionMailer::TestCase
       email.deliver_now
     end
 
-    assert_equal ['admin-notifications@flourish.test'], email.from
-    assert_equal ['admin@flourish.test'], email.to
+    assert_equal ['admin-notifications@flourish.buzz'], email.from
+    assert_equal ['admin@flourish.buzz'], email.to
     assert_equal 'Pay Out Requested', email.subject
   end
 
@@ -21,8 +21,8 @@ class AdminNotificationMailerTest < ActionMailer::TestCase
       email.deliver_now
     end
 
-    assert_equal ['admin-notifications@flourish.test'], email.from
-    assert_equal ['admin@flourish.test'], email.to
+    assert_equal ['admin-notifications@flourish.buzz'], email.from
+    assert_equal ['admin@flourish.buzz'], email.to
     assert_equal 'New Expenses Added', email.subject
   end
 end

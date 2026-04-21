@@ -1,5 +1,7 @@
 class AdminNotificationMailer < ApplicationMailer
-  default from: "Flourish Admin <#{ENV['DEFAULT_ADMIN_NOTIFICATION_EMAIL'] || 'admin-notifications@flourish.test'}>"
+  FROM_ADDRESS = (Rails.application.credentials.default_admin_notification_email ||
+                  'admin-notifications@flourish.test').freeze
+  default from: "Flourish Admin <#{FROM_ADDRESS}>"
 
   def pay_out_requested
     @dividend = params[:dividend]

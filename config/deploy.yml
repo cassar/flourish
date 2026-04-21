@@ -25,15 +25,8 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
-    - MAILGUN_SMTP_PORT
-    - MAILGUN_SMTP_SERVER
-    - MAILGUN_SMTP_LOGIN
-    - MAILGUN_SMTP_PASSWORD
-    - MAILGUN_DOMAIN
-    - HONEYBADGER_API_KEY
   clear:
     SOLID_QUEUE_IN_PUMA: true
-    DOMAIN: flourish.buzz
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"

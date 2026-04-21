@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  ADMIN_EMAIL = ENV['ADMIN_EMAIL'] || 'admin@flourish.test'.freeze
+  ADMIN_EMAIL = (Rails.application.credentials.admin_email || 'admin@flourish.test').freeze
 
   # Include default devise modules. Others available are:
   # :lockable, :timeoutable and :omniauthable

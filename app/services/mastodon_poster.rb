@@ -5,7 +5,7 @@ class MastodonPoster
 
   attr_reader :status
 
-  ACCESS_TOKEN = ENV.fetch('MASTODON_ACCESS_TOKEN', 'my_mastodon_access_token')
+  ACCESS_TOKEN = (Rails.application.credentials.dig(:mastodon, :access_token) || 'my_mastodon_access_token').freeze
 
   def initialize(message)
     @status = message
