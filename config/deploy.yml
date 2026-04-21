@@ -36,10 +36,6 @@ aliases:
 
 asset_path: /rails/public/assets
 
-builder:
-  arch: amd64
-  remote: ssh://ubuntu@15.135.194.185
-
 ssh:
   user: ubuntu
   keys:

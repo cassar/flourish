@@ -24,7 +24,7 @@ steps:
     command:
       - docker image prune -af --filter "label!=service=flourish"
       - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
-      - docker build --label service=flourish --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest .
+      - docker build --load --label service=flourish --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest .
       - docker push 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT
       - docker push 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest
     agents:
