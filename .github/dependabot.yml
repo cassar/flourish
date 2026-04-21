@@ -5,6 +5,8 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+      time: "09:00"
+      timezone: "Australia/Sydney"
     open-pull-requests-limit: 10
     groups:
       rails:
@@ -33,6 +35,8 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+      time: "09:00"
+      timezone: "Australia/Sydney"
     open-pull-requests-limit: 10
     groups:
       tailwind:
@@ -46,4 +50,6 @@ updates:
     directory: "/"
     schedule:
       interval: daily
+      time: "09:00"
+      timezone: "Australia/Sydney"
     open-pull-requests-limit: 5
