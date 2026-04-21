@@ -309,10 +309,6 @@ GEM
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
-    pg (1.6.3-aarch64-linux)
-    pg (1.6.3-arm64-darwin)
-    pg (1.6.3-x86_64-darwin)
-    pg (1.6.3-x86_64-linux)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -430,6 +426,10 @@ GEM
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       sprockets (>= 3.0.0)
+    sqlite3 (2.9.3-aarch64-linux-gnu)
+    sqlite3 (2.9.3-arm64-darwin)
+    sqlite3 (2.9.3-x86_64-darwin)
+    sqlite3 (2.9.3-x86_64-linux-gnu)
     sshkit (1.25.0)
       base64
       logger
@@ -510,7 +510,6 @@ DEPENDENCIES
   mocha
   money
   ostruct
-  pg (~> 1.1)
   puma (~> 8.0)
   rails!
   rubocop
@@ -525,6 +524,7 @@ DEPENDENCIES
   solid_cache
   solid_queue
   sprockets-rails
+  sqlite3 (>= 2.1)
   stimulus-rails
   thruster
   turbo-rails

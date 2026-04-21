@@ -1,8 +1,17 @@
 steps:
+  - label: ":ruby: Test"
+    key: test
+    command: |
+      # add test runner here matching your CI setup
+    agents:
+      queue: default-queue
+
+  - wait
+
   - label: ":docker: Build & Push"
     key: build
     command:
-      - docker system prune -af
+      - docker image prune -af --filter "label!=service=flourish"
       - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       - docker build --label service=flourish --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest .
       - docker push 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT
@@ -15,10 +24,19 @@ steps:
   - label: ":rocket: Deploy"
     key: deploy
     command:
-      - cp /home/ubuntu/.kamal-secrets-flourish .kamal/secrets
-      - export KAMAL_REGISTRY_PASSWORD=$$(aws ecr get-login-password --region ap-southeast-2)
-      - echo "KAMAL_REGISTRY_PASSWORD=$$KAMAL_REGISTRY_PASSWORD" >> .kamal/secrets
-      - kamal deploy --skip-push
+      - |
+        RAILS_MASTER_KEY=$(aws ssm get-parameter --region ap-southeast-2 --name /cassar-code/flourish/rails_master_key --with-decryption --query Parameter.Value --output text)
+        KAMAL_REGISTRY_PASSWORD=$(aws ecr get-login-password --region ap-southeast-2)
+        MAILGUN_SMTP_PORT=$(aws ssm get-parameter --region ap-southeast-2 --name /cassar-code/flourish/mailgun_smtp_port --with-decryption --query Parameter.Value --output text)
+        MAILGUN_SMTP_SERVER=$(aws ssm get-parameter --region ap-southeast-2 --name /cassar-code/flourish/mailgun_smtp_server --with-decryption --query Parameter.Value --output text)
+        MAILGUN_SMTP_LOGIN=$(aws ssm get-parameter --region ap-southeast-2 --name /cassar-code/flourish/mailgun_smtp_login --with-decryption --query Parameter.Value --output text)
+        MAILGUN_SMTP_PASSWORD=$(aws ssm get-parameter --region ap-southeast-2 --name /cassar-code/flourish/mailgun_smtp_password --with-decryption --query Parameter.Value --output text)
+        MAILGUN_DOMAIN=$(aws ssm get-parameter --region ap-southeast-2 --name /cassar-code/flourish/mailgun_domain --with-decryption --query Parameter.Value --output text)
+        HONEYBADGER_API_KEY=$(aws ssm get-parameter --region ap-southeast-2 --name /cassar-code/flourish/honeybadger_api_key --with-decryption --query Parameter.Value --output text)
+        printf "RAILS_MASTER_KEY=%s\nKAMAL_REGISTRY_PASSWORD=%s\nMAILGUN_SMTP_PORT=%s\nMAILGUN_SMTP_SERVER=%s\nMAILGUN_SMTP_LOGIN=%s\nMAILGUN_SMTP_PASSWORD=%s\nMAILGUN_DOMAIN=%s\nHONEYBADGER_API_KEY=%s\n" \
+          "$RAILS_MASTER_KEY" "$KAMAL_REGISTRY_PASSWORD" "$MAILGUN_SMTP_PORT" "$MAILGUN_SMTP_SERVER" \
+          "$MAILGUN_SMTP_LOGIN" "$MAILGUN_SMTP_PASSWORD" "$MAILGUN_DOMAIN" "$HONEYBADGER_API_KEY" > .kamal/secrets
+        kamal deploy --skip-push
     agents:
       queue: default-queue
     branches: main

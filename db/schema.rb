@@ -38,7 +38,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_04_18_122636) do
     t.bigint "member_id"
     t.string "transaction_identifier"
     t.datetime "updated_at", null: false
-    t.uuid "uuid", default: -> { "gen_random_uuid()" }, null: false
+    t.string "uuid", null: false
     t.index ["distribution_id"], name: "index_contributions_on_distribution_id"
     t.index ["member_id"], name: "index_contributions_on_member_id"
     t.index ["transaction_identifier"], name: "index_contributions_on_transaction_identifier", unique: true

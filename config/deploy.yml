@@ -3,11 +3,18 @@ image: flourish
 
 servers:
   web:
-    - 15.135.194.185
+    hosts:
+      - 15.135.194.185
+    options:
+      memory: 512m
+
+volumes:
+  - "/data/flourish:/rails/storage/db"
 
 proxy:
   ssl: true
   host: flourish.buzz
+  app_port: 80
 
 registry:
   server: 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
@@ -18,7 +25,6 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
-    - DATABASE_URL
     - MAILGUN_SMTP_PORT
     - MAILGUN_SMTP_SERVER
     - MAILGUN_SMTP_LOGIN
@@ -39,7 +45,6 @@ asset_path: /rails/public/assets
 
 builder:
   arch: amd64
-  driver: docker
   remote: ssh://ubuntu@15.135.194.185
 
 ssh:

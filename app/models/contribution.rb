@@ -8,6 +8,7 @@ class Contribution < ApplicationRecord
 
   include CurrencyValidator
 
+  before_create { self.uuid ||= SecureRandom.uuid }
   after_create_commit :log_activity
 
   def amount_formatted

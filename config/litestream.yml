@@ -1,0 +1,25 @@
+dbs:
+  - path: /rails/storage/db/production.sqlite3
+    replicas:
+      - type: s3
+        bucket: cassar-code-flourish
+        path: litestream/production
+        region: ap-southeast-2
+  - path: /rails/storage/db/production_cache.sqlite3
+    replicas:
+      - type: s3
+        bucket: cassar-code-flourish
+        path: litestream/production_cache
+        region: ap-southeast-2
+  - path: /rails/storage/db/production_queue.sqlite3
+    replicas:
+      - type: s3
+        bucket: cassar-code-flourish
+        path: litestream/production_queue
+        region: ap-southeast-2
+  - path: /rails/storage/db/production_cable.sqlite3
+    replicas:
+      - type: s3
+        bucket: cassar-code-flourish
+        path: litestream/production_cable
+        region: ap-southeast-2

@@ -1,43 +1,58 @@
 default: &default
-  adapter: postgresql
-  encoding: unicode
+  adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+  journal_mode: wal
+  synchronous: normal
+  mmap_size: 134217728
 
 development:
   primary:
     <<: *default
-    database: flourish_development
+    database: storage/db/development.sqlite3
   cache:
     <<: *default
-    database: flourish_development_cache
+    database: storage/db/development_cache.sqlite3
     migrations_paths: db/cache_migrate
   queue:
     <<: *default
-    database: flourish_development_queue
+    database: storage/db/development_queue.sqlite3
     migrations_paths: db/queue_migrate
   cable:
     <<: *default
-    database: flourish_development_cable
+    database: storage/db/development_cable.sqlite3
     migrations_paths: db/cable_migrate
 
 test:
   primary:
     <<: *default
-    database: flourish_test
-
-production:
-  primary: &primary_production
-    <<: *default
-    url: <%= ENV["DATABASE_URL"] %>
+    database: storage/db/test.sqlite3
   cache:
-    <<: *primary_production
-    url: <%= ENV["DATABASE_URL"] %>
+    <<: *default
+    database: storage/db/test_cache.sqlite3
     migrations_paths: db/cache_migrate
   queue:
-    <<: *primary_production
-    url: <%= ENV["DATABASE_URL"] %>
+    <<: *default
+    database: storage/db/test_queue.sqlite3
     migrations_paths: db/queue_migrate
   cable:
-    <<: *primary_production
-    url: <%= ENV["DATABASE_URL"] %>
+    <<: *default
+    database: storage/db/test_cable.sqlite3
+    migrations_paths: db/cable_migrate
+
+production:
+  primary:
+    <<: *default
+    database: storage/db/production.sqlite3
+  cache:
+    <<: *default
+    database: storage/db/production_cache.sqlite3
+    migrations_paths: db/cache_migrate
+  queue:
+    <<: *default
+    database: storage/db/production_queue.sqlite3
+    migrations_paths: db/queue_migrate
+  cable:
+    <<: *default
+    database: storage/db/production_cable.sqlite3
     migrations_paths: db/cable_migrate

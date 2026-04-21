@@ -1,0 +1,3 @@
+#!/bin/sh
+echo "$KAMAL_PERFORMER deployed $KAMAL_VERSION in $KAMAL_RUNTIME seconds"
+docker system prune -af --filter "label!=service=flourish"

@@ -1,7 +1,17 @@
 #!/bin/bash -e
 
-if [ "${@: -2:1}" == "./bin/rails" ] && [ "${@: -1:1}" == "server" ]; then
+if [ -z "${LD_PRELOAD+x}" ] && [ -f /usr/lib/*/libjemalloc.so.2 ]; then
+  export LD_PRELOAD="$(echo /usr/lib/*/libjemalloc.so.2)"
+fi
+
+if [ "${1}" == "./bin/thrust" ] && [ "${2}" == "./bin/rails" ] && [ "${3}" == "server" ]; then
+  mkdir -p storage/db
+  litestream restore -config /rails/config/litestream.yml -if-replica-exists -if-db-not-exists /rails/storage/db/production.sqlite3
+  litestream restore -config /rails/config/litestream.yml -if-replica-exists -if-db-not-exists /rails/storage/db/production_cache.sqlite3
+  litestream restore -config /rails/config/litestream.yml -if-replica-exists -if-db-not-exists /rails/storage/db/production_queue.sqlite3
+  litestream restore -config /rails/config/litestream.yml -if-replica-exists -if-db-not-exists /rails/storage/db/production_cable.sqlite3
   ./bin/rails db:prepare
+  exec litestream replicate -config /rails/config/litestream.yml --exec "$*"
 fi
 
 exec "${@}"
