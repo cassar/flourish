@@ -2,6 +2,7 @@ default: &default
   adapter: sqlite3
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  retries: 1000
   journal_mode: wal
   synchronous: normal
   mmap_size: 134217728
