@@ -29,6 +29,7 @@ steps:
       - docker push 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest
     agents:
       queue: default-queue
+    branches: main
 
   - wait
 
