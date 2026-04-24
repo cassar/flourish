@@ -30,9 +30,9 @@ gem 'stimulus-rails'
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem 'jbuilder'
 
-gem 'solid_queue'
 gem 'solid_cable'
 gem 'solid_cache'
+gem 'solid_queue'
 
 # Deploy with Kamal [https://kamal-deploy.org]
 gem 'kamal', require: false
