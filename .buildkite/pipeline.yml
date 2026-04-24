@@ -1,13 +1,35 @@
 steps:
-  - label: ":ruby: Test"
-    key: test
+  - label: ":docker: Warm CI Cache"
+    key: warm-cache
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
-      CI_IMAGE=$$ECR/flourish-ci:latest
+      CI_REPO=flourish-ci
+      LOCK_SHA=$$(sha256sum Gemfile.lock | cut -d' ' -f1)
       aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin $$ECR
-      docker pull $$CI_IMAGE 2>/dev/null || true
-      docker build -f Dockerfile.ci --cache-from $$CI_IMAGE --label service=flourish_ci -t $$CI_IMAGE .
-      docker push $$CI_IMAGE
+      if aws ecr describe-images --repository-name $$CI_REPO --image-ids imageTag=$$LOCK_SHA --region ap-southeast-2 > /dev/null 2>&1; then
+        echo "CI image $$CI_REPO:$$LOCK_SHA already exists, skipping build"
+      else
+        docker pull $$ECR/$$CI_REPO:latest 2>/dev/null || true
+        docker build -f Dockerfile.ci \
+          --cache-from $$ECR/$$CI_REPO:latest \
+          --label service=flourish_ci \
+          -t $$ECR/$$CI_REPO:$$LOCK_SHA \
+          -t $$ECR/$$CI_REPO:latest \
+          .
+        docker push $$ECR/$$CI_REPO:$$LOCK_SHA
+        docker push $$ECR/$$CI_REPO:latest
+      fi
+    agents:
+      queue: default-queue
+
+  - label: ":ruby: Test"
+    key: test
+    depends_on: warm-cache
+    command: |
+      ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
+      CI_IMAGE=$$ECR/flourish-ci:$$(sha256sum Gemfile.lock | cut -d' ' -f1)
+      aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin $$ECR
+      docker pull $$CI_IMAGE
       docker run --rm \
         -e RAILS_ENV=test \
         -e CI=true \
