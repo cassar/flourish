@@ -13,7 +13,52 @@ steps:
         -e CI=true \
         $$CI_IMAGE \
         bin/rails db:test:prepare test test:system
-    artifact_paths: "coverage/**/*"
+    agents:
+      queue: default-queue
+
+  - label: ":rubocop: Lint"
+    key: lint
+    command:
+      - |
+        docker run --rm \
+          --volume "$(pwd):/rails" \
+          --volume "/home/ubuntu/.bundle-cache:/bundle" \
+          --workdir /rails \
+          --env BUNDLE_WITHOUT="" \
+          --env BUNDLE_PATH=/bundle \
+          --memory 512m \
+          ruby:3.4.8-slim \
+          bash -c "
+            apt-get update -qq &&
+            apt-get install --no-install-recommends -y build-essential git libsqlite3-dev libyaml-dev pkg-config &&
+            git config --global --add safe.directory '*' &&
+            bundle install &&
+            bundle exec rubocop
+          "
+      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" && sudo chown -R "$(id -u):$(id -g)" /home/ubuntu/.bundle-cache || true
+    agents:
+      queue: default-queue
+
+  - label: ":shield: Audit"
+    key: audit
+    command:
+      - |
+        docker run --rm \
+          --volume "$(pwd):/rails" \
+          --volume "/home/ubuntu/.bundle-cache:/bundle" \
+          --workdir /rails \
+          --env BUNDLE_WITHOUT="" \
+          --env BUNDLE_PATH=/bundle \
+          --memory 512m \
+          ruby:3.4.8-slim \
+          bash -c "
+            apt-get update -qq &&
+            apt-get install --no-install-recommends -y build-essential git libsqlite3-dev libyaml-dev pkg-config &&
+            git config --global --add safe.directory '*' &&
+            bundle install &&
+            bundle exec bundler-audit check --update
+          "
+      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" && sudo chown -R "$(id -u):$(id -g)" /home/ubuntu/.bundle-cache || true
     agents:
       queue: default-queue
 
