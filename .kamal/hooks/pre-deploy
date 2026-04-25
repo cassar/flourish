@@ -1,0 +1,10 @@
+#!/bin/sh
+set -e
+
+SSH_KEY="$HOME/.ssh/cassar-code.pem"
+SSH_OPTS="-i $SSH_KEY -o StrictHostKeyChecking=accept-new"
+
+for host in $(echo "$KAMAL_HOSTS" | tr ',' ' '); do
+    # Signal to the systemd prune timer that a deployment is in progress
+    ssh $SSH_OPTS "ubuntu@$host" "touch /var/run/kamal-deploying"
+done
