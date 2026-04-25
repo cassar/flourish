@@ -44,6 +44,8 @@ steps:
 
   - label: ":rubocop: Lint"
     key: lint
+    concurrency: 3
+    concurrency_group: cassar/docker-lint
     command:
       - |
         docker run --rm \
@@ -67,6 +69,8 @@ steps:
 
   - label: ":shield: Audit"
     key: audit
+    concurrency: 3
+    concurrency_group: cassar/docker-lint
     command:
       - |
         docker run --rm \
