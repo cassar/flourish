@@ -1,6 +1,8 @@
 steps:
   - label: ":docker: Warm CI Cache"
     key: warm-cache
+    concurrency: 1
+    concurrency_group: cassar/docker-build
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       CI_REPO=flourish-ci
@@ -25,6 +27,8 @@ steps:
   - label: ":ruby: Test"
     key: test
     depends_on: warm-cache
+    concurrency: 2
+    concurrency_group: cassar/docker-test
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       CI_IMAGE=$$ECR/flourish-ci:$$(sha256sum Gemfile.lock | cut -d' ' -f1)
@@ -88,6 +92,8 @@ steps:
 
   - label: ":docker: Build & Push"
     key: build
+    concurrency: 1
+    concurrency_group: cassar/docker-build
     command:
       - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       - docker pull 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest 2>/dev/null || true
