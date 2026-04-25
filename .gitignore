@@ -52,3 +52,4 @@ tags
 /config/credentials/*.key
 !/config/credentials/test.key
 
+build-*/
