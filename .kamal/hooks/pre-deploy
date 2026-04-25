@@ -6,5 +6,5 @@ SSH_OPTS="-i $SSH_KEY -o StrictHostKeyChecking=accept-new"
 
 for host in $(echo "$KAMAL_HOSTS" | tr ',' ' '); do
     # Signal to the systemd prune timer that a deployment is in progress
-    ssh $SSH_OPTS "ubuntu@$host" "touch /var/run/kamal-deploying"
+    ssh $SSH_OPTS "ubuntu@$host" "touch /tmp/kamal-deploying"
 done
