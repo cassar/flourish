@@ -7,7 +7,6 @@ steps:
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       CI_REPO=flourish-ci
       LOCK_SHA=$$(sha256sum Gemfile.lock | cut -d' ' -f1)
-      aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin $$ECR
       if aws ecr describe-images --repository-name $$CI_REPO --image-ids imageTag=$$LOCK_SHA --region ap-southeast-2 > /dev/null 2>&1; then
         echo "CI image $$CI_REPO:$$LOCK_SHA already exists, skipping build"
       else
@@ -32,7 +31,6 @@ steps:
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       CI_IMAGE=$$ECR/flourish-ci:$$(sha256sum Gemfile.lock | cut -d' ' -f1)
-      aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin $$ECR
       docker pull $$CI_IMAGE
       docker run --rm \
         -e RAILS_ENV=test \
@@ -99,7 +97,6 @@ steps:
     concurrency: 1
     concurrency_group: cassar/docker-build
     command:
-      - aws ecr get-login-password --region ap-southeast-2 | docker login --username AWS --password-stdin 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       - docker pull 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest 2>/dev/null || true
       - docker build --load --cache-from 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest --label service=flourish --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest .
       - docker push 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT
