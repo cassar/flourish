@@ -111,6 +111,8 @@ steps:
     key: deploy
     command:
       - cp /home/ubuntu/.flourish-secrets .kamal/secrets
+      - export KAMAL_REGISTRY_PASSWORD=$$(aws ecr get-login-password --region ap-southeast-2)
+      - echo "KAMAL_REGISTRY_PASSWORD=$$KAMAL_REGISTRY_PASSWORD" >> .kamal/secrets
       - kamal deploy --skip-push
     agents:
       queue: default-queue

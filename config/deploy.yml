@@ -20,6 +20,9 @@ proxy:
 
 registry:
   server: 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
+  username: AWS
+  password:
+    - KAMAL_REGISTRY_PASSWORD
 
 env:
   secret:
