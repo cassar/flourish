@@ -31,7 +31,7 @@ steps:
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       CI_IMAGE=$$ECR/flourish-ci:$$(sha256sum Gemfile.lock | cut -d' ' -f1)
-      docker pull $$CI_IMAGE
+      docker pull $$CI_IMAGE || docker pull $$CI_IMAGE
       docker run --rm \
         -e RAILS_ENV=test \
         -e CI=true \
