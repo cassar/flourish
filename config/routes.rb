@@ -5,51 +5,5 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
-  namespace :admin do
-    resource :webhook_configuration, only: %i[show update]
-    resources :activity_logs, only: :index
-    resources :distributions, only: :index
-    resources :users, only: :destroy
-    resources :dividends, only: [] do
-      resources :pay_outs, only: %i[new create] do
-        collection { get :preview }
-      end
-    end
-    resources :members, only: [] do
-      resources :contributions, only: %i[new create] do
-        collection { get :preview }
-      end
-      collection do
-        get :active
-        get :inactive
-      end
-    end
-  end
-
-  namespace :membership do
-    resources :contributions, only: :index
-    resources :dividends, only: %i[index show] do
-      member do
-        patch :pay_out
-        patch :recontribute
-      end
-    end
-    resources :pay_outs, only: :index
-  end
-
-  resources :contributions, only: :show, param: :uuid
-  resources :distributions, only: %i[index show]
-  resources :paypalme_handles, only: %i[edit update]
-  resources :currencies, only: %i[edit update]
-
-  get :membership, to: 'memberships#show'
-  get :about, to: 'static_pages#about'
-  get :mission, to: 'static_pages#mission'
-  get :check_email_spam, to: 'static_pages#check_email_spam'
-  get :privacy_statement, to: 'static_pages#privacy_statement'
-  get :terrain, to: 'static_pages#terrain'
-  get :notification_preferences, to: 'notification_preferences#edit'
-  patch :notification_preferences, to: 'notification_preferences#update'
-
   root 'static_pages#home'
 end

@@ -14,7 +14,7 @@ module Users
     protected
 
     def after_inactive_sign_up_path_for(_resource)
-      check_email_spam_path
+      root_path
     end
 
     def check_hcaptcha

@@ -61,7 +61,7 @@ module Users
         } }
       end
 
-      assert_redirected_to check_email_spam_path
+      assert_redirected_to root_path
     end
   end
 end
