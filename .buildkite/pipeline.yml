@@ -2,7 +2,7 @@ steps:
   - label: ":docker: Warm CI Cache"
     key: warm-cache
     concurrency: 1
-    concurrency_group: cassar/docker-build
+    concurrency_group: cassar/docker-ci-cache
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       CI_REPO=flourish-ci
@@ -95,7 +95,7 @@ steps:
   - label: ":docker: Build & Push"
     key: build
     concurrency: 1
-    concurrency_group: cassar/docker-build
+    concurrency_group: cassar/docker-build/flourish
     command:
       - docker pull 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest 2>/dev/null || true
       - docker build --load --cache-from 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest --label service=flourish --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest .
