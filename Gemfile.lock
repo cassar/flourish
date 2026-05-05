@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: bf67001a6fca7dbfadde0cb9db2bc04b1736e3b0
+  revision: fac8810bcdec7b796a471b56a6dcbaa6648e2984
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -233,7 +233,7 @@ GEM
     jmespath (1.6.2)
     jsbundling-rails (1.3.1)
       railties (>= 6.0.0)
-    json (2.19.4)
+    json (2.19.5)
     kamal (2.11.0)
       activesupport (>= 7.0)
       base64 (~> 0.2)
