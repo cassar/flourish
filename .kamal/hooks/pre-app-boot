@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+SSH_KEY="$HOME/.ssh/cassar-code.pem"
+SSH_OPTS="-i $SSH_KEY -o StrictHostKeyChecking=accept-new"
+
+for host in $(echo "$KAMAL_HOSTS" | tr ',' ' '); do
+    OLD_CONTAINER=$(ssh $SSH_OPTS "ubuntu@$host" \
+        "docker ps --filter 'label=service=flourish' --format '{{.Names}}' | head -1")
+
+    if [ -n "$OLD_CONTAINER" ]; then
+        echo "Stopping SolidQueue in $OLD_CONTAINER on $host before new container boots..."
+        ssh $SSH_OPTS "ubuntu@$host" \
+            "docker exec $OLD_CONTAINER pkill -TERM -f SolidQueue 2>/dev/null || true"
+        sleep 5
+    fi
+done
