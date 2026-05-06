@@ -1,1 +1,101 @@
-<h1 class="text-[14vw] text-primary leading-none select-none" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-shadow: 0 0 60px oklch(38% 0.14 145 / 0.2);">Flourish</h1>
+<div class="w-full max-w-md lg:max-w-4xl px-4">
+  <div class="flex flex-col lg:flex-row lg:items-start gap-5 lg:gap-10">
+
+    <%# ── Left column: title, pool, CTAs ── %>
+    <div class="flex flex-col gap-5 lg:flex-1">
+
+      <%# Header %>
+      <div class="text-center lg:text-left pt-2 pb-1">
+        <h1 class="text-7xl lg:text-8xl text-primary leading-none select-none" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-shadow: 0 0 60px oklch(38% 0.14 145 / 0.15);">Flourish</h1>
+        <p class="mt-3 text-sm text-base-content/50">A shared pool. Every Friday, we share.</p>
+      </div>
+
+      <%# Pool section %>
+      <div class="bg-base-200 rounded-3xl px-6 py-8 text-center lg:py-12 lg:px-10">
+        <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium">This week's pool</p>
+        <p class="mt-2 text-6xl lg:text-7xl font-bold text-primary" style="text-shadow: 0 0 40px oklch(38% 0.14 145 / 0.12);">
+          <%= @pool_formatted %>
+        </p>
+        <p class="mt-2 text-sm text-primary/60">
+          Next Friday &middot; <%= @per_bee_formatted %> each &middot; <%= @member_count %> <%= @member_count == 1 ? 'member' : 'members' %>
+        </p>
+      </div>
+
+      <%# CTAs — desktop only (mobile version is at the bottom of right column) %>
+      <div class="hidden lg:block">
+        <% if current_user %>
+          <p class="text-sm text-base-content/50">
+            Signed in as <%= current_user.email %> &middot;
+            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'text-primary hover:underline' %>
+          </p>
+        <% else %>
+          <div class="grid grid-cols-2 gap-3">
+            <%= link_to 'Take my share', new_user_session_path, class: 'btn btn-outline btn-primary rounded-2xl' %>
+            <%= link_to 'Put something in', new_user_registration_path, class: 'btn btn-outline btn-primary rounded-2xl' %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+
+    <%# ── Right column: stats, activity, CTAs (mobile) ── %>
+    <div class="flex flex-col gap-4 lg:w-80 xl:w-96">
+
+      <%# Stats row %>
+      <div class="grid grid-cols-3 gap-3">
+        <% [
+          { value: @total_shared_compact, label: 'Shared'  },
+          { value: @distribution_count,   label: 'Weeks'   },
+          { value: @member_count,         label: 'Members' }
+        ].each do |stat| %>
+          <div class="bg-base-200 rounded-2xl p-4 text-center">
+            <p class="text-2xl font-bold text-base-content"><%= stat[:value] %></p>
+            <p class="mt-1 text-xs uppercase tracking-widest text-base-content/40 font-medium"><%= stat[:label] %></p>
+          </div>
+        <% end %>
+      </div>
+
+      <%# Activity feed %>
+      <div>
+        <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium mb-3">Happening now</p>
+        <div class="rounded-2xl overflow-hidden border border-base-300">
+          <% if @recent_activity.any? %>
+            <% @recent_activity.each_with_index do |log, index| %>
+              <% event = parse_activity_log(log.message) %>
+              <div class="flex items-center gap-3 bg-base-100 px-4 py-3 <%= index < @recent_activity.size - 1 ? 'border-b border-base-200' : '' %>">
+                <%= activity_icon(event[:type]) %>
+                <div class="flex-1 min-w-0">
+                  <p class="text-sm font-medium text-base-content truncate"><%= event[:text] %></p>
+                  <p class="text-xs text-base-content/35 mt-0.5"><%= time_ago_in_words(log.created_at) %> ago</p>
+                </div>
+                <% if event[:amount] %>
+                  <span class="text-sm font-semibold text-primary shrink-0"><%= event[:amount] %></span>
+                <% end %>
+              </div>
+            <% end %>
+          <% else %>
+            <div class="bg-base-100 px-4 py-8 text-center text-sm text-base-content/40">
+              No activity yet.
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <%# CTAs — mobile only %>
+      <div class="lg:hidden pb-2">
+        <% if current_user %>
+          <p class="text-center text-sm text-base-content/50">
+            Signed in as <%= current_user.email %> &middot;
+            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'text-primary hover:underline' %>
+          </p>
+        <% else %>
+          <div class="grid grid-cols-2 gap-3">
+            <%= link_to 'Take my share', new_user_session_path, class: 'btn btn-outline btn-primary rounded-2xl' %>
+            <%= link_to 'Put something in', new_user_registration_path, class: 'btn btn-outline btn-primary rounded-2xl' %>
+          </div>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
