@@ -74,6 +74,6 @@ class PayOutTest < ActiveSupport::TestCase
       )
     end
 
-    assert_match(/Payout of .* to .* completed/, ActivityLog.last.message)
+    assert_match(/Payout of .* completed/, ActivityLog.last.message)
   end
 end

@@ -20,6 +20,7 @@ module StaticPagesHelper
     [/Contribution of (\S+) received/, ->(m) { { text: 'Someone put in', amount: "+#{m[1]}", type: :seed } }],
     [/Distribution (#\d+) created/,
      ->(m) { { text: "Week #{m[1]} distributed to all members", amount: nil, type: :harvest } }],
+    [/Payout of (\S+).*completed/, ->(m) { { text: 'Someone received their share', amount: m[1], type: :claim } }],
     [/Payout requested/, ->(_) { { text: 'Someone received their share', amount: nil, type: :claim } }],
     [/recontributed/, ->(_) { { text: 'Someone recontributed', amount: nil, type: :reseed } }]
   ].freeze

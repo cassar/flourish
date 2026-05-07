@@ -20,6 +20,6 @@ class PayOut < ApplicationRecord
   private
 
   def log_activity
-    ActivityLog.create(message: "Payout of #{amount_formatted} to #{dividend.member.user.email} completed")
+    ActivityLog.create(message: "Payout of #{amount_formatted} completed")
   end
 end

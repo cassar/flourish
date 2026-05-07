@@ -30,7 +30,7 @@ class Contribution < ApplicationRecord
   private
 
   def log_activity
-    ActivityLog.create(message: "Contribution of #{amount_formatted} received from #{member.user.email}")
+    ActivityLog.create(message: "Contribution of #{amount_formatted} received")
   end
 
   def gross_amount_in_base_units

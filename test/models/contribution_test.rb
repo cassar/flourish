@@ -92,6 +92,6 @@ class ContributionTest < ActiveSupport::TestCase
       )
     end
 
-    assert_match(/Contribution of .* received from/, ActivityLog.last.message)
+    assert_match(/Contribution of .* received/, ActivityLog.last.message)
   end
 end
