@@ -7,10 +7,12 @@ servers:
       - 52.62.31.62
     options:
       memory: 512m
-      log-driver: awslogs
-      log-opt:
-        - "awslogs-region=ap-southeast-2"
-        - "awslogs-group=/flourish/production"
+
+logging:
+  driver: awslogs
+  options:
+    awslogs-region: ap-southeast-2
+    awslogs-group: /flourish/production
 
 volumes:
   - "/data/flourish:/rails/storage/db"
