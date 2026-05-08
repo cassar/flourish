@@ -59,10 +59,10 @@
       <div>
         <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium mb-3">Happening now</p>
         <div class="rounded-2xl overflow-hidden border border-base-300">
-          <% if @recent_activity.any? %>
-            <% @recent_activity.each_with_index do |log, index| %>
-              <% event = parse_activity_log(log.message) %>
-              <div class="flex items-center gap-3 bg-base-100 px-4 py-3 <%= index < @recent_activity.size - 1 ? 'border-b border-base-200' : '' %>">
+          <% visible = @recent_activity.filter_map { |log| [log, parse_activity_log(log.message)] }.reject { |_, e| e.nil? }.first(5) %>
+          <% if visible.any? %>
+            <% visible.each_with_index do |(log, event), index| %>
+              <div class="flex items-center gap-3 bg-base-100 px-4 py-3 <%= index < visible.size - 1 ? 'border-b border-base-200' : '' %>">
                 <%= activity_icon(event[:type]) %>
                 <div class="flex-1 min-w-0">
                   <p class="text-sm font-medium text-base-content truncate"><%= event[:text] %></p>

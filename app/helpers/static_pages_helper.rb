@@ -22,13 +22,19 @@ module StaticPagesHelper
      ->(m) { { text: "Week #{m[1]} distributed to all members", amount: nil, type: :harvest } }],
     [/Payout of (\S+).*completed/, ->(m) { { text: 'Someone received their share', amount: m[1], type: :claim } }],
     [/Payout requested/, ->(_) { { text: 'Someone received their share', amount: nil, type: :claim } }],
-    [/recontributed/, ->(_) { { text: 'Someone recontributed', amount: nil, type: :reseed } }]
+    [/recontributed/, ->(_) { { text: 'Someone recontributed', amount: nil, type: :reseed } }],
+    [/\S+@\S+/, ->(_) {}]
   ].freeze
 
   def parse_activity_log(message)
     ACTIVITY_LOG_PATTERNS.each do |pattern, builder|
       match = message.match(pattern)
-      return builder.call(match) if match
+      next unless match
+
+      result = builder.call(match)
+      return result unless result.nil?
+
+      return nil
     end
     { text: message.truncate(60), amount: nil, type: :generic }
   end

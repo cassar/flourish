@@ -3,7 +3,7 @@ class StaticPagesController < ApplicationController
     set_pool_data
     @distribution_count = Distribution.count
     @total_shared_compact = compact_money(Amount.where(currency: 'AUD').sum(:amount_in_base_units))
-    @recent_activity = ActivityLog.order(created_at: :desc).limit(5)
+    @recent_activity = ActivityLog.order(created_at: :desc).limit(20)
   end
 
   private
