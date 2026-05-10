@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 64247e7d4b3fd413c1301ca9ae07793f0879d6e8
+  revision: 4ce7edbab406a807f738ffa1a4ded2aafdda841a
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -122,7 +122,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
-    action_text-trix (2.1.18)
+    action_text-trix (2.1.19)
       railties
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
