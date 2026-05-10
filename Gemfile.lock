@@ -209,7 +209,7 @@ GEM
     hashdiff (1.2.1)
     hcaptcha (7.1.0)
       json
-    honeybadger (6.5.6)
+    honeybadger (6.6.0)
       logger
       ostruct
     httparty (0.24.2)
@@ -499,7 +499,7 @@ DEPENDENCIES
   excon
   figaro!
   hcaptcha (~> 7.1)
-  honeybadger (~> 6.5)
+  honeybadger (~> 6.6)
   httparty
   image_processing (~> 1.2)
   jbuilder
