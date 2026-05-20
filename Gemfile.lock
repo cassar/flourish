@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 3c09bbc3ea32e6af2466b5b311c38c0ada36b549
+  revision: 4150a9fed144b3d45fb22618e87f586d18198b76
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -264,7 +264,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.1.0)
+    marcel (1.1.1)
     matrix (0.4.3)
     mini_magick (5.3.1)
       logger
@@ -474,7 +474,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.8.0)
+    zeitwerk (2.8.1)
 
 PLATFORMS
   aarch64-linux
