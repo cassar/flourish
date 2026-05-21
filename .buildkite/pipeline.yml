@@ -6,7 +6,7 @@ steps:
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
       CI_REPO=flourish-ci
-      LOCK_SHA=$$(sha256sum Gemfile.lock | cut -d' ' -f1)
+      LOCK_SHA=$$(sha256sum Gemfile.lock Dockerfile.ci | sha256sum | cut -d' ' -f1)
       if aws ecr describe-images --repository-name $$CI_REPO --image-ids imageTag=$$LOCK_SHA --region ap-southeast-2 > /dev/null 2>&1; then
         echo "CI image $$CI_REPO:$$LOCK_SHA already exists, skipping build"
       else
@@ -30,7 +30,7 @@ steps:
     concurrency_group: cassar/docker-test
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
-      CI_IMAGE=$$ECR/flourish-ci:$$(sha256sum Gemfile.lock | cut -d' ' -f1)
+      CI_IMAGE=$$ECR/flourish-ci:$$(sha256sum Gemfile.lock Dockerfile.ci | sha256sum | cut -d' ' -f1)
       docker pull $$CI_IMAGE || docker pull $$CI_IMAGE
       docker run --rm \
         -e RAILS_ENV=test \
