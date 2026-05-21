@@ -72,6 +72,7 @@ gem 'devise', github: 'heartcombo/devise', branch: 'main'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem 'image_processing', '~> 2.0'
+gem 'ruby-vips', '~> 2.0', require: false
 
 # Ruby exception and error tracking
 gem 'honeybadger', '~> 6.6'
