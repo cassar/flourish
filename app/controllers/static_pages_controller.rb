@@ -4,6 +4,7 @@ class StaticPagesController < ApplicationController
     @distribution_count = Distribution.count
     @total_shared_compact = compact_money(Amount.where(currency: 'AUD').sum(:amount_in_base_units))
     @recent_activity = ActivityLog.order(created_at: :desc).limit(20)
+    @visible_activity = build_visible_activity(@recent_activity)
   end
 
   private
@@ -24,5 +25,11 @@ class StaticPagesController < ApplicationController
     else
       Money.new(cents, 'AUD').format
     end
+  end
+
+  def build_visible_activity(logs)
+    logs.filter_map { |log| [log, helpers.parse_activity_log(log.message)] }
+        .reject { |_, event| event.nil? }
+        .first(5)
   end
 end
