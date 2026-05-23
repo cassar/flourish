@@ -57,7 +57,7 @@
     <div class="card-body">
       <h2 class="card-title text-secondary text-base">Notification Preferences</h2>
       <ul class="space-y-1 text-sm text-base-content/80">
-        <% resource.member.notification_preferences.order(:notification_name).each do |notification| %>
+        <% @notification_preferences.each do |notification| %>
           <li><%= "#{notification_emoji notification.enabled} #{notification.notification_name.titleize}" %></li>
         <% end %>
       </ul>
