@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  include StaticPagesHelper
+
   def home
     set_pool_data
     @distribution_count = Distribution.count
@@ -28,7 +30,7 @@ class StaticPagesController < ApplicationController
   end
 
   def build_visible_activity(logs)
-    logs.filter_map { |log| [log, helpers.parse_activity_log(log.message)] }
+    logs.filter_map { |log| [log, parse_activity_log(log.message)] }
         .reject { |_, event| event.nil? }
         .first(5)
   end
