@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/heartcombo/devise.git
-  revision: 9ea459de9aec5f1217ad738c58e0d23fb9f5beaa
+  revision: 372b295fe6f63b4af3269f5dcd51a18c0bc2016c
   branch: main
   specs:
     devise (5.0.4)
