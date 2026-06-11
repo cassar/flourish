@@ -14,7 +14,7 @@
     "@rails/actioncable": "^8.0.0",
     "@tailwindcss/cli": "^4.3.0",
     "daisyui": "^5.5.23",
-    "esbuild": "^0.28.0",
+    "esbuild": "^0.28.1",
     "tailwindcss": "^4.1.18"
   },
   "devDependencies": {
