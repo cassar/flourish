@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: a8a9ce23254197cec6b287d7e2527ef8a8189aef
+  revision: 43a1f3b574cceafcd78d288a1339e37711cf79c7
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -216,7 +216,7 @@ GEM
       csv
       mini_mime (>= 1.0.0)
       multi_xml (>= 0.5.2)
-    i18n (1.14.8)
+    i18n (1.15.0)
       concurrent-ruby (~> 1.0)
     image_processing (2.0.2)
     io-console (0.8.2)
