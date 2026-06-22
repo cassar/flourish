@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 464d8ce7d38c9adb8a180ebbfcf9fd9a468a47b9
+  revision: ca692cd01670c491a6435fe007ce08c3ee108162
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -305,7 +305,7 @@ GEM
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
-    pp (0.6.3)
+    pp (0.6.4)
       prettyprint
     prettyprint (0.2.0)
     prism (1.9.0)
