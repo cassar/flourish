@@ -12,8 +12,8 @@ class StaticPagesController < ApplicationController
     pool_cents = Contribution.where(distribution_id: nil).sum(:amount_in_base_units)
     @member_count = Member.count
     per_bee_cents = @member_count.positive? ? pool_cents / @member_count : 0
-    @pool_formatted = Money.new(pool_cents, 'AUD').format
-    @per_bee_formatted = Money.new(per_bee_cents, 'AUD').format
+    @pool_formatted = format_aud(pool_cents)
+    @per_bee_formatted = format_aud(per_bee_cents)
   end
 
   def compact_money(cents)
@@ -22,7 +22,11 @@ class StaticPagesController < ApplicationController
     elsif cents >= 100_000
       "$#{format('%.1f', cents / 100_000.0)}k"
     else
-      Money.new(cents, 'AUD').format
+      format_aud(cents)
     end
+  end
+
+  def format_aud(cents)
+    Money.new(cents, 'AUD').format.delete_suffix(' AUD')
   end
 end
