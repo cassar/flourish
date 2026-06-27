@@ -1,15 +1,57 @@
-<% content_for :title, 'Resend Confirmation Instructions'  %>
-<h1>Resend confirmation instructions</h1>
+<% content_for :title, 'Resend Confirmation Instructions' %>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="grid lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-base-300 shadow-xl">
 
-  <p>
-  <%= f.label :email %>
-  <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </p>
+  <%# Left: Brand panel %>
+  <div class="bg-base-200 relative flex flex-col justify-between p-10 lg:p-14 overflow-hidden min-h-64">
+    <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-16 -left-16 w-56 h-56 rounded-full bg-primary/8 blur-2xl pointer-events-none"></div>
 
-  <%= f.submit "Resend confirmation instructions" %>
-<% end %>
+    <div class="relative">
+      <p class="text-xs uppercase tracking-widest text-primary/50 font-medium mb-8">Flourish</p>
+      <h1 class="text-5xl lg:text-6xl text-primary leading-snug" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-shadow: 0 0 60px oklch(38% 0.14 145 / 0.2);">
+        Check your<br>inbox.
+      </h1>
+      <p class="mt-5 text-base-content/50 text-sm leading-relaxed max-w-xs">
+        Enter your email below and we'll resend the confirmation link so you can activate your account.
+      </p>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="relative mt-10 lg:mt-0">
+      <div class="flex items-center gap-3 text-xs text-base-content/30">
+        <span class="w-5 h-px bg-base-content/20"></span>
+        <span>A shared pool. Every Friday, we share.</span>
+      </div>
+    </div>
+  </div>
+
+  <%# Right: Form panel %>
+  <div class="bg-base-100 flex flex-col justify-center p-8 lg:p-12">
+    <h2 class="text-xl font-semibold text-base-content mb-1">Resend confirmation</h2>
+    <p class="text-sm text-base-content/40 mb-8">We'll send a new confirmation link to your email.</p>
+
+    <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="space-y-5">
+        <div class="form-control">
+          <%= f.label :email, class: 'label pb-1.5' do %>
+            <span class="label-text text-xs uppercase tracking-widest text-base-content/40 font-medium">Email</span>
+          <% end %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email",
+              value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+              class: 'input input-bordered w-full bg-base-200 border-base-300 rounded-xl' %>
+        </div>
+
+        <div class="pt-1">
+          <%= f.submit "Resend confirmation instructions", class: 'btn btn-primary w-full rounded-xl' %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="mt-8 pt-6 border-t border-base-200 text-sm text-center space-y-1.5">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+
+</div>

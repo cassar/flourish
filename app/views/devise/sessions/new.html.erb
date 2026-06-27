@@ -1,44 +1,71 @@
 <% content_for :title, 'Log in' %>
-<div class="flex justify-center">
-  <div class="card bg-base-200 shadow-md w-full max-w-md">
-    <div class="card-body">
-      <h1 class="card-title text-2xl text-primary mb-2">Log in</h1>
 
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-        <div class="form-control w-full mb-3">
-          <%= f.label :email, class: 'label pb-1' do %>
-            <span class="label-text font-semibold">Email</span>
+<div class="grid lg:grid-cols-2 gap-0 rounded-3xl overflow-hidden border border-base-300 shadow-xl">
+
+  <%# Left: Brand panel %>
+  <div class="bg-base-200 relative flex flex-col justify-between p-10 lg:p-14 overflow-hidden min-h-64">
+    <div class="absolute -top-24 -right-24 w-72 h-72 rounded-full bg-primary/5 blur-3xl pointer-events-none"></div>
+    <div class="absolute -bottom-16 -left-16 w-56 h-56 rounded-full bg-primary/8 blur-2xl pointer-events-none"></div>
+
+    <div class="relative">
+      <p class="text-xs uppercase tracking-widest text-primary/50 font-medium mb-8">Flourish</p>
+      <h1 class="text-5xl lg:text-6xl text-primary leading-snug" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-shadow: 0 0 60px oklch(38% 0.14 145 / 0.2);">
+        Take your<br>share.
+      </h1>
+      <p class="mt-5 text-base-content/50 text-sm leading-relaxed max-w-xs">
+        Every Friday, contributors share in the pool. Log in to receive your weekly distribution.
+      </p>
+    </div>
+
+    <div class="relative mt-10 lg:mt-0">
+      <div class="flex items-center gap-3 text-xs text-base-content/30">
+        <span class="w-5 h-px bg-base-content/20"></span>
+        <span>A shared pool. Every Friday, we share.</span>
+      </div>
+    </div>
+  </div>
+
+  <%# Right: Form panel %>
+  <div class="bg-base-100 flex flex-col justify-center p-8 lg:p-12">
+    <h2 class="text-xl font-semibold text-base-content mb-1">Welcome back</h2>
+    <p class="text-sm text-base-content/40 mb-8">Log in to your membership account.</p>
+
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="space-y-5">
+        <div class="form-control">
+          <%= f.label :email, class: 'label pb-1.5' do %>
+            <span class="label-text text-xs uppercase tracking-widest text-base-content/40 font-medium">Email</span>
           <% end %>
           <%= f.email_field :email, autofocus: true, autocomplete: "email",
-              class: 'input input-bordered w-full' %>
+              class: 'input input-bordered w-full bg-base-200 border-base-300 rounded-xl' %>
         </div>
 
-        <div class="form-control w-full mb-3">
-          <%= f.label :password, class: 'label pb-1' do %>
-            <span class="label-text font-semibold">Password</span>
+        <div class="form-control">
+          <%= f.label :password, class: 'label pb-1.5' do %>
+            <span class="label-text text-xs uppercase tracking-widest text-base-content/40 font-medium">Password</span>
           <% end %>
           <%= f.password_field :password, autocomplete: "current-password",
-              class: 'input input-bordered w-full' %>
+              class: 'input input-bordered w-full bg-base-200 border-base-300 rounded-xl' %>
         </div>
 
         <% if devise_mapping.rememberable? %>
-          <div class="form-control mb-4">
+          <div class="form-control">
             <label class="label cursor-pointer justify-start gap-3">
               <%= f.check_box :remember_me, class: 'checkbox checkbox-primary checkbox-sm' %>
-              <span class="label-text">Remember me</span>
+              <span class="label-text text-sm text-base-content/50">Stay signed in</span>
             </label>
           </div>
         <% end %>
 
-        <div class="form-control mt-2">
-          <%= f.submit "Log in", class: 'btn btn-primary w-full' %>
+        <div class="pt-1">
+          <%= f.submit "Log in", class: 'btn btn-primary w-full rounded-xl' %>
         </div>
-      <% end %>
-
-      <div class="divider text-xs text-base-content/40">or</div>
-      <div class="text-sm text-center">
-        <%= render "devise/shared/links" %>
       </div>
+    <% end %>
+
+    <div class="mt-8 pt-6 border-t border-base-200 text-sm text-center space-y-1.5">
+      <%= render "devise/shared/links" %>
     </div>
   </div>
+
 </div>

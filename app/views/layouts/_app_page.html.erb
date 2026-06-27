@@ -17,30 +17,11 @@
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1 gap-1 text-sm">
           <li><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'About', about_path %></li>
-          <li><%= link_to 'Distributions', distributions_path %></li>
-          <% if user_signed_in? %>
-            <li><%= link_to 'Membership', membership_path %></li>
-            <li><%= link_to 'Dividends', membership_dividends_path %></li>
-            <li><%= link_to 'Pay Outs', membership_pay_outs_path %></li>
-          <% end %>
         </ul>
       </div>
 
       <div class="navbar-end gap-2">
         <% if user_signed_in? %>
-          <% if current_user.admin? %>
-            <div class="dropdown dropdown-end hidden lg:block">
-              <div tabindex="0" role="button" class="btn btn-ghost btn-sm">Admin</div>
-              <ul tabindex="0" class="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                <li><%= link_to 'Active Members', active_admin_members_path %></li>
-                <li><%= link_to 'Inactive Members', inactive_admin_members_path %></li>
-                <li><%= link_to 'Distributions', admin_distributions_path %></li>
-                <li><%= link_to 'Activity Log', admin_activity_logs_path %></li>
-                <li><%= link_to 'Webhook', admin_webhook_configuration_path %></li>
-              </ul>
-            </div>
-          <% end %>
           <%= link_to 'Account', edit_user_registration_path, class: 'btn btn-ghost btn-sm hidden lg:inline-flex' %>
         <% else %>
           <%= link_to 'Log in', new_user_session_path, class: 'btn btn-ghost btn-sm hidden lg:inline-flex' %>
@@ -62,25 +43,9 @@
       <div class="text-primary font-bold text-xl tracking-wider p-2 mb-2">Flourish</div>
       <ul class="menu w-full">
         <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'About', about_path %></li>
-        <li><%= link_to 'Mission', mission_path %></li>
-        <li><%= link_to 'Privacy Statement', privacy_statement_path %></li>
-        <li><%= link_to 'Distributions', distributions_path %></li>
         <% if user_signed_in? %>
-          <li class="menu-title pt-2">Member</li>
-          <li><%= link_to 'Membership', membership_path %></li>
+          <li class="menu-title pt-2">Account</li>
           <li><%= link_to 'Account', edit_user_registration_path %></li>
-          <li><%= link_to 'Dividends', membership_dividends_path %></li>
-          <li><%= link_to 'Pay Outs', membership_pay_outs_path %></li>
-          <li><%= link_to 'Contributions', membership_contributions_path %></li>
-          <% if current_user.admin? %>
-            <li class="menu-title pt-2">Admin</li>
-            <li><%= link_to 'Active Members', active_admin_members_path %></li>
-            <li><%= link_to 'Inactive Members', inactive_admin_members_path %></li>
-            <li><%= link_to 'Admin Distributions', admin_distributions_path %></li>
-            <li><%= link_to 'Activity Log', admin_activity_logs_path %></li>
-            <li><%= link_to 'Webhook', admin_webhook_configuration_path %></li>
-          <% end %>
         <% else %>
           <li class="menu-title pt-2">Account</li>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
