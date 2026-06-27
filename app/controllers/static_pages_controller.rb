@@ -22,7 +22,7 @@ class StaticPagesController < ApplicationController
     elsif cents >= 100_000
       "$#{format('%.1f', cents / 100_000.0)}k"
     else
-      format_aud(cents)
+      Money.new(cents, 'AUD').format(no_cents: true).delete_suffix(' AUD')
     end
   end
 
