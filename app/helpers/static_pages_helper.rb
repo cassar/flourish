@@ -2,7 +2,7 @@ module StaticPagesHelper
   ACTIVITY_ICONS = {
     seed: { css: 'bg-base-300 text-primary',
             path: 'M12 22V14m0 0c-2 0-5-2-5-5a5 5 0 0 1 10 0c0 3-3 5-5 5z' },
-    harvest: { css: 'bg-primary text-primary-content',
+    harvest: { css: 'bg-primary/15 text-primary',
                path: 'M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09' \
                      'L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846' \
                      'a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09Z' },
