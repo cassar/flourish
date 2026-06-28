@@ -33,7 +33,6 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
-    - HONEYBADGER_API_KEY
   clear:
     SOLID_QUEUE_IN_PUMA: true
 
