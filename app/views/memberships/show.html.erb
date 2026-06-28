@@ -8,7 +8,7 @@
     <h1 class="text-4xl text-primary" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;">
       <%= @member.name.presence || current_user.email.split('@').first %>
     </h1>
-    <p class="text-sm text-base-content/40 mt-1"><%= current_user.email %> &middot; Member since <%= current_user.created_at.strftime('%b %Y') %></p>
+    <p class="text-sm text-base-content/40 mt-1"><%= current_user.email %> &middot; Member since <%= current_user.created_at.to_datetime.strftime('%b %Y') %></p>
   </div>
 
   <%# PayPal.Me missing notice %>
@@ -50,7 +50,7 @@
           <div class="flex items-center gap-3 bg-base-100 px-4 py-3 <%= index < @dividends.size - 1 ? 'border-b border-base-200' : '' %>">
             <div class="flex-1 min-w-0">
               <p class="text-sm font-medium text-base-content">Distribution <%= dividend.distribution&.name || '—' %></p>
-              <p class="text-xs text-base-content/35 mt-0.5"><%= dividend.amount.created_at.strftime('%d %b %Y') %></p>
+              <p class="text-xs text-base-content/35 mt-0.5"><%= dividend.amount.created_at.to_datetime.strftime('%d %b %Y') %></p>
             </div>
             <div class="flex items-center gap-3 shrink-0">
               <%= dividend_status_badge(dividend) %>
