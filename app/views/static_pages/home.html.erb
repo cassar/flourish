@@ -24,10 +24,10 @@
       <%# CTAs — desktop only (mobile version is at the bottom of right column) %>
       <div class="hidden lg:block">
         <% if current_user %>
-          <p class="text-sm text-base-content/50">
-            Signed in as <%= current_user.email %> &middot;
-            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'text-primary hover:underline' %>
-          </p>
+          <div class="grid grid-cols-2 gap-3">
+            <%= link_to 'My membership', membership_path, class: 'btn btn-primary rounded-2xl' %>
+            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline btn-primary rounded-2xl' %>
+          </div>
         <% else %>
           <div class="grid grid-cols-2 gap-3">
             <%= link_to 'Take my share', new_user_session_path, class: 'btn btn-outline btn-primary rounded-2xl' %>
@@ -84,10 +84,10 @@
       <%# CTAs — mobile only %>
       <div class="lg:hidden pb-2">
         <% if current_user %>
-          <p class="text-center text-sm text-base-content/50">
-            Signed in as <%= current_user.email %> &middot;
-            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'text-primary hover:underline' %>
-          </p>
+          <div class="grid grid-cols-2 gap-3">
+            <%= link_to 'My membership', membership_path, class: 'btn btn-primary rounded-2xl' %>
+            <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline btn-primary rounded-2xl' %>
+          </div>
         <% else %>
           <div class="grid grid-cols-2 gap-3">
             <%= link_to 'Take my share', new_user_session_path, class: 'btn btn-outline btn-primary rounded-2xl' %>
