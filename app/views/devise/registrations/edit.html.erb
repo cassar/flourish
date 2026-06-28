@@ -53,21 +53,7 @@
     </div>
   </div>
 
-  <div class="card bg-base-200 shadow-sm">
-    <div class="card-body">
-      <h2 class="card-title text-secondary text-base">Notification Preferences</h2>
-      <ul class="space-y-1 text-sm text-base-content/80">
-        <% resource.member.notification_preferences.order(:notification_name).each do |notification| %>
-          <li><%= "#{notification_emoji notification.enabled} #{notification.notification_name.titleize}" %></li>
-        <% end %>
-      </ul>
-      <div class="card-actions mt-3">
-        <%= link_to "Edit Preferences", notification_preferences_path, class: 'btn btn-outline btn-secondary btn-sm' %>
-      </div>
-    </div>
-  </div>
-
-  <div class="card bg-base-200 shadow-sm">
+<div class="card bg-base-200 shadow-sm">
     <div class="card-body">
       <h2 class="card-title text-secondary text-base">Log Out</h2>
       <p class="text-sm text-base-content/70">Log out of this session.</p>
