@@ -29,7 +29,7 @@
             <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline btn-primary rounded-2xl' %>
           </div>
           <% if current_user.admin? %>
-            <%= link_to 'Members', admin_members_path, class: 'btn btn-outline btn-primary rounded-2xl w-full' %>
+            <%= link_to 'Members', admin_members_path, class: 'btn btn-outline btn-primary rounded-2xl w-full mt-6' %>
           <% end %>
         <% else %>
           <div class="grid grid-cols-2 gap-3">
@@ -92,7 +92,7 @@
             <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline btn-primary rounded-2xl' %>
           </div>
           <% if current_user.admin? %>
-            <%= link_to 'Members', admin_members_path, class: 'btn btn-outline btn-primary rounded-2xl w-full mt-3' %>
+            <%= link_to 'Members', admin_members_path, class: 'btn btn-outline btn-primary rounded-2xl w-full mt-6' %>
           <% end %>
         <% else %>
           <div class="grid grid-cols-2 gap-3">
