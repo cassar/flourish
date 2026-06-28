@@ -7,5 +7,9 @@ Rails.application.routes.draw do
 
   resource :membership, only: :show
 
+  namespace :admin do
+    resources :members, only: %i[index show]
+  end
+
   root 'static_pages#home'
 end

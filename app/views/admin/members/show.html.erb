@@ -1,0 +1,123 @@
+<% content_for :title, @member.name.presence || @member.user.email.split('@').first %>
+
+<div class="space-y-6 max-w-2xl mx-auto">
+
+  <%# Breadcrumb %>
+  <div class="text-xs text-base-content/40">
+    <%= link_to 'Members', admin_members_path, class: 'hover:text-primary transition-colors' %> &rsaquo; <%= @member.name.presence || @member.user.email.split('@').first %>
+  </div>
+
+  <%# Header %>
+  <div>
+    <p class="text-xs uppercase tracking-widest text-primary/50 font-medium mb-1">Member</p>
+    <h1 class="text-4xl text-primary" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;">
+      <%= @member.name.presence || @member.user.email.split('@').first %>
+    </h1>
+    <p class="text-sm text-base-content/40 mt-1">
+      <%= @member.user.email %>
+      &middot; Joined <%= @member.user.created_at.to_datetime.strftime('%b %Y') %>
+      &middot; <span class="<%= @member.user.last_sign_in_at? ? 'text-success' : 'text-base-content/30' %>"><%= @member.user.last_sign_in_at? ? 'Active' : 'Never signed in' %></span>
+    </p>
+  </div>
+
+  <%# PayPal.Me status %>
+  <% if @member.pay_outs_disabled? %>
+    <div class="bg-warning/10 border border-warning/30 rounded-2xl px-5 py-4 flex items-start gap-4">
+      <svg class="w-5 h-5 text-warning shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
+      </svg>
+      <p class="text-sm text-base-content">No PayPal.Me handle set — dividends are auto-recontributed.</p>
+    </div>
+  <% else %>
+    <div class="bg-base-200 rounded-2xl px-5 py-3 flex items-center gap-3">
+      <svg class="w-4 h-4 text-base-content/40 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 0 1 1.242 7.244l-4.5 4.5a4.5 4.5 0 0 1-6.364-6.364l1.757-1.757m13.35-.622 1.757-1.757a4.5 4.5 0 0 0-6.364-6.364l-4.5 4.5a4.5 4.5 0 0 0 1.242 7.244" />
+      </svg>
+      <p class="text-sm text-base-content/60">paypal.me/<span class="text-base-content font-medium"><%= @member.paypalme_handle %></span></p>
+    </div>
+  <% end %>
+
+  <%# Stats %>
+  <div class="grid grid-cols-3 gap-3">
+    <div class="bg-base-200 rounded-2xl p-4 text-center">
+      <p class="text-2xl font-bold text-base-content"><%= @total_contributed %></p>
+      <p class="mt-1 text-xs uppercase tracking-widest text-base-content/40 font-medium">Contributed</p>
+    </div>
+    <div class="bg-base-200 rounded-2xl p-4 text-center">
+      <p class="text-2xl font-bold text-base-content"><%= @total_dividends %></p>
+      <p class="mt-1 text-xs uppercase tracking-widest text-base-content/40 font-medium">Earned</p>
+    </div>
+    <div class="bg-base-200 rounded-2xl p-4 text-center">
+      <p class="text-2xl font-bold text-base-content"><%= @pending_payout_count %></p>
+      <p class="mt-1 text-xs uppercase tracking-widest text-base-content/40 font-medium">Pending</p>
+    </div>
+  </div>
+
+  <%# Dividends %>
+  <div>
+    <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium mb-3">Dividends</p>
+    <div class="rounded-2xl overflow-hidden border border-base-300">
+      <% if @dividends.any? %>
+        <% @dividends.each_with_index do |dividend, index| %>
+          <div class="flex items-center gap-3 bg-base-100 px-4 py-3 <%= index < @dividends.size - 1 ? 'border-b border-base-200' : '' %>">
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-base-content">Distribution <%= dividend.distribution&.name || '—' %></p>
+              <p class="text-xs text-base-content/35 mt-0.5"><%= dividend.amount.created_at.to_datetime.strftime('%d %b %Y') %></p>
+            </div>
+            <div class="flex items-center gap-3 shrink-0">
+              <%= dividend_status_badge(dividend) %>
+              <span class="text-sm font-semibold text-primary"><%= dividend.amount.amount_formatted %></span>
+            </div>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="bg-base-100 px-4 py-8 text-center text-sm text-base-content/40">
+          No dividends yet.
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# Contributions %>
+  <div>
+    <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium mb-3">Contributions</p>
+    <div class="rounded-2xl overflow-hidden border border-base-300">
+      <% if @contributions.any? %>
+        <% @contributions.each_with_index do |contribution, index| %>
+          <div class="flex items-center gap-3 bg-base-100 px-4 py-3 <%= index < @contributions.size - 1 ? 'border-b border-base-200' : '' %>">
+            <div class="flex-1 min-w-0">
+              <p class="text-sm font-medium text-base-content"><%= contribution.created_at_formatted %></p>
+              <% if contribution.distribution %>
+                <p class="text-xs text-base-content/35 mt-0.5">Distribution <%= contribution.distribution.name %></p>
+              <% else %>
+                <p class="text-xs text-base-content/35 mt-0.5">Pool contribution</p>
+              <% end %>
+            </div>
+            <span class="text-sm font-semibold text-primary shrink-0"><%= contribution.amount_formatted %></span>
+          </div>
+        <% end %>
+      <% else %>
+        <div class="bg-base-100 px-4 py-8 text-center text-sm text-base-content/40">
+          No contributions yet.
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%# Notification preferences %>
+  <div>
+    <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium mb-3">Notifications</p>
+    <div class="rounded-2xl overflow-hidden border border-base-300">
+      <% @notification_preferences.each_with_index do |pref, index| %>
+        <div class="flex items-center gap-3 bg-base-100 px-4 py-3 <%= index < @notification_preferences.size - 1 ? 'border-b border-base-200' : '' %>">
+          <span class="text-sm text-base-content/30 font-mono"><%= notification_toggle(pref.enabled) %></span>
+          <p class="text-sm text-base-content flex-1"><%= pref.display_name %></p>
+          <% unless pref.enabled %>
+            <span class="text-xs text-base-content/30">Off</span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+</div>

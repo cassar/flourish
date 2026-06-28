@@ -19,6 +19,9 @@
           <li><%= link_to 'Home', root_path %></li>
           <% if user_signed_in? %>
             <li><%= link_to 'Membership', membership_path %></li>
+            <% if current_user.admin? %>
+              <li><%= link_to 'Members', admin_members_path %></li>
+            <% end %>
           <% end %>
         </ul>
       </div>
@@ -50,6 +53,10 @@
           <li class="menu-title pt-2">Member</li>
           <li><%= link_to 'Membership', membership_path %></li>
           <li><%= link_to 'Account', edit_user_registration_path %></li>
+          <% if current_user.admin? %>
+            <li class="menu-title pt-2">Admin</li>
+            <li><%= link_to 'Members', admin_members_path %></li>
+          <% end %>
         <% else %>
           <li class="menu-title pt-2">Account</li>
           <li><%= link_to 'Sign up', new_user_registration_path %></li>
