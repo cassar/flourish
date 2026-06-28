@@ -17,6 +17,9 @@
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal px-1 gap-1 text-sm">
           <li><%= link_to 'Home', root_path %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to 'Membership', membership_path %></li>
+          <% end %>
         </ul>
       </div>
 
@@ -44,7 +47,8 @@
       <ul class="menu w-full">
         <li><%= link_to 'Home', root_path %></li>
         <% if user_signed_in? %>
-          <li class="menu-title pt-2">Account</li>
+          <li class="menu-title pt-2">Member</li>
+          <li><%= link_to 'Membership', membership_path %></li>
           <li><%= link_to 'Account', edit_user_registration_path %></li>
         <% else %>
           <li class="menu-title pt-2">Account</li>

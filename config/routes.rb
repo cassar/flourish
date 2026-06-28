@@ -5,5 +5,7 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
+  resource :membership, only: :show
+
   root 'static_pages#home'
 end
