@@ -273,7 +273,7 @@ GEM
     money (7.0.2)
       bigdecimal
       i18n (~> 1.9)
-    msgpack (1.8.1)
+    msgpack (1.8.3)
     multi_xml (0.8.1)
       bigdecimal (>= 3.1, < 5)
     net-imap (0.6.4.1)
