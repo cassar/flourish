@@ -48,7 +48,7 @@ steps:
       - |
         docker run --rm \
           --volume "$(pwd):/rails" \
-          --volume "/home/ubuntu/.bundle-cache:/bundle" \
+          --volume "/home/ubuntu/.bundle-cache/flourish:/bundle" \
           --workdir /rails \
           --env BUNDLE_WITHOUT="" \
           --env BUNDLE_PATH=/bundle \
@@ -61,7 +61,7 @@ steps:
             bundle install &&
             bundle exec rubocop
           "
-      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" && sudo chown -R "$(id -u):$(id -g)" /home/ubuntu/.bundle-cache || true
+      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" && sudo chown -R "$(id -u):$(id -g)" /home/ubuntu/.bundle-cache/flourish || true
     agents:
       queue: default-queue
 
@@ -73,7 +73,7 @@ steps:
       - |
         docker run --rm \
           --volume "$(pwd):/rails" \
-          --volume "/home/ubuntu/.bundle-cache:/bundle" \
+          --volume "/home/ubuntu/.bundle-cache/flourish:/bundle" \
           --workdir /rails \
           --env BUNDLE_WITHOUT="" \
           --env BUNDLE_PATH=/bundle \
@@ -86,7 +86,7 @@ steps:
             bundle install &&
             bundle exec bundler-audit check --update
           "
-      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" && sudo chown -R "$(id -u):$(id -g)" /home/ubuntu/.bundle-cache || true
+      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" && sudo chown -R "$(id -u):$(id -g)" /home/ubuntu/.bundle-cache/flourish || true
     agents:
       queue: default-queue
 
