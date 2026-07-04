@@ -52,7 +52,7 @@ steps:
           --workdir /rails \
           --env BUNDLE_WITHOUT="" \
           --env BUNDLE_PATH=/bundle \
-          --memory 512m \
+          --memory 1g \
           ruby:3.4.8-slim \
           bash -c "
             apt-get update -qq &&
@@ -77,7 +77,7 @@ steps:
           --workdir /rails \
           --env BUNDLE_WITHOUT="" \
           --env BUNDLE_PATH=/bundle \
-          --memory 512m \
+          --memory 1g \
           ruby:3.4.8-slim \
           bash -c "
             apt-get update -qq &&
