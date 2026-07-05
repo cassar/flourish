@@ -27,6 +27,8 @@ bin/rails db:migrate             # Run pending migrations
 
 The app runs as a Docker container on a shared EC2 instance, managed by Kamal.
 
+**This instance also runs 3 other apps (focus_machine, skrol, bean_counter) plus Buildkite CI, all competing for the same 2 vCPUs / 7.6GB RAM.** Before changing memory limits, deploy/CI concurrency, or anything else that affects capacity, read `~/GitHub/cassar_code_infrastructure/CLAUDE.md` — changes scoped to this repo alone can still starve or crash the others.
+
 **SSH access:**
 ```bash
 ssh -i ~/.ssh/cassar-code.pem ubuntu@52.62.31.62
