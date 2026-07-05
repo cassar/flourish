@@ -24,7 +24,8 @@ class Contribution < ApplicationRecord
   end
 
   def created_at_formatted
-    created_at.strftime("%a, #{created_at.day.ordinalize} %b %Y")
+    date = created_at.to_datetime
+    date.strftime("%a, #{date.day.ordinalize} %b %Y")
   end
 
   private

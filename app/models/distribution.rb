@@ -13,7 +13,7 @@ class Distribution < ApplicationRecord
   end
 
   def date_formatted
-    created_at.strftime('%a, %d %b %Y')
+    created_at.to_datetime.strftime('%a, %d %b %Y')
   end
 
   def settled?
