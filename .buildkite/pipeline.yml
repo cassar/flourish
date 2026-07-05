@@ -109,6 +109,8 @@ steps:
 
   - label: ":rocket: Deploy"
     key: deploy
+    concurrency: 1
+    concurrency_group: cassar/shared-ec2-host-deploy
     command:
       - cp /home/ubuntu/.flourish-secrets .kamal/secrets
       - export KAMAL_REGISTRY_PASSWORD=$$(aws ecr get-login-password --region ap-southeast-2)

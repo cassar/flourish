@@ -6,7 +6,7 @@ servers:
     hosts:
       - 52.62.31.62
     options:
-      memory: 512m
+      memory: 768m
 
 logging:
   driver: awslogs
