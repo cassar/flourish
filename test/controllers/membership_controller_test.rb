@@ -61,7 +61,7 @@ class MembershipControllerTest < ActionDispatch::IntegrationTest
 
     get membership_path
 
-    assert_select 'div', text: /No dividends yet/
+    assert_select 'div', text: /No needs met yet/
   end
 
   test 'membership page shows empty state for contributions' do
