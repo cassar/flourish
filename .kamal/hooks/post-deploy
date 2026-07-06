@@ -1,3 +1,18 @@
 #!/bin/sh
+set -e
+
+SSH_KEY="$HOME/.ssh/cassar-code.pem"
+SSH_OPTS="-i $SSH_KEY -o StrictHostKeyChecking=accept-new"
+
 echo "$KAMAL_PERFORMER deployed $KAMAL_VERSION in $KAMAL_RUNTIME seconds"
 docker system prune -af --filter "label!=service=flourish"
+
+for host in $(echo "$KAMAL_HOSTS" | tr ',' ' '); do
+    # Kamal's asset_path volume persists compiled assets (and their
+    # .sprockets-manifest-*.json) across deploys so in-flight requests don't
+    # 404 mid-rollover. But it never prunes old manifests, and Sprockets picks
+    # whichever manifest sorts first alphabetically when more than one
+    # exists -- not the newest -- which can silently resurrect a stale build.
+    # Keep only the manifest with the newest mtime (the one just copied in).
+    ssh $SSH_OPTS "ubuntu@$host" "dir=\$HOME/.kamal/apps/flourish/assets/volumes/web-$KAMAL_VERSION; if [ -d \"\$dir\" ]; then cd \"\$dir\" && ls -t .sprockets-manifest-*.json 2>/dev/null | tail -n +2 | xargs -r rm -f; fi"
+done
