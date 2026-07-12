@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 2db1126cf881eb05fd99727c3b7e11cee3e8b4c3
+  revision: d7150bfc0109b33165cec73f24b1cdf17b252566
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -68,7 +68,7 @@ GIT
       rails-html-sanitizer (~> 1.7)
     activejob (8.2.0.alpha)
       activesupport (= 8.2.0.alpha)
-      globalid (>= 0.3.6)
+      globalid (>= 1.4.0)
     activemodel (8.2.0.alpha)
       activesupport (= 8.2.0.alpha)
     activerecord (8.2.0.alpha)
@@ -232,7 +232,7 @@ GEM
     jmespath (1.6.2)
     jsbundling-rails (1.3.1)
       railties (>= 6.0.0)
-    json (2.20.0)
+    json (2.21.0)
     kamal (2.12.0)
       activesupport (>= 7.0)
       base64 (~> 0.2)
