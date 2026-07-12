@@ -5,7 +5,11 @@ Rails.application.routes.draw do
     confirmations: 'users/confirmations'
   }
 
-  resource :membership, only: :show
+  resource :membership, only: :show do
+    get :needs_met
+    get :contributions
+    get :notifications
+  end
 
   namespace :admin do
     resources :members, only: %i[index show]

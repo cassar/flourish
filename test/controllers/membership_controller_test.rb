@@ -40,43 +40,74 @@ class MembershipControllerTest < ActionDispatch::IntegrationTest
     assert_select 'p', text: /No PayPal.Me handle set/, count: 0
   end
 
-  test 'membership page shows dividends when present' do
+  test 'membership page links to needs met, contributions and notifications pages' do
     sign_in users(:one)
 
     get membership_path
 
-    assert_select 'div', text: /No dividends yet/, count: 0
+    assert_select "a[href='#{needs_met_membership_path}']"
+    assert_select "a[href='#{contributions_membership_path}']"
+    assert_select "a[href='#{notifications_membership_path}']"
   end
 
-  test 'membership page shows contributions when present' do
+  test 'needs met page requires sign in' do
+    get needs_met_membership_path
+
+    assert_redirected_to new_user_session_path
+  end
+
+  test 'needs met page shows dividends when present' do
     sign_in users(:one)
 
-    get membership_path
+    get needs_met_membership_path
 
-    assert_select 'div', text: /No contributions yet/, count: 0
+    assert_response :success
+    assert_select 'div', text: /No needs met yet/, count: 0
   end
 
-  test 'membership page shows empty state for dividends' do
+  test 'needs met page shows empty state' do
     sign_in users(:admin)
 
-    get membership_path
+    get needs_met_membership_path
 
     assert_select 'div', text: /No needs met yet/
   end
 
-  test 'membership page shows empty state for contributions' do
+  test 'contributions page requires sign in' do
+    get contributions_membership_path
+
+    assert_redirected_to new_user_session_path
+  end
+
+  test 'contributions page shows contributions when present' do
+    sign_in users(:one)
+
+    get contributions_membership_path
+
+    assert_response :success
+    assert_select 'div', text: /No contributions yet/, count: 0
+  end
+
+  test 'contributions page shows empty state' do
     sign_in users(:admin)
 
-    get membership_path
+    get contributions_membership_path
 
     assert_select 'div', text: /No contributions yet/
   end
 
-  test 'membership page shows notification preferences' do
+  test 'notifications page requires sign in' do
+    get notifications_membership_path
+
+    assert_redirected_to new_user_session_path
+  end
+
+  test 'notifications page shows notification preferences' do
     sign_in users(:one)
 
-    get membership_path
+    get notifications_membership_path
 
+    assert_response :success
     assert_select 'p', text: /Dividend Issued/
   end
 end
