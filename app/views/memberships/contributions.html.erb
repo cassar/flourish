@@ -20,7 +20,9 @@
           <div class="flex-1 min-w-0">
             <p class="text-sm font-medium text-base-content"><%= contribution.created_at_formatted %></p>
             <% if contribution.distribution %>
-              <p class="text-xs text-base-content/35 mt-0.5"><%= contribution.distribution.week_label %></p>
+              <p class="text-xs text-base-content/35 mt-0.5">Distribution <%= contribution.distribution.name %></p>
+            <% else %>
+              <p class="text-xs text-base-content/35 mt-0.5">Pool contribution</p>
             <% end %>
           </div>
           <span class="text-sm font-semibold text-primary shrink-0"><%= contribution.amount_formatted %></span>

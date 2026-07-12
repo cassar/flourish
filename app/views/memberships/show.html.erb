@@ -4,7 +4,7 @@
 
   <%# Header %>
   <div>
-    <p class="text-xs uppercase tracking-widest text-primary/50 font-medium mb-1">Your story</p>
+    <p class="text-xs uppercase tracking-widest text-primary/50 font-medium mb-1">Your membership</p>
     <h1 class="text-4xl text-primary" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;">
       <%= @member.name.presence || current_user.email.split('@').first %>
     </h1>
@@ -33,7 +33,7 @@
     </div>
     <div class="bg-base-200 rounded-2xl p-4 text-center">
       <p class="text-2xl font-bold text-base-content"><%= @total_dividends %></p>
-      <p class="mt-1 text-xs uppercase tracking-widest text-base-content/40 font-medium">Received</p>
+      <p class="mt-1 text-xs uppercase tracking-widest text-base-content/40 font-medium">Earned</p>
     </div>
     <div class="bg-base-200 rounded-2xl p-4 text-center">
       <p class="text-2xl font-bold text-base-content"><%= @pending_payout_count %></p>
@@ -45,9 +45,9 @@
   <div class="space-y-3">
     <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium mb-3">Past activity</p>
 
-    <%= link_to needs_met_membership_path, class: 'flex items-center gap-3 bg-base-200 hover:bg-base-300 transition-colors rounded-2xl px-5 py-4' do %>
+    <%= link_to dividends_membership_path, class: 'flex items-center gap-3 bg-base-200 hover:bg-base-300 transition-colors rounded-2xl px-5 py-4' do %>
       <div class="flex-1 min-w-0">
-        <p class="text-sm font-medium text-base-content">Needs met</p>
+        <p class="text-sm font-medium text-base-content">Dividends</p>
         <p class="text-xs text-base-content/40 mt-0.5">Dividends you've received</p>
       </div>
       <svg class="w-4 h-4 text-base-content/30 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

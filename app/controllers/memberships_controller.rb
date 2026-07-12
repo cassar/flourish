@@ -8,7 +8,7 @@ class MembershipsController < ApplicationController
     @pending_payout_count = @member.dividends.pending_pay_out.count
   end
 
-  def needs_met
+  def dividends
     @dividends = member_dividends
   end
 

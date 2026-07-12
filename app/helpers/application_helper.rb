@@ -21,14 +21,9 @@ module ApplicationHelper
     end
   end
 
-  MEMBER_DIVIDEND_STATUS_LABELS = {
-    'issued' => 'Shared'
-  }.freeze
-
-  def dividend_status_badge(dividend, audience: :admin)
+  def dividend_status_badge(dividend)
     config = DIVIDEND_STATUS_BADGES[dividend.status] || { label: dividend.status.titleize, css: 'badge-neutral' }
-    label = audience == :member ? MEMBER_DIVIDEND_STATUS_LABELS[dividend.status] || config[:label] : config[:label]
-    content_tag(:span, label, class: "badge badge-sm #{config[:css]}")
+    content_tag(:span, config[:label], class: "badge badge-sm #{config[:css]}")
   end
 
   def notification_toggle(enabled)

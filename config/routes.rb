@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   }
 
   resource :membership, only: :show do
-    get :needs_met
+    get :dividends
     get :contributions
     get :notifications
   end

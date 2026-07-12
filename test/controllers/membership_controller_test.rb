@@ -40,37 +40,37 @@ class MembershipControllerTest < ActionDispatch::IntegrationTest
     assert_select 'p', text: /No PayPal.Me handle set/, count: 0
   end
 
-  test 'membership page links to needs met, contributions and notifications pages' do
+  test 'membership page links to dividends, contributions and notifications pages' do
     sign_in users(:one)
 
     get membership_path
 
-    assert_select "a[href='#{needs_met_membership_path}']"
+    assert_select "a[href='#{dividends_membership_path}']"
     assert_select "a[href='#{contributions_membership_path}']"
     assert_select "a[href='#{notifications_membership_path}']"
   end
 
-  test 'needs met page requires sign in' do
-    get needs_met_membership_path
+  test 'dividends page requires sign in' do
+    get dividends_membership_path
 
     assert_redirected_to new_user_session_path
   end
 
-  test 'needs met page shows dividends when present' do
+  test 'dividends page shows dividends when present' do
     sign_in users(:one)
 
-    get needs_met_membership_path
+    get dividends_membership_path
 
     assert_response :success
-    assert_select 'div', text: /No needs met yet/, count: 0
+    assert_select 'div', text: /No dividends yet/, count: 0
   end
 
-  test 'needs met page shows empty state' do
+  test 'dividends page shows empty state' do
     sign_in users(:admin)
 
-    get needs_met_membership_path
+    get dividends_membership_path
 
-    assert_select 'div', text: /No needs met yet/
+    assert_select 'div', text: /No dividends yet/
   end
 
   test 'contributions page requires sign in' do

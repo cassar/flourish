@@ -24,10 +24,6 @@ class Distribution < ApplicationRecord
     "##{number || 0}"
   end
 
-  def week_label
-    "Week of #{created_at.to_datetime.strftime('%-d %b')}"
-  end
-
   def to_param
     number.to_s
   end

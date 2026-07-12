@@ -1,4 +1,4 @@
-<% content_for :title, 'Needs met' %>
+<% content_for :title, 'Dividends' %>
 
 <div class="space-y-6 max-w-2xl mx-auto">
 
@@ -10,7 +10,7 @@
   <% end %>
 
   <div>
-    <h1 class="text-2xl font-bold text-base-content">Needs met</h1>
+    <h1 class="text-2xl font-bold text-base-content">Dividends</h1>
   </div>
 
   <div class="rounded-2xl overflow-hidden border border-base-300">
@@ -18,18 +18,18 @@
       <% @dividends.each_with_index do |dividend, index| %>
         <div class="flex items-center gap-3 bg-base-100 px-4 py-3 <%= index < @dividends.size - 1 ? 'border-b border-base-200' : '' %>">
           <div class="flex-1 min-w-0">
-            <p class="text-sm font-medium text-base-content"><%= dividend.distribution&.week_label || '—' %></p>
+            <p class="text-sm font-medium text-base-content">Distribution <%= dividend.distribution&.name || '—' %></p>
             <p class="text-xs text-base-content/35 mt-0.5"><%= dividend.amount.created_at.to_datetime.strftime('%d %b %Y') %></p>
           </div>
           <div class="flex items-center gap-3 shrink-0">
-            <%= dividend_status_badge(dividend, audience: :member) %>
+            <%= dividend_status_badge(dividend) %>
             <span class="text-sm font-semibold text-primary"><%= dividend.amount.amount_formatted %></span>
           </div>
         </div>
       <% end %>
     <% else %>
       <div class="bg-base-100 px-4 py-8 text-center text-sm text-base-content/40">
-        No needs met yet.
+        No dividends yet.
       </div>
     <% end %>
   </div>
