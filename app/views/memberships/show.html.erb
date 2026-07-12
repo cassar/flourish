@@ -11,20 +11,6 @@
     <p class="text-sm text-base-content/40 mt-1"><%= current_user.email %> &middot; Member since <%= current_user.created_at.to_datetime.strftime('%b %Y') %></p>
   </div>
 
-  <%# PayPal.Me missing notice %>
-  <% if @member.pay_outs_disabled? %>
-    <div class="bg-warning/10 border border-warning/30 rounded-2xl px-5 py-4 flex items-start gap-4">
-      <svg class="w-5 h-5 text-warning shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" />
-      </svg>
-      <div>
-        <p class="text-sm font-medium text-base-content">No PayPal.Me handle set</p>
-        <p class="text-xs text-base-content/50 mt-0.5">Add your PayPal.Me handle to receive dividend payouts. Until then, dividends will be automatically recontributed.</p>
-        <%= link_to 'Add in Account settings →', edit_user_registration_path, class: 'text-xs text-primary hover:underline mt-1 inline-block' %>
-      </div>
-    </div>
-  <% end %>
-
   <%# Stats %>
   <div class="grid grid-cols-3 gap-3">
     <div class="bg-base-200 rounded-2xl p-4 text-center">

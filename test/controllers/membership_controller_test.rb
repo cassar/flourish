@@ -24,22 +24,6 @@ class MembershipControllerTest < ActionDispatch::IntegrationTest
     assert_select 'p', text: /#{Regexp.escape(user.email)}/
   end
 
-  test 'membership page shows PayPal.Me warning when handle is missing' do
-    sign_in users(:one)
-
-    get membership_path
-
-    assert_select 'p', text: /No PayPal.Me handle set/
-  end
-
-  test 'membership page does not show PayPal.Me warning when handle is present' do
-    sign_in users(:has_paypalme_handle)
-
-    get membership_path
-
-    assert_select 'p', text: /No PayPal.Me handle set/, count: 0
-  end
-
   test 'membership page links to dividends, contributions and notifications pages' do
     sign_in users(:one)
 
