@@ -24,6 +24,22 @@ class MembershipControllerTest < ActionDispatch::IntegrationTest
     assert_select 'p', text: /#{Regexp.escape(user.email)}/
   end
 
+  test 'membership page shows certificate for last dividend when present' do
+    sign_in users(:one)
+
+    get membership_path
+
+    assert_select 'p', text: /Certificate of Dividend/
+  end
+
+  test 'membership page does not show certificate when member has no dividends' do
+    sign_in users(:admin)
+
+    get membership_path
+
+    assert_select 'p', text: /Certificate of Dividend/, count: 0
+  end
+
   test 'membership page links to dividends, contributions and notifications pages' do
     sign_in users(:one)
 

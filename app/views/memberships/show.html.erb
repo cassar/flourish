@@ -11,6 +11,39 @@
     <p class="text-sm text-base-content/40 mt-1"><%= current_user.email %> &middot; Member since <%= current_user.created_at.to_datetime.strftime('%b %Y') %></p>
   </div>
 
+  <%# Last dividend certificate %>
+  <% if @last_dividend %>
+    <div class="relative overflow-hidden rounded-3xl border-2 border-primary/20 bg-base-100 px-6 py-10 text-center sm:px-10">
+      <div class="absolute inset-3 rounded-2xl border border-primary/10"></div>
+
+      <div class="absolute left-5 top-5 h-6 w-6 rounded-tl-lg border-l-2 border-t-2 border-primary/30"></div>
+      <div class="absolute right-5 top-5 h-6 w-6 rounded-tr-lg border-r-2 border-t-2 border-primary/30"></div>
+      <div class="absolute bottom-5 left-5 h-6 w-6 rounded-bl-lg border-b-2 border-l-2 border-primary/30"></div>
+      <div class="absolute bottom-5 right-5 h-6 w-6 rounded-br-lg border-b-2 border-r-2 border-primary/30"></div>
+
+      <div class="relative">
+        <p class="text-xs uppercase tracking-[0.3em] text-primary/50 font-medium">Certificate of Dividend</p>
+
+        <p class="mt-6 text-6xl text-primary sm:text-7xl" style="font-family: 'Playfair Display', serif; font-weight: 700;">
+          <%= @last_dividend.amount.amount_formatted %>
+        </p>
+
+        <p class="mt-4 text-sm text-base-content/50">
+          Issued to <span class="font-medium text-base-content/80"><%= @member.name.presence || current_user.email.split('@').first %></span>
+        </p>
+        <p class="mt-1 text-xs uppercase tracking-widest text-base-content/35">
+          Distribution <%= @last_dividend.distribution&.name %> &middot; <%= @last_dividend.amount.created_at.to_datetime.strftime('%d %b %Y') %>
+        </p>
+
+        <div class="mt-6 flex items-center justify-center gap-3">
+          <span class="h-px w-10 bg-primary/20"></span>
+          <%= dividend_status_badge(@last_dividend) %>
+          <span class="h-px w-10 bg-primary/20"></span>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
   <%# Stats %>
   <div class="grid grid-cols-3 gap-3">
     <div class="bg-base-200 rounded-2xl p-4 text-center">

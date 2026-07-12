@@ -6,6 +6,7 @@ class MembershipsController < ApplicationController
     @total_contributed = total_contributed_formatted
     @total_dividends = total_dividends_formatted
     @pending_payout_count = @member.dividends.pending_pay_out.count
+    @last_dividend = member_dividends.first
   end
 
   def dividends
