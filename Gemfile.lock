@@ -209,7 +209,7 @@ GEM
     hashdiff (1.2.1)
     hcaptcha (7.1.0)
       json
-    honeybadger (6.9.0)
+    honeybadger (6.9.1)
       logger
       ostruct
     httparty (0.24.2)
