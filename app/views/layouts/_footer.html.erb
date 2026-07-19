@@ -1,3 +1,8 @@
 <footer class="py-6 px-4 text-center">
-  <p class="text-xs text-base-content/30"><%= link_to 'flourish', root_path, class: 'link link-hover' %></p>
+  <p class="text-xs text-base-content/30">
+    <%= link_to 'flourish', root_path, class: 'link link-hover' %>
+    <% if user_signed_in? && current_user.admin? %>
+      &middot; <%= link_to 'Admin', admin_members_path, class: 'link link-hover' %>
+    <% end %>
+  </p>
 </footer>

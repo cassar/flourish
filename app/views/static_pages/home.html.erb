@@ -12,12 +12,12 @@
 
       <%# Pool section %>
       <div class="bg-base-200 rounded-3xl px-6 py-8 text-center lg:py-12 lg:px-10">
-        <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium">This week's pool</p>
+        <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium">You'll receive</p>
         <p class="mt-2 text-6xl lg:text-7xl font-bold text-primary" style="text-shadow: 0 0 40px oklch(38% 0.14 145 / 0.12);">
-          <%= @pool_formatted %>
+          <%= @per_bee_formatted %>
         </p>
         <p class="mt-2 text-sm text-primary/60">
-          Next Friday &middot; <%= @per_bee_formatted %> each &middot; <%= @member_count %> <%= @member_count == 1 ? 'member' : 'members' %>
+          Next Friday &middot; <%= @pool_formatted %> pool &middot; <%= @member_count %> <%= @member_count == 1 ? 'member' : 'members' %>
         </p>
       </div>
 
@@ -28,9 +28,6 @@
             <%= link_to 'My membership', membership_path, class: 'btn btn-primary rounded-2xl' %>
             <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline btn-primary rounded-2xl' %>
           </div>
-          <% if current_user.admin? %>
-            <%= link_to 'Members', admin_members_path, class: 'btn btn-outline btn-primary rounded-2xl w-full mt-6' %>
-          <% end %>
         <% else %>
           <div class="grid grid-cols-2 gap-3">
             <%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline btn-primary rounded-2xl' %>
@@ -91,9 +88,6 @@
             <%= link_to 'My membership', membership_path, class: 'btn btn-primary rounded-2xl' %>
             <%= link_to 'Sign out', destroy_user_session_path, data: { turbo_method: :delete }, class: 'btn btn-outline btn-primary rounded-2xl' %>
           </div>
-          <% if current_user.admin? %>
-            <%= link_to 'Members', admin_members_path, class: 'btn btn-outline btn-primary rounded-2xl w-full mt-6' %>
-          <% end %>
         <% else %>
           <div class="grid grid-cols-2 gap-3">
             <%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline btn-primary rounded-2xl' %>
