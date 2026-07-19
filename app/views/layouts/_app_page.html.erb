@@ -9,8 +9,8 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
           </svg>
         </label>
-        <%= link_to root_path, class: 'btn btn-ghost text-primary font-bold text-xl tracking-wider' do %>
-          Flourish
+        <%= link_to root_path, class: 'btn btn-ghost text-primary text-xl' do %>
+          <span style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;">Flourish</span>
         <% end %>
       </div>
 
@@ -46,7 +46,7 @@
   <div class="drawer-side z-50">
     <label for="nav-drawer" aria-label="Close menu" class="drawer-overlay"></label>
     <div class="bg-base-200 min-h-full w-72 p-4 flex flex-col gap-1">
-      <div class="text-primary font-bold text-xl tracking-wider p-2 mb-2">Flourish</div>
+      <div class="text-primary text-xl p-2 mb-2" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700;">Flourish</div>
       <ul class="menu w-full">
         <li><%= link_to 'Home', root_path %></li>
         <% if user_signed_in? %>
