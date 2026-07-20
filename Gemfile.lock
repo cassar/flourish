@@ -302,7 +302,7 @@ GEM
     orm_adapter (0.5.0)
     ostruct (0.6.3)
     parallel (2.1.0)
-    parser (3.3.11.1)
+    parser (3.3.12.0)
       ast (~> 2.4.1)
       racc
     pp (0.6.4)
@@ -368,7 +368,7 @@ GEM
     rubocop-capybara (3.0.0)
       lint_roller (~> 1.1)
       rubocop (~> 1.81)
-    rubocop-minitest (0.39.1)
+    rubocop-minitest (0.40.0)
       lint_roller (~> 1.1)
       rubocop (>= 1.75.0, < 2.0)
       rubocop-ast (>= 1.38.0, < 2.0)
