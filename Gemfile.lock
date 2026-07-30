@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 9bf09d3656ccf0c3304d0b70b837f14915b46e2b
+  revision: bcce5106f8b3d074a91d6efaa4a34b7e4a087f3c
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -335,7 +335,7 @@ GEM
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
     rainbow (3.1.1)
     rake (13.4.2)
-    rbs (4.1.0)
+    rbs (4.1.1)
       logger
       prism (>= 1.6.0)
       tsort
