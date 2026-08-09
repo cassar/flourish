@@ -47,5 +47,14 @@ module Users
         post user_confirmation_path, params: { user: { email: 'nobody@example.com' } }
       end
     end
+
+    test 'confirming an account signs the user in and redirects to the membership page' do
+      user = users(:unconfirmed)
+
+      get user_confirmation_path(confirmation_token: 'my_confirmation_token')
+
+      assert_redirected_to membership_path
+      assert_predicate user.reload, :confirmed?
+    end
   end
 end

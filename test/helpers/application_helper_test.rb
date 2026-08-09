@@ -18,4 +18,23 @@ class ApplicationHelperTest < ActionView::TestCase
 
     assert_equal 'layouts/app_page', layout_path
   end
+
+  test 'dividend_status_badge for a known status' do
+    assert_match 'Issued', dividend_status_badge(dividends(:one))
+  end
+
+  test 'dividend_status_badge falls back to a titleized label for an unknown status' do
+    dividend = dividends(:one)
+    dividend.stubs(:status).returns('some_unmapped_status')
+
+    assert_match 'Some Unmapped Status', dividend_status_badge(dividend)
+  end
+
+  test 'notification_toggle when enabled' do
+    assert_equal '●', notification_toggle(true)
+  end
+
+  test 'notification_toggle when disabled' do
+    assert_equal '○', notification_toggle(false)
+  end
 end

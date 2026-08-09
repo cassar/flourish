@@ -81,4 +81,17 @@ class DistributionServiceTest < ActiveSupport::TestCase
       notification_enabled_member_ids: []
     ).call
   end
+
+  test 'sends a notification for preference enabled' do
+    ActionMailer::Base.deliveries.clear
+
+    DistributionService.new(
+      number: 3,
+      members: [members(:one)],
+      amounts: [amounts(:one)],
+      notification_enabled_member_ids: [members(:one).id]
+    ).call
+
+    assert_equal 1, ActionMailer::Base.deliveries.count
+  end
 end
