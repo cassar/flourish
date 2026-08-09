@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: af95ef17f41fb2ec84904e99b9ac441359868ca5
+  revision: adf307b03b4241cbc0ed3821faf3b153ca6cd5cd
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -219,7 +219,7 @@ GEM
     i18n (1.15.2)
       concurrent-ruby (~> 1.0)
     image_processing (2.0.2)
-    io-console (0.8.2)
+    io-console (0.9.1)
     irb (1.18.0)
       pp (>= 0.6.0)
       prism (>= 1.3.0)
@@ -345,7 +345,7 @@ GEM
       rbs (>= 4.0.0)
       tsort
     regexp_parser (2.12.0)
-    reline (0.6.3)
+    reline (0.7.0)
       io-console (~> 0.5)
     responders (3.2.0)
       actionpack (>= 7.0)
