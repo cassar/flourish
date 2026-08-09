@@ -1,12 +1,16 @@
 require 'test_helper'
 
 class TotalPoolCalculationsTest < ActiveSupport::TestCase
+  setup do
+    @pool = pools(:general)
+  end
+
   test 'total_contributions_by_currency' do
-    assert_instance_of Hash, TotalPoolCalculations.total_contributions_by_currency
+    assert_instance_of Hash, TotalPoolCalculations.total_contributions_by_currency(@pool)
   end
 
   test 'total_owed_dividends_by_currency' do
-    assert_instance_of Hash, TotalPoolCalculations.total_owed_dividends_by_currency
+    assert_instance_of Hash, TotalPoolCalculations.total_owed_dividends_by_currency(@pool)
   end
 
   test 'recontributions_by_currency for a distribution' do
@@ -14,18 +18,18 @@ class TotalPoolCalculationsTest < ActiveSupport::TestCase
   end
 
   test 'total_paid_out_by_currency' do
-    assert_instance_of Hash, TotalPoolCalculations.total_paid_out_by_currency
+    assert_instance_of Hash, TotalPoolCalculations.total_paid_out_by_currency(@pool)
   end
 
   test 'total_pay_out_fees_by_currency' do
-    assert_instance_of Hash, TotalPoolCalculations.total_pay_out_fees_by_currency
+    assert_instance_of Hash, TotalPoolCalculations.total_pay_out_fees_by_currency(@pool)
   end
 
   test 'total_recontributions_by_currency' do
-    assert_instance_of Hash, TotalPoolCalculations.total_recontributions_by_currency
+    assert_instance_of Hash, TotalPoolCalculations.total_recontributions_by_currency(@pool)
   end
 
   test 'total_dividends_by_currency' do
-    assert_instance_of Hash, TotalPoolCalculations.total_dividends_by_currency
+    assert_instance_of Hash, TotalPoolCalculations.total_dividends_by_currency(@pool)
   end
 end

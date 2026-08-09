@@ -1,32 +1,36 @@
 require 'test_helper'
 
 class NextDistributionTest < ActiveSupport::TestCase
+  setup do
+    @next_distribution = NextDistribution.new(pool: pools(:general))
+  end
+
   test 'distribute!' do
     stub_eu_central_bank_request
     BlueskyNewDividendDistribution.any_instance.stubs(:call).returns(true)
     MastodonNewDividendDistribution.any_instance.stubs(:call).returns(true)
 
-    assert_instance_of TrueClass, NextDistribution.distribute!
+    assert_instance_of TrueClass, @next_distribution.distribute!
   end
 
   test 'members' do
-    assert NextDistribution.members
+    assert @next_distribution.members
   end
 
   test 'member_count' do
-    result = NextDistribution.member_count
+    result = @next_distribution.member_count
 
     assert_instance_of Integer, result
   end
 
   test 'name' do
-    result = NextDistribution.name
+    result = @next_distribution.name
 
     assert_instance_of String, result
   end
 
   test 'date_formatted' do
-    result = NextDistribution.date_formatted
+    result = @next_distribution.date_formatted
 
     assert_instance_of String, result
   end
@@ -38,7 +42,7 @@ class NextDistributionTest < ActiveSupport::TestCase
   test 'total_pool_formatted' do
     stub_eu_central_bank_request
 
-    result = NextDistribution.total_pool_formatted('AUD')
+    result = @next_distribution.total_pool_formatted('AUD')
 
     assert_instance_of String, result
   end
@@ -46,7 +50,7 @@ class NextDistributionTest < ActiveSupport::TestCase
   test 'dividend_amount_formatted' do
     stub_eu_central_bank_request
 
-    result = NextDistribution.dividend_amount_formatted('HKD')
+    result = @next_distribution.dividend_amount_formatted('HKD')
 
     assert_instance_of String, result
   end

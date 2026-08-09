@@ -4,6 +4,7 @@ one:
   amount_in_base_units: 100
   distribution: one
   member: one
+  pool: member_one_contributions
   transaction_identifier: contribution_one_transaction_identifier
   fees_in_base_units: 10
   created_at: Mon, 14th Oct 2024
@@ -13,5 +14,6 @@ two:
   amount_in_base_units: 1
   member: two
   distribution: two
+  pool: member_two_contributions
   created_at: Mon, 14th Oct 2024
   uuid: a1b2c3d4-e5f6-7890-abcd-ef1234567890

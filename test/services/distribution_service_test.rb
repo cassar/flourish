@@ -11,6 +11,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
 
     assert_difference 'Distribution.count', 1 do
       DistributionService.new(
+        pool: pools(:general),
         number: expected_number,
         members: [members(:one)],
         amounts: [amounts(:one)],
@@ -26,6 +27,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
 
     assert_difference 'Amount.count', 1 do
       DistributionService.new(
+        pool: pools(:general),
         number: 3,
         members: [members(:one)],
         amounts: [amount],
@@ -40,6 +42,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     MemberDividendService.any_instance.stubs(:call).returns([]).once
 
     assert DistributionService.new(
+      pool: pools(:general),
       number: 3,
       members: [members(:one)],
       amounts: [amounts(:one)],
@@ -51,6 +54,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     ActionMailer::Base.deliveries.clear
 
     DistributionService.new(
+      pool: pools(:general),
       number: 3,
       members: [members(:one)],
       amounts: [amounts(:one)],
@@ -64,6 +68,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     BlueskyNewDividendDistribution.any_instance.stubs(:call).returns(true).once
 
     assert DistributionService.new(
+      pool: pools(:general),
       number: 3,
       members: [members(:one)],
       amounts: [amounts(:one)],
@@ -75,6 +80,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     MastodonNewDividendDistribution.any_instance.stubs(:call).returns(true).once
 
     assert DistributionService.new(
+      pool: pools(:general),
       number: 3,
       members: [members(:one)],
       amounts: [amounts(:one)],

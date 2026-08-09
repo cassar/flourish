@@ -88,7 +88,8 @@ class ContributionTest < ActiveSupport::TestCase
         currency: 'AUD',
         amount_in_base_units: 5000,
         fees_in_base_units: 0,
-        transaction_identifier: 'activity_log_test_txn'
+        transaction_identifier: 'activity_log_test_txn',
+        pool: pools(:member_one_contributions)
       )
     end
 

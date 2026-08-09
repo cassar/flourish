@@ -5,10 +5,10 @@ class TotalContributionsCalculatorTest < ActiveSupport::TestCase
     TotalPoolCalculations.stubs(:total_contributions_by_currency)
       .returns({ 'AUD' => 10_000 })
 
-    assert_equal 10_000, TotalContributionsCalculator.aud_base_units
+    assert_equal 10_000, TotalContributionsCalculator.aud_base_units(pools(:general))
   end
 
   test 'aud_base_units intergration' do
-    assert_instance_of Integer, TotalContributionsCalculator.aud_base_units
+    assert_instance_of Integer, TotalContributionsCalculator.aud_base_units(pools(:general))
   end
 end

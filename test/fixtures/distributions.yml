@@ -2,6 +2,8 @@
 
 one:
   number: 1
+  pool: general
 
 two:
   number: 2
+  pool: general

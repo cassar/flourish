@@ -1,0 +1,41 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+member_one_contributor:
+  pool: member_one_contributions
+  member: one
+  role: contributor
+
+member_one_recipient:
+  pool: member_one_contributions
+  member: admin
+  role: recipient
+
+member_two_contributor:
+  pool: member_two_contributions
+  member: two
+  role: contributor
+
+member_two_recipient:
+  pool: member_two_contributions
+  member: admin
+  role: recipient
+
+general_contributor:
+  pool: general
+  member: admin
+  role: contributor
+
+general_recipient_one:
+  pool: general
+  member: one
+  role: recipient
+
+general_recipient_two:
+  pool: general
+  member: two
+  role: recipient
+
+general_recipient_active:
+  pool: general
+  member: active
+  role: recipient
