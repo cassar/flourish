@@ -1,31 +1,31 @@
 namespace :services do
-  desc 'creates a set of expenses every week'
-  task create_expenses: :environment do
-    WeeklyExpensesService.generate_and_notify if ConsolidationDate.today?
-  end
-
-  desc 'sends a distribution preview email to all subscribed members'
+  # distribution_preview / bluesky_distribution_preview / mastodon_distribution_preview
+  # are disabled pending a multi-pool redesign: DistributionPreviewService,
+  # BlueskyDistributionPreview, and MastodonDistributionPreview all reference the
+  # global NextDistribution singleton that the pool refactor removed, and a member
+  # can now be a recipient in more than one pool, so "which pool's preview" needs a
+  # product decision before these are re-enabled.
+  desc 'DISABLED (multi-pool redesign pending): sends a distribution preview email to all subscribed members'
   task distribution_preview: :environment do
-    if DistributionPreviewDate.today?
-      users = User.active.distribution_preview_notify_enabled
-
-      DistributionPreviewService.new(users:).call
-    end
   end
 
-  desc 'posts a distribution preview to bluesky'
+  desc 'DISABLED (multi-pool redesign pending): posts a distribution preview to bluesky'
   task bluesky_distribution_preview: :environment do
-    BlueskyDistributionPreview.new.call if DistributionPreviewDate.today?
   end
 
-  desc 'posts a distribution preview to mastodon'
+  desc 'DISABLED (multi-pool redesign pending): posts a distribution preview to mastodon'
   task mastodon_distribution_preview: :environment do
-    MastodonDistributionPreview.new.call if DistributionPreviewDate.today?
   end
 
-  desc 'creates a distribution and dividends and email notifies subscribed members'
+  desc 'creates a distribution and dividends for every pool, and email notifies subscribed members'
   task distribute_dividends: :environment do
-    NextDistribution.distribute! if NextDistribution.today?
+    if NextDistribution.today?
+      Pool.find_each do |pool|
+        NextDistribution.new(pool:).distribute!
+      rescue StandardError => e
+        ActivityLog.create(message: "Distribution failed for pool ##{pool.id} (#{pool.name}): #{e.message}")
+      end
+    end
   end
 
   desc 'recontributes unclaimed dividends and email notifies subscribed members'
@@ -40,12 +40,22 @@ namespace :services do
     end
   end
 
-  desc 'email notifies subscribed members when a distribution has settled'
+  desc 'email notifies subscribed members when a pool distribution has settled'
   task distribution_settled: :environment do
     if ConsolidationDate.today?
-      users = User.active.distribution_settled_notify_enabled
+      Pool.find_each do |pool|
+        distribution = pool.distributions.order(:number).last
+        next unless distribution
 
-      DistributionSettledNotificationService.new(distribution: Distribution.last, users:).call
+        users = User.active.distribution_settled_notify_enabled
+          .where(id: pool.members.select(:user_id))
+
+        DistributionSettledNotificationService.new(distribution:, users:).call
+      rescue StandardError => e
+        ActivityLog.create(
+          message: "Distribution settled notification failed for pool ##{pool.id} (#{pool.name}): #{e.message}"
+        )
+      end
     end
   end
 
