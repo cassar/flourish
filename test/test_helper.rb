@@ -5,16 +5,16 @@ SimpleCov.start 'rails' do
   merge_timeout 3600
   minimum_coverage line: 100, branch: 100
 
-  add_group 'Models',      'app/models'
-  add_group 'Controllers', 'app/controllers'
-  add_group 'Services',    'app/services'
-  add_group 'Jobs',        'app/jobs'
-  add_group 'Helpers',     'app/helpers'
+  group 'Models',      'app/models'
+  group 'Controllers', 'app/controllers'
+  group 'Services',    'app/services'
+  group 'Jobs',        'app/jobs'
+  group 'Helpers',     'app/helpers'
 
-  add_filter 'app/mailers/application_mailer.rb'
-  add_filter 'app/jobs/application_job.rb'
-  add_filter 'app/channels/application_cable/channel.rb'
-  add_filter 'app/channels/application_cable/connection.rb'
+  skip 'app/mailers/application_mailer.rb'
+  skip 'app/jobs/application_job.rb'
+  skip 'app/channels/application_cable/channel.rb'
+  skip 'app/channels/application_cable/connection.rb'
 end
 
 ENV['RAILS_ENV'] ||= 'test'
