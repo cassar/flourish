@@ -1,7 +1,7 @@
 class TotalContributionsCalculator
   class << self
-    def aud_base_units
-      in_aud_base_units total_contributions_by_currency
+    def aud_base_units(pool)
+      in_aud_base_units total_contributions_by_currency(pool)
     end
 
     private
@@ -16,8 +16,8 @@ class TotalContributionsCalculator
       end
     end
 
-    def total_contributions_by_currency
-      TotalPoolCalculations.total_contributions_by_currency
+    def total_contributions_by_currency(pool)
+      TotalPoolCalculations.total_contributions_by_currency(pool)
     end
   end
 end

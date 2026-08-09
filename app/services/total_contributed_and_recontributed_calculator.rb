@@ -1,28 +1,28 @@
 class TotalContributedAndRecontributedCalculator
   class << self
-    def formatted(currency)
+    def formatted(pool, currency)
       CurrencyConverter.new(
         from_currency: 'AUD',
-        amount_in_base_units:,
+        amount_in_base_units: amount_in_base_units(pool),
         to_currency: currency
       ).format
     end
 
     private
 
-    def amount_in_base_units
+    def amount_in_base_units(pool)
       [
-        total_contributed_in_aud_base_units,
-        total_recontributed_in_aud_base_units
+        total_contributed_in_aud_base_units(pool),
+        total_recontributed_in_aud_base_units(pool)
       ].sum
     end
 
-    def total_contributed_in_aud_base_units
-      TotalContributionsCalculator.aud_base_units
+    def total_contributed_in_aud_base_units(pool)
+      TotalContributionsCalculator.aud_base_units(pool)
     end
 
-    def total_recontributed_in_aud_base_units
-      in_aud_base_units total_recontributions_by_currency
+    def total_recontributed_in_aud_base_units(pool)
+      in_aud_base_units total_recontributions_by_currency(pool)
     end
 
     def in_aud_base_units(amount_in_base_units_by_currency)
@@ -35,8 +35,8 @@ class TotalContributedAndRecontributedCalculator
       end
     end
 
-    def total_recontributions_by_currency
-      TotalPoolCalculations.total_recontributions_by_currency
+    def total_recontributions_by_currency(pool)
+      TotalPoolCalculations.total_recontributions_by_currency(pool)
     end
   end
 end

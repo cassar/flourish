@@ -1,80 +1,87 @@
 class NextDistribution
-  class << self
-    def distribute!
-      DistributionService.new(
-        number:,
-        members:,
-        amounts:,
-        notification_enabled_member_ids:
-      ).call
-    end
+  attr_reader :pool
 
-    def members
-      Member.active
-    end
+  def initialize(pool:)
+    @pool = pool
+  end
 
-    def member_count
-      members.count
-    end
+  def self.today?
+    DistributionDateService.today?
+  end
 
-    def name
-      Distribution.new(number:).name
-    end
+  def distribute!
+    DistributionService.new(
+      pool:,
+      number:,
+      members:,
+      amounts:,
+      notification_enabled_member_ids:
+    ).call
+  end
 
-    def date_formatted
-      DistributionDateService.next_date_formatted
-    end
+  def members
+    pool.recipients.merge(Member.active)
+  end
 
-    def total_pool_formatted(currency)
-      total_pool.balance_formatted(currency)
-    end
+  def member_count
+    members.count
+  end
 
-    def dividend_amount_formatted(currency)
-      dividend_amount.amount_formatted(currency)
-    end
+  def name
+    Distribution.new(number:).name
+  end
 
-    delegate :today?, to: :DistributionDateService
+  def date_formatted
+    DistributionDateService.next_date_formatted
+  end
 
-    private
+  def total_pool_formatted(currency)
+    total_pool.balance_formatted(currency)
+  end
 
-    def number
-      NextDistributionNumberService.call
-    end
+  def dividend_amount_formatted(currency)
+    dividend_amount.amount_formatted(currency)
+  end
 
-    def amounts
-      DividendAmountsService.new(
-        amount_in_base_units:,
-        currency: 'AUD'
-      ).call
-    end
+  private
 
-    def amount_in_base_units
-      dividend_amount.amount_in_aud_base_units
-    end
+  def number
+    NextDistributionNumberService.call(pool)
+  end
 
-    def dividend_amount
-      DividendAmountService.new(
-        total_pool_in_aud_base_units:,
-        member_count:
-      )
-    end
+  def amounts
+    DividendAmountsService.new(
+      amount_in_base_units:,
+      currency: 'AUD'
+    ).call
+  end
 
-    def total_pool_in_aud_base_units
-      total_pool.balance_in_aud_base_units
-    end
+  def amount_in_base_units
+    dividend_amount.amount_in_aud_base_units
+  end
 
-    def total_pool
-      TotalPool
-    end
+  def dividend_amount
+    DividendAmountService.new(
+      total_pool_in_aud_base_units:,
+      member_count:
+    )
+  end
 
-    def notification_enabled_member_ids
-      members
-        .joins(:notification_preferences)
-        .where(notification_preferences: {
-          id: NotificationPreference.dividend_received,
-          enabled: true
-        })
-        .pluck(:id)
-    end
+  def total_pool_in_aud_base_units
+    total_pool.balance_in_aud_base_units
+  end
+
+  def total_pool
+    TotalPool.new(pool)
+  end
+
+  def notification_enabled_member_ids
+    members
+      .joins(:notification_preferences)
+      .where(notification_preferences: {
+        id: NotificationPreference.dividend_received,
+        enabled: true
+      })
+      .pluck(:id)
   end
 end
