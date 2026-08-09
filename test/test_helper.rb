@@ -55,3 +55,19 @@ module ActiveSupport
     end
   end
 end
+
+# Rails' parallelize forks workers that each run test methods directly
+# (Minitest.run_one_method), so Minitest.after_run only ever fires here,
+# once, in this main process — after all workers have exited and flushed
+# their coverage data to .resultset.json (see parallelize_teardown above).
+# Explicitly merge and enforce the minimum_coverage threshold here, since
+# SimpleCov's own exit-task detection doesn't recognize Rails' native
+# (non-parallel_tests-gem) forking model and would otherwise never run
+# the check for this process.
+main_test_process_pid = Process.pid
+
+Minitest.after_run do
+  next unless Process.pid == main_test_process_pid
+
+  SimpleCov.process_results_and_report_error
+end
