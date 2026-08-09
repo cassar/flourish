@@ -2,6 +2,8 @@ class Amount < ApplicationRecord
   belongs_to :distribution
   has_many :dividends, dependent: :destroy
 
+  has_one :pool, through: :distribution
+
   include CurrencyValidator
 
   def amount_formatted

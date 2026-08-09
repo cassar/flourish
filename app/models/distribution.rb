@@ -1,10 +1,12 @@
 class Distribution < ApplicationRecord
+  belongs_to :pool
+
   has_many :amounts, dependent: :destroy
   has_many :dividends, through: :amounts
   has_many :contributions, dependent: :nullify
   has_many :expenses, dependent: :nullify
 
-  validates :number, uniqueness: true, presence: true
+  validates :number, uniqueness: { scope: :pool_id }, presence: true
 
   after_create_commit :log_activity
 
