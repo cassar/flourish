@@ -152,8 +152,8 @@ GEM
     bcrypt_pbkdf (1.1.2)
     bigdecimal (4.1.2)
     bindex (0.8.1)
-    bootsnap (1.24.6)
-      msgpack (~> 1.2)
+    bootsnap (1.25.0)
+      msgpack (~> 1.5)
     brakeman (8.0.5)
       racc
     builder (3.3.0)
@@ -273,7 +273,7 @@ GEM
     money (7.1.1)
       bigdecimal
       i18n (~> 1.9)
-    msgpack (1.8.3)
+    msgpack (1.8.4)
     multi_xml (0.8.1)
       bigdecimal (>= 3.1, < 5)
     net-imap (0.6.6)
