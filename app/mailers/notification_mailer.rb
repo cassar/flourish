@@ -47,20 +47,4 @@ class NotificationMailer < ApplicationMailer
       )
     )
   end
-
-  def distribution_preview
-    @user = params[:user]
-    @member = @user.member
-    @next_distribution = NextDistribution
-    @recent_contributions = Contribution.where(created_at: 1.week.ago..Time.zone.now)
-    @expenses = WeeklyExpensesService.last_weeks_expenses
-    @total_expenses_formatted = WeeklyExpensesService.last_weeks_expeneses_total_formatted
-    mail(
-      to: @user.email,
-      subject: I18n.t(
-        'mailers.notification_mailer.distribution_preview',
-        distribution_name: @next_distribution.name
-      )
-    )
-  end
 end

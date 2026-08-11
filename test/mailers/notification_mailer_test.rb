@@ -36,13 +36,4 @@ class NotificationMailerTest < ActionMailer::TestCase
     assert_equal [users(:one).email], mail.to
     assert_match(/Settled/, mail.subject)
   end
-
-  test 'distribution_preview' do
-    stub_eu_central_bank_request
-
-    mail = NotificationMailer.with(user: users(:one)).distribution_preview
-
-    assert_equal [users(:one).email], mail.to
-    assert_match(/Preview/, mail.subject)
-  end
 end

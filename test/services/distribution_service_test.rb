@@ -92,6 +92,7 @@ class DistributionServiceTest < ActiveSupport::TestCase
     ActionMailer::Base.deliveries.clear
 
     DistributionService.new(
+      pool: pools(:general),
       number: 3,
       members: [members(:one)],
       amounts: [amounts(:one)],

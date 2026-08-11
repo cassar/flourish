@@ -29,29 +29,7 @@ class NextDistributionTest < ActiveSupport::TestCase
     assert_instance_of String, result
   end
 
-  test 'date_formatted' do
-    result = @next_distribution.date_formatted
-
-    assert_instance_of String, result
-  end
-
   test 'today?' do
     assert_not_nil NextDistribution.today?
-  end
-
-  test 'total_pool_formatted' do
-    stub_eu_central_bank_request
-
-    result = @next_distribution.total_pool_formatted('AUD')
-
-    assert_instance_of String, result
-  end
-
-  test 'dividend_amount_formatted' do
-    stub_eu_central_bank_request
-
-    result = @next_distribution.dividend_amount_formatted('HKD')
-
-    assert_instance_of String, result
   end
 end

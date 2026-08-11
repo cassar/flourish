@@ -1,22 +1,4 @@
 namespace :services do
-  # distribution_preview / bluesky_distribution_preview / mastodon_distribution_preview
-  # are disabled pending a multi-pool redesign: DistributionPreviewService,
-  # BlueskyDistributionPreview, and MastodonDistributionPreview all reference the
-  # global NextDistribution singleton that the pool refactor removed, and a member
-  # can now be a recipient in more than one pool, so "which pool's preview" needs a
-  # product decision before these are re-enabled.
-  desc 'DISABLED (multi-pool redesign pending): sends a distribution preview email to all subscribed members'
-  task distribution_preview: :environment do
-  end
-
-  desc 'DISABLED (multi-pool redesign pending): posts a distribution preview to bluesky'
-  task bluesky_distribution_preview: :environment do
-  end
-
-  desc 'DISABLED (multi-pool redesign pending): posts a distribution preview to mastodon'
-  task mastodon_distribution_preview: :environment do
-  end
-
   desc 'creates a distribution and dividends for every pool, and email notifies subscribed members'
   task distribute_dividends: :environment do
     if NextDistribution.today?

@@ -31,18 +31,6 @@ class NextDistribution
     Distribution.new(number:).name
   end
 
-  def date_formatted
-    DistributionDateService.next_date_formatted
-  end
-
-  def total_pool_formatted(currency)
-    total_pool.balance_formatted(currency)
-  end
-
-  def dividend_amount_formatted(currency)
-    dividend_amount.amount_formatted(currency)
-  end
-
   private
 
   def number
