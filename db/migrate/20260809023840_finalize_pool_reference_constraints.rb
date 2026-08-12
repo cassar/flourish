@@ -11,7 +11,13 @@ class FinalizePoolReferenceConstraints < ActiveRecord::Migration[8.2]
     change_column_null :distributions, :pool_id, false
     change_column_null :contributions, :pool_id, false
 
-    remove_index :distributions, :number, name: 'index_distributions_on_number'
+    # Only present when the schema was built from db:schema:load (e.g. fresh
+    # dev/test databases) — environments that accumulated migrations
+    # incrementally never had this index, since `number` uniqueness was only
+    # ever enforced at the Rails model-validation level, not the DB level.
+    if index_exists?(:distributions, :number, name: 'index_distributions_on_number')
+      remove_index :distributions, :number, name: 'index_distributions_on_number'
+    end
     add_index :distributions, %i[pool_id number], unique: true
   end
 
