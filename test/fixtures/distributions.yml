@@ -2,8 +2,8 @@
 
 one:
   number: 1
-  pool: general
+  pod: general
 
 two:
   number: 2
-  pool: general
+  pod: general

@@ -89,7 +89,7 @@ class ContributionTest < ActiveSupport::TestCase
         amount_in_base_units: 5000,
         fees_in_base_units: 0,
         transaction_identifier: 'activity_log_test_txn',
-        pool: pools(:member_one_contributions)
+        pod: pods(:member_one_contributions)
       )
     end
 

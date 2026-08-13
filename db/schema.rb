@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_08_09_023840) do
+ActiveRecord::Schema[8.2].define(version: 2026_08_13_122816) do
   create_table "activity_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "message", null: false
@@ -36,10 +36,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_08_09_023840) do
     t.string "transaction_identifier"
     t.datetime "updated_at", null: false
     t.string "uuid", null: false
-    t.integer "pool_id", null: false
+    t.integer "pod_id", null: false
     t.index ["distribution_id"], name: "index_contributions_on_distribution_id"
     t.index ["member_id"], name: "index_contributions_on_member_id"
-    t.index ["pool_id"], name: "index_contributions_on_pool_id"
+    t.index ["pod_id"], name: "index_contributions_on_pod_id"
     t.index ["transaction_identifier"], name: "index_contributions_on_transaction_identifier", unique: true
   end
 
@@ -47,9 +47,9 @@ ActiveRecord::Schema[8.2].define(version: 2026_08_09_023840) do
     t.datetime "created_at", null: false
     t.integer "number", null: false
     t.datetime "updated_at", null: false
-    t.integer "pool_id", null: false
-    t.index ["pool_id", "number"], name: "index_distributions_on_pool_id_and_number", unique: true
-    t.index ["pool_id"], name: "index_distributions_on_pool_id"
+    t.integer "pod_id", null: false
+    t.index ["pod_id", "number"], name: "index_distributions_on_pod_id_and_number", unique: true
+    t.index ["pod_id"], name: "index_distributions_on_pod_id"
   end
 
   create_table "dividends", force: :cascade do |t|
@@ -104,19 +104,19 @@ ActiveRecord::Schema[8.2].define(version: 2026_08_09_023840) do
     t.index ["transaction_identifier"], name: "index_pay_outs_on_transaction_identifier", unique: true
   end
 
-  create_table "pool_memberships", force: :cascade do |t|
-    t.integer "pool_id", null: false
+  create_table "pod_memberships", force: :cascade do |t|
+    t.integer "pod_id", null: false
     t.integer "member_id", null: false
     t.integer "role", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_pool_memberships_on_member_id"
-    t.index ["pool_id", "member_id"], name: "index_pool_memberships_on_pool_id_and_member_id", unique: true
-    t.index ["pool_id"], name: "index_pool_memberships_on_pool_id"
-    t.index ["pool_id"], name: "index_pool_memberships_on_pool_id_one_contributor", unique: true, where: "role = 0"
+    t.index ["member_id"], name: "index_pod_memberships_on_member_id"
+    t.index ["pod_id", "member_id"], name: "index_pod_memberships_on_pod_id_and_member_id", unique: true
+    t.index ["pod_id"], name: "index_pod_memberships_on_pod_id"
+    t.index ["pod_id"], name: "index_pod_memberships_on_pod_id_one_contributor", unique: true, where: "role = 0"
   end
 
-  create_table "pools", force: :cascade do |t|
+  create_table "pods", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -157,14 +157,14 @@ ActiveRecord::Schema[8.2].define(version: 2026_08_09_023840) do
   add_foreign_key "amounts", "distributions"
   add_foreign_key "contributions", "distributions"
   add_foreign_key "contributions", "members"
-  add_foreign_key "contributions", "pools"
-  add_foreign_key "distributions", "pools"
+  add_foreign_key "contributions", "pods"
+  add_foreign_key "distributions", "pods"
   add_foreign_key "dividends", "amounts"
   add_foreign_key "dividends", "members"
   add_foreign_key "expenses", "distributions"
   add_foreign_key "members", "users"
   add_foreign_key "notification_preferences", "members"
   add_foreign_key "pay_outs", "dividends"
-  add_foreign_key "pool_memberships", "members"
-  add_foreign_key "pool_memberships", "pools"
+  add_foreign_key "pod_memberships", "members"
+  add_foreign_key "pod_memberships", "pods"
 end

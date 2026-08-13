@@ -1,13 +1,13 @@
-class Pool < ApplicationRecord
-  has_many :pool_memberships, dependent: :destroy
-  has_many :members, through: :pool_memberships
+class Pod < ApplicationRecord
+  has_many :pod_memberships, dependent: :destroy
+  has_many :members, through: :pod_memberships
   has_many :distributions, dependent: :nullify
   has_many :contributions, dependent: :nullify
 
   validates :name, presence: true
 
   def contributor_membership
-    pool_memberships.contributor.first
+    pod_memberships.contributor.first
   end
 
   def contributor
@@ -15,10 +15,10 @@ class Pool < ApplicationRecord
   end
 
   def recipient_memberships
-    pool_memberships.recipient
+    pod_memberships.recipient
   end
 
   def recipients
-    members.merge(PoolMembership.recipient)
+    members.merge(PodMembership.recipient)
   end
 end
