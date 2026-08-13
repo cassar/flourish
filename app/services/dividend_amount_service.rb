@@ -1,15 +1,15 @@
 class DividendAmountService
-  attr_accessor :total_pool_in_aud_base_units, :member_count
+  attr_accessor :total_pod_in_aud_base_units, :member_count
 
-  def initialize(total_pool_in_aud_base_units:, member_count:)
-    @total_pool_in_aud_base_units = total_pool_in_aud_base_units
+  def initialize(total_pod_in_aud_base_units:, member_count:)
+    @total_pod_in_aud_base_units = total_pod_in_aud_base_units
     @member_count = member_count
   end
 
   def amount_in_aud_base_units
-    return 0 if 0.in? [total_pool_in_aud_base_units, member_count]
+    return 0 if 0.in? [total_pod_in_aud_base_units, member_count]
 
-    total_pool_in_aud_base_units / member_count
+    total_pod_in_aud_base_units / member_count
   end
 
   def amount_formatted(currency)

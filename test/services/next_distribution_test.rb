@@ -2,7 +2,7 @@ require 'test_helper'
 
 class NextDistributionTest < ActiveSupport::TestCase
   setup do
-    @next_distribution = NextDistribution.new(pool: pools(:general))
+    @next_distribution = NextDistribution.new(pod: pods(:general))
   end
 
   test 'distribute!' do
@@ -27,9 +27,5 @@ class NextDistributionTest < ActiveSupport::TestCase
     result = @next_distribution.name
 
     assert_instance_of String, result
-  end
-
-  test 'today?' do
-    assert_not_nil NextDistribution.today?
   end
 end

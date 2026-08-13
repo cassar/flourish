@@ -1,8 +1,8 @@
-class TotalPool
-  attr_reader :pool
+class TotalPod
+  attr_reader :pod
 
-  def initialize(pool)
-    @pool = pool
+  def initialize(pod)
+    @pod = pod
   end
 
   def balance_in_aud_base_units
@@ -18,15 +18,15 @@ class TotalPool
   end
 
   def total_contributed_and_recontributed_formatted(currency)
-    TotalContributedAndRecontributedCalculator.formatted(pool, currency)
+    TotalContributedAndRecontributedCalculator.formatted(pod, currency)
   end
 
   def total_paid_out_formatted(currency)
-    TotalPayOutsCalculator.formatted(pool, currency)
+    TotalPayOutsCalculator.formatted(pod, currency)
   end
 
   def total_dividends_formatted(currency)
-    TotalDividendsCalculator.formatted(pool, currency)
+    TotalDividendsCalculator.formatted(pod, currency)
   end
 
   private
@@ -44,7 +44,7 @@ class TotalPool
   end
 
   def total_contributed_in_aud_base_units
-    TotalContributionsCalculator.aud_base_units(pool)
+    TotalContributionsCalculator.aud_base_units(pod)
   end
 
   def total_owed_dividends_in_aud_base_units
@@ -70,14 +70,14 @@ class TotalPool
   end
 
   def total_owed_dividends_by_currency
-    TotalPoolCalculations.total_owed_dividends_by_currency(pool)
+    TotalPodCalculations.total_owed_dividends_by_currency(pod)
   end
 
   def total_paid_out_by_currency
-    TotalPoolCalculations.total_paid_out_by_currency(pool)
+    TotalPodCalculations.total_paid_out_by_currency(pod)
   end
 
   def total_pay_out_fees_by_currency
-    TotalPoolCalculations.total_pay_out_fees_by_currency(pool)
+    TotalPodCalculations.total_pay_out_fees_by_currency(pod)
   end
 end

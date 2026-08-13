@@ -1,17 +1,13 @@
 class NextDistribution
-  attr_reader :pool
+  attr_reader :pod
 
-  def initialize(pool:)
-    @pool = pool
-  end
-
-  def self.today?
-    DistributionDateService.today?
+  def initialize(pod:)
+    @pod = pod
   end
 
   def distribute!
     DistributionService.new(
-      pool:,
+      pod:,
       number:,
       members:,
       amounts:,
@@ -20,7 +16,7 @@ class NextDistribution
   end
 
   def members
-    pool.recipients.merge(Member.active)
+    pod.recipients.merge(Member.active)
   end
 
   def member_count
@@ -34,7 +30,7 @@ class NextDistribution
   private
 
   def number
-    NextDistributionNumberService.call(pool)
+    NextDistributionNumberService.call(pod)
   end
 
   def amounts
@@ -50,17 +46,17 @@ class NextDistribution
 
   def dividend_amount
     DividendAmountService.new(
-      total_pool_in_aud_base_units:,
+      total_pod_in_aud_base_units:,
       member_count:
     )
   end
 
-  def total_pool_in_aud_base_units
-    total_pool.balance_in_aud_base_units
+  def total_pod_in_aud_base_units
+    total_pod.balance_in_aud_base_units
   end
 
-  def total_pool
-    TotalPool.new(pool)
+  def total_pod
+    TotalPod.new(pod)
   end
 
   def notification_enabled_member_ids

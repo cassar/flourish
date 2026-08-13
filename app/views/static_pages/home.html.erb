@@ -1,23 +1,23 @@
 <div class="w-full max-w-md lg:max-w-4xl px-4">
   <div class="flex flex-col lg:flex-row lg:items-start gap-5 lg:gap-10">
 
-    <%# ── Left column: title, pool, CTAs ── %>
+    <%# ── Left column: title, totals, CTAs ── %>
     <div class="flex flex-col gap-5 lg:flex-1">
 
       <%# Header %>
       <div class="text-center lg:text-left pt-2 pb-1">
         <h1 class="text-7xl lg:text-8xl text-primary leading-none select-none" style="font-family: 'Playfair Display', serif; font-style: italic; font-weight: 700; text-shadow: 0 0 60px oklch(38% 0.14 145 / 0.15);">Flourish</h1>
-        <p class="mt-3 text-sm text-base-content/50">A shared pool. Every Friday, we share.</p>
+        <p class="mt-3 text-sm text-base-content/50">Give what you can. We share it forward.</p>
       </div>
 
-      <%# Pool section %>
+      <%# Totals section %>
       <div class="bg-base-200 rounded-3xl px-6 py-8 text-center lg:py-12 lg:px-10">
         <p class="text-xs uppercase tracking-widest text-base-content/40 font-medium">You'll receive</p>
         <p class="mt-2 text-6xl lg:text-7xl font-bold text-primary" style="text-shadow: 0 0 40px oklch(38% 0.14 145 / 0.12);">
           <%= @per_bee_formatted %>
         </p>
         <p class="mt-2 text-sm text-primary/60">
-          Next Friday &middot; <%= @pool_formatted %> pool &middot; <%= @member_count %> <%= @member_count == 1 ? 'member' : 'members' %>
+          <%= @pod_formatted %> &middot; <%= @member_count %> <%= @member_count == 1 ? 'member' : 'members' %>
         </p>
       </div>
 
@@ -45,7 +45,7 @@
       <div class="grid grid-cols-3 gap-3">
         <% [
           { value: @total_shared_compact, label: 'Shared'  },
-          { value: @distribution_count,   label: 'Weeks'   },
+          { value: @distribution_count,   label: 'Distributions' },
           { value: @member_count,         label: 'Members' }
         ].each do |stat| %>
           <div class="bg-base-200 rounded-2xl p-4 text-center">

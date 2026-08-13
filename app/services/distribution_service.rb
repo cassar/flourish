@@ -1,9 +1,9 @@
 class DistributionService
-  attr_reader :pool, :number, :members, :amounts
+  attr_reader :pod, :number, :members, :amounts
   attr_accessor :distribution, :dividends, :notification_enabled_member_ids
 
-  def initialize(pool:, number:, members:, amounts:, notification_enabled_member_ids:)
-    @pool = pool
+  def initialize(pod:, number:, members:, amounts:, notification_enabled_member_ids:)
+    @pod = pod
     @number = number
     @members = members
     @amounts = amounts
@@ -22,7 +22,7 @@ class DistributionService
   private
 
   def create_distribution
-    @distribution = Distribution.create!(number:, pool:)
+    @distribution = Distribution.create!(number:, pod:)
   end
 
   def save_amounts

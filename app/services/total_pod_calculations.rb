@@ -1,13 +1,13 @@
-class TotalPoolCalculations
+class TotalPodCalculations
   class << self
-    def total_contributions_by_currency(pool)
-      pool.contributions
+    def total_contributions_by_currency(pod)
+      pod.contributions
         .group(:currency)
         .sum(:amount_in_base_units)
     end
 
-    def total_owed_dividends_by_currency(pool)
-      dividends_for(pool)
+    def total_owed_dividends_by_currency(pod)
+      dividends_for(pod)
         .merge(Dividend.owed)
         .group(:currency)
         .sum(:amount_in_base_units)
@@ -21,41 +21,41 @@ class TotalPoolCalculations
         .sum(:amount_in_base_units)
     end
 
-    def total_paid_out_by_currency(pool)
-      pay_outs_for(pool)
+    def total_paid_out_by_currency(pod)
+      pay_outs_for(pod)
         .group(:currency)
         .sum(:amount_in_base_units)
     end
 
-    def total_pay_out_fees_by_currency(pool)
-      pay_outs_for(pool)
+    def total_pay_out_fees_by_currency(pod)
+      pay_outs_for(pod)
         .group(:currency)
         .sum(:fees_in_base_units)
     end
 
-    def total_recontributions_by_currency(pool)
-      dividends_for(pool)
+    def total_recontributions_by_currency(pod)
+      dividends_for(pod)
         .merge(Dividend.recontributed)
         .group(:currency)
         .sum(:amount_in_base_units)
     end
 
-    def total_dividends_by_currency(pool)
-      dividends_for(pool)
+    def total_dividends_by_currency(pod)
+      dividends_for(pod)
         .group(:currency)
         .sum(:amount_in_base_units)
     end
 
     private
 
-    def dividends_for(pool)
+    def dividends_for(pod)
       Amount.joins(:dividends, :distribution)
-        .where(distributions: { pool_id: pool.id })
+        .where(distributions: { pod_id: pod.id })
     end
 
-    def pay_outs_for(pool)
+    def pay_outs_for(pod)
       PayOut.joins(dividend: { amount: :distribution })
-        .where(distributions: { pool_id: pool.id })
+        .where(distributions: { pod_id: pod.id })
     end
   end
 end

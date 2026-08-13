@@ -1,43 +1,37 @@
 namespace :services do
-  desc 'creates a distribution and dividends for every pool, and email notifies subscribed members'
+  desc 'creates a distribution and dividends for every pod, and email notifies subscribed members'
   task distribute_dividends: :environment do
-    if NextDistribution.today?
-      Pool.find_each do |pool|
-        NextDistribution.new(pool:).distribute!
-      rescue StandardError => e
-        ActivityLog.create(message: "Distribution failed for pool ##{pool.id} (#{pool.name}): #{e.message}")
-      end
+    Pod.find_each do |pod|
+      NextDistribution.new(pod:).distribute!
+    rescue StandardError => e
+      ActivityLog.create(message: "Distribution failed for pod ##{pod.id} (#{pod.name}): #{e.message}")
     end
   end
 
   desc 'recontributes unclaimed dividends and email notifies subscribed members'
   task recontribute_dividends: :environment do
-    if ConsolidationDate.today?
-      mailgun_send_limit = 10
-      issued_dividends = Dividend.issued.take(mailgun_send_limit)
-      notify_enabled_dividends = Dividend.where(id: issued_dividends)
-        .automatically_recontributed_notify_enabled
+    mailgun_send_limit = 10
+    issued_dividends = Dividend.issued.take(mailgun_send_limit)
+    notify_enabled_dividends = Dividend.where(id: issued_dividends)
+      .automatically_recontributed_notify_enabled
 
-      RecontributionService.new(issued_dividends:, notify_enabled_dividends:).call
-    end
+    RecontributionService.new(issued_dividends:, notify_enabled_dividends:).call
   end
 
-  desc 'email notifies subscribed members when a pool distribution has settled'
+  desc 'email notifies subscribed members when a pod distribution has settled'
   task distribution_settled: :environment do
-    if ConsolidationDate.today?
-      Pool.find_each do |pool|
-        distribution = pool.distributions.order(:number).last
-        next unless distribution
+    Pod.find_each do |pod|
+      distribution = pod.distributions.order(:number).last
+      next unless distribution
 
-        users = User.active.distribution_settled_notify_enabled
-          .where(id: pool.members.select(:user_id))
+      users = User.active.distribution_settled_notify_enabled
+        .where(id: pod.members.select(:user_id))
 
-        DistributionSettledNotificationService.new(distribution:, users:).call
-      rescue StandardError => e
-        ActivityLog.create(
-          message: "Distribution settled notification failed for pool ##{pool.id} (#{pool.name}): #{e.message}"
-        )
-      end
+      DistributionSettledNotificationService.new(distribution:, users:).call
+    rescue StandardError => e
+      ActivityLog.create(
+        message: "Distribution settled notification failed for pod ##{pod.id} (#{pod.name}): #{e.message}"
+      )
     end
   end
 

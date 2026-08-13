@@ -4,6 +4,6 @@ class NextDistributionNumberServiceTest < ActiveSupport::TestCase
   test 'next distribution number' do
     assert_equal 2, Distribution.count
 
-    assert_equal 3, NextDistributionNumberService.call(pools(:general))
+    assert_equal 3, NextDistributionNumberService.call(pods(:general))
   end
 end

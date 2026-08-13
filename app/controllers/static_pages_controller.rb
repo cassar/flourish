@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    set_pool_data
+    set_pod_data
     @distribution_count = Distribution.count
     @total_shared_compact = compact_money(Amount.where(currency: 'AUD').sum(:amount_in_base_units))
     @recent_activity = ActivityLog.order(created_at: :desc).limit(20)
@@ -8,11 +8,11 @@ class StaticPagesController < ApplicationController
 
   private
 
-  def set_pool_data
-    pool_cents = Contribution.where(distribution_id: nil).sum(:amount_in_base_units)
+  def set_pod_data
+    pod_cents = Contribution.where(distribution_id: nil).sum(:amount_in_base_units)
     @member_count = Member.count
-    per_bee_cents = @member_count.positive? ? pool_cents / @member_count : 0
-    @pool_formatted = format_aud(pool_cents)
+    per_bee_cents = @member_count.positive? ? pod_cents / @member_count : 0
+    @pod_formatted = format_aud(pod_cents)
     @per_bee_formatted = format_aud(per_bee_cents)
   end
 

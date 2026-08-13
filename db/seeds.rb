@@ -39,48 +39,48 @@ members = (1..10).map do |i|
   member
 end
 
-puts "Making some pools"
-# Mirrors production's structure: one pool per contributing member (they are the
-# sole contributor, admin is the sole recipient), plus a general pool (admin is
+puts "Making some pods"
+# Mirrors production's structure: one pod per contributing member (they are the
+# sole contributor, admin is the sole recipient), plus a general pod (admin is
 # the sole contributor, everyone else is a recipient) that runs the weekly
 # distribution/dividend cycle.
 contributing_members = members.first(6)
-contributor_pools = contributing_members.index_with do |member|
-  pool = Pool.create!(name: "#{member.user.email} contributions")
-  PoolMembership.create!(pool:, member:, role: :contributor)
-  PoolMembership.create!(pool:, member: admin.member, role: :recipient)
-  pool
+contributor_pods = contributing_members.index_with do |member|
+  pod = Pod.create!(name: "#{member.user.email} contributions")
+  PodMembership.create!(pod:, member:, role: :contributor)
+  PodMembership.create!(pod:, member: admin.member, role: :recipient)
+  pod
 end
 
-general_pool = Pool.create!(name: 'General Pool')
-PoolMembership.create!(pool: general_pool, member: admin.member, role: :contributor)
+general_pod = Pod.create!(name: 'General Pod')
+PodMembership.create!(pod: general_pod, member: admin.member, role: :contributor)
 members.each do |member|
-  PoolMembership.create!(pool: general_pool, member:, role: :recipient)
+  PodMembership.create!(pod: general_pod, member:, role: :recipient)
 end
 
 puts "Making some contributions"
 contributing_members.each do |member|
-  pool = contributor_pools[member]
+  pod = contributor_pods[member]
 
   rand(1..3).times do |n|
     contribution = member.contributions.create!(
       amount_in_base_units: rand(500..10_000),
       fees_in_base_units: rand(0..50),
-      pool:
+      pod:
     )
     contribution.update! transaction_identifier: "seed-contribution-#{contribution.id}-#{n}"
   end
 end
 
 puts "Making some distributions and dividends"
-active_members = general_pool.recipients.merge(Member.active).to_a
+active_members = general_pod.recipients.merge(Member.active).to_a
 
 (1..6).each do |number|
-  distribution = Distribution.create! number:, pool: general_pool
+  distribution = Distribution.create! number:, pod: general_pod
 
-  total_pool_in_aud_base_units = rand(5_000..50_000)
+  total_pod_in_aud_base_units = rand(5_000..50_000)
   dividend_amount = DividendAmountService.new(
-    total_pool_in_aud_base_units:,
+    total_pod_in_aud_base_units:,
     member_count: active_members.count
   ).amount_in_aud_base_units
 

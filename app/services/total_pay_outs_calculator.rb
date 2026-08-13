@@ -1,17 +1,17 @@
 class TotalPayOutsCalculator
   class << self
-    def formatted(pool, currency)
+    def formatted(pod, currency)
       CurrencyConverter.new(
         from_currency: 'AUD',
-        amount_in_base_units: amount_in_base_units(pool),
+        amount_in_base_units: amount_in_base_units(pod),
         to_currency: currency
       ).format
     end
 
     private
 
-    def amount_in_base_units(pool)
-      in_aud_base_units total_paid_out_by_currency(pool)
+    def amount_in_base_units(pod)
+      in_aud_base_units total_paid_out_by_currency(pod)
     end
 
     def in_aud_base_units(amount_in_base_units_by_currency)
@@ -24,8 +24,8 @@ class TotalPayOutsCalculator
       end
     end
 
-    def total_paid_out_by_currency(pool)
-      TotalPoolCalculations.total_paid_out_by_currency(pool)
+    def total_paid_out_by_currency(pod)
+      TotalPodCalculations.total_paid_out_by_currency(pod)
     end
   end
 end

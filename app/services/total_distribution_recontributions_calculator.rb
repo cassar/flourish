@@ -30,6 +30,6 @@ class TotalDistributionRecontributionsCalculator
   end
 
   def total_recontributions_by_currency
-    TotalPoolCalculations.recontributions_by_currency(distribution)
+    TotalPodCalculations.recontributions_by_currency(distribution)
   end
 end
