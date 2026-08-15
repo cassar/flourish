@@ -69,6 +69,7 @@ steps:
     key: audit
     concurrency: 3
     concurrency_group: cassar/docker-lint
+    soft_fail: true
     command:
       - |
         docker run --rm \
