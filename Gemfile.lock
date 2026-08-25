@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: f70a767d2fad00af0bf33bc780125cadcbb95092
+  revision: e1f496d774049d0125b6128525d1bd3bff10e8f8
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -64,6 +64,7 @@ GIT
       activesupport (= 8.2.0.alpha)
       builder (~> 3.1)
       erubi (~> 1.11)
+      herb (>= 0.10)
       rails-dom-testing (~> 2.2)
       rails-html-sanitizer (~> 1.7)
     activejob (8.2.0.alpha)
@@ -209,6 +210,10 @@ GEM
     hashdiff (1.2.1)
     hcaptcha (7.1.0)
       json
+    herb (0.10.3-aarch64-linux-gnu)
+    herb (0.10.3-arm64-darwin)
+    herb (0.10.3-x86_64-darwin)
+    herb (0.10.3-x86_64-linux-gnu)
     honeybadger (6.9.1)
       logger
       ostruct
@@ -281,7 +286,7 @@ GEM
       net-protocol
     net-pop (0.1.2)
       net-protocol
-    net-protocol (0.2.2)
+    net-protocol (0.3.0)
       timeout
     net-scp (4.1.0)
       net-ssh (>= 2.6.5, < 8.0.0)
