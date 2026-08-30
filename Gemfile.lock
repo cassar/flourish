@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: ac1a25371cdb30e0a8a8801e62de1a2cb373b530
+  revision: 2ecdae997fb89463da54ce880023968d7743861d
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -81,7 +81,7 @@ GIT
       activejob (= 8.2.0.alpha)
       activerecord (= 8.2.0.alpha)
       activesupport (= 8.2.0.alpha)
-      marcel (~> 1.0)
+      marcel (~> 2.0)
     activesupport (8.2.0.alpha)
       base64
       bigdecimal
@@ -267,7 +267,7 @@ GEM
       net-imap
       net-pop
       net-smtp
-    marcel (1.2.1)
+    marcel (2.1.0)
     matrix (0.4.3)
     mini_mime (1.1.5)
     minitest (6.0.6)
