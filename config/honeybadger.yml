@@ -27,8 +27,9 @@ debug: false
 
 # Exceptions that are always safe to ignore (e.g. bot/scanner noise that Rails
 # already rejects correctly, not a real application error).
-excluded_exceptions:
-- ActionDispatch::RemoteIp::IpSpoofAttackError
+exceptions:
+  ignore:
+  - ActionDispatch::RemoteIp::IpSpoofAttackError
 
 # Enable Honeybadger Insights
 insights:
