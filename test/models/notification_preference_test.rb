@@ -26,8 +26,8 @@ class NotificationPreferenceTest < ActiveSupport::TestCase
     first_member_preference = notification_preferences(:contribution_received)
     second_member_preference = notification_preferences(:contribution_received_disabled)
 
-    assert_predicate  first_member_preference, :valid?
-    assert_predicate  second_member_preference, :valid?
+    assert_predicate first_member_preference, :valid?
+    assert_predicate second_member_preference, :valid?
 
     assert_equal first_member_preference.notification_name, second_member_preference.notification_name
   end
