@@ -25,6 +25,11 @@ development_environments:
 # Enable verbose debug logging (useful for troubleshooting).
 debug: false
 
+# Exceptions that are always safe to ignore (e.g. bot/scanner noise that Rails
+# already rejects correctly, not a real application error).
+excluded_exceptions:
+- ActionDispatch::RemoteIp::IpSpoofAttackError
+
 # Enable Honeybadger Insights
 insights:
   enabled: true
