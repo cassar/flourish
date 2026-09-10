@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: https://github.com/rails/rails.git
-  revision: 91e00fd72fa28a7121aa78cb11d41f81b1aeb6e2
+  revision: 4ec2d5d2c28684d50fe43a6300ab4cc86c6e0e3f
   branch: main
   specs:
     actioncable (8.2.0.alpha)
@@ -210,10 +210,10 @@ GEM
     hashdiff (1.2.1)
     hcaptcha (7.1.0)
       json
-    herb (0.10.3-aarch64-linux-gnu)
-    herb (0.10.3-arm64-darwin)
-    herb (0.10.3-x86_64-darwin)
-    herb (0.10.3-x86_64-linux-gnu)
+    herb (0.10.4-aarch64-linux-gnu)
+    herb (0.10.4-arm64-darwin)
+    herb (0.10.4-x86_64-darwin)
+    herb (0.10.4-x86_64-linux-gnu)
     honeybadger (6.9.1)
       logger
       ostruct
