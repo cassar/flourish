@@ -6,6 +6,17 @@ fi
 
 if [ "${1}" == "./bin/thrust" ] && [ "${2}" == "./bin/rails" ] && [ "${3}" == "server" ]; then
   mkdir -p storage/db
+
+  # The "home" destination is a disposable pipeline test against an isolated
+  # database -- litestream.yml isn't destination-scoped (it always points at
+  # the production S3 replica paths), so running it here risks restoring the
+  # real production DB into a test container, or corrupting the production
+  # backup with test writes. Skip replication entirely for this destination.
+  if [ "${KAMAL_DESTINATION}" == "home" ]; then
+    ./bin/rails db:prepare
+    exec "$@"
+  fi
+
   litestream restore -config /rails/config/litestream.yml -if-replica-exists -if-db-not-exists /rails/storage/db/production.sqlite3
   litestream restore -config /rails/config/litestream.yml -if-replica-exists -if-db-not-exists /rails/storage/db/production_cache.sqlite3
   litestream restore -config /rails/config/litestream.yml -if-replica-exists -if-db-not-exists /rails/storage/db/production_queue.sqlite3

@@ -8,11 +8,16 @@ servers:
     options:
       memory: 768m
 
+<% if ENV["KAMAL_DESTINATION"] == "home" %>
+logging:
+  driver: json-file
+<% else %>
 logging:
   driver: awslogs
   options:
     awslogs-region: ap-southeast-2
     awslogs-group: /flourish/production
+<% end %>
 
 volumes:
   - "/data/flourish:/rails/storage/db"

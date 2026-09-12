@@ -1,0 +1,17 @@
+servers:
+  web:
+    hosts:
+      - 100.115.240.52
+
+proxy:
+  ssl: false
+  host: test.flourish.buzz
+
+builder:
+  arch: amd64
+  remote: ssh://home-server
+
+ssh:
+  user: ubuntu
+  keys:
+    - ~/.ssh/home-server
