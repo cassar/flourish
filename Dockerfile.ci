@@ -1,5 +1,7 @@
 # syntax=docker/dockerfile:1
 # Test image for CI — includes dev/test gems and Chromium for system tests
+# cache-bust: force rebuild to pick up app source changes (CI image cache key only hashes Gemfile.lock+this file)
+# cache-bust: 2026-09-12 test_helper.rb simplecov fix
 
 ARG RUBY_VERSION=3.4.8
 FROM docker.io/library/ruby:$RUBY_VERSION-slim
