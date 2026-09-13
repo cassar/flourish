@@ -1,7 +1,10 @@
 #!/bin/sh
 set -e
 
-SSH_KEY="$HOME/.ssh/cassar-code.pem"
+case "$KAMAL_DESTINATION" in
+    ec2) SSH_KEY="$HOME/.ssh/cassar-code.pem" ;;
+    *) SSH_KEY="$HOME/.ssh/home-server" ;;
+esac
 SSH_OPTS="-i $SSH_KEY -o StrictHostKeyChecking=accept-new"
 
 echo "$KAMAL_PERFORMER deployed $KAMAL_VERSION in $KAMAL_RUNTIME seconds"

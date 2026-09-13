@@ -4,7 +4,7 @@ image: flourish
 servers:
   web:
     hosts:
-      - 52.62.31.62
+      - 100.115.240.52
     options:
       memory: 768m
 
@@ -18,7 +18,7 @@ volumes:
   - "/data/flourish:/rails/storage/db"
 
 proxy:
-  ssl: true
+  ssl: false
   host: flourish.buzz
   app_port: 80
   healthcheck:
@@ -33,6 +33,8 @@ registry:
 env:
   secret:
     - RAILS_MASTER_KEY
+    - AWS_ACCESS_KEY_ID
+    - AWS_SECRET_ACCESS_KEY
   clear:
     SOLID_QUEUE_IN_PUMA: true
 
@@ -45,9 +47,10 @@ aliases:
 asset_path: /rails/public/assets
 
 builder:
-  arch: arm64
+  arch: amd64
+  remote: ssh://home-server
 
 ssh:
   user: ubuntu
   keys:
-    - ~/.ssh/cassar-code.pem
+    - ~/.ssh/home-server

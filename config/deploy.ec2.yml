@@ -1,0 +1,15 @@
+servers:
+  web:
+    hosts:
+      - 52.62.31.62
+
+proxy:
+  ssl: true
+
+builder:
+  arch: arm64
+
+ssh:
+  user: ubuntu
+  keys:
+    - ~/.ssh/cassar-code.pem

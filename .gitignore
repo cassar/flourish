@@ -47,6 +47,8 @@ tags
 
 # Ignore Kamal secrets
 /.kamal/secrets
+/.kamal/secrets-common
+/.kamal/secrets.*
 
 # Ignore key files for decrypting credentials and more.
 /config/credentials/*.key
