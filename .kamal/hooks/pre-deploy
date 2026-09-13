@@ -2,8 +2,8 @@
 set -e
 
 case "$KAMAL_DESTINATION" in
-    home) SSH_KEY="$HOME/.ssh/home-server" ;;
-    *) SSH_KEY="$HOME/.ssh/cassar-code.pem" ;;
+    ec2) SSH_KEY="$HOME/.ssh/cassar-code.pem" ;;
+    *) SSH_KEY="$HOME/.ssh/home-server" ;;
 esac
 SSH_OPTS="-i $SSH_KEY -o StrictHostKeyChecking=accept-new"
 
