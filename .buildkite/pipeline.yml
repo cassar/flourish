@@ -30,7 +30,7 @@ steps:
     concurrency_group: cassar/docker-test
     command: |
       ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
-      CI_IMAGE=$$ECR/flourish-ci:$$(sha256sum Gemfile.lock Dockerfile.ci | sha256sum | cut -d' ' -f1)
+      CI_IMAGE=$$ECR/flourish-ci:$$( (sha256sum Gemfile.lock Dockerfile.ci; uname -m) | sha256sum | cut -d' ' -f1)
       docker pull $$CI_IMAGE || docker pull $$CI_IMAGE
       docker run --rm \
         -e RAILS_ENV=test \
