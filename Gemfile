@@ -11,7 +11,7 @@ gem 'sprockets-rails'
 
 # Pin below json 3.0: sprockets 4.2.2's Manifest#compile_legacy_manifest still
 # passes the create_additions keyword to JSON.parse, which json 3.0 dropped.
-gem 'json', '< 3.0'
+gem 'json', '< 4.0'
 
 # Use SQLite as the database for Active Record
 gem 'sqlite3', '>= 2.1'
