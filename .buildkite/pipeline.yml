@@ -98,10 +98,11 @@ steps:
     concurrency: 1
     concurrency_group: cassar/docker-build/flourish
     command:
-      - docker pull 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest 2>/dev/null || true
-      - docker build --load --cache-from 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest --label service=flourish --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT --tag 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest .
-      - docker push 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:$$BUILDKITE_COMMIT
-      - docker push 416802459241.dkr.ecr.ap-southeast-2.amazonaws.com/flourish:latest
+      - docker login 100.115.240.52:5555 -u kamal -p "$$KAMAL_REGISTRY_PASSWORD"
+      - docker pull 100.115.240.52:5555/flourish:latest 2>/dev/null || true
+      - docker build --load --cache-from 100.115.240.52:5555/flourish:latest --label service=flourish --tag 100.115.240.52:5555/flourish:$$BUILDKITE_COMMIT --tag 100.115.240.52:5555/flourish:latest .
+      - docker push 100.115.240.52:5555/flourish:$$BUILDKITE_COMMIT
+      - docker push 100.115.240.52:5555/flourish:latest
     agents:
       queue: default-queue
     branches: main
@@ -114,7 +115,6 @@ steps:
     concurrency_group: cassar/shared-ec2-host-deploy
     command:
       - cp /home/ubuntu/.flourish-secrets .kamal/secrets
-      - export KAMAL_REGISTRY_PASSWORD=$$(aws ecr get-login-password --region ap-southeast-2)
       - echo "KAMAL_REGISTRY_PASSWORD=$$KAMAL_REGISTRY_PASSWORD" >> .kamal/secrets
       - kamal deploy --skip-push
     agents:
