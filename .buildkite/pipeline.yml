@@ -4,21 +4,23 @@ steps:
     concurrency: 1
     concurrency_group: cassar/docker-ci-cache
     command: |
-      ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
+      REGISTRY=100.115.240.52:5555
       CI_REPO=flourish-ci
       LOCK_SHA=$$( (sha256sum Gemfile.lock Dockerfile.ci; uname -m) | sha256sum | cut -d' ' -f1)
-      if aws ecr describe-images --repository-name $$CI_REPO --image-ids imageTag=$$LOCK_SHA --region ap-southeast-2 > /dev/null 2>&1; then
+      echo "$$KAMAL_REGISTRY_PASSWORD" | docker login $$REGISTRY -u kamal --password-stdin
+      STATUS=$$(curl -s -o /dev/null -w '%{http_code}' -u "kamal:$$KAMAL_REGISTRY_PASSWORD" -H 'Accept: application/vnd.docker.distribution.manifest.v2+json' http://$$REGISTRY/v2/$$CI_REPO/manifests/$$LOCK_SHA)
+      if [ "$$STATUS" = "200" ]; then
         echo "CI image $$CI_REPO:$$LOCK_SHA already exists, skipping build"
       else
-        docker pull $$ECR/$$CI_REPO:latest 2>/dev/null || true
+        docker pull $$REGISTRY/$$CI_REPO:latest 2>/dev/null || true
         docker build -f Dockerfile.ci \
-          --cache-from $$ECR/$$CI_REPO:latest \
+          --cache-from $$REGISTRY/$$CI_REPO:latest \
           --label service=flourish_ci \
-          -t $$ECR/$$CI_REPO:$$LOCK_SHA \
-          -t $$ECR/$$CI_REPO:latest \
+          -t $$REGISTRY/$$CI_REPO:$$LOCK_SHA \
+          -t $$REGISTRY/$$CI_REPO:latest \
           .
-        docker push $$ECR/$$CI_REPO:$$LOCK_SHA
-        docker push $$ECR/$$CI_REPO:latest
+        docker push $$REGISTRY/$$CI_REPO:$$LOCK_SHA
+        docker push $$REGISTRY/$$CI_REPO:latest
       fi
     agents:
       queue: default-queue
@@ -29,8 +31,9 @@ steps:
     concurrency: 2
     concurrency_group: cassar/docker-test
     command: |
-      ECR=416802459241.dkr.ecr.ap-southeast-2.amazonaws.com
-      CI_IMAGE=$$ECR/flourish-ci:$$( (sha256sum Gemfile.lock Dockerfile.ci; uname -m) | sha256sum | cut -d' ' -f1)
+      REGISTRY=100.115.240.52:5555
+      CI_IMAGE=$$REGISTRY/flourish-ci:$$( (sha256sum Gemfile.lock Dockerfile.ci; uname -m) | sha256sum | cut -d' ' -f1)
+      echo "$$KAMAL_REGISTRY_PASSWORD" | docker login $$REGISTRY -u kamal --password-stdin
       docker pull $$CI_IMAGE || docker pull $$CI_IMAGE
       docker run --rm \
         -e RAILS_ENV=test \
@@ -98,7 +101,7 @@ steps:
     concurrency: 1
     concurrency_group: cassar/docker-build/flourish
     command:
-      - docker login 100.115.240.52:5555 -u kamal -p "$$KAMAL_REGISTRY_PASSWORD"
+      - echo "$$KAMAL_REGISTRY_PASSWORD" | docker login 100.115.240.52:5555 -u kamal --password-stdin
       - docker pull 100.115.240.52:5555/flourish:latest 2>/dev/null || true
       - docker build --load --cache-from 100.115.240.52:5555/flourish:latest --label service=flourish --tag 100.115.240.52:5555/flourish:$$BUILDKITE_COMMIT --tag 100.115.240.52:5555/flourish:latest .
       - docker push 100.115.240.52:5555/flourish:$$BUILDKITE_COMMIT
