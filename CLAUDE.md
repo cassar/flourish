@@ -56,19 +56,14 @@ kamal deploy
 
 ## Observability & CI queries
 
-**CI status** (Buildkite org `cassar-code-constructions`, pipeline `flourish` — pipeline slugs are hyphenated and don't always match the repo name):
+**CI status** (Buildkite org `cassar-code-constructions`, pipeline `flourish` — pipeline slugs are hyphenated and don't always match the repo name; `bk` is pre-configured on the Mac):
 ```bash
-bk build list --pipeline flourish                   # recent builds (bk is pre-configured on the Mac)
+bk build list --pipeline flourish                   # recent builds
 bk build view <build-number> --pipeline flourish    # one build's steps/logs
 bk agent list                                       # is home-1..home-6 online/busy right now
 ```
-On the server itself (or from cassar-agent, which has no `bk` binary), use the REST API with `BUILDKITE_API_TOKEN` from `/home/ubuntu/.buildkite-secrets`:
-```bash
-curl -s -H "Authorization: Bearer $BUILDKITE_API_TOKEN" \
-  "https://api.buildkite.com/v2/organizations/cassar-code-constructions/pipelines/flourish/builds?per_page=5"
-```
 
-**Errors** (Honeybadger — querying needs `HONEYBADGER_READ_TOKEN`, a *personal auth token* from `/home/ubuntu/.buildkite-secrets`; this is separate from the project's write-side reporting key in `config/honeybadger.yml`, which can't be used to query the API):
+**Errors** (Honeybadger — querying needs `HONEYBADGER_READ_TOKEN`, a *personal auth token* exported in your shell profile on the Mac; this is separate from the project's write-side reporting key in `config/honeybadger.yml`, which can't be used to query the API):
 ```bash
 # Find this app's project id (stable once looked up):
 curl -s -u "$HONEYBADGER_READ_TOKEN:" https://app.honeybadger.io/v2/projects \
