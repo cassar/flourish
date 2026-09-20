@@ -1,11 +1,7 @@
 #!/bin/sh
 set -e
 
-case "$KAMAL_DESTINATION" in
-    ec2) SSH_KEY="$HOME/.ssh/cassar-code.pem" ;;
-    *) SSH_KEY="$HOME/.ssh/home-server" ;;
-esac
-SSH_OPTS="-i $SSH_KEY -o StrictHostKeyChecking=accept-new"
+SSH_OPTS="-i $HOME/.ssh/home-server -o StrictHostKeyChecking=accept-new"
 
 for host in $(echo "$KAMAL_HOSTS" | tr ',' ' '); do
     # Signal to the systemd prune timer that a deployment is in progress

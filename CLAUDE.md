@@ -25,13 +25,15 @@ bin/rails db:migrate             # Run pending migrations
 
 ## Production infrastructure
 
-The app runs as a Docker container on a shared EC2 instance, managed by Kamal.
+The app runs as a Docker container on a home server, managed by Kamal.
 
-**This instance also runs 3 other apps (focus_machine, skrol, bean_counter) plus Buildkite CI, all competing for the same 2 vCPUs / 7.6GB RAM.** Before changing memory limits, deploy/CI concurrency, or anything else that affects capacity, read `~/GitHub/cassar_code_infrastructure/CLAUDE.md` — changes scoped to this repo alone can still starve or crash the others.
+**This box also runs 4 other apps (focus_machine, skrol, bean_counter, cassar_constructions) plus Buildkite CI, all on the same 12 cores / ~24GB RAM.** Before changing memory limits, deploy/CI concurrency, or anything else that affects capacity, read `~/GitHub/cassar_code_infrastructure/CLAUDE.md` — changes scoped to this repo alone can still starve or crash the others.
 
 **SSH access:**
 ```bash
-ssh -i ~/.ssh/cassar-code.pem ubuntu@52.62.31.62
+ssh -i ~/.ssh/home-server ubuntu@100.115.240.52
+# or, with the SSH config alias set up on the Mac:
+ssh home-server
 ```
 
 **Interact with the running app** (from this repo directory):
@@ -49,7 +51,6 @@ aws logs tail /flourish/production --follow
 
 **Deploy** (Buildkite triggers automatically on pushes to `main`; to deploy manually):
 ```bash
-export KAMAL_REGISTRY_PASSWORD=$(aws ecr get-login-password --region ap-southeast-2)
 kamal deploy
 ```
 
