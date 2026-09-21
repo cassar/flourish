@@ -621,10 +621,10 @@ cross-spawn@^7.0.6:
     shebang-command "^2.0.0"
     which "^2.0.1"
 
-daisyui@^5.7.40:
-  version "5.7.40"
-  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-5.7.40.tgz#90df671437d2c0f9862aadfb0173f3949bce80a8"
-  integrity sha512-BKpx8Dat0CcQTW1iO4s6vAjQwffWaOI5wZ/+RidvM5MAyTF481l63Z14l67LXgRTFkA8YHmu+q146BiLlYtChA==
+daisyui@^5.7.42:
+  version "5.7.42"
+  resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-5.7.42.tgz#83de13ef247c3f4f6e6664acf0ab2629baa0f9b2"
+  integrity sha512-1Enls+br/2ZJG+DHUlaVYMq/hQLTP2hyiTKt0kRBywJjoau0kHy1NDF1Oqo95cyVR1STzZK+7vyz1KxQroJU3w==
 
 debug@^4.3.1, debug@^4.3.2:
   version "4.4.3"
