@@ -1,0 +1,79 @@
+name: Runtime bump
+# Keeps the pinned Ruby and Node versions current (Dependabot doesn't cover these).
+# Patch bumps (Ruby X.Y.z, Node X.y.z) are merged automatically, like Dependabot PRs.
+# Series/major bumps (e.g. Ruby 3.4 -> 4.0, Node 22 -> 24) are left open for review.
+on:
+  schedule:
+    # Weekly; staggered per app so full image rebuilds don't pile up on home-server
+    - cron: "0 8 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      # One at a time, so the node job checks out main after the ruby bump merged
+      max-parallel: 1
+      matrix:
+        runtime: [ruby, node]
+    env:
+      BRANCH: runtime-bump/${{ matrix.runtime }}
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Bump version files
+        id: bump
+        run: python3 .github/scripts/runtime_bump.py ${{ matrix.runtime }} >> "$GITHUB_OUTPUT"
+
+      - name: Close stale PR
+        if: steps.bump.outputs.to == ''
+        run: |
+          if gh pr view "$BRANCH" --json state --jq .state 2>/dev/null | grep -q OPEN; then
+            gh pr close "$BRANCH" --delete-branch --comment "Already up to date with the latest ${{ matrix.runtime }} release."
+          fi
+
+      - name: Update Gemfile.lock
+        if: matrix.runtime == 'ruby' && steps.bump.outputs.to != ''
+        run: |
+          grep -q '^RUBY VERSION' Gemfile.lock || exit 0
+          # Run under the new Ruby, pinned to the lockfile's own Bundler, so only the RUBY VERSION block changes
+          docker run --rm -v "$PWD:/app" -w /app ruby:${{ steps.bump.outputs.to }}-slim bash -c '
+            apt-get update -qq && apt-get install -y -qq --no-install-recommends git >/dev/null &&
+            git config --global --add safe.directory "*" &&
+            B=$(grep -A1 "^BUNDLED WITH" Gemfile.lock | tail -1 | tr -d " ") &&
+            gem install -N bundler -v "$B" && bundle _${B}_ lock'
+          sudo chown -R "$(id -u):$(id -g)" .
+
+      - name: Open or update PR
+        if: steps.bump.outputs.to != ''
+        env:
+          FROM: ${{ steps.bump.outputs.from }}
+          TO: ${{ steps.bump.outputs.to }}
+          KIND: ${{ steps.bump.outputs.kind }}
+          RUNTIME: ${{ matrix.runtime }}
+        run: |
+          TITLE="Bump $RUNTIME from $FROM to $TO"
+          if [ "$KIND" = patch ]; then
+            BODY="Patch release in the current series — merged automatically by the runtime-bump workflow."
+          else
+            BODY="New $RUNTIME series — **needs review before merging** (check release notes / deprecations). Not merged automatically."
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git commit -am "$TITLE"
+          git push -f origin "$BRANCH"
+          if gh pr view "$BRANCH" --json state --jq .state 2>/dev/null | grep -q OPEN; then
+            gh pr edit "$BRANCH" --title "$TITLE" --body "$BODY"
+          else
+            gh pr create --head "$BRANCH" --base main --title "$TITLE" --body "$BODY"
+          fi
+          if [ "$KIND" = patch ]; then
+            gh pr merge "$BRANCH" --merge --delete-branch
+          fi
