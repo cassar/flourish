@@ -25,7 +25,7 @@ RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential git libsqlite3-dev libyaml-dev node-gyp pkg-config python-is-python3 && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
-ARG NODE_VERSION=22.13.0
+ARG NODE_VERSION=22.23.3
 ARG YARN_VERSION=latest
 ENV PATH=/usr/local/node/bin:$PATH
 RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
