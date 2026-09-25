@@ -56,7 +56,7 @@ steps:
           --env BUNDLE_WITHOUT="" \
           --env BUNDLE_PATH=/bundle \
           --memory 1g \
-          ruby:3.4.8-slim \
+          ruby:3.4.11-slim \
           bash -c "
             apt-get update -qq &&
             apt-get install --no-install-recommends -y build-essential git libsqlite3-dev libyaml-dev pkg-config &&
@@ -82,7 +82,7 @@ steps:
           --env BUNDLE_WITHOUT="" \
           --env BUNDLE_PATH=/bundle \
           --memory 1g \
-          ruby:3.4.8-slim \
+          ruby:3.4.11-slim \
           bash -c "
             apt-get update -qq &&
             apt-get install --no-install-recommends -y build-essential git libsqlite3-dev libyaml-dev pkg-config &&
