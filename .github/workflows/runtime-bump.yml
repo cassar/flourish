@@ -25,7 +25,7 @@ jobs:
       BRANCH: runtime-bump/${{ matrix.runtime }}
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v7
 
       - name: Bump version files
         id: bump
