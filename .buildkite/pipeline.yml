@@ -45,52 +45,44 @@ steps:
 
   - label: ":rubocop: Lint"
     key: lint
+    depends_on: warm-cache
     concurrency: 3
     concurrency_group: cassar/docker-lint
     command:
       - |
+        REGISTRY=100.115.240.52:5555
+        CI_IMAGE=$$REGISTRY/flourish-ci:$$( (sha256sum Gemfile.lock Dockerfile.ci; uname -m) | sha256sum | cut -d' ' -f1)
+        echo "$$KAMAL_REGISTRY_PASSWORD" | docker login $$REGISTRY -u kamal --password-stdin
+        docker pull $$CI_IMAGE || docker pull $$CI_IMAGE
         docker run --rm \
           --volume "$(pwd):/rails" \
-          --volume "/home/ubuntu/.bundle-cache/flourish:/bundle" \
           --workdir /rails \
-          --env BUNDLE_WITHOUT="" \
-          --env BUNDLE_PATH=/bundle \
           --memory 1g \
-          ruby:3.4.11-slim \
-          bash -c "
-            apt-get update -qq &&
-            apt-get install --no-install-recommends -y build-essential git libsqlite3-dev libyaml-dev pkg-config &&
-            git config --global --add safe.directory '*' &&
-            bundle install &&
-            bundle exec rubocop
-          "
-      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" && sudo chown -R "$(id -u):$(id -g)" /home/ubuntu/.bundle-cache/flourish || true
+          $$CI_IMAGE \
+          bash -c "git config --global --add safe.directory '*' && bundle exec rubocop"
+      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" || true
     agents:
       queue: default-queue
 
   - label: ":shield: Audit"
     key: audit
+    depends_on: warm-cache
     concurrency: 3
     concurrency_group: cassar/docker-lint
     soft_fail: true
     command:
       - |
+        REGISTRY=100.115.240.52:5555
+        CI_IMAGE=$$REGISTRY/flourish-ci:$$( (sha256sum Gemfile.lock Dockerfile.ci; uname -m) | sha256sum | cut -d' ' -f1)
+        echo "$$KAMAL_REGISTRY_PASSWORD" | docker login $$REGISTRY -u kamal --password-stdin
+        docker pull $$CI_IMAGE || docker pull $$CI_IMAGE
         docker run --rm \
           --volume "$(pwd):/rails" \
-          --volume "/home/ubuntu/.bundle-cache/flourish:/bundle" \
           --workdir /rails \
-          --env BUNDLE_WITHOUT="" \
-          --env BUNDLE_PATH=/bundle \
           --memory 1g \
-          ruby:3.4.11-slim \
-          bash -c "
-            apt-get update -qq &&
-            apt-get install --no-install-recommends -y build-essential git libsqlite3-dev libyaml-dev pkg-config &&
-            git config --global --add safe.directory '*' &&
-            bundle install &&
-            bundle exec bundler-audit check --update
-          "
-      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" && sudo chown -R "$(id -u):$(id -g)" /home/ubuntu/.bundle-cache/flourish || true
+          $$CI_IMAGE \
+          bash -c "git config --global --add safe.directory '*' && bundle exec bundler-audit check --update"
+      - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" || true
     agents:
       queue: default-queue
 

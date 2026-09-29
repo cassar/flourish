@@ -4,7 +4,8 @@ updates:
   - package-ecosystem: bundler
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
       time: "09:00"
       timezone: "Australia/Sydney"
     open-pull-requests-limit: 10
@@ -29,12 +30,19 @@ updates:
           - "stimulus-rails"
       development:
         dependency-type: development
+      other:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+          - "patch"
 
   # JavaScript packages
   - package-ecosystem: npm
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
       time: "09:00"
       timezone: "Australia/Sydney"
     open-pull-requests-limit: 10
@@ -52,7 +60,12 @@ updates:
   - package-ecosystem: github-actions
     directory: "/"
     schedule:
-      interval: daily
+      interval: weekly
+      day: "monday"
       time: "09:00"
       timezone: "Australia/Sydney"
     open-pull-requests-limit: 5
+    groups:
+      actions:
+        patterns:
+          - "*"
