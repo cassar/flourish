@@ -44,11 +44,19 @@ steps:
       CI_IMAGE=$$REGISTRY/flourish-ci:$$( (sha256sum Gemfile.lock Dockerfile.ci; uname -m) | sha256sum | cut -d' ' -f1)
       echo "$$KAMAL_REGISTRY_PASSWORD" | docker login $$REGISTRY -u kamal --password-stdin
       docker pull $$CI_IMAGE || docker pull $$CI_IMAGE
+      # Mount the checkout: the CI image's own copy of the app is from whenever the image
+      # was last rebuilt (only on Gemfile.lock / Dockerfile.ci changes), so without this
+      # Test ran against stale code. yarn install refreshes the image's node_modules likewise.
       docker run --rm \
+        --volume "$(pwd):/rails" \
+        --volume /rails/node_modules \
         -e RAILS_ENV=test \
         -e CI=true \
         $$CI_IMAGE \
-        bin/rails db:test:prepare test test:system
+        bash -c "yarn install --immutable && bin/rails db:test:prepare test test:system"
+      status=$$?
+      sudo chown -R "$(id -u):$(id -g)" "$(pwd)" || true
+      exit $$status
     agents:
       queue: default-queue
 
