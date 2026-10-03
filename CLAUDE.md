@@ -63,15 +63,9 @@ bk build view <build-number> --pipeline flourish    # one build's steps/logs
 bk agent list                                       # is home-1..home-6 online/busy right now
 ```
 
-**Errors** (Honeybadger — querying needs `HONEYBADGER_READ_TOKEN`, a *personal auth token* exported in your shell profile on the Mac; this is separate from the project's write-side reporting key in `config/honeybadger.yml`, which can't be used to query the API):
+**Errors** are reported to Cassar Constructions: `config/initializers/cassar_errors.rb` posts every production `Rails.error` report (unhandled request and job errors, plus explicit `Rails.error.report` calls) to the "Flourish Exceptions" inbox at https://cassarconstructions.com/inboxes. The inbox URL is the `cassar_errors_url` credential. Repeats of the same error are grouped into one message with an occurrence count. Recent errors:
 ```bash
-# Find this app's project id (stable once looked up):
-curl -s -u "$HONEYBADGER_READ_TOKEN:" https://app.honeybadger.io/v2/projects \
-  | jq '.results[] | select(.name | test("Flourish"; "i")) | {id, name}'
-
-# Recent unresolved errors:
-curl -s -u "$HONEYBADGER_READ_TOKEN:" \
-  "https://app.honeybadger.io/v2/projects/<project-id>/faults?q=is:unresolved"
+cd ~/GitHub/cassar_constructions && bin/kamal app exec --reuse 'bin/rails runner "Inbox.find_by!(name: %q(Flourish Exceptions)).messages.order(updated_at: :desc).limit(10).each { |m| puts [m.occurrences, m.payload[%q(error_class)], m.payload[%q(message)]].join(%q( | )) }"'
 ```
 
 Domain: flourish.buzz

@@ -77,9 +77,6 @@ gem 'devise', github: 'heartcombo/devise', branch: 'main'
 gem 'image_processing', '~> 2.1'
 gem 'ruby-vips', '~> 2.0', require: false
 
-# Ruby exception and error tracking
-gem 'honeybadger', '~> 6.9'
-
 # OpenStruct implementation
 gem 'ostruct'
 

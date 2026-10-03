@@ -215,9 +215,6 @@ GEM
     herb (0.11.0-arm64-darwin)
     herb (0.11.0-x86_64-darwin)
     herb (0.11.0-x86_64-linux-gnu)
-    honeybadger (6.9.2)
-      logger
-      ostruct
     httparty (0.24.2)
       csv
       mini_mime (>= 1.0.0)
@@ -502,7 +499,6 @@ DEPENDENCIES
   excon
   figaro!
   hcaptcha (~> 7.1)
-  honeybadger (~> 6.9)
   httparty
   image_processing (~> 2.1)
   jbuilder
