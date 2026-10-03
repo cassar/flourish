@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
+
   get "up" => "rails/health#show", as: :rails_health_check
   devise_for :users, controllers: {
     registrations: 'users/registrations',

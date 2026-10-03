@@ -3,4 +3,4 @@
 <link rel="shortcut icon" href="<%= asset_path 'favicon/favicon.ico' %>" />
 <link rel="apple-touch-icon" sizes="180x180" href="<%= asset_path 'favicon/apple-touch-icon.png' %>" />
 <meta name="apple-mobile-web-app-title" content="Flourish" />
-<link rel="manifest" href="/manifest.json" />
+<%= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
