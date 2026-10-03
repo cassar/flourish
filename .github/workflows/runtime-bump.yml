@@ -42,12 +42,20 @@ jobs:
         if: matrix.runtime == 'ruby' && steps.bump.outputs.to != ''
         run: |
           grep -q '^RUBY VERSION' Gemfile.lock || exit 0
-          # Run under the new Ruby, pinned to the lockfile's own Bundler, so only the RUBY VERSION block changes
+          # Run under the new Ruby, pinned to the lockfile's own Bundler (unless the new Ruby's Bundler is a
+          # different major), so normally only the RUBY VERSION block changes
           docker run --rm -v "$PWD:/app" -w /app ruby:${{ steps.bump.outputs.to }}-slim bash -c '
             apt-get update -qq && apt-get install -y -qq --no-install-recommends git >/dev/null &&
             git config --global --add safe.directory "*" &&
             B=$(grep -A1 "^BUNDLED WITH" Gemfile.lock | tail -1 | tr -d " ") &&
-            gem install -N bundler -v "$B" && bundle _${B}_ lock'
+            IMG_B=$(bundle -v | grep -oE "[0-9]+\.[0-9]+\.[0-9]+") &&
+            if [ "${B%%.*}" != "${IMG_B%%.*}" ]; then
+              # New Ruby ships a different Bundler major (e.g. Ruby 4.0 -> Bundler 4): the old pin
+              # would stop the production container booting, so move the lock to the image'"'"'s Bundler
+              bundle _${IMG_B}_ lock --bundler="$IMG_B"
+            else
+              gem install -N bundler -v "$B" && bundle _${B}_ lock
+            fi'
           sudo chown -R "$(id -u):$(id -g)" .
 
       - name: Open or update PR

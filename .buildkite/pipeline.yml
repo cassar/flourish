@@ -31,6 +31,14 @@ steps:
     depends_on: warm-cache
     concurrency: 4
     concurrency_group: cassar/docker-test
+    retry:
+      automatic:
+        # Docker-side failures only (e.g. a concurrent-pull race in the containerd
+        # image store) — never a genuine test/lint failure, which exits 1
+        - exit_status: 125
+          limit: 1
+        - exit_status: 127
+          limit: 1
     command: |
       REGISTRY=100.115.240.52:5555
       CI_IMAGE=$$REGISTRY/flourish-ci:$$( (sha256sum Gemfile.lock Dockerfile.ci; uname -m) | sha256sum | cut -d' ' -f1)
@@ -49,6 +57,14 @@ steps:
     depends_on: warm-cache
     concurrency: 6
     concurrency_group: cassar/docker-lint
+    retry:
+      automatic:
+        # Docker-side failures only (e.g. a concurrent-pull race in the containerd
+        # image store) — never a genuine test/lint failure, which exits 1
+        - exit_status: 125
+          limit: 1
+        - exit_status: 127
+          limit: 1
     command:
       - |
         REGISTRY=100.115.240.52:5555
@@ -70,6 +86,14 @@ steps:
     depends_on: warm-cache
     concurrency: 6
     concurrency_group: cassar/docker-lint
+    retry:
+      automatic:
+        # Docker-side failures only (e.g. a concurrent-pull race in the containerd
+        # image store) — never a genuine test/lint failure, which exits 1
+        - exit_status: 125
+          limit: 1
+        - exit_status: 127
+          limit: 1
     soft_fail: true
     command:
       - |
@@ -108,7 +132,7 @@ steps:
   - label: ":rocket: Deploy"
     key: deploy
     concurrency: 1
-    concurrency_group: cassar/shared-ec2-host-deploy
+    concurrency_group: cassar/deploy/flourish
     command:
       - cp /home/ubuntu/.flourish-secrets .kamal/secrets
       - echo "KAMAL_REGISTRY_PASSWORD=$$KAMAL_REGISTRY_PASSWORD" >> .kamal/secrets
