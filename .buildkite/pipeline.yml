@@ -136,7 +136,12 @@ steps:
     command:
       - cp /home/ubuntu/.flourish-secrets .kamal/secrets
       - echo "KAMAL_REGISTRY_PASSWORD=$$KAMAL_REGISTRY_PASSWORD" >> .kamal/secrets
-      - kamal deploy --skip-push
+      - |
+        # Ignore the cancel signal (Kamal inherits this): a newer commit cancelling this
+        # build mustn't interrupt a cutover mid-way and leave Kamal's deploy lock held.
+        # The agent's cancel-signal-timeout (120s, set on home-server) lets it finish.
+        trap '' TERM
+        kamal deploy --skip-push
     agents:
       queue: default-queue
     branches: main
