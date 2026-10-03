@@ -1,0 +1,43 @@
+#!/usr/bin/env ruby
+require "fileutils"
+
+APP_ROOT = File.expand_path("..", __dir__)
+
+def system!(*args)
+  system(*args, exception: true)
+end
+
+FileUtils.chdir APP_ROOT do
+  main_root = `git worktree list --porcelain`.lines.first.delete_prefix("worktree ").strip
+
+  if main_root == APP_ROOT
+    abort "Run bin/worktree from inside a linked worktree, not the main checkout."
+  end
+
+  puts "== Linking keys from #{main_root} =="
+  Dir.glob("config/**/*.key", base: main_root).each do |key|
+    next if File.exist?(key)
+    FileUtils.mkdir_p File.dirname(key)
+    FileUtils.ln_s File.join(main_root, key), key
+    puts "  #{key}"
+  end
+
+  puts "\n== Installing dependencies =="
+  system("bundle check") || system!("bundle install")
+  system! "bin/with-node yarn install --check-files"
+
+  puts "\n== Building assets =="
+  system! "bin/with-node yarn build"
+  system! "bin/with-node yarn build:css"
+
+  puts "\n== Copying development database =="
+  source_db = File.join(main_root, "storage/db/development.sqlite3")
+  if File.exist?(source_db) && !File.exist?("storage/db/development.sqlite3")
+    FileUtils.mkdir_p "storage/db"
+    system! "sqlite3", source_db, ".backup storage/db/development.sqlite3"
+  end
+
+  puts "\n== Preparing database =="
+  # Skip the test database: creating it makes db:prepare seed the copied development one.
+  system!({ "SKIP_TEST_DATABASE" => "true" }, "bin/rails db:prepare")
+end

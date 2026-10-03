@@ -55,3 +55,5 @@ tags
 !/config/credentials/test.key
 
 build-*/
+
+/.claude/worktrees/
