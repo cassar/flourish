@@ -23,6 +23,16 @@ bin/rails db:setup               # Create + migrate + seed
 bin/rails db:migrate             # Run pending migrations
 ```
 
+## Worktrees
+
+Work directly on `main` in the main checkout by default. Use a git worktree only when running agents in parallel, so they don't trample each other's working tree.
+
+In a worktree (under `.claude/worktrees/`):
+
+- Run `bin/worktree` once before anything else. It links `config/master.key` and `config/credentials/production.key` from the main checkout, installs dependencies, builds assets, and copies the development database.
+- Don't use port 3001 or `flourish.test`; those belong to the main checkout's server. Pick a free port outside 3001–3005, which the other apps' main checkouts use (e.g. `PORT=3011`), and use `http://localhost:<port>`.
+- When done, rebase onto `origin/main` and push straight to `main` (no PRs), then remove the worktree and its branch.
+
 ## Production infrastructure
 
 The app runs as a Docker container on a home server, managed by Kamal.

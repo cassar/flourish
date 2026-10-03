@@ -26,6 +26,10 @@ curl -sf -o /dev/null -w "%{http_code}\n" http://flourish.test
 - **connection refused** → Caddy/dnsmasq isn't running; fall back to
   `http://localhost:3001` directly.
 
+**In a worktree** (`.claude/worktrees/*`): skip the check above. Run
+`bin/worktree` first, then start your own server on a free port outside
+3001–3005 (e.g. 3011) and use `http://localhost:<port>` in the commands below.
+
 Only if nothing is running, start one in the background:
 
 ```bash
