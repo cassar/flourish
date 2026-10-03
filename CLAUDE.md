@@ -36,12 +36,12 @@ ssh -i ~/.ssh/home-server ubuntu@100.115.240.52
 ssh home-server
 ```
 
-**Interact with the running app** (from this repo directory):
+**Interact with the running app** (from this repo directory). Use `bin/kamal`, not bare `kamal` — Rails comes from git here, so kamal's activesupport dependency is only visible through Bundler; bare `kamal` breaks whenever the active Ruby has no released activesupport gem installed (e.g. right after a Ruby bump):
 ```bash
-kamal console   # Rails console
-kamal shell     # bash inside the container
-kamal logs      # tail logs
-kamal dbc       # database console
+bin/kamal console  # Rails console
+bin/kamal shell    # bash inside the container
+bin/kamal logs     # tail logs
+bin/kamal dbc      # database console
 ```
 
 **Logs** (CloudWatch, via the default AWS profile):
@@ -51,7 +51,7 @@ aws logs tail /flourish/production --follow
 
 **Deploy** (Buildkite triggers automatically on pushes to `main`; to deploy manually):
 ```bash
-kamal deploy
+bin/kamal deploy
 ```
 
 ## Observability & CI queries
