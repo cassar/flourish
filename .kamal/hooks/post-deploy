@@ -4,7 +4,6 @@ set -e
 SSH_OPTS="-i $HOME/.ssh/home-server -o StrictHostKeyChecking=accept-new"
 
 echo "$KAMAL_PERFORMER deployed $KAMAL_VERSION in $KAMAL_RUNTIME seconds"
-docker system prune -af --filter "label!=service=flourish"
 
 for host in $(echo "$KAMAL_HOSTS" | tr ',' ' '); do
     # Kamal's asset_path volume persists compiled assets (and their
