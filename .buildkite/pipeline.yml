@@ -2,7 +2,7 @@ steps:
   - label: ":docker: Warm CI Cache"
     key: warm-cache
     concurrency: 1
-    concurrency_group: cassar/docker-ci-cache
+    concurrency_group: cassar/docker-ci-cache/flourish
     command: |
       REGISTRY=100.115.240.52:5555
       CI_REPO=flourish-ci
@@ -15,6 +15,7 @@ steps:
         docker pull $$REGISTRY/$$CI_REPO:latest 2>/dev/null || true
         docker build -f Dockerfile.ci \
           --cache-from $$REGISTRY/$$CI_REPO:latest \
+          --build-arg BUILDKIT_INLINE_CACHE=1 \
           --label service=flourish_ci \
           -t $$REGISTRY/$$CI_REPO:$$LOCK_SHA \
           -t $$REGISTRY/$$CI_REPO:latest \
@@ -28,7 +29,7 @@ steps:
   - label: ":ruby: Test"
     key: test
     depends_on: warm-cache
-    concurrency: 2
+    concurrency: 4
     concurrency_group: cassar/docker-test
     command: |
       REGISTRY=100.115.240.52:5555
@@ -46,7 +47,7 @@ steps:
   - label: ":rubocop: Lint"
     key: lint
     depends_on: warm-cache
-    concurrency: 3
+    concurrency: 6
     concurrency_group: cassar/docker-lint
     command:
       - |
@@ -67,7 +68,7 @@ steps:
   - label: ":shield: Audit"
     key: audit
     depends_on: warm-cache
-    concurrency: 3
+    concurrency: 6
     concurrency_group: cassar/docker-lint
     soft_fail: true
     command:
