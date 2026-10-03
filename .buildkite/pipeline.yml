@@ -128,7 +128,7 @@ steps:
     command:
       - echo "$$KAMAL_REGISTRY_PASSWORD" | docker login 100.115.240.52:5555 -u kamal --password-stdin
       - docker pull 100.115.240.52:5555/flourish:latest 2>/dev/null || true
-      - docker build --load --cache-from 100.115.240.52:5555/flourish:latest --label service=flourish --tag 100.115.240.52:5555/flourish:$$BUILDKITE_COMMIT --tag 100.115.240.52:5555/flourish:latest .
+      - docker build --load --cache-from type=registry,ref=100.115.240.52:5555/flourish-buildcache:latest --cache-to type=registry,ref=100.115.240.52:5555/flourish-buildcache:latest,mode=max,ignore-error=true --cache-from 100.115.240.52:5555/flourish:latest --label service=flourish --tag 100.115.240.52:5555/flourish:$$BUILDKITE_COMMIT --tag 100.115.240.52:5555/flourish:latest .
       - docker push 100.115.240.52:5555/flourish:$$BUILDKITE_COMMIT
       - docker push 100.115.240.52:5555/flourish:latest
     agents:
