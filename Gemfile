@@ -74,7 +74,7 @@ gem 'figaro', git: 'https://github.com/laserlemon/figaro'
 gem 'devise', github: 'heartcombo/devise', branch: 'main'
 
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
-gem 'image_processing', '~> 2.1'
+gem 'image_processing', '~> 2.2'
 gem 'ruby-vips', '~> 2.0', require: false
 
 # OpenStruct implementation
