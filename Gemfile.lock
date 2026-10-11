@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/heartcombo/devise.git
-  revision: 372b295fe6f63b4af3269f5dcd51a18c0bc2016c
+  revision: 05811fb8366edd08874111d0f6fb44543e1c91ef
   branch: main
   specs:
     devise (5.0.4)
@@ -350,7 +350,7 @@ GEM
     regexp_parser (2.13.1)
     reline (0.7.0)
       io-console (~> 0.5)
-    responders (3.2.0)
+    responders (3.2.1)
       actionpack (>= 7.0)
       railties (>= 7.0)
     rexml (3.4.4)
