@@ -84,7 +84,7 @@ steps:
           --workdir /rails \
           --memory 1g \
           $$CI_IMAGE \
-          bash -c "git config --global --add safe.directory '*' && bundle exec rubocop"
+          bash -c "git config --global --add safe.directory '*' && bundle exec rubocop && yarn install --immutable && yarn lint:erb"
       - sudo chown -R "$(id -u):$(id -g)" "$(pwd)" || true
     agents:
       queue: default-queue

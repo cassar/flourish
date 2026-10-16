@@ -1,0 +1,20 @@
+# Herb (https://herb-tools.dev) - HTML+ERB linter, run in CI's Lint step and bin/ci.
+# `version` locks the rule set: upgrading @herb-tools/linter won't enable new rules
+# until this is bumped too (`herb-lint --upgrade`).
+
+version: 0.11.0
+
+framework: actionview
+
+files:
+  exclude:
+    # Rails-generated static error pages, not templates
+    - 'public/**/*'
+
+linter:
+  enabled: true
+  # Only print what fails the build; run `herb-lint --log-level=hint` to see the advisory rest
+  logLevel: error
+
+formatter:
+  enabled: false

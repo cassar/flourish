@@ -9,6 +9,7 @@ CI.run do
   step "Setup: JS", "yarn install --immutable"
 
   step "Style: Ruby", "bundle exec rubocop"
+  step "Style: ERB", "yarn lint:erb"
 
   step "Tests: Rails", "env RAILS_ENV=test bin/rails db:test:prepare test test:system"
 
