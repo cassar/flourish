@@ -9,7 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 bin/dev                          # Full dev stack (Rails + JS + CSS watchers)
 
 # Testing
-bin/ci                           # Run everything Buildkite runs (setup, lint, tests, audit)
+bin/ci                           # Run everything Buildkite runs (also runs on git push via lefthook)
 bin/rails test                   # Run all tests
 bin/rails test test/models/foo_test.rb           # Run single test file
 bin/rails test test/models/foo_test.rb:42        # Run specific test at line

@@ -1,18 +1,15 @@
 # Lefthook git hooks configuration
 # https://github.com/evilmartians/lefthook
 #
-# Skip all hooks: LEFTHOOK=0 git commit
-# Skip specific groups: LEFTHOOK_EXCLUDE=security,lint,tests git commit
+# pre-commit: quick lint of staged files. pre-push: bin/ci, the same checks as
+# Buildkite (see config/ci.rb) - so the full suite runs once per push, not per commit.
+#
+# Skip all hooks: LEFTHOOK=0 git push
+# Skip specific commands: LEFTHOOK_EXCLUDE=ci git push
 
 pre-commit:
   parallel: false
   commands:
-    brakeman:
-      tags: security
-      run: bundle exec brakeman --no-pager --quiet
-    bundler-audit:
-      tags: security
-      run: bundle exec bundler-audit
     rubocop:
       tags: lint
       glob: "*.rb"
@@ -21,9 +18,8 @@ pre-commit:
       tags: lint
       glob: "*.js"
       run: bin/with-node yarn lint:js
-    rails-test:
-      tags: tests
-      run: bin/rails db:test:prepare && bin/rails test
-    system-test:
-      tags: tests
-      run: bin/rails test:system
+
+pre-push:
+  commands:
+    ci:
+      run: bin/ci
