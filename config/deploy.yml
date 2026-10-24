@@ -7,6 +7,12 @@ servers:
       - 100.115.240.52
     options:
       memory: 768m
+  job:
+    hosts:
+      - 100.115.240.52
+    cmd: bin/jobs
+    options:
+      memory: 512m
 
 logging:
   driver: awslogs
@@ -36,7 +42,7 @@ env:
     - AWS_ACCESS_KEY_ID
     - AWS_SECRET_ACCESS_KEY
   clear:
-    SOLID_QUEUE_IN_PUMA: true
+    RAPTOR_WORKERS: 2
 
 aliases:
   console: app exec --interactive --reuse "bin/rails console"

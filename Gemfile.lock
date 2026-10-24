@@ -129,6 +129,7 @@ GEM
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     ast (2.4.3)
+    atomic-ruby (0.16.1)
     aws-eventstream (1.4.0)
     aws-partitions (1.1293.0)
     aws-sdk-core (3.257.0)
@@ -254,6 +255,7 @@ GEM
     lefthook (2.2.2)
     letter_opener (1.10.0)
       launchy (>= 2.2, < 4)
+    libbpf-ruby (0.2.0)
     lint_roller (1.1.0)
     logger (1.7.0)
     loofah (2.25.2)
@@ -271,6 +273,7 @@ GEM
     minitest (6.0.6)
       drb (~> 2.0)
       prism (~> 1.5)
+    mmap-ruby (0.1.3)
     mocha (3.1.0)
       ruby2_keywords (>= 0.0.5)
     money (7.1.1)
@@ -329,6 +332,9 @@ GEM
     rackup (2.3.1)
       rack (>= 3)
     ractor-dispatch (0.3.0)
+    ractor-pool (0.4.2)
+      atomic-ruby
+      warning
     rails-dom-testing (2.3.0)
       activesupport (>= 5.0.0)
       minitest
@@ -338,6 +344,15 @@ GEM
       nokogiri (>= 1.15.7, != 1.16.7, != 1.16.6, != 1.16.5, != 1.16.4, != 1.16.3, != 1.16.2, != 1.16.1, != 1.16.0.rc1, != 1.16.0)
     rainbow (3.1.1)
     rake (13.4.2)
+    raptor (0.22.3)
+      atomic-ruby
+      concurrent-ruby
+      libbpf-ruby
+      mmap-ruby
+      nio4r
+      rack (>= 3.2.0)
+      ractor-pool
+      red-black-tree
     rbs (4.2.0)
       logger
       prism (>= 1.6.0)
@@ -347,6 +362,7 @@ GEM
       prism (>= 1.6.0)
       rbs (>= 4.0.0)
       tsort
+    red-black-tree (0.1.10)
     regexp_parser (2.13.1)
     reline (0.7.0)
       io-console (~> 0.5)
@@ -458,6 +474,7 @@ GEM
     useragent (0.16.11)
     warden (1.2.9)
       rack (>= 2.0.9)
+    warning (1.6.0)
     web-console (4.3.0)
       actionview (>= 8.0.0)
       bindex (>= 0.4.0)
@@ -508,8 +525,9 @@ DEPENDENCIES
   mocha
   money
   ostruct
-  puma (~> 8.0)
+  puma
   rails!
+  raptor
   rubocop
   rubocop-capybara
   rubocop-minitest

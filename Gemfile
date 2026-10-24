@@ -15,8 +15,8 @@ gem 'sprockets-rails'
 # Use SQLite as the database for Active Record
 gem 'sqlite3', '>= 2.1'
 
-# Use the Puma web server [https://github.com/puma/puma]
-gem 'puma', '~> 8.0'
+# Use the Raptor web server [https://github.com/joshuay03/raptor]
+gem 'raptor'
 
 # Use JavaScript with esbuild [https://github.com/rails/jsbundling-rails]
 gem 'jsbundling-rails'
@@ -133,6 +133,8 @@ group :test do
 
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
+  # Capybara's default app server for system tests
+  gem 'puma'
 
   # A browser automation framework and ecosystem.
   gem 'selenium-webdriver'
