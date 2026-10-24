@@ -17,9 +17,5 @@ threads = Integer(ENV.fetch("RAILS_MAX_THREADS", 2))
   threads: threads,
   # Fixed pool: adaptive growth would outrun the database connection pool
   # (max_connections in config/database.yml).
-  max_threads: threads,
-  # Reforking is off: on 0.20.1 a keep-alive connection held by the worker being
-  # promoted to refork seed is never answered or closed, so a request sent on it
-  # hangs. Matches pre-0.20.1 behaviour, where the handler ignored this key.
-  refork_after: nil
+  max_threads: threads
 }
