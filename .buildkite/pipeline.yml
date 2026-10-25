@@ -149,7 +149,12 @@ steps:
         # build mustn't interrupt a cutover mid-way and leave Kamal's deploy lock held.
         # The agent's cancel-signal-timeout (120s, set on home-server) lets it finish.
         trap '' TERM
-        kamal deploy --skip-push
+        # redeploy = deploy minus the final image prune. That prune can fail with
+        # containerd 'lease not found' when other apps are building at the same
+        # moment (seen 2026-10-24), failing a deploy that already cut over. Prune
+        # separately and don't fail on it; docker-prune.timer cleans up anyway.
+        kamal redeploy --skip-push
+        kamal prune all || echo "kamal prune failed; docker-prune.timer will clean up"
     agents:
       queue: default-queue
     branches: main
