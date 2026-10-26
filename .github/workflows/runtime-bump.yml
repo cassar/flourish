@@ -4,8 +4,10 @@ name: Runtime bump
 # Series/major bumps (e.g. Ruby 3.4 -> 4.0, Node 22 -> 24) are left open for review.
 on:
   schedule:
-    # Weekly; staggered per app so full image rebuilds don't pile up on home-server
-    - cron: "0 8 * * 2"
+    # Weekly, early Tuesday morning Sydney time (04:00 AEDT, an hour earlier in winter:
+    # cron is UTC). Staggered 40 min per app so full image rebuilds don't pile up on
+    # home-server, after the 02:30 reboot window and clear of Monday's Dependabot runs.
+    - cron: "0 17 * * 1"
   workflow_dispatch:
 
 permissions:
