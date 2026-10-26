@@ -75,7 +75,15 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B "$BRANCH"
-          git commit -am "$TITLE"
+          if [ "$KIND" = patch ]; then
+            # Merged straight away below, so a Buildkite build of this branch tests
+            # nothing anyone waits on. It just queues ahead of main's build for the
+            # per-app CI-image rebuild (~20 min for a new Ruby). The merge commit's
+            # message doesn't carry the marker, so main still builds and deploys.
+            git commit -am "$TITLE" -m "[skip ci]"
+          else
+            git commit -am "$TITLE"
+          fi
           git push -f origin "$BRANCH"
           if gh pr view "$BRANCH" --json state --jq .state 2>/dev/null | grep -q OPEN; then
             gh pr edit "$BRANCH" --title "$TITLE" --body "$BODY"
