@@ -48,25 +48,15 @@ class TotalPod
   end
 
   def total_owed_dividends_in_aud_base_units
-    in_aud_base_units total_owed_dividends_by_currency
+    CurrencyConverter.in_aud_base_units total_owed_dividends_by_currency
   end
 
   def total_paid_out_in_aud_base_units
-    in_aud_base_units total_paid_out_by_currency
+    CurrencyConverter.in_aud_base_units total_paid_out_by_currency
   end
 
   def total_pay_out_fees_in_aud_base_units
-    in_aud_base_units total_pay_out_fees_by_currency
-  end
-
-  def in_aud_base_units(amount_in_base_units_by_currency)
-    amount_in_base_units_by_currency.sum do |currency, amount_in_base_units|
-      CurrencyConverter.new(
-        from_currency: currency,
-        amount_in_base_units:,
-        to_currency: 'AUD'
-      ).amount_in_base_units
-    end
+    CurrencyConverter.in_aud_base_units total_pay_out_fees_by_currency
   end
 
   def total_owed_dividends_by_currency
