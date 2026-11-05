@@ -1,11 +1,7 @@
 class TotalPayOutsCalculator
   class << self
     def formatted(pod, currency)
-      CurrencyConverter.new(
-        from_currency: 'AUD',
-        amount_in_base_units: amount_in_base_units(pod),
-        to_currency: currency
-      ).format
+      CurrencyConverter.format_from_aud(amount_in_base_units(pod), currency)
     end
 
     private

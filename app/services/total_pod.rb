@@ -10,11 +10,7 @@ class TotalPod
   end
 
   def balance_formatted(currency)
-    CurrencyConverter.new(
-      from_currency: 'AUD',
-      amount_in_base_units: balance_in_aud_base_units,
-      to_currency: currency
-    ).format
+    CurrencyConverter.format_from_aud(balance_in_aud_base_units, currency)
   end
 
   def total_contributed_and_recontributed_formatted(currency)

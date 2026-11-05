@@ -9,6 +9,14 @@ class CurrencyConverter
         ).amount_in_base_units
       end
     end
+
+    def format_from_aud(amount_in_base_units, to_currency)
+      new(
+        from_currency: 'AUD',
+        amount_in_base_units:,
+        to_currency:
+      ).format
+    end
   end
 
   attr_reader :from_currency, :from_amount_in_base_units, :to_currency

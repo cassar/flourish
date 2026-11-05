@@ -6,11 +6,7 @@ class TotalDistributionRecontributionsCalculator
   end
 
   def formatted(currency)
-    CurrencyConverter.new(
-      from_currency: 'AUD',
-      amount_in_base_units:,
-      to_currency: currency
-    ).format
+    CurrencyConverter.format_from_aud(amount_in_base_units, currency)
   end
 
   private
