@@ -3,12 +3,20 @@ require "net/http"
 class CassarErrorReporter
   TIMEOUT = 2
 
+  # Bot/scanner noise that Rails already rejects correctly, not an application
+  # error: WordPress scanners probing e.g. /blog/wordpress/... send inconsistent
+  # X-Forwarded-For/Forwarded headers, which triggers this on every request.
+  EXCLUDED_EXCEPTIONS = [
+    'ActionDispatch::RemoteIp::IpSpoofAttackError'
+  ].freeze
+
   def initialize(url)
     @uri = URI(url)
   end
 
   def report(error, handled:, severity:, context:, source: nil, **)
     return if ActionDispatch::ExceptionWrapper.rescue_responses.key?(error.class.name)
+    return if EXCLUDED_EXCEPTIONS.include?(error.class.name)
 
     deliver(
       error_class: error.class.name,
