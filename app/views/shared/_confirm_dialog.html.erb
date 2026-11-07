@@ -1,0 +1,13 @@
+<dialog id="confirm-dialog" class="modal" aria-labelledby="confirm-dialog-message">
+  <div class="modal-box max-w-xs rounded-3xl bg-base-100 text-center">
+    <%= render 'shared/lotus', class: 'size-10 rounded-xl mx-auto mb-4' %>
+    <p id="confirm-dialog-message" class="text-base font-medium" data-confirm-message></p>
+    <form method="dialog" class="mt-6 grid grid-cols-2 gap-3">
+      <button value="cancel" class="btn btn-ghost rounded-2xl">Cancel</button>
+      <button value="confirm" class="btn btn-primary rounded-2xl" data-confirm-accept>OK</button>
+    </form>
+  </div>
+  <form method="dialog" class="modal-backdrop">
+    <button value="cancel">Close</button>
+  </form>
+</dialog>

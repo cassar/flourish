@@ -35,7 +35,9 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
   test 'index only offers delete on pods I contribute to' do
     get pods_path
 
-    assert_select 'form[action=?]', pod_path(pods(:member_one_contributions))
+    assert_select 'form[action=?][data-turbo-confirm][data-confirm-button=Delete]',
+                  pod_path(pods(:member_one_contributions))
+    assert_select 'dialog#confirm-dialog'
     assert_select 'form[action=?]', pod_path(pods(:general)), count: 0
   end
 
