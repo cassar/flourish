@@ -1,6 +1,6 @@
 <%= render 'shared/app_header' %>
 
-<div class="w-full max-w-md">
+<div class="w-full max-w-md sm:max-w-3xl lg:max-w-5xl">
   <div class="flex items-center justify-between mb-4">
     <h1 class="text-xl font-semibold">Pods</h1>
     <%= button_to 'New pod', pods_path, class: 'btn btn-primary btn-sm rounded-xl' %>
@@ -9,7 +9,7 @@
   <% if @pods.empty? %>
     <p class="bg-base-200 rounded-3xl p-8 text-center text-base-content/60">No pods yet.</p>
   <% else %>
-    <div class="grid grid-cols-2 gap-3">
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
       <% @pods.each do |pod| %>
         <article class="card bg-base-200 rounded-3xl">
           <div class="card-body p-5 gap-1">

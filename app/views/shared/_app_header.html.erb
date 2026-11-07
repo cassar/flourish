@@ -1,5 +1,5 @@
 <% content_for :top_aligned, true %>
-<header class="w-full max-w-md flex items-center justify-between mb-8">
+<header class="w-full max-w-md sm:max-w-3xl lg:max-w-5xl flex items-center justify-between mb-8">
   <%= link_to root_path, class: 'flex items-center gap-3', aria: { label: 'Flourish home' } do %>
     <%= render 'shared/lotus', class: 'size-9 rounded-xl shadow-sm shadow-primary/20' %>
     <%= render 'shared/wordmark', class: 'text-2xl' %>
