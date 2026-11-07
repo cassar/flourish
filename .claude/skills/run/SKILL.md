@@ -1,12 +1,13 @@
 ---
 name: run
-description: Launch and drive Flourish (this Rails app) locally to verify a change actually works — sign in, view membership. Use before reporting a UI/feature change as done.
+description: Launch and drive Flourish (this Rails app) locally to verify a change actually works — sign in, check pages. Use before reporting a UI/feature change as done.
 ---
 
 # Running Flourish
 
-Rails 8 app, SQLite, Devise auth. Membership platform: members view
-contributions/dividends/notifications; admins manage members.
+Rails 8 app, SQLite, Devise auth. The UI is being redesigned: right now
+there's only a home page and the Devise sign-in pages; models and data are
+unchanged.
 
 ## Starting the app
 
@@ -64,17 +65,14 @@ yarn build:css:dev
 ## Signing in
 
 Devise-backed, at `/users/sign_in` (fields `user[email]` / `user[password]`).
-An admin user is seeded by `db:seed`. In the existing dev database, that
-admin's email was `admin@flourish.buzz` with the seeded password
-`password` — **verify this against the live dev DB before relying on it**,
-since it depends on `Rails.application.credentials.admin_email` and may
-change:
+`db:seed` creates a test account: **`test@flourish.test` / `password`**.
+Older dev databases may predate it — check before relying on it:
 
 ```bash
 sqlite3 storage/db/development.sqlite3 "select email, confirmed_at is not null from users;"
 ```
 
-Only the admin account and users seeded with `user.confirm` are confirmed
+Only the test account and users seeded with `user.confirm` are confirmed
 and able to sign in — unconfirmed seeded users (roughly every 5th one) will
 be bounced back to sign-in.
 
@@ -100,11 +98,11 @@ const { chromium } = require("playwright");
   const browser = await chromium.launch();
   const page = await browser.newPage();
   await page.goto("http://flourish.test/users/sign_in");
-  await page.fill('input[name="user[email]"]', "admin@flourish.buzz");
+  await page.fill('input[name="user[email]"]', "test@flourish.test");
   await page.fill('input[name="user[password]"]', "password");
   await page.click('input[type="submit"]');
-  await page.waitForURL("**/membership");
-  await page.screenshot({ path: "/tmp/pw/membership.png" });
+  await page.waitForSelector("button:has-text('Sign out')");
+  await page.screenshot({ path: "/tmp/pw/home.png" });
   await browser.close();
 })();
 ```
@@ -114,8 +112,5 @@ const { chromium } = require("playwright");
 | Path | Purpose |
 |---|---|
 | `/users/sign_in` | Sign in |
-| `/membership` | Member's own dividends/contributions overview |
-| `/membership/dividends` | Dividend history |
-| `/membership/contributions` | Contribution history |
-| `/membership/notifications` | Notification preferences |
-| `/admin/members` | Admin member list (admin only) |
+| `/` | Home: logo, Sign in / Sign out |
+| `/users/password/new` | Password reset |

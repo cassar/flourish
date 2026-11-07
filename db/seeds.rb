@@ -6,14 +6,16 @@
 # each, multi-currency dividend fan-out, and dividend outcomes dominated by
 # auto-recontribution with a smaller mix of payouts and manual recontributions.
 
-puts "Making an admin"
-admin = User.new(email: User::ADMIN_EMAIL, password: 'password')
-admin.skip_confirmation_notification!
-admin.skip_reconfirmation!
-admin.confirm
-admin.save!
-admin.create_member!
-admin.member.create_notification_preferences!
+# Test account for signing in locally: test@flourish.test / password
+puts "Making a test account"
+test_user = User.new(email: 'test@flourish.test', password: 'password')
+test_user.skip_confirmation_notification!
+test_user.skip_reconfirmation!
+test_user.confirm
+test_user.save!
+test_user.update! last_sign_in_at: Time.current
+test_user.create_member!
+test_user.member.create_notification_preferences!
 
 puts "Making some users"
 SEED_CURRENCIES = %w[AUD USD EUR GBP CAD].freeze
@@ -41,19 +43,19 @@ end
 
 puts "Making some pods"
 # Mirrors production's structure: one pod per contributing member (they are the
-# sole contributor, admin is the sole recipient), plus a general pod (admin is
+# sole contributor, the test account is the sole recipient), plus a general pod (the test account is
 # the sole contributor, everyone else is a recipient) that runs the weekly
 # distribution/dividend cycle.
 contributing_members = members.first(6)
 contributor_pods = contributing_members.index_with do |member|
   pod = Pod.create!(name: "#{member.user.email} contributions")
   PodMembership.create!(pod:, member:, role: :contributor)
-  PodMembership.create!(pod:, member: admin.member, role: :recipient)
+  PodMembership.create!(pod:, member: test_user.member, role: :recipient)
   pod
 end
 
 general_pod = Pod.create!(name: 'General Pod')
-PodMembership.create!(pod: general_pod, member: admin.member, role: :contributor)
+PodMembership.create!(pod: general_pod, member: test_user.member, role: :contributor)
 members.each do |member|
   PodMembership.create!(pod: general_pod, member:, role: :recipient)
 end
