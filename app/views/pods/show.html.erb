@@ -42,9 +42,6 @@
            class="sm:absolute sm:left-(--x) sm:top-(--y) sm:-translate-x-1/2 sm:-translate-y-1/2 rounded-2xl text-center whitespace-nowrap shadow-sm <%= large ? 'px-3 py-1.5 lg:px-4 lg:py-2' : 'px-4 py-2' %> <%= membership.contributor? ? 'bg-primary text-primary-content' : 'bg-base-200' %>">
         <p class="font-medium <%= large ? 'text-xs lg:text-sm' : 'text-sm' %>">
           <%= membership.member.display_name %>
-          <% if membership.member == current_user.member %>
-            <span class="opacity-60">(you)</span>
-          <% end %>
         </p>
         <% if membership.contributor? %>
           <p class="text-[0.65rem] uppercase tracking-widest opacity-75">Contributor</p>

@@ -58,7 +58,7 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
     people = css_select('[data-person]').map { |li| li.text.squish }
 
     assert_equal 'Luke Contributor', people.first
-    assert_includes people, "Member #{members(:one).id} (you)"
+    assert_includes people, "Member #{members(:one).id}"
     assert_includes people, "Member #{members(:two).id}"
   end
 
