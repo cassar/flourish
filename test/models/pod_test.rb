@@ -1,11 +1,8 @@
 require 'test_helper'
 
 class PodTest < ActiveSupport::TestCase
-  test 'requires a name' do
-    pod = Pod.new
-
-    assert_not pod.valid?
-    assert_includes pod.errors[:name], "can't be blank"
+  test 'is valid without a name' do
+    assert_predicate Pod.new, :valid?
   end
 
   test 'has many pod memberships' do

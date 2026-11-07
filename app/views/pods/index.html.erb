@@ -3,27 +3,28 @@
 <div class="w-full max-w-md">
   <div class="flex items-center justify-between mb-4">
     <h1 class="text-xl font-semibold">Pods</h1>
-    <%= link_to 'New pod', new_pod_path, class: 'btn btn-primary btn-sm rounded-xl' %>
+    <%= button_to 'New pod', pods_path, class: 'btn btn-primary btn-sm rounded-xl' %>
   </div>
 
   <% if @pods.empty? %>
     <p class="bg-base-200 rounded-3xl p-8 text-center text-base-content/60">No pods yet.</p>
   <% else %>
-    <ul class="bg-base-200 rounded-3xl divide-y divide-base-300">
+    <div class="grid grid-cols-2 gap-3">
       <% @pods.each do |pod| %>
-        <li class="flex items-center gap-3 px-6 py-4">
-          <div class="flex-1 min-w-0">
-            <p class="font-medium truncate"><%= pod.name %></p>
+        <article class="card bg-base-200 rounded-3xl">
+          <div class="card-body p-5 gap-1">
+            <h2 class="card-title text-lg">Pod <%= pod.id %></h2>
             <p class="text-sm text-base-content/60"><%= pluralize(pod.people_count, 'person', plural: 'people') %></p>
+            <% if pod.id.in?(@contributor_pod_ids) %>
+              <div class="card-actions justify-end mt-2">
+                <%= button_to 'Delete', pod_path(pod), method: :delete,
+                    class: 'btn btn-ghost btn-xs rounded-lg text-error',
+                    form: { data: { turbo_confirm: "Delete Pod #{pod.id}?" } } %>
+              </div>
+            <% end %>
           </div>
-          <% if pod.id.in?(@contributor_pod_ids) %>
-            <%= link_to 'Edit', edit_pod_path(pod), class: 'btn btn-ghost btn-sm rounded-xl' %>
-            <%= button_to 'Delete', pod_path(pod), method: :delete,
-                class: 'btn btn-ghost btn-sm rounded-xl text-error',
-                form: { data: { turbo_confirm: "Delete #{pod.name}?" } } %>
-          <% end %>
-        </li>
+        </article>
       <% end %>
-    </ul>
+    </div>
   <% end %>
 </div>

@@ -20,13 +20,10 @@ puts 'Making some people'
 people = %w[ava ben chloe dan eve finn grace hugo].map { |name| seed_user("#{name}@flourish.test") }
 
 puts 'Making some pods'
-{
-  'Family' => people.first(3),
-  'Friends' => people.first(6),
-  'Book club' => people.last(2),
-  'Neighbours' => people
-}.each do |name, recipients|
-  pod = Pod.find_or_create_by!(name:)
-  pod.pod_memberships.find_or_create_by!(member: test_member) { |m| m.role = :contributor }
-  recipients.each { |member| pod.pod_memberships.find_or_create_by!(member:) }
+if test_member.pods.none?
+  [people.first(3), people.first(6), people.last(2), people].each do |recipients|
+    pod = Pod.create!
+    pod.pod_memberships.create!(member: test_member, role: :contributor)
+    recipients.each { |member| pod.pod_memberships.create!(member:) }
+  end
 end

@@ -3,11 +3,9 @@ en:
     pods:
       create:
         success: "Pod created."
-      update:
-        success: "Pod updated."
       destroy:
         success: "Pod deleted."
-        has_history: "%{name} has contributions or distributions, so it can't be deleted."
+        has_history: "Pod %{id} has contributions or distributions, so it can't be deleted."
 
   activerecord:
     attributes:

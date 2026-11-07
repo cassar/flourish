@@ -4,8 +4,6 @@ class Pod < ApplicationRecord
   has_many :distributions, dependent: :nullify
   has_many :contributions, dependent: :nullify
 
-  validates :name, presence: true
-
   def contributor_membership
     pod_memberships.contributor.first
   end

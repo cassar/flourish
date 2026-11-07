@@ -22,21 +22,21 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pods_path
   end
 
-  test 'index lists only my pods with their people count' do
+  test 'index shows a card for each of my pods with its people count' do
     get pods_path
 
     assert_response :success
-    assert_select 'li', count: 2
-    assert_select 'li', text: /General Pod\s+4 people/
-    assert_select 'li', text: /Member One Contributions\s+2 people/
-    assert_select 'li', text: /Member Two Contributions/, count: 0
+    assert_select 'article.card', count: 2
+    assert_select 'article.card', text: /Pod #{pods(:general).id}\s+4 people/
+    assert_select 'article.card', text: /Pod #{pods(:member_one_contributions).id}\s+2 people/
+    assert_select 'article.card', text: /Pod #{pods(:member_two_contributions).id}\b/, count: 0
   end
 
-  test 'index only offers edit and delete on pods I contribute to' do
+  test 'index only offers delete on pods I contribute to' do
     get pods_path
 
-    assert_select 'a[href=?]', edit_pod_path(pods(:member_one_contributions))
-    assert_select 'a[href=?]', edit_pod_path(pods(:general)), count: 0
+    assert_select 'form[action=?]', pod_path(pods(:member_one_contributions))
+    assert_select 'form[action=?]', pod_path(pods(:general)), count: 0
   end
 
   test 'index shows an empty state' do
@@ -47,65 +47,18 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'p', text: 'No pods yet.'
   end
 
-  test 'new' do
-    get new_pod_path
-
-    assert_response :success
-  end
-
-  test 'create makes me the contributor' do
+  test 'create makes a pod with me as the contributor' do
     assert_difference 'Pod.count', 1 do
-      post pods_path, params: { pod: { name: 'Climbing' } }
+      post pods_path
     end
 
     assert_redirected_to pods_path
-    assert_equal members(:one), Pod.find_by!(name: 'Climbing').contributor
-  end
-
-  test 'create with a blank name re-renders the form' do
-    assert_no_difference 'Pod.count' do
-      post pods_path, params: { pod: { name: '' } }
-    end
-
-    assert_response :unprocessable_content
-  end
-
-  test 'edit' do
-    get edit_pod_path(pods(:member_one_contributions))
-
-    assert_response :success
-  end
-
-  test 'update' do
-    patch pod_path(pods(:member_one_contributions)), params: { pod: { name: 'Everyone' } }
-
-    assert_redirected_to pods_path
-    assert_equal 'Everyone', pods(:member_one_contributions).reload.name
-  end
-
-  test 'update with a blank name re-renders the form' do
-    patch pod_path(pods(:member_one_contributions)), params: { pod: { name: '' } }
-
-    assert_response :unprocessable_content
-    assert_equal 'Member One Contributions', pods(:member_one_contributions).reload.name
-  end
-
-  test "can't edit pods I'm only a recipient of" do
-    patch pod_path(pods(:general)), params: { pod: { name: 'Mine now' } }
-
-    assert_response :not_found
-    assert_equal 'General Pod', pods(:general).reload.name
-  end
-
-  test "can't touch pods I'm not in" do
-    patch pod_path(pods(:member_two_contributions)), params: { pod: { name: 'Mine now' } }
-
-    assert_response :not_found
+    assert_equal members(:one), Pod.last.contributor
   end
 
   test 'destroy an empty pod' do
-    post pods_path, params: { pod: { name: 'Temporary' } }
-    pod = Pod.find_by!(name: 'Temporary')
+    post pods_path
+    pod = Pod.last
 
     assert_difference 'Pod.count', -1 do
       delete pod_path(pod)
@@ -114,12 +67,20 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to pods_path
   end
 
-  test "won't destroy a pod with contributions or distributions" do
+  test "can't delete pods I'm only a recipient of" do
+    assert_no_difference 'Pod.count' do
+      delete pod_path(pods(:general))
+    end
+
+    assert_response :not_found
+  end
+
+  test "won't delete a pod with contributions or distributions" do
     assert_no_difference 'Pod.count' do
       delete pod_path(pods(:member_one_contributions))
     end
 
     assert_redirected_to pods_path
-    assert_match "can't be deleted", flash[:alert]
+    assert_match "Pod #{pods(:member_one_contributions).id} has contributions", flash[:alert]
   end
 end
