@@ -1,0 +1,18 @@
+<div class="w-full max-w-sm">
+  <%= render 'devise/shared/header' %>
+
+  <div class="bg-base-200 rounded-3xl p-8">
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'space-y-5' }) do |f| %>
+      <%= render 'devise/shared/error_messages', resource: %>
+
+      <fieldset class="fieldset">
+        <%= f.label :email, 'Email', class: 'fieldset-legend text-xs uppercase tracking-widest text-base-content/50' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input w-full rounded-xl' %>
+      </fieldset>
+
+      <%= f.submit 'Send reset instructions', class: 'btn btn-primary rounded-2xl w-full' %>
+    <% end %>
+
+    <%= render 'devise/shared/links' %>
+  </div>
+</div>

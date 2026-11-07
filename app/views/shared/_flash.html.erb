@@ -1,0 +1,6 @@
+<% flash.each do |type, message| %>
+  <% alert_class = { 'notice' => 'alert-success', 'alert' => 'alert-warning', 'error' => 'alert-error' }.fetch(type.to_s, 'alert-info') %>
+  <div role="alert" class="alert <%= alert_class %> mb-6 w-full max-w-sm">
+    <span><%= message %></span>
+  </div>
+<% end %>
