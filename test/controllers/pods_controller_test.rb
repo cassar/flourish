@@ -32,6 +32,13 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'li', text: /Member Two Contributions/, count: 0
   end
 
+  test 'index only offers edit and delete on pods I contribute to' do
+    get pods_path
+
+    assert_select 'a[href=?]', edit_pod_path(pods(:member_one_contributions))
+    assert_select 'a[href=?]', edit_pod_path(pods(:general)), count: 0
+  end
+
   test 'index shows an empty state' do
     members(:one).pod_memberships.destroy_all
 
@@ -46,13 +53,13 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'create adds me to the pod' do
+  test 'create makes me the contributor' do
     assert_difference 'Pod.count', 1 do
       post pods_path, params: { pod: { name: 'Climbing' } }
     end
 
     assert_redirected_to pods_path
-    assert_includes Pod.find_by!(name: 'Climbing').members, members(:one)
+    assert_equal members(:one), Pod.find_by!(name: 'Climbing').contributor
   end
 
   test 'create with a blank name re-renders the form' do
@@ -64,22 +71,29 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'edit' do
-    get edit_pod_path(pods(:general))
+    get edit_pod_path(pods(:member_one_contributions))
 
     assert_response :success
   end
 
   test 'update' do
-    patch pod_path(pods(:general)), params: { pod: { name: 'Everyone' } }
+    patch pod_path(pods(:member_one_contributions)), params: { pod: { name: 'Everyone' } }
 
     assert_redirected_to pods_path
-    assert_equal 'Everyone', pods(:general).reload.name
+    assert_equal 'Everyone', pods(:member_one_contributions).reload.name
   end
 
   test 'update with a blank name re-renders the form' do
-    patch pod_path(pods(:general)), params: { pod: { name: '' } }
+    patch pod_path(pods(:member_one_contributions)), params: { pod: { name: '' } }
 
     assert_response :unprocessable_content
+    assert_equal 'Member One Contributions', pods(:member_one_contributions).reload.name
+  end
+
+  test "can't edit pods I'm only a recipient of" do
+    patch pod_path(pods(:general)), params: { pod: { name: 'Mine now' } }
+
+    assert_response :not_found
     assert_equal 'General Pod', pods(:general).reload.name
   end
 
@@ -102,7 +116,7 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
 
   test "won't destroy a pod with contributions or distributions" do
     assert_no_difference 'Pod.count' do
-      delete pod_path(pods(:general))
+      delete pod_path(pods(:member_one_contributions))
     end
 
     assert_redirected_to pods_path

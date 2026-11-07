@@ -8,6 +8,7 @@ class PodsController < ApplicationController
       .select('pods.*, COUNT(pod_memberships.id) AS people_count')
       .group('pods.id')
       .order(:name)
+    @contributor_pod_ids = current_member.contributor_pod_ids
   end
 
   def new
@@ -18,7 +19,7 @@ class PodsController < ApplicationController
 
   def create
     @pod = Pod.new(pod_params)
-    @pod.pod_memberships.build(member: current_member)
+    @pod.pod_memberships.build(member: current_member, role: :contributor)
 
     if @pod.save
       redirect_to pods_path, notice: t('controllers.pods.create.success')
@@ -51,7 +52,7 @@ class PodsController < ApplicationController
   end
 
   def set_pod
-    @pod = current_member.pods.find(params.expect(:id))
+    @pod = current_member.contributor_pods.find(params.expect(:id))
   end
 
   def pod_params

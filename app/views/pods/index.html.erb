@@ -16,10 +16,12 @@
             <p class="font-medium truncate"><%= pod.name %></p>
             <p class="text-sm text-base-content/60"><%= pluralize(pod.people_count, 'person', plural: 'people') %></p>
           </div>
-          <%= link_to 'Edit', edit_pod_path(pod), class: 'btn btn-ghost btn-sm rounded-xl' %>
-          <%= button_to 'Delete', pod_path(pod), method: :delete,
-              class: 'btn btn-ghost btn-sm rounded-xl text-error',
-              form: { data: { turbo_confirm: "Delete #{pod.name}?" } } %>
+          <% if pod.id.in?(@contributor_pod_ids) %>
+            <%= link_to 'Edit', edit_pod_path(pod), class: 'btn btn-ghost btn-sm rounded-xl' %>
+            <%= button_to 'Delete', pod_path(pod), method: :delete,
+                class: 'btn btn-ghost btn-sm rounded-xl text-error',
+                form: { data: { turbo_confirm: "Delete #{pod.name}?" } } %>
+          <% end %>
         </li>
       <% end %>
     </ul>
