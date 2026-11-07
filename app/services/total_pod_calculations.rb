@@ -13,14 +13,6 @@ class TotalPodCalculations
         .sum(:amount_in_base_units)
     end
 
-    def recontributions_by_currency(distribution)
-      distribution.amounts
-        .joins(:dividends)
-        .merge(Dividend.recontributed)
-        .group(:currency)
-        .sum(:amount_in_base_units)
-    end
-
     def total_paid_out_by_currency(pod)
       pay_outs_for(pod)
         .group(:currency)
@@ -31,19 +23,6 @@ class TotalPodCalculations
       pay_outs_for(pod)
         .group(:currency)
         .sum(:fees_in_base_units)
-    end
-
-    def total_recontributions_by_currency(pod)
-      dividends_for(pod)
-        .merge(Dividend.recontributed)
-        .group(:currency)
-        .sum(:amount_in_base_units)
-    end
-
-    def total_dividends_by_currency(pod)
-      dividends_for(pod)
-        .group(:currency)
-        .sum(:amount_in_base_units)
     end
 
     private

@@ -26,32 +26,4 @@ class TotalPodTest < ActiveSupport::TestCase
 
     assert_instance_of Integer, @total_pod.balance_in_aud_base_units
   end
-
-  test 'balance_formatted' do
-    @total_pod.stubs(:balance_in_aud_base_units).returns(10_000)
-
-    assert_equal '$100.00 AUD', @total_pod.balance_formatted('AUD')
-  end
-
-  test 'total_contributed_and_recontributed_formatted intergration' do
-    stub_eu_central_bank_request
-
-    assert_instance_of String, @total_pod.total_contributed_and_recontributed_formatted('AUD')
-  end
-
-  test 'total_paid_out_formatted' do
-    assert_instance_of String, @total_pod.total_paid_out_formatted('AUD')
-  end
-
-  test 'total_dividends_formatted' do
-    stub_eu_central_bank_request
-
-    assert_instance_of String, @total_pod.total_dividends_formatted('AUD')
-  end
-
-  test 'balance formatted integration' do
-    stub_eu_central_bank_request
-
-    assert_instance_of String, @total_pod.balance_formatted('AUD')
-  end
 end

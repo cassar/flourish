@@ -9,22 +9,6 @@ class TotalPod
     Integer(total_assets_in_aud_base_units - total_liabilites_in_aud_base_units)
   end
 
-  def balance_formatted(currency)
-    CurrencyConverter.format_from_aud(balance_in_aud_base_units, currency)
-  end
-
-  def total_contributed_and_recontributed_formatted(currency)
-    TotalContributedAndRecontributedCalculator.formatted(pod, currency)
-  end
-
-  def total_paid_out_formatted(currency)
-    TotalPayOutsCalculator.formatted(pod, currency)
-  end
-
-  def total_dividends_formatted(currency)
-    TotalDividendsCalculator.formatted(pod, currency)
-  end
-
   private
 
   def total_assets_in_aud_base_units
