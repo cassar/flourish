@@ -19,7 +19,7 @@
   </head>
 
   <body class="bg-base-100 text-base-content">
-    <main class="min-h-screen flex flex-col items-center justify-center px-4 py-10">
+    <main class="min-h-screen flex flex-col items-center <%= content_for?(:top_aligned) ? 'justify-start' : 'justify-center' %> px-4 py-10">
       <%= render 'shared/flash' %>
       <%= yield %>
     </main>

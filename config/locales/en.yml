@@ -1,45 +1,13 @@
 en:
   controllers:
-    admin:
-      not_authorised: "You don't have access."
-      webhook_configurations:
-        update:
-          success: "Webhook URL updated."
-      pay_outs:
-        create:
-          success: "Pay out created successfully"
-      contributions:
-        create:
-          success: "New contribution created and notification sent"
-    paypalme_handles:
+    pods:
+      create:
+        success: "Pod created."
       update:
-        success: "PayPal.Me handle updated successfully."
-    currencies:
-      update:
-        success: "Currency updated successfully."
-    notification_preferences:
-      update:
-        success: "Preferences updated successfully."
-    dividends:
-      not_authorised: "That's not your dividend. 🤨"
-      already_updated: "Dividend already updated."
-      pay_out:
-        success: "Dividend marked for pay out."
-      recontribute: 
-        success: "Dividend recontributed."
-    users:
-      registrations:
-        alert: "hCaptcha was incorrect, please try again."
-        
-  mailers:
-    notification_mailer:
-      dividend_received_subject: "New Dividend Distributed"
-      dividend_paid_out_subject: "Your Dividend has been Paid Out"
-      contribution_received_subject: "Your Contribution has been Received"
-      dividend_automatically_recontributed_subject: "Your Dividend has been Automatically Recontributed"
-      distribution_settled: "Distribution %{distribution_name} has Settled"
-    admin_notification_mailer:
-      pay_out_requested_subject: "Pay Out Requested"
+        success: "Pod updated."
+      destroy:
+        success: "Pod deleted."
+        has_history: "%{name} has contributions or distributions, so it can't be deleted."
 
   activerecord:
     attributes:

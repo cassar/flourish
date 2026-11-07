@@ -1,0 +1,21 @@
+<%= form_with model: pod, class: 'bg-base-200 rounded-3xl p-8 space-y-5' do |f| %>
+  <% if pod.errors.any? %>
+    <div role="alert" class="alert alert-error">
+      <ul class="text-sm space-y-1">
+        <% pod.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset class="fieldset">
+    <%= f.label :name, 'Name', class: 'fieldset-legend text-xs uppercase tracking-widest text-base-content/50' %>
+    <%= f.text_field :name, autofocus: true, class: 'input w-full rounded-xl' %>
+  </fieldset>
+
+  <div class="flex gap-3">
+    <%= link_to 'Cancel', pods_path, class: 'btn btn-ghost rounded-2xl flex-1' %>
+    <%= f.submit class: 'btn btn-primary rounded-2xl flex-1' %>
+  </div>
+<% end %>
