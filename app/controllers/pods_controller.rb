@@ -10,6 +10,11 @@ class PodsController < ApplicationController
     @contributor_pod_ids = current_member.contributor_pod_ids
   end
 
+  def show
+    @pod = current_member.pods.find(params.expect(:id))
+    @memberships = @pod.pod_memberships.includes(:member).order(:role, :id)
+  end
+
   def create
     pod = Pod.new
     pod.pod_memberships.build(member: current_member, role: :contributor)

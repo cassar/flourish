@@ -1,6 +1,6 @@
 # Idempotent: safe to run more than once (bin/rails db:seed).
 
-def seed_user(email)
+def seed_user(email, name)
   user = User.find_or_initialize_by(email:)
   if user.new_record?
     user.password = 'password'
@@ -9,15 +9,17 @@ def seed_user(email)
     user.save!
     user.update!(last_sign_in_at: Time.current)
   end
-  user.member || user.create_member!.tap(&:create_notification_preferences!)
+  member = user.member || user.create_member!.tap(&:create_notification_preferences!)
+  member.update!(name:) if member.name.blank?
+  member
 end
 
 # Test account for signing in locally: test@flourish.test / password
 puts 'Making the test account'
-test_member = seed_user('test@flourish.test')
+test_member = seed_user('test@flourish.test', 'Test')
 
 puts 'Making some people'
-people = %w[ava ben chloe dan eve finn grace hugo].map { |name| seed_user("#{name}@flourish.test") }
+people = %w[Ava Ben Chloe Dan Eve Finn Grace Hugo].map { |name| seed_user("#{name.downcase}@flourish.test", name) }
 
 puts 'Making some pods'
 if test_member.pods.none?

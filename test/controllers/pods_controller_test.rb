@@ -41,6 +41,33 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'form[action=?]', pod_path(pods(:general)), count: 0
   end
 
+  test 'index cards link to each pod' do
+    get pods_path
+
+    assert_select 'article.card a[href=?]', pod_path(pods(:general))
+  end
+
+  test 'show lists the people in the pod, contributor first' do
+    members(:admin).update!(name: 'Luke')
+
+    get pod_path(pods(:general))
+
+    assert_response :success
+    assert_select 'h1', "Pod #{pods(:general).id}"
+    assert_select 'section p', '4 people'
+    people = css_select('li').map { |li| li.text.squish }
+
+    assert_equal 'Luke Contributor', people.first
+    assert_includes people, "Member #{members(:one).id} (you)"
+    assert_includes people, "Member #{members(:two).id}"
+  end
+
+  test "can't see pods I'm not in" do
+    get pod_path(pods(:member_two_contributions))
+
+    assert_response :not_found
+  end
+
   test 'index shows an empty state' do
     members(:one).pod_memberships.destroy_all
 
