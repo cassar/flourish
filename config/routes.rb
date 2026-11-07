@@ -1,21 +1,6 @@
 Rails.application.routes.draw do
-  get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
   get "up" => "rails/health#show", as: :rails_health_check
-  devise_for :users, controllers: {
-    registrations: 'users/registrations',
-    confirmations: 'users/confirmations'
-  }
+  devise_for :users
 
-  resource :membership, only: :show do
-    get :dividends
-    get :contributions
-    get :notifications
-  end
-
-  namespace :admin do
-    resources :members, only: %i[index show]
-  end
-
-  root 'static_pages#home'
+  root to: ->(_env) { [200, { "content-type" => "text/plain" }, ["Flourish is being redesigned."]] }
 end

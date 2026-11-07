@@ -10,8 +10,7 @@ class NextDistribution
       pod:,
       number:,
       members:,
-      amounts:,
-      notification_enabled_member_ids:
+      amounts:
     ).call
   end
 
@@ -57,15 +56,5 @@ class NextDistribution
 
   def total_pod
     TotalPod.new(pod)
-  end
-
-  def notification_enabled_member_ids
-    members
-      .joins(:notification_preferences)
-      .where(notification_preferences: {
-        id: NotificationPreference.dividend_received,
-        enabled: true
-      })
-      .pluck(:id)
   end
 end

@@ -1,5 +1,5 @@
 namespace :services do
-  desc 'creates a distribution and dividends for every pod, and email notifies subscribed members'
+  desc 'creates a distribution and dividends for every pod'
   task distribute_dividends: :environment do
     Pod.find_each do |pod|
       NextDistribution.new(pod:).distribute!
@@ -8,31 +8,12 @@ namespace :services do
     end
   end
 
-  desc 'recontributes unclaimed dividends and email notifies subscribed members'
+  desc 'recontributes unclaimed dividends'
   task recontribute_dividends: :environment do
-    mailgun_send_limit = 10
-    issued_dividends = Dividend.issued.take(mailgun_send_limit)
-    notify_enabled_dividends = Dividend.where(id: issued_dividends)
-      .automatically_recontributed_notify_enabled
+    batch_size = 10
+    issued_dividends = Dividend.issued.take(batch_size)
 
-    RecontributionService.new(issued_dividends:, notify_enabled_dividends:).call
-  end
-
-  desc 'email notifies subscribed members when a pod distribution has settled'
-  task distribution_settled: :environment do
-    Pod.find_each do |pod|
-      distribution = pod.distributions.order(:number).last
-      next unless distribution
-
-      users = User.active.distribution_settled_notify_enabled
-        .where(id: pod.members.select(:user_id))
-
-      DistributionSettledNotificationService.new(distribution:, users:).call
-    rescue StandardError => e
-      ActivityLog.create(
-        message: "Distribution settled notification failed for pod ##{pod.id} (#{pod.name}): #{e.message}"
-      )
-    end
+    RecontributionService.new(issued_dividends:).call
   end
 
   desc 'updates the foreign exchange rates'

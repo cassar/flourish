@@ -1,22 +1,19 @@
 class DistributionService
   attr_reader :pod, :number, :members, :amounts
-  attr_accessor :distribution, :dividends, :notification_enabled_member_ids
+  attr_accessor :distribution, :dividends
 
-  def initialize(pod:, number:, members:, amounts:, notification_enabled_member_ids:)
+  def initialize(pod:, number:, members:, amounts:)
     @pod = pod
     @number = number
     @members = members
     @amounts = amounts
-    @notification_enabled_member_ids = notification_enabled_member_ids
   end
 
   def call
     create_distribution
     save_amounts
     create_dividends
-    notify_members
-    post_to_bluesky
-    post_to_mastodon
+    distribution
   end
 
   private
@@ -34,25 +31,5 @@ class DistributionService
 
   def create_dividends
     @dividends = MemberDividendService.new(members:, amounts:).call
-  end
-
-  def notify_members
-    notification_enabled_dividends.map do |dividend|
-      NotificationMailer.with(dividend:).dividend_received.deliver_now
-    end
-  end
-
-  def notification_enabled_dividends
-    dividends.select do |dividend|
-      dividend.member_id.in? notification_enabled_member_ids
-    end
-  end
-
-  def post_to_bluesky
-    BlueskyNewDividendDistribution.new(distribution:).call
-  end
-
-  def post_to_mastodon
-    MastodonNewDividendDistribution.new(distribution:).call
   end
 end

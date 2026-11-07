@@ -7,10 +7,8 @@ class NextDistributionTest < ActiveSupport::TestCase
 
   test 'distribute!' do
     stub_eu_central_bank_request
-    BlueskyNewDividendDistribution.any_instance.stubs(:call).returns(true)
-    MastodonNewDividendDistribution.any_instance.stubs(:call).returns(true)
 
-    assert_instance_of TrueClass, @next_distribution.distribute!
+    assert_instance_of Distribution, @next_distribution.distribute!
   end
 
   test 'members' do
