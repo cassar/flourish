@@ -29,6 +29,10 @@ class Member < ApplicationRecord
     joins(:user).merge(User.inactive)
   }
 
+  def display_name
+    name.presence || "Member #{id}"
+  end
+
   def pay_outs_disabled?
     paypalme_handle.blank?
   end

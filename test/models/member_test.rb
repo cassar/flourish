@@ -118,4 +118,16 @@ class MemberTest < ActiveSupport::TestCase
 
     assert_match 'Notification name has already been taken', error.message
   end
+
+  test 'display_name uses the name when set' do
+    members(:one).name = 'Ava'
+
+    assert_equal 'Ava', members(:one).display_name
+  end
+
+  test 'display_name falls back to the member number' do
+    members(:one).name = ''
+
+    assert_equal "Member #{members(:one).id}", members(:one).display_name
+  end
 end
