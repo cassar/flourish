@@ -1,5 +1,21 @@
 <%= render 'shared/app_header' %>
 
+<%
+  # Place people evenly on a circle around the pod (percentages of the square
+  # stage), contributor first at the top. Larger pods alternate between two
+  # rings so neighbouring boxes don't collide.
+  count = @memberships.size
+  large = count > 10
+  positions = @memberships.each_with_index.map do |_, i|
+    angle = (-90 + (360.0 * i / count)) * Math::PI / 180
+    radius = if i.zero? then 45
+             elsif large && i.odd? then 29
+             else 41
+             end
+    [(50 + (radius * Math.cos(angle))).round(2), (50 + (radius * Math.sin(angle))).round(2)]
+  end
+%>
+
 <div class="w-full max-w-md sm:max-w-3xl lg:max-w-5xl">
   <%= link_to pods_path, class: 'btn btn-ghost btn-sm rounded-xl -ml-3 mb-4' do %>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
@@ -8,30 +24,32 @@
     Pods
   <% end %>
 
-  <div class="grid gap-6 lg:grid-cols-[20rem_1fr] lg:items-start">
-    <section class="bg-base-200 rounded-3xl p-8 flex flex-col items-center text-center">
+  <div class="flex flex-wrap items-center justify-center gap-2 sm:block sm:relative sm:aspect-square sm:mx-auto <%= large ? 'sm:max-w-3xl' : 'sm:max-w-2xl' %>">
+    <svg viewBox="0 0 100 100" class="hidden sm:block absolute inset-0 size-full" aria-hidden="true">
+      <% positions.each do |x, y| %>
+        <line x1="50" y1="50" x2="<%= x %>" y2="<%= y %>" class="stroke-base-300" stroke-width="0.4" />
+      <% end %>
+    </svg>
+
+    <section class="w-full mb-4 sm:mb-0 sm:w-52 sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 bg-base-200 rounded-3xl p-6 flex flex-col items-center text-center shadow-sm">
       <h1 class="text-2xl font-semibold">Pod <%= @pod.id %></h1>
-      <%= render 'shared/plant', class: 'size-24 my-4' %>
-      <p class="text-sm text-base-content/60"><%= pluralize(@memberships.size, 'person', plural: 'people') %></p>
+      <%= render 'shared/plant', class: 'size-20 my-3' %>
+      <p class="text-sm text-base-content/60"><%= pluralize(count, 'person', plural: 'people') %></p>
     </section>
 
-    <section>
-      <h2 class="text-xs uppercase tracking-widest text-base-content/50 font-medium mb-3 px-2">People</h2>
-      <ul class="bg-base-200 rounded-3xl divide-y divide-base-300">
-        <% @memberships.each do |membership| %>
-          <li class="flex items-center gap-3 px-6 py-3">
-            <span class="flex-1 truncate">
-              <%= membership.member.display_name %>
-              <% if membership.member == current_user.member %>
-                <span class="text-base-content/50">(you)</span>
-              <% end %>
-            </span>
-            <% if membership.contributor? %>
-              <span class="badge badge-primary badge-sm">Contributor</span>
-            <% end %>
-          </li>
+    <% @memberships.zip(positions).each do |membership, (x, y)| %>
+      <div data-person style="--x: <%= x %>%; --y: <%= y %>%"
+           class="sm:absolute sm:left-(--x) sm:top-(--y) sm:-translate-x-1/2 sm:-translate-y-1/2 rounded-2xl text-center whitespace-nowrap shadow-sm <%= large ? 'px-3 py-1.5 lg:px-4 lg:py-2' : 'px-4 py-2' %> <%= membership.contributor? ? 'bg-primary text-primary-content' : 'bg-base-200' %>">
+        <p class="font-medium <%= large ? 'text-xs lg:text-sm' : 'text-sm' %>">
+          <%= membership.member.display_name %>
+          <% if membership.member == current_user.member %>
+            <span class="opacity-60">(you)</span>
+          <% end %>
+        </p>
+        <% if membership.contributor? %>
+          <p class="text-[0.65rem] uppercase tracking-widest opacity-75">Contributor</p>
         <% end %>
-      </ul>
-    </section>
+      </div>
+    <% end %>
   </div>
 </div>
