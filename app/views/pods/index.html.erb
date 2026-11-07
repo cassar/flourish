@@ -12,11 +12,12 @@
     <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3 lg:gap-4">
       <% @pods.each do |pod| %>
         <article class="card bg-base-200 rounded-3xl">
-          <div class="card-body p-5 gap-1">
+          <div class="card-body p-5 gap-2 items-center text-center">
             <h2 class="card-title text-lg">Pod <%= pod.id %></h2>
+            <%= render 'shared/plant', class: 'size-16 my-1' %>
             <p class="text-sm text-base-content/60"><%= pluralize(pod.people_count, 'person', plural: 'people') %></p>
             <% if pod.id.in?(@contributor_pod_ids) %>
-              <div class="card-actions justify-end mt-2">
+              <div class="card-actions justify-center mt-1">
                 <%= button_to 'Delete', pod_path(pod), method: :delete,
                     class: 'btn btn-ghost btn-xs rounded-lg text-error',
                     form: { data: { turbo_confirm: "Delete Pod #{pod.id}?" } } %>
