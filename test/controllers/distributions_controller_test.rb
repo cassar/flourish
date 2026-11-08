@@ -34,6 +34,18 @@ class DistributionsControllerTest < ActionDispatch::IntegrationTest
     assert_includes recipients, "Member #{members(:one).id} $1.00 AUD"
   end
 
+  test 'shows a dividend whose member has since been removed' do
+    members(:two).destroy # nullifies dividends(:pending_pay_out_two).member_id, as in production
+
+    get pod_distribution_path(pods(:general), distributions(:one))
+
+    assert_response :success
+
+    recipients = css_select('[data-recipient]').map { |el| el.text.squish }
+
+    assert_includes recipients, 'Former member Pending $5.00 HKD'
+  end
+
   test 'shows an empty state when no one was paid' do
     get pod_distribution_path(pods(:general), distributions(:two))
 
