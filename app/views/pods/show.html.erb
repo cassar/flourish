@@ -22,13 +22,7 @@
     Pods
   <% end %>
 
-  <section class="mb-6 sm:mb-0 sm:absolute sm:left-0 sm:top-12 flex items-center gap-3">
-    <%= render 'shared/plant', class: 'size-12' %>
-    <div>
-      <h1 class="text-2xl font-semibold">Pod <%= @pod.id %></h1>
-      <p class="text-sm text-base-content/60"><%= pluralize(count, 'person', plural: 'people') %></p>
-    </div>
-  </section>
+  <h1 class="text-2xl font-semibold mb-6 sm:mb-0 sm:absolute sm:left-0 sm:top-12">Pod <%= @pod.id %></h1>
 
   <div class="flex flex-wrap items-center justify-center gap-2 sm:block sm:relative sm:aspect-square sm:mx-auto <%= large ? 'sm:max-w-3xl' : 'sm:max-w-2xl' %>">
     <svg viewBox="0 0 100 100" class="hidden sm:block absolute inset-0 size-full" aria-hidden="true">
@@ -37,15 +31,21 @@
       <% end %>
     </svg>
 
-    <% ([[contributor, [50, 50]]] + others.zip(positions)).each do |membership, (x, y)| %>
+    <section class="w-full mb-4 sm:mb-0 sm:w-52 sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 bg-base-200 rounded-3xl p-6 flex flex-col items-center text-center shadow-sm">
+      <div data-person class="rounded-2xl px-4 py-2 whitespace-nowrap shadow-sm bg-primary text-primary-content">
+        <p class="font-medium text-sm"><%= contributor.member.display_name %></p>
+        <p class="text-[0.65rem] uppercase tracking-widest opacity-75">Contributor</p>
+      </div>
+      <%= render 'shared/plant', class: 'size-20 my-3' %>
+      <p class="text-sm text-base-content/60"><%= pluralize(count, 'person', plural: 'people') %></p>
+    </section>
+
+    <% others.zip(positions).each do |membership, (x, y)| %>
       <div data-person style="--x: <%= x %>%; --y: <%= y %>%"
-           class="sm:absolute sm:left-(--x) sm:top-(--y) sm:-translate-x-1/2 sm:-translate-y-1/2 rounded-2xl text-center whitespace-nowrap shadow-sm <%= large ? 'px-3 py-1.5 lg:px-4 lg:py-2' : 'px-4 py-2' %> <%= membership.contributor? ? 'bg-primary text-primary-content' : 'bg-base-200' %>">
+           class="sm:absolute sm:left-(--x) sm:top-(--y) sm:-translate-x-1/2 sm:-translate-y-1/2 rounded-2xl text-center whitespace-nowrap shadow-sm bg-base-200 <%= large ? 'px-3 py-1.5 lg:px-4 lg:py-2' : 'px-4 py-2' %>">
         <p class="font-medium <%= large ? 'text-xs lg:text-sm' : 'text-sm' %>">
           <%= membership.member.display_name %>
         </p>
-        <% if membership.contributor? %>
-          <p class="text-[0.65rem] uppercase tracking-widest opacity-75">Contributor</p>
-        <% end %>
       </div>
     <% end %>
   </div>
