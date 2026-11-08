@@ -57,12 +57,13 @@
     <% else %>
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
         <% @distributions.each do |distribution| %>
-          <div data-distribution class="bg-base-200 rounded-2xl px-4 py-5 text-center">
+          <%= link_to pod_distribution_path(@pod, distribution), data: { distribution: true },
+              class: 'block bg-base-200 rounded-2xl px-4 py-5 text-center transition hover:bg-base-300/60' do %>
             <p class="text-lg font-semibold tabular-nums">
               <%= distribution.amount.format(with_currency: false) %>
               <span class="text-xs font-normal text-base-content/50">AUD</span>
             </p>
-          </div>
+          <% end %>
         <% end %>
       </div>
     <% end %>

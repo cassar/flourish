@@ -35,6 +35,15 @@ test_member.contributor_pods.order(:id).each_with_index do |pod, index|
   next if pod.distributions.any?
 
   [12_000, 4_550, 25_000, 800].first(index + 1).each.with_index(1) do |cents, number|
-    pod.distributions.create!(number:, amount_in_base_units: cents)
+    distribution = pod.distributions.create!(number:, amount_in_base_units: cents)
+
+    # Paid to the pod's first two recipients, an equal share each.
+    recipients = pod.recipients.order(:id).first(2)
+    share = distribution.amounts.create!(currency: 'AUD', amount_in_base_units: cents / recipients.size)
+    recipients.each do |member|
+      dividend = share.dividends.create!(member:, status: :pay_out_complete)
+      dividend.create_pay_out!(amount_in_base_units: share.amount_in_base_units,
+                               transaction_identifier: "seed-#{distribution.id}-#{member.id}")
+    end
   end
 end
