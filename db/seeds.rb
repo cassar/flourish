@@ -29,3 +29,12 @@ if test_member.pods.none?
     recipients.each { |member| pod.pod_memberships.create!(member:) }
   end
 end
+
+puts 'Making some distributions'
+test_member.contributor_pods.order(:id).each_with_index do |pod, index|
+  next if pod.distributions.any?
+
+  [12_000, 4_550, 25_000, 800].first(index + 1).each.with_index(1) do |cents, number|
+    pod.distributions.create!(number:, amount_in_base_units: cents)
+  end
+end

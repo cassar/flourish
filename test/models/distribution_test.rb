@@ -78,4 +78,8 @@ class DistributionTest < ActiveSupport::TestCase
 
     assert_equal 'Distribution #999 created', ActivityLog.last.message
   end
+
+  test 'amount is the paid out total in AUD' do
+    assert_equal Money.new(123_456, 'AUD'), distributions(:one).amount
+  end
 end

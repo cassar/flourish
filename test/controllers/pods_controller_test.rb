@@ -62,6 +62,20 @@ class PodsControllerTest < ActionDispatch::IntegrationTest
     assert_includes people, "Member #{members(:two).id}"
   end
 
+  test 'show lists distribution totals, newest first' do
+    get pod_path(pods(:general))
+
+    totals = css_select('[data-distribution]').map { |tile| tile.text.squish }
+
+    assert_equal ['$0.00 AUD', '$1,234.56 AUD'], totals
+  end
+
+  test 'show has an empty state for distributions' do
+    get pod_path(pods(:member_one_contributions))
+
+    assert_select 'p', text: 'No distributions yet.'
+  end
+
   test "can't see pods I'm not in" do
     get pod_path(pods(:member_two_contributions))
 

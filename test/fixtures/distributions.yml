@@ -3,6 +3,7 @@
 one:
   number: 1
   pod: general
+  amount_in_base_units: 123456
 
 two:
   number: 2

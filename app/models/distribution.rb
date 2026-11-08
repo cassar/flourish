@@ -10,6 +10,11 @@ class Distribution < ApplicationRecord
 
   after_create_commit :log_activity
 
+  # Total paid out, in AUD.
+  def amount
+    Money.new(amount_in_base_units, 'AUD')
+  end
+
   def default_amount
     amounts.find_by currency: Currencies::DEFAULT
   end

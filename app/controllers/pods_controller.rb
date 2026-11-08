@@ -13,6 +13,7 @@ class PodsController < ApplicationController
   def show
     @pod = current_member.pods.find(params.expect(:id))
     @memberships = @pod.pod_memberships.includes(:member).order(:role, :id)
+    @distributions = @pod.distributions.order(number: :desc)
   end
 
   def create
