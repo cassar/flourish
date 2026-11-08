@@ -12,8 +12,6 @@ class Dividend < ApplicationRecord
 
   after_update_commit :log_status_change, if: :saved_change_to_status?
 
-  scope :owed, -> { pending_payout }
-
   private
 
   def log_status_change

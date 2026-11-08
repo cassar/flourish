@@ -23,11 +23,6 @@ class DividendTest < ActiveSupport::TestCase
     end
   end
 
-  test 'owed scope' do
-    assert_includes Dividend.owed, dividends(:pending_payout)
-    assert_not_includes Dividend.owed, dividends(:paid_out)
-  end
-
   test 'logs activity when status changes to pending_payout' do
     dividend = dividends(:paid_out)
 
