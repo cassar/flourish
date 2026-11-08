@@ -29,13 +29,13 @@ class DistributionsControllerTest < ActionDispatch::IntegrationTest
 
     recipients = css_select('[data-recipient]').map { |el| el.text.squish }
 
-    assert_equal 3, recipients.size
+    assert_equal 4, recipients.size
     assert_includes recipients, "Member #{members(:two).id} Pending $5.00 HKD"
     assert_includes recipients, "Member #{members(:one).id} $1.00 AUD"
   end
 
   test 'shows a dividend whose member has since been removed' do
-    members(:two).destroy # nullifies dividends(:pending_pay_out_two).member_id, as in production
+    members(:two).destroy # nullifies dividends(:pending_payout_two).member_id, as in production
 
     get pod_distribution_path(pods(:general), distributions(:one))
 

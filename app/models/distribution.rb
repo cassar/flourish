@@ -23,10 +23,6 @@ class Distribution < ApplicationRecord
     created_at.to_datetime.strftime('%a, %d %b %Y')
   end
 
-  def settled?
-    dividends.issued.none?
-  end
-
   def name
     "##{number || 0}"
   end

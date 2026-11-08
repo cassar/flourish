@@ -27,7 +27,7 @@
           <div data-recipient class="bg-base-200 rounded-2xl px-4 py-2 text-center shadow-sm">
             <p class="text-sm font-medium flex items-center justify-center gap-2">
               <%= dividend.member&.display_name || 'Former member' %>
-              <% if dividend.pending_pay_out? %>
+              <% if dividend.pending_payout? %>
                 <span class="badge badge-warning badge-sm">Pending</span>
               <% end %>
             </p>

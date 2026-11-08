@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_11_08_000003) do
+ActiveRecord::Schema[8.2].define(version: 2026_11_08_000004) do
   create_table "activity_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "message", null: false
@@ -57,7 +57,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_11_08_000003) do
     t.bigint "amount_id"
     t.datetime "created_at", null: false
     t.bigint "member_id"
-    t.integer "status", default: 0
+    t.integer "status", default: 1
     t.datetime "updated_at", null: false
     t.index ["amount_id"], name: "index_dividends_on_amount_id"
     t.index ["member_id"], name: "index_dividends_on_member_id"

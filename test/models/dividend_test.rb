@@ -14,9 +14,9 @@ class DividendTest < ActiveSupport::TestCase
   end
 
   test 'has one pay out association' do
-    assert_equal pay_outs(:pay_out_complete), dividends(:pay_out_complete).pay_out
+    assert_equal pay_outs(:pay_out_complete), dividends(:paid_out).pay_out
 
-    dividends(:pay_out_complete).destroy!
+    dividends(:paid_out).destroy!
 
     assert_raises ActiveRecord::RecordNotFound do
       pay_outs(:pay_out_complete).reload
@@ -24,66 +24,29 @@ class DividendTest < ActiveSupport::TestCase
   end
 
   test 'owed scope' do
-    assert_includes Dividend.owed, Dividend.pending_pay_out.first
-
-    assert_not_includes Dividend.owed, Dividend.issued.first
-    assert_not_includes Dividend.owed, Dividend.pay_out_complete.first
-    assert_not_includes Dividend.owed, Dividend.manually_recontributed.first
-    assert_not_includes Dividend.owed, Dividend.auto_recontributed.first
+    assert_includes Dividend.owed, dividends(:pending_payout)
+    assert_not_includes Dividend.owed, dividends(:paid_out)
   end
 
-  test 'recontributed scope' do
-    assert_includes Dividend.recontributed, Dividend.issued.first
-    assert_includes Dividend.recontributed, Dividend.manually_recontributed.first
-    assert_includes Dividend.recontributed, Dividend.auto_recontributed.first
-
-    assert_not_includes Dividend.recontributed, Dividend.pending_pay_out.first
-    assert_not_includes Dividend.recontributed, Dividend.pay_out_complete.first
-  end
-
-  test 'logs activity when status changes to pending_pay_out' do
-    dividend = dividends(:one)
+  test 'logs activity when status changes to pending_payout' do
+    dividend = dividends(:paid_out)
 
     assert_difference 'ActivityLog.count' do
-      dividend.update!(status: :pending_pay_out)
+      dividend.update!(status: :pending_payout)
     end
 
     assert_match(/Payout requested by/, ActivityLog.last.message)
   end
 
-  test 'logs activity when status changes to manually_recontributed' do
-    dividend = dividends(:pending_pay_out)
-
-    assert_difference 'ActivityLog.count' do
-      dividend.update!(status: :manually_recontributed)
-    end
-
-    assert_match(/Dividend manually recontributed by/, ActivityLog.last.message)
-  end
-
-  test 'logs activity when status changes to auto_recontributed' do
-    dividend = dividends(:pending_pay_out_two)
-
-    assert_difference 'ActivityLog.count' do
-      dividend.update!(status: :auto_recontributed)
-    end
-
-    assert_match(/Dividend automatically recontributed for/, ActivityLog.last.message)
-  end
-
-  test 'does not log activity when status changes to pay_out_complete' do
-    dividend = dividends(:pending_pay_out)
+  test 'does not log activity when status changes to paid_out' do
+    dividend = dividends(:pending_payout)
 
     assert_no_difference 'ActivityLog.count' do
-      dividend.update!(status: :pay_out_complete)
+      dividend.update!(status: :paid_out)
     end
   end
 
-  test 'does not log activity when status changes to issued' do
-    dividend = dividends(:pending_pay_out)
-
-    assert_no_difference 'ActivityLog.count' do
-      dividend.update!(status: :issued)
-    end
+  test 'defaults to pending payout' do
+    assert_predicate Dividend.new, :pending_payout?
   end
 end

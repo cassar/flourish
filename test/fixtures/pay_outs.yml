@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 pay_out_complete: 
-  dividend: pay_out_complete
+  dividend: paid_out
   amount_in_base_units: 100
   transaction_identifier: 28948ethq

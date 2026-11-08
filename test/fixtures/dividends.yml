@@ -2,36 +2,21 @@
 
 one:
   amount: one
-  status: issued
+  status: pending_payout
   member: one
   created_at: 8/11/2023
 
-issued:
+pending_payout:
+  amount: one
+  status: pending_payout
+  member: one
+
+paid_out:
+  amount: one
+  status: paid_out
+  member: one
+
+pending_payout_two:
   amount: two
-  status: issued
-  member: two
-
-pending_pay_out:
-  amount: one
-  status: pending_pay_out
-  member: one
-
-pay_out_complete:
-  amount: one
-  status: pay_out_complete
-  member: one
-
-manually_recontributed:
-  amount: one
-  status: manually_recontributed
-  member: one
-
-auto_recontributed:
-  amount: one
-  status: auto_recontributed
-  member: one
-
-pending_pay_out_two:
-  amount: two
-  status: pending_pay_out
+  status: pending_payout
   member: two

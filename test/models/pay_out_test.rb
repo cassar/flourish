@@ -5,7 +5,7 @@ class PayOutTest < ActiveSupport::TestCase
   include CurrencyValidatorTest
 
   test 'belongs to dividend association' do
-    assert_equal dividends(:pay_out_complete), pay_outs(:pay_out_complete).dividend
+    assert_equal dividends(:paid_out), pay_outs(:pay_out_complete).dividend
   end
 
   test 'amount in base units non positive integers' do
@@ -66,7 +66,7 @@ class PayOutTest < ActiveSupport::TestCase
 
   test 'logs activity after creation' do
     assert_difference 'ActivityLog.count' do
-      dividends(:issued).create_pay_out!(
+      dividends(:one).create_pay_out!(
         currency: 'AUD',
         amount_in_base_units: 5000,
         fees_in_base_units: 0,

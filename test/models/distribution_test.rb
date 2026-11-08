@@ -53,12 +53,6 @@ class DistributionTest < ActiveSupport::TestCase
     assert_match(/has already been taken/, error.message)
   end
 
-  test 'settled?' do
-    assert_equal distributions(:one), dividends(:issued).distribution
-
-    assert_not distributions(:one).settled?
-  end
-
   test 'name persisted' do
     assert_equal '#1', distributions(:one).name
   end

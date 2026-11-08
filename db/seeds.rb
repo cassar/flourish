@@ -41,7 +41,7 @@ test_member.contributor_pods.order(:id).each_with_index do |pod, index|
     recipients = pod.recipients.order(:id).first(2)
     share = distribution.amounts.create!(currency: 'AUD', amount_in_base_units: cents / recipients.size)
     recipients.each do |member|
-      dividend = share.dividends.create!(member:, status: :pay_out_complete)
+      dividend = share.dividends.create!(member:, status: :paid_out)
       dividend.create_pay_out!(amount_in_base_units: share.amount_in_base_units,
                                transaction_identifier: "seed-#{distribution.id}-#{member.id}")
     end
