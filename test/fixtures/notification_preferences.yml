@@ -15,11 +15,6 @@ dividend_paid_out:
   notification_name: 2
   enabled: true
 
-dividend_automatically_recontributed:
-  member: one
-  notification_name: 3
-  enabled: true
-
 distribution_settled:
   member: one
   notification_name: 4
@@ -43,11 +38,6 @@ dividend_received_disabled:
 dividend_paid_out_disabled:
   member: two
   notification_name: 2
-  enabled: false
-
-dividend_automatically_recontributed_disabled:
-  member: two
-  notification_name: 3
   enabled: false
 
 distribution_settled_disabled:

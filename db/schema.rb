@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_11_08_000002) do
+ActiveRecord::Schema[8.2].define(version: 2026_11_08_000003) do
   create_table "activity_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "message", null: false

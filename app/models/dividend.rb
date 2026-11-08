@@ -29,12 +29,4 @@ class Dividend < ApplicationRecord
               end
     ActivityLog.create(message:) if message
   end
-
-  scope :automatically_recontributed_notify_enabled, lambda {
-    joins(member: :notification_preferences)
-      .where(notification_preferences: {
-        id: NotificationPreference.dividend_automatically_recontributed,
-        enabled: true
-      })
-  }
 end

@@ -41,12 +41,6 @@ class DividendTest < ActiveSupport::TestCase
     assert_not_includes Dividend.recontributed, Dividend.pay_out_complete.first
   end
 
-  test 'automatically_recontributed_notify_enabled scope' do
-    assert_includes Dividend.automatically_recontributed_notify_enabled, dividends(:one)
-
-    assert_not_includes Dividend.automatically_recontributed_notify_enabled, dividends(:issued)
-  end
-
   test 'logs activity when status changes to pending_pay_out' do
     dividend = dividends(:one)
 

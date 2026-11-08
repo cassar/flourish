@@ -7,7 +7,6 @@ class NotificationPreference < ApplicationRecord
     contribution_received: 0,
     dividend_received: 1,
     dividend_paid_out: 2,
-    dividend_automatically_recontributed: 3,
     distribution_settled: 4,
     distribution_preview: 5
   }
