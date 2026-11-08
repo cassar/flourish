@@ -30,8 +30,8 @@ class DistributionsControllerTest < ActionDispatch::IntegrationTest
     recipients = css_select('[data-recipient]').map { |el| el.text.squish }
 
     assert_equal 3, recipients.size
-    assert_includes recipients, "Member #{members(:two).id} Pending"
-    assert_includes recipients, "Member #{members(:one).id}"
+    assert_includes recipients, "Member #{members(:two).id} Pending $5.00 HKD"
+    assert_includes recipients, "Member #{members(:one).id} $1.00 AUD"
   end
 
   test 'shows an empty state when no one was paid' do
