@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_08_13_122816) do
+ActiveRecord::Schema[8.2].define(version: 2026_11_08_000002) do
   create_table "activity_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "message", null: false
@@ -48,6 +48,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_08_13_122816) do
     t.integer "number", null: false
     t.datetime "updated_at", null: false
     t.integer "pod_id", null: false
+    t.integer "amount_in_base_units", default: 0, null: false
     t.index ["pod_id", "number"], name: "index_distributions_on_pod_id_and_number", unique: true
     t.index ["pod_id"], name: "index_distributions_on_pod_id"
   end
