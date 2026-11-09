@@ -1,35 +1,23 @@
 require 'test_helper'
 require_relative 'concerns/currency_validator_test'
+require_relative 'concerns/monetary_transaction_test'
 
 class PayOutTest < ActiveSupport::TestCase
   include CurrencyValidatorTest
+  include MonetaryTransactionTest
 
   test 'belongs to dividend association' do
     assert_equal dividends(:paid_out), pay_outs(:pay_out_complete).dividend
   end
 
   test 'amount in base units non positive integers' do
-    error = assert_raises ActiveRecord::RecordInvalid do
-      pay_outs(:pay_out_complete).update!(
-        amount_in_base_units: 0
-      )
-    end
-
-    expected_error = 'Validation failed: Amount in base units must be greater than 0'
-
-    assert_equal expected_error, error.message
+    @monetary_transaction = pay_outs(:pay_out_complete)
+    amount_in_base_units_non_positive_validation
   end
 
   test 'fees in base units negative integers' do
-    error = assert_raises ActiveRecord::RecordInvalid do
-      pay_outs(:pay_out_complete).update!(
-        fees_in_base_units: -1
-      )
-    end
-
-    expected_error = 'Validation failed: Fees in base units must be greater than or equal to 0'
-
-    assert_equal expected_error, error.message
+    @monetary_transaction = pay_outs(:pay_out_complete)
+    fees_in_base_units_negative_validation
   end
 
   test 'fees in base units default value' do
@@ -53,15 +41,13 @@ class PayOutTest < ActiveSupport::TestCase
   end
 
   test 'amount_formatted' do
-    assert_equal 100, pay_outs(:pay_out_complete).amount_in_base_units
-
-    assert_equal '$1.00 AUD', pay_outs(:pay_out_complete).amount_formatted
+    @monetary_transaction = pay_outs(:pay_out_complete)
+    amount_formatted_validation(100, '$1.00 AUD')
   end
 
   test 'fees_formatted' do
-    assert_equal 0, pay_outs(:pay_out_complete).fees_in_base_units
-
-    assert_equal '$0.00 AUD', pay_outs(:pay_out_complete).fees_formatted
+    @monetary_transaction = pay_outs(:pay_out_complete)
+    fees_formatted_validation(0, '$0.00 AUD')
   end
 
   test 'logs activity after creation' do
