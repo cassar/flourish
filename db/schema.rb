@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_11_08_000004) do
+ActiveRecord::Schema[8.2].define(version: 2026_11_10_000001) do
   create_table "activity_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "message", null: false
@@ -36,10 +36,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_11_08_000004) do
     t.string "transaction_identifier"
     t.datetime "updated_at", null: false
     t.string "uuid", null: false
-    t.integer "pod_id", null: false
+    t.integer "pot_id", null: false
     t.index ["distribution_id"], name: "index_contributions_on_distribution_id"
     t.index ["member_id"], name: "index_contributions_on_member_id"
-    t.index ["pod_id"], name: "index_contributions_on_pod_id"
+    t.index ["pot_id"], name: "index_contributions_on_pot_id"
     t.index ["transaction_identifier"], name: "index_contributions_on_transaction_identifier", unique: true
   end
 
@@ -47,10 +47,10 @@ ActiveRecord::Schema[8.2].define(version: 2026_11_08_000004) do
     t.datetime "created_at", null: false
     t.integer "number", null: false
     t.datetime "updated_at", null: false
-    t.integer "pod_id", null: false
+    t.integer "pot_id", null: false
     t.integer "amount_in_base_units", default: 0, null: false
-    t.index ["pod_id", "number"], name: "index_distributions_on_pod_id_and_number", unique: true
-    t.index ["pod_id"], name: "index_distributions_on_pod_id"
+    t.index ["pot_id", "number"], name: "index_distributions_on_pot_id_and_number", unique: true
+    t.index ["pot_id"], name: "index_distributions_on_pot_id"
   end
 
   create_table "dividends", force: :cascade do |t|
@@ -105,19 +105,19 @@ ActiveRecord::Schema[8.2].define(version: 2026_11_08_000004) do
     t.index ["transaction_identifier"], name: "index_pay_outs_on_transaction_identifier", unique: true
   end
 
-  create_table "pod_memberships", force: :cascade do |t|
-    t.integer "pod_id", null: false
+  create_table "pot_memberships", force: :cascade do |t|
+    t.integer "pot_id", null: false
     t.integer "member_id", null: false
     t.integer "role", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["member_id"], name: "index_pod_memberships_on_member_id"
-    t.index ["pod_id", "member_id"], name: "index_pod_memberships_on_pod_id_and_member_id", unique: true
-    t.index ["pod_id"], name: "index_pod_memberships_on_pod_id"
-    t.index ["pod_id"], name: "index_pod_memberships_on_pod_id_one_contributor", unique: true, where: "role = 0"
+    t.index ["member_id"], name: "index_pot_memberships_on_member_id"
+    t.index ["pot_id", "member_id"], name: "index_pot_memberships_on_pot_id_and_member_id", unique: true
+    t.index ["pot_id"], name: "index_pot_memberships_on_pot_id"
+    t.index ["pot_id"], name: "index_pot_memberships_on_pot_id_one_contributor", unique: true, where: "role = 0"
   end
 
-  create_table "pods", force: :cascade do |t|
+  create_table "pots", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -158,14 +158,14 @@ ActiveRecord::Schema[8.2].define(version: 2026_11_08_000004) do
   add_foreign_key "amounts", "distributions"
   add_foreign_key "contributions", "distributions"
   add_foreign_key "contributions", "members"
-  add_foreign_key "contributions", "pods"
-  add_foreign_key "distributions", "pods"
+  add_foreign_key "contributions", "pots"
+  add_foreign_key "distributions", "pots"
   add_foreign_key "dividends", "amounts"
   add_foreign_key "dividends", "members"
   add_foreign_key "expenses", "distributions"
   add_foreign_key "members", "users"
   add_foreign_key "notification_preferences", "members"
   add_foreign_key "pay_outs", "dividends"
-  add_foreign_key "pod_memberships", "members"
-  add_foreign_key "pod_memberships", "pods"
+  add_foreign_key "pot_memberships", "members"
+  add_foreign_key "pot_memberships", "pots"
 end

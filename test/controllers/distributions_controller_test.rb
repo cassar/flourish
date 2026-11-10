@@ -8,19 +8,19 @@ class DistributionsControllerTest < ActionDispatch::IntegrationTest
   test 'requires sign in' do
     sign_out :user
 
-    get pod_distribution_path(pods(:general), distributions(:one))
+    get pot_distribution_path(pots(:general), distributions(:one))
 
     assert_redirected_to new_user_session_path
   end
 
-  test 'is addressed by its number within the pod' do
-    path = pod_distribution_path(pods(:general), distributions(:one))
+  test 'is addressed by its number within the pot' do
+    path = pot_distribution_path(pots(:general), distributions(:one))
 
-    assert_equal "/pods/#{pods(:general).id}/distributions/1", path
+    assert_equal "/pots/#{pots(:general).id}/distributions/1", path
   end
 
   test 'shows the total, date and who was paid' do
-    get pod_distribution_path(pods(:general), distributions(:one))
+    get pot_distribution_path(pots(:general), distributions(:one))
 
     assert_response :success
     assert_select 'h1', 'Distribution #1'
@@ -37,7 +37,7 @@ class DistributionsControllerTest < ActionDispatch::IntegrationTest
   test 'shows a dividend whose member has since been removed' do
     members(:two).destroy # nullifies dividends(:pending_payout_two).member_id, as in production
 
-    get pod_distribution_path(pods(:general), distributions(:one))
+    get pot_distribution_path(pots(:general), distributions(:one))
 
     assert_response :success
 
@@ -47,28 +47,28 @@ class DistributionsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'shows an empty state when no one was paid' do
-    get pod_distribution_path(pods(:general), distributions(:two))
+    get pot_distribution_path(pots(:general), distributions(:two))
 
     assert_select 'p', text: 'No one was paid from this distribution.'
   end
 
-  test "can't see distributions of pods I'm not in" do
-    members(:one).pod_memberships.where(pod: pods(:general)).destroy_all
+  test "can't see distributions of pots I'm not in" do
+    members(:one).pot_memberships.where(pot: pots(:general)).destroy_all
 
-    get pod_distribution_path(pods(:general), distributions(:one))
+    get pot_distribution_path(pots(:general), distributions(:one))
 
     assert_response :not_found
   end
 
   test 'unknown distribution number is not found' do
-    get pod_distribution_path(pods(:general), 999)
+    get pot_distribution_path(pots(:general), 999)
 
     assert_response :not_found
   end
 
-  test 'pod page tiles link to the distribution' do
-    get pod_path(pods(:general))
+  test 'pot page tiles link to the distribution' do
+    get pot_path(pots(:general))
 
-    assert_select 'a[data-distribution][href=?]', pod_distribution_path(pods(:general), distributions(:one))
+    assert_select 'a[data-distribution][href=?]', pot_distribution_path(pots(:general), distributions(:one))
   end
 end

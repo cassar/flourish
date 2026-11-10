@@ -3,7 +3,7 @@
 <%
   # The contributor sits in the centre of the square stage; everyone else is
   # placed evenly on a circle around them (percentages of the stage). Larger
-  # pods alternate between two rings so neighbouring boxes don't collide.
+  # pots alternate between two rings so neighbouring boxes don't collide.
   count = @memberships.size
   contributor, *others = @memberships
   large = others.size > 10
@@ -15,14 +15,14 @@
 %>
 
 <div class="relative w-full max-w-md sm:max-w-3xl lg:max-w-5xl">
-  <%= link_to pods_path, class: 'btn btn-ghost btn-sm rounded-xl -ml-3 mb-4' do %>
+  <%= link_to pots_path, class: 'btn btn-ghost btn-sm rounded-xl -ml-3 mb-4' do %>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
       <path d="M15 18l-6-6 6-6" />
     </svg>
-    Pods
+    Pots
   <% end %>
 
-  <h1 class="text-2xl font-semibold mb-6 sm:mb-0 sm:absolute sm:left-0 sm:top-12">Pod <%= @pod.id %></h1>
+  <h1 class="text-2xl font-semibold mb-6 sm:mb-0 sm:absolute sm:left-0 sm:top-12">Pot <%= @pot.id %></h1>
 
   <div class="flex flex-wrap items-center justify-center gap-2 sm:block sm:relative sm:aspect-square sm:mx-auto <%= large ? 'sm:max-w-3xl' : 'sm:max-w-2xl' %>">
     <svg viewBox="0 0 100 100" class="hidden sm:block absolute inset-0 size-full" aria-hidden="true">
@@ -57,7 +57,7 @@
     <% else %>
       <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
         <% @distributions.each do |distribution| %>
-          <%= link_to pod_distribution_path(@pod, distribution), data: { distribution: true },
+          <%= link_to pot_distribution_path(@pot, distribution), data: { distribution: true },
               class: 'block bg-base-200 rounded-2xl px-4 py-5 text-center transition hover:bg-base-300/60' do %>
             <p class="text-lg font-semibold tabular-nums">
               <%= distribution.amount.format(with_currency: false) %>

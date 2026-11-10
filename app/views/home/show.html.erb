@@ -4,7 +4,7 @@
 
   <div class="mt-12 w-full max-w-xs flex flex-col gap-3">
     <% if user_signed_in? %>
-      <%= link_to 'Pods', pods_path, class: 'btn btn-primary rounded-2xl w-full' %>
+      <%= link_to 'Pots', pots_path, class: 'btn btn-primary rounded-2xl w-full' %>
       <%= button_to 'Sign out', destroy_user_session_path, method: :delete,
           class: 'btn btn-outline btn-primary rounded-2xl w-full', form_class: 'w-full' %>
     <% else %>

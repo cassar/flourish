@@ -5,14 +5,14 @@ class Member < ApplicationRecord
   has_many :contributions, dependent: :nullify
   has_many :notification_preferences, dependent: :destroy
 
-  has_many :pod_memberships, dependent: :destroy
-  has_many :pods, through: :pod_memberships
-  has_many :contributor_pod_memberships, -> { contributor }, class_name: 'PodMembership',
+  has_many :pot_memberships, dependent: :destroy
+  has_many :pots, through: :pot_memberships
+  has_many :contributor_pot_memberships, -> { contributor }, class_name: 'PotMembership',
                                                              dependent: :destroy, inverse_of: :member
-  has_many :contributor_pods, through: :contributor_pod_memberships, source: :pod
-  has_many :recipient_pod_memberships, -> { recipient }, class_name: 'PodMembership',
+  has_many :contributor_pots, through: :contributor_pot_memberships, source: :pot
+  has_many :recipient_pot_memberships, -> { recipient }, class_name: 'PotMembership',
                                                          dependent: :destroy, inverse_of: :member
-  has_many :recipient_pods, through: :recipient_pod_memberships, source: :pod
+  has_many :recipient_pots, through: :recipient_pot_memberships, source: :pot
 
   accepts_nested_attributes_for :notification_preferences
 

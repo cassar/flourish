@@ -1,7 +1,7 @@
 class Contribution < ApplicationRecord
   belongs_to :member
   belongs_to :distribution, optional: true
-  belongs_to :pod
+  belongs_to :pot
 
   include MonetaryTransaction
 

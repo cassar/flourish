@@ -1,11 +1,11 @@
-class Pod < ApplicationRecord
-  has_many :pod_memberships, dependent: :destroy
-  has_many :members, through: :pod_memberships
+class Pot < ApplicationRecord
+  has_many :pot_memberships, dependent: :destroy
+  has_many :members, through: :pot_memberships
   has_many :distributions, dependent: :nullify
   has_many :contributions, dependent: :nullify
 
   def contributor_membership
-    pod_memberships.contributor.first
+    pot_memberships.contributor.first
   end
 
   def contributor
@@ -13,10 +13,10 @@ class Pod < ApplicationRecord
   end
 
   def recipient_memberships
-    pod_memberships.recipient
+    pot_memberships.recipient
   end
 
   def recipients
-    members.merge(PodMembership.recipient)
+    members.merge(PotMembership.recipient)
   end
 end

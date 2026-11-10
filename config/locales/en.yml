@@ -1,11 +1,11 @@
 en:
   controllers:
-    pods:
+    pots:
       create:
-        success: "Pod created."
+        success: "Pot created."
       destroy:
-        success: "Pod deleted."
-        has_history: "Pod %{id} has contributions or distributions, so it can't be deleted."
+        success: "Pot deleted."
+        has_history: "Pot %{id} has contributions or distributions, so it can't be deleted."
 
   activerecord:
     attributes:

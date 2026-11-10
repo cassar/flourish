@@ -1,11 +1,11 @@
 <%= render 'shared/app_header' %>
 
 <div class="w-full max-w-md sm:max-w-3xl lg:max-w-5xl">
-  <%= link_to pod_path(@pod), class: 'btn btn-ghost btn-sm rounded-xl -ml-3 mb-4' do %>
+  <%= link_to pot_path(@pot), class: 'btn btn-ghost btn-sm rounded-xl -ml-3 mb-4' do %>
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
       <path d="M15 18l-6-6 6-6" />
     </svg>
-    Pod <%= @pod.id %>
+    Pot <%= @pot.id %>
   <% end %>
 
   <section class="bg-base-200 rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center max-w-md mx-auto">

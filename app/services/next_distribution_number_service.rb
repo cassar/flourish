@@ -1,5 +1,5 @@
 class NextDistributionNumberService
-  def self.call(pod)
-    pod.distributions.maximum(:number).to_i + 1
+  def self.call(pot)
+    pot.distributions.maximum(:number).to_i + 1
   end
 end

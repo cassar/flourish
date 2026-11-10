@@ -2,9 +2,9 @@
 
 one:
   number: 1
-  pod: general
+  pot: general
   amount_in_base_units: 123456
 
 two:
   number: 2
-  pod: general
+  pot: general

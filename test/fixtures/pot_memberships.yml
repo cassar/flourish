@@ -1,41 +1,41 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 member_one_contributor:
-  pod: member_one_contributions
+  pot: member_one_contributions
   member: one
   role: contributor
 
 member_one_recipient:
-  pod: member_one_contributions
+  pot: member_one_contributions
   member: admin
   role: recipient
 
 member_two_contributor:
-  pod: member_two_contributions
+  pot: member_two_contributions
   member: two
   role: contributor
 
 member_two_recipient:
-  pod: member_two_contributions
+  pot: member_two_contributions
   member: admin
   role: recipient
 
 general_contributor:
-  pod: general
+  pot: general
   member: admin
   role: contributor
 
 general_recipient_one:
-  pod: general
+  pot: general
   member: one
   role: recipient
 
 general_recipient_two:
-  pod: general
+  pot: general
   member: two
   role: recipient
 
 general_recipient_active:
-  pod: general
+  pot: general
   member: active
   role: recipient

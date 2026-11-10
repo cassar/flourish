@@ -2,7 +2,7 @@ class Amount < ApplicationRecord
   belongs_to :distribution
   has_many :dividends, dependent: :destroy
 
-  has_one :pod, through: :distribution
+  has_one :pot, through: :distribution
 
   include CurrencyValidator
 
