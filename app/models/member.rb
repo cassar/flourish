@@ -10,9 +10,6 @@ class Member < ApplicationRecord
   has_many :contributor_pot_memberships, -> { contributor }, class_name: 'PotMembership',
                                                              dependent: :destroy, inverse_of: :member
   has_many :contributor_pots, through: :contributor_pot_memberships, source: :pot
-  has_many :recipient_pot_memberships, -> { recipient }, class_name: 'PotMembership',
-                                                         dependent: :destroy, inverse_of: :member
-  has_many :recipient_pots, through: :recipient_pot_memberships, source: :pot
 
   accepts_nested_attributes_for :notification_preferences
 
