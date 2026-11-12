@@ -13,7 +13,7 @@
     "@hotwired/stimulus": "^3.2.2",
     "@hotwired/turbo-rails": "^8.0.23",
     "@rails/actioncable": "^8.1.400",
-    "@tailwindcss/cli": "^4.3.3",
+    "@tailwindcss/cli": "^4.3.5",
     "daisyui": "^5.7.50",
     "esbuild": "^0.28.2",
     "tailwindcss": "^4.1.18"
