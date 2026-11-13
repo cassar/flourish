@@ -25,12 +25,6 @@ class DistributionTest < ActiveSupport::TestCase
     assert_nil contributions(:one).reload.distribution
   end
 
-  test 'has one default amount' do
-    assert_equal Currencies::DEFAULT, amounts(:one).currency
-
-    assert_equal amounts(:one), distributions(:one).default_amount
-  end
-
   test 'date_formatted' do
     distribution = Distribution.new(created_at: '1st January 2023 5:30am')
 

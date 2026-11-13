@@ -15,10 +15,6 @@ class Distribution < ApplicationRecord
     Money.new(amount_in_base_units, 'AUD')
   end
 
-  def default_amount
-    amounts.find_by currency: Currencies::DEFAULT
-  end
-
   def date_formatted
     created_at.to_datetime.strftime('%a, %d %b %Y')
   end
