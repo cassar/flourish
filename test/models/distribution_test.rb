@@ -70,4 +70,8 @@ class DistributionTest < ActiveSupport::TestCase
   test 'amount is the paid out total in AUD' do
     assert_equal Money.new(123_456, 'AUD'), distributions(:one).amount
   end
+
+  test 'amount_formatted_without_currency' do
+    assert_equal '$1,234.56', distributions(:one).amount_formatted_without_currency
+  end
 end

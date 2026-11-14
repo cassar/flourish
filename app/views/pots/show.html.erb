@@ -60,7 +60,7 @@
           <%= link_to pot_distribution_path(@pot, distribution), data: { distribution: true },
               class: 'block bg-base-200 rounded-2xl px-4 py-5 text-center transition hover:bg-base-300/60' do %>
             <p class="text-lg font-semibold tabular-nums">
-              <%= distribution.amount.format(with_currency: false) %>
+              <%= distribution.amount_formatted_without_currency %>
               <span class="text-xs font-normal text-base-content/50">AUD</span>
             </p>
           <% end %>

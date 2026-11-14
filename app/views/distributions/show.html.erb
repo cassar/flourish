@@ -11,7 +11,7 @@
   <section class="bg-base-200 rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center max-w-md mx-auto">
     <h1 class="text-sm uppercase tracking-widest text-base-content/50 font-medium">Distribution <%= @distribution.name %></h1>
     <p class="mt-4 text-5xl font-semibold tabular-nums text-primary">
-      <%= @distribution.amount.format(with_currency: false) %>
+      <%= @distribution.amount_formatted_without_currency %>
     </p>
     <p class="mt-1 text-xs text-base-content/50">AUD</p>
     <p class="mt-4 text-sm text-base-content/60"><%= @distribution.date_formatted %></p>

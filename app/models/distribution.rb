@@ -15,6 +15,10 @@ class Distribution < ApplicationRecord
     Money.new(amount_in_base_units, 'AUD')
   end
 
+  def amount_formatted_without_currency
+    amount.format(with_currency: false)
+  end
+
   def date_formatted
     created_at.to_datetime.strftime('%a, %d %b %Y')
   end
