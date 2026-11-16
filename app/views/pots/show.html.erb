@@ -15,12 +15,7 @@
 %>
 
 <div class="relative w-full max-w-md sm:max-w-3xl lg:max-w-5xl">
-  <%= link_to pots_path, class: 'btn btn-ghost btn-sm rounded-xl -ml-3 mb-4' do %>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="size-4" aria-hidden="true">
-      <path d="M15 18l-6-6 6-6" />
-    </svg>
-    Pots
-  <% end %>
+  <%= render 'shared/back_link', path: pots_path, label: 'Pots' %>
 
   <h1 class="text-2xl font-semibold mb-6 sm:mb-0 sm:absolute sm:left-0 sm:top-12">Pot <%= @pot.id %></h1>
 
