@@ -1,4 +1,3 @@
-require_relative '../../app/services/currency_updater_service.rb'
 Money.default_bank = EuCentralBank.new
 Money.default_currency = Money::Currency.new("AUD")
 Money.locale_backend = :i18n
