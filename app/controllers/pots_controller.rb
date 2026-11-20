@@ -37,10 +37,6 @@ class PotsController < ApplicationController
 
   private
 
-  def current_member
-    current_user.member
-  end
-
   def history?(pot)
     pot.contributions.exists? || pot.distributions.exists?
   end
