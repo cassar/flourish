@@ -46,6 +46,18 @@ class DistributionsControllerTest < ActionDispatch::IntegrationTest
     assert_includes recipients, 'Former member Pending $5.00 HKD'
   end
 
+  test 'shows the contributor above the distribution' do
+    get pot_distribution_path(pots(:general), distributions(:two))
+
+    assert_select '[data-contributor]', text: /Member #{members(:one).id}\s+\$1.00/
+  end
+
+  test 'omits the contributor when the distribution has no contribution' do
+    get pot_distribution_path(pots(:general), distributions(:one))
+
+    assert_select '[data-contributor]', count: 0
+  end
+
   test 'shows an empty state when no one was paid' do
     get pot_distribution_path(pots(:general), distributions(:two))
 

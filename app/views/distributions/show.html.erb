@@ -3,6 +3,16 @@
 <div class="w-full max-w-md sm:max-w-3xl lg:max-w-5xl">
   <%= render 'shared/back_link', path: pot_path(@pot), label: "Pot #{@pot.id}" %>
 
+  <% if (contribution = @distribution.contribution) %>
+    <section class="mb-6 flex flex-col items-center">
+      <h2 class="text-xs uppercase tracking-widest text-base-content/50 font-medium mb-3">Contributed by</h2>
+      <div data-contributor class="bg-base-200 rounded-2xl px-4 py-2 text-center shadow-sm">
+        <p class="text-sm font-medium"><%= contribution.member&.display_name || 'Former member' %></p>
+        <p class="text-xs text-base-content/60 tabular-nums"><%= contribution.amount_formatted %></p>
+      </div>
+    </section>
+  <% end %>
+
   <section class="bg-base-200 rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center max-w-md mx-auto">
     <h1 class="text-sm uppercase tracking-widest text-base-content/50 font-medium">Distribution <%= @distribution.name %></h1>
     <p class="mt-4 text-5xl font-semibold tabular-nums text-primary">
