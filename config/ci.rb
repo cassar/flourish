@@ -11,7 +11,7 @@ CI.run do
   step "Style: Ruby", "bundle exec rubocop"
   step "Style: ERB", "yarn lint:erb"
 
-  step "Tests: Rails", "env RAILS_ENV=test bin/rails db:test:prepare test test:system"
+  step "Tests: Rails", "env RAILS_ENV=test bin/rails db:test:prepare test"
 
   # Buildkite soft-fails its Audit step, so advisories are reported but don't fail the run.
   heading "Security: Gem audit (non-blocking)", "bundle exec bundler-audit check --update", type: :title

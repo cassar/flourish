@@ -8,7 +8,6 @@ AllCops:
 plugins:
   - rubocop-rails
   - rubocop-minitest
-  - rubocop-capybara
 
 Layout/MultilineMethodCallIndentation:
   EnforcedStyle: indented

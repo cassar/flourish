@@ -108,9 +108,6 @@ group :development do
   # Code style checking for Minitest files.
   gem 'rubocop-minitest', require: false
 
-  # Code style checking for Capybara files.
-  gem 'rubocop-capybara', require: false
-
   # RuboCop extension for packaging-related linting (required by rubocop-rails).
   gem 'rubocop-packaging', require: false
 
@@ -130,14 +127,6 @@ end
 group :test do
   # Code coverage analysis tool for Ruby
   gem 'simplecov', require: false
-
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem 'capybara'
-  # Capybara's default app server for system tests
-  gem 'puma'
-
-  # A browser automation framework and ecosystem.
-  gem 'selenium-webdriver'
 
   # A mocking and stubbing library for Ruby
   gem 'mocha'
