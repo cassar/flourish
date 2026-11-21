@@ -3,9 +3,9 @@ en:
     pots:
       create:
         success: "Pot created."
+    pot_memberships:
       destroy:
-        success: "Pot deleted."
-        has_history: "Pot %{id} has contributions or distributions, so it can't be deleted."
+        success: "You left Pot %{id}."
 
   activerecord:
     attributes:
@@ -19,4 +19,4 @@ en:
       messages:
         unsupported_currency: "%{value} is not a supported currency"
         invalid_url: 'must be a valid URL'
-        already_has_contributor: 'already has a contributor'
+        is_distribution_contributor: "can't receive a dividend from their own distribution"

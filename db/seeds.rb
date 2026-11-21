@@ -23,22 +23,27 @@ people = %w[Ava Ben Chloe Dan Eve Finn Grace Hugo].map { |name| seed_user("#{nam
 
 puts 'Making some pots'
 if test_member.pots.none?
-  [people.first(3), people.first(6), people.last(2), people].each do |recipients|
+  [people.first(3), people.first(6), people.last(2), people].each do |others|
     pot = Pot.create!
-    pot.pot_memberships.create!(member: test_member, role: :contributor)
-    recipients.each { |member| pot.pot_memberships.create!(member:) }
+    [test_member, *others].each { |member| pot.pot_memberships.create!(member:) }
   end
 end
 
 puts 'Making some distributions'
-test_member.contributor_pots.order(:id).each_with_index do |pot, index|
+test_member.pots.order(:id).each_with_index do |pot, index|
   next if pot.distributions.any?
 
+  members = pot.members.order(:id).to_a
   [12_000, 4_550, 25_000, 800].first(index + 1).each.with_index(1) do |cents, number|
     distribution = pot.distributions.create!(number:, amount_in_base_units: cents)
 
-    # Paid to the pot's first two recipients, an equal share each.
-    recipients = pot.recipients.order(:id).first(2)
+    # Each distribution pays out one member's contribution; they take turns.
+    distribution.create_contribution!(pot:, member: members[(number - 1) % members.size],
+                                      amount_in_base_units: cents,
+                                      transaction_identifier: "seed-contribution-#{distribution.id}")
+
+    # Paid to the first two people who didn't contribute it, an equal share each.
+    recipients = distribution.recipients.order(:id).first(2)
     share = distribution.amounts.create!(currency: 'AUD', amount_in_base_units: cents / recipients.size)
     recipients.each do |member|
       dividend = share.dividends.create!(member:, status: :paid_out)

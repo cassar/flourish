@@ -11,7 +11,15 @@ class ContributionTest < ActiveSupport::TestCase
   end
 
   test 'belongs to distribution association' do
-    assert_equal distributions(:one), contributions(:one).distribution
+    assert_equal distributions(:two), contributions(:one).distribution
+  end
+
+  test 'a distribution can only pay out one contribution' do
+    contribution = contributions(:two)
+    contribution.distribution = distributions(:two)
+
+    assert_not contribution.valid?
+    assert_includes contribution.errors[:distribution_id], 'has already been taken'
   end
 
   test 'optional for distribution' do

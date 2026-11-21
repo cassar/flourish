@@ -3,7 +3,8 @@ class Distribution < ApplicationRecord
 
   has_many :amounts, dependent: :destroy
   has_many :dividends, through: :amounts
-  has_many :contributions, dependent: :nullify
+  # The one contribution this distribution pays out.
+  has_one :contribution, dependent: :nullify
   has_many :expenses, dependent: :nullify
 
   validates :number, uniqueness: { scope: :pot_id }, presence: true
@@ -17,6 +18,16 @@ class Distribution < ApplicationRecord
 
   def amount_formatted_without_currency
     amount.format(with_currency: false)
+  end
+
+  # The member whose contribution this distribution pays out.
+  def contributor_id
+    contribution&.member_id
+  end
+
+  # Everyone in the pot who can receive a dividend from this distribution.
+  def recipients
+    pot.members.where.not(id: contributor_id)
   end
 
   def date_formatted

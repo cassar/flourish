@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.2].define(version: 2026_11_10_000001) do
+ActiveRecord::Schema[8.2].define(version: 2026_11_21_000001) do
   create_table "activity_logs", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.text "message", null: false
@@ -37,7 +37,7 @@ ActiveRecord::Schema[8.2].define(version: 2026_11_10_000001) do
     t.datetime "updated_at", null: false
     t.string "uuid", null: false
     t.integer "pot_id", null: false
-    t.index ["distribution_id"], name: "index_contributions_on_distribution_id"
+    t.index ["distribution_id"], name: "index_contributions_on_distribution_id", unique: true
     t.index ["member_id"], name: "index_contributions_on_member_id"
     t.index ["pot_id"], name: "index_contributions_on_pot_id"
     t.index ["transaction_identifier"], name: "index_contributions_on_transaction_identifier", unique: true
@@ -108,13 +108,11 @@ ActiveRecord::Schema[8.2].define(version: 2026_11_10_000001) do
   create_table "pot_memberships", force: :cascade do |t|
     t.integer "pot_id", null: false
     t.integer "member_id", null: false
-    t.integer "role", default: 1, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["member_id"], name: "index_pot_memberships_on_member_id"
     t.index ["pot_id", "member_id"], name: "index_pot_memberships_on_pot_id_and_member_id", unique: true
     t.index ["pot_id"], name: "index_pot_memberships_on_pot_id"
-    t.index ["pot_id"], name: "index_pot_memberships_on_pot_id_one_contributor", unique: true, where: "role = 0"
   end
 
   create_table "pots", force: :cascade do |t|

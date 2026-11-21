@@ -15,12 +15,12 @@ class DistributionTest < ActiveSupport::TestCase
     assert_includes distributions(:one).dividends, dividends(:one)
   end
 
-  test 'has many contributions' do
-    assert_includes distributions(:one).contributions, contributions(:one)
+  test 'has one contribution' do
+    assert_equal contributions(:one), distributions(:two).contribution
   end
 
-  test 'dependent nullify contributions' do
-    distributions(:one).destroy!
+  test 'dependent nullify contribution' do
+    distributions(:two).destroy!
 
     assert_nil contributions(:one).reload.distribution
   end
@@ -65,6 +65,22 @@ class DistributionTest < ActiveSupport::TestCase
     end
 
     assert_equal 'Distribution #999 created', ActivityLog.last.message
+  end
+
+  test "contributor_id is the contribution's member" do
+    assert_equal members(:one).id, distributions(:two).contributor_id
+  end
+
+  test 'contributor_id is nil without a contribution' do
+    assert_nil distributions(:one).contributor_id
+  end
+
+  test 'recipients are everyone in the pot except the contributor' do
+    recipients = distributions(:two).recipients
+
+    assert_includes recipients, members(:admin)
+    assert_includes recipients, members(:two)
+    assert_not_includes recipients, members(:one)
   end
 
   test 'amount is the paid out total in AUD' do

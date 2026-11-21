@@ -5,6 +5,8 @@ class Contribution < ApplicationRecord
 
   include MonetaryTransaction
 
+  validates :distribution_id, uniqueness: { allow_nil: true }
+
   before_create { self.uuid ||= SecureRandom.uuid }
   after_create_commit :log_activity
 

@@ -41,6 +41,27 @@ class DividendTest < ActiveSupport::TestCase
     end
   end
 
+  test "the contributor can't receive a dividend from their own distribution" do
+    dividend = Dividend.new(amount: amounts(:three), member: members(:one))
+
+    assert_not dividend.valid?
+    assert_includes dividend.errors[:member], "can't receive a dividend from their own distribution"
+  end
+
+  test 'anyone else in the pot can receive a dividend from the distribution' do
+    assert_predicate Dividend.new(amount: amounts(:three), member: members(:two)), :valid?
+  end
+
+  test 'a dividend missing its member or amount fails only on the missing association' do
+    without_member = Dividend.new(amount: amounts(:three))
+    without_amount = Dividend.new(member: members(:one))
+
+    assert_not without_member.valid?
+    assert_not without_amount.valid?
+    assert_equal ['must exist'], without_member.errors[:member]
+    assert_empty without_amount.errors[:member]
+  end
+
   test 'defaults to pending payout' do
     assert_predicate Dividend.new, :pending_payout?
   end

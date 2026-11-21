@@ -32,22 +32,13 @@ class PotsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'article.card', text: /Pot #{pots(:member_two_contributions).id}\b/, count: 0
   end
 
-  test 'index only offers delete on pots I contribute to' do
-    get pots_path
-
-    assert_select 'form[action=?][data-turbo-confirm][data-confirm-button=Delete]',
-                  pot_path(pots(:member_one_contributions))
-    assert_select 'dialog#confirm-dialog'
-    assert_select 'form[action=?]', pot_path(pots(:general)), count: 0
-  end
-
   test 'index cards link to each pot' do
     get pots_path
 
     assert_select 'article.card a[href=?]', pot_path(pots(:general))
   end
 
-  test 'show lists the people in the pot, contributor first' do
+  test 'show lists the people in the pot' do
     members(:admin).update!(name: 'Luke')
 
     get pot_path(pots(:general))
@@ -57,7 +48,8 @@ class PotsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'section p', '4 people'
     people = css_select('[data-person]').map { |li| li.text.squish }
 
-    assert_equal 'Luke Contributor', people.first
+    assert_equal 4, people.size
+    assert_includes people, 'Luke'
     assert_includes people, "Member #{members(:one).id}"
     assert_includes people, "Member #{members(:two).id}"
   end
@@ -90,40 +82,19 @@ class PotsControllerTest < ActionDispatch::IntegrationTest
     assert_select 'p', text: 'No pots yet.'
   end
 
-  test 'create makes a pot with me as the contributor' do
+  test 'create makes a pot with me in it' do
     assert_difference 'Pot.count', 1 do
       post pots_path
     end
 
     assert_redirected_to pots_path
-    assert_equal members(:one), Pot.last.contributor
+    assert_equal [members(:one)], Pot.last.members
   end
 
-  test 'destroy an empty pot' do
-    post pots_path
-    pot = Pot.last
+  test 'show offers to leave the pot' do
+    get pot_path(pots(:general))
 
-    assert_difference 'Pot.count', -1 do
-      delete pot_path(pot)
-    end
-
-    assert_redirected_to pots_path
-  end
-
-  test "can't delete pots I'm only a recipient of" do
-    assert_no_difference 'Pot.count' do
-      delete pot_path(pots(:general))
-    end
-
-    assert_response :not_found
-  end
-
-  test "won't delete a pot with contributions or distributions" do
-    assert_no_difference 'Pot.count' do
-      delete pot_path(pots(:member_one_contributions))
-    end
-
-    assert_redirected_to pots_path
-    assert_match "Pot #{pots(:member_one_contributions).id} has contributions", flash[:alert]
+    assert_select 'form[action=?][data-turbo-confirm][data-confirm-button=Leave]', pot_membership_path(pots(:general))
+    assert_select 'dialog#confirm-dialog'
   end
 end
