@@ -16,8 +16,7 @@
 <div class="relative w-full max-w-md sm:max-w-3xl lg:max-w-5xl">
   <%= render 'shared/back_link', path: pots_path, label: 'Pots' %>
 
-  <div class="flex items-center justify-between gap-4 mb-6 sm:mb-0 sm:absolute sm:inset-x-0 sm:top-12 sm:z-10">
-    <h1 class="text-2xl font-semibold">Pot <%= @pot.id %></h1>
+  <div class="flex justify-end mb-6 sm:mb-0 sm:absolute sm:right-0 sm:top-12 sm:z-10">
     <%= button_to 'Leave pot', pot_membership_path(@pot), method: :delete,
         class: 'btn btn-ghost btn-sm rounded-xl text-base-content/60 hover:text-error',
         form: { data: { turbo_confirm: "Leave Pot #{@pot.id}?", confirm_button: 'Leave' } } %>
@@ -31,7 +30,8 @@
     </svg>
 
     <section class="w-full mb-4 sm:mb-0 sm:w-52 sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 bg-base-200 rounded-3xl p-6 flex flex-col items-center text-center shadow-sm">
-      <%= render 'shared/plant', class: 'size-20 mb-3' %>
+      <h1 class="rounded-2xl px-4 py-2 whitespace-nowrap shadow-sm bg-primary text-primary-content font-medium text-sm">Pot <%= @pot.id %></h1>
+      <%= render 'shared/plant', class: 'size-20 my-3' %>
       <p class="text-sm text-base-content/60"><%= pluralize(count, 'person', plural: 'people') %></p>
     </section>
 
