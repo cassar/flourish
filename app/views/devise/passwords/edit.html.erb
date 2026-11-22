@@ -1,5 +1,5 @@
 <% content_for :card do %>
-  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'space-y-5' }) do |f| %>
+  <%= form_with(model: resource, as: resource_name, url: password_path(resource_name), method: :put, class: 'space-y-5') do |f| %>
     <%= render 'devise/shared/error_messages', resource: %>
     <%= f.hidden_field :reset_password_token %>
 

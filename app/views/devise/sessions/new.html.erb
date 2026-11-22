@@ -1,5 +1,5 @@
 <% content_for :card do %>
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'space-y-5' }) do |f| %>
+  <%= form_with(model: resource, as: resource_name, url: session_path(resource_name), class: 'space-y-5') do |f| %>
     <fieldset class="fieldset">
       <%= f.label :email, 'Email', class: 'fieldset-legend text-xs uppercase tracking-widest text-base-content/50' %>
       <%= f.email_field :email, autofocus: true, autocomplete: 'email', class: 'input w-full rounded-xl' %>
