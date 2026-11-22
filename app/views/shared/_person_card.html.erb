@@ -1,4 +1,4 @@
-<div data-<%= data_attribute %> class="bg-base-200 rounded-2xl px-4 py-2 text-center shadow-sm">
+<%= tag.div data: { data_attribute => true }, class: "bg-base-200 rounded-2xl px-4 py-2 text-center shadow-sm" do %>
   <p class="text-sm font-medium<%= ' flex items-center justify-center gap-2' if flex %>">
     <%= name %>
     <% if badge %>
@@ -6,4 +6,4 @@
     <% end %>
   </p>
   <p class="text-xs text-base-content/60 tabular-nums"><%= amount %></p>
-</div>
+<% end %>
