@@ -5,4 +5,7 @@
   <path d="M32 23 C27 19 27 11 32 6 C37 11 37 19 32 23 Z" class="fill-accent" />
   <rect x="17" y="42" width="30" height="5" rx="2" class="fill-primary" />
   <path d="M20 47 H44 L41 58 H23 Z" class="fill-primary/70" />
+  <% if local_assigns[:label] %>
+    <text x="32" y="52.75" text-anchor="middle" dominant-baseline="central" font-size="5.5" font-weight="600" class="fill-primary-content"><%= label %></text>
+  <% end %>
 </svg>
