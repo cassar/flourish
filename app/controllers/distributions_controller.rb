@@ -1,6 +1,4 @@
 class DistributionsController < ApplicationController
-  before_action :authenticate_user!
-
   def show
     @pot = current_member.pots.find(params.expect(:pot_id))
     @distribution = @pot.distributions.find_by!(number: params.expect(:id))

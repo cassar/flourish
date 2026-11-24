@@ -1,6 +1,4 @@
 class PotsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     @pots = current_member.pots
       .left_joins(:pot_memberships)
