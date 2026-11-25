@@ -189,7 +189,6 @@ GEM
       bigdecimal
       money (~> 7.0)
       nokogiri (~> 1.11)
-    excon (1.9.1)
     ffi (1.17.4-aarch64-linux-gnu)
     ffi (1.17.4-arm64-darwin)
     ffi (1.17.4-x86_64-darwin)
@@ -487,7 +486,6 @@ DEPENDENCIES
   debug
   devise!
   eu_central_bank
-  excon
   figaro!
   hcaptcha (~> 7.1)
   httparty
