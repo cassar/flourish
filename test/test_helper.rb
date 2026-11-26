@@ -11,7 +11,6 @@ SimpleCov.start 'rails' do
   group 'Jobs',        'app/jobs'
   group 'Helpers',     'app/helpers'
 
-  skip 'app/mailers/application_mailer.rb'
   skip 'app/jobs/application_job.rb'
   skip 'app/channels/application_cable/channel.rb'
   skip 'app/channels/application_cable/connection.rb'
