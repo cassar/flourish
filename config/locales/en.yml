@@ -3,6 +3,9 @@ en:
     pots:
       create:
         success: "Pot created."
+    contributions:
+      create:
+        success: "Thanks! Distribution %{name} has been created."
     pot_memberships:
       destroy:
         success: "You left Pot %{id}."

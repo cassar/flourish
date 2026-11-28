@@ -45,6 +45,7 @@ class PotsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select 'h1', "Pot #{pots(:general).id}"
+    assert_select 'a[data-contribute][href=?]', new_pot_contribution_path(pots(:general)), 'Contribute'
     assert_select 'section p', '4 people'
     people = css_select('[data-person]').map { |li| li.text.squish }
 

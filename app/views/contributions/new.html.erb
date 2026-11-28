@@ -1,0 +1,48 @@
+<%= render 'shared/app_header' %>
+
+<% others = @pot.members.count - 1 %>
+
+<div class="w-full max-w-md sm:max-w-3xl lg:max-w-5xl">
+  <%= render 'shared/back_link', path: pot_path(@pot), label: "Pot #{@pot.id}" %>
+
+  <section class="bg-base-200 rounded-3xl p-8 sm:p-10 max-w-md mx-auto">
+    <div class="flex flex-col items-center text-center">
+      <%= render 'shared/plant', class: 'size-20 mb-2' %>
+      <h1 class="text-sm uppercase tracking-widest text-base-content/50 font-medium">Contribute to Pot <%= @pot.id %></h1>
+    </div>
+
+    <%= form_with scope: :contribution, url: pot_contributions_path(@pot), class: 'mt-6 space-y-6' do |f| %>
+      <fieldset class="fieldset">
+        <%= f.label :amount, 'Amount', class: 'fieldset-legend text-xs uppercase tracking-widest text-base-content/50' %>
+        <label class="input input-lg w-full rounded-2xl <%= 'input-error' if @error %>">
+          <span class="text-base-content/50">$</span>
+          <%= f.text_field :amount, value: @amount, inputmode: 'decimal', autocomplete: 'off', autofocus: true,
+              placeholder: '0.00', required: true, class: 'grow text-2xl font-semibold tabular-nums',
+              aria: { describedby: ('contribution_amount_error' if @error) } %>
+          <span class="text-xs text-base-content/50">AUD</span>
+        </label>
+        <% if @error %>
+          <p id="contribution_amount_error" class="text-sm text-error mt-1"><%= @error %></p>
+        <% end %>
+      </fieldset>
+
+      <div>
+        <h2 class="text-xs uppercase tracking-widest text-base-content/50 font-medium mb-3">What happens next</h2>
+        <ol class="space-y-3 text-sm">
+          <% [
+            ['A new distribution is created', 'for your contribution, in Pot %d.' % @pot.id],
+            ['Everyone in the pot is notified', 'so they know it’s on its way.'],
+            ['It closes after a day', "and dividends are paid out to the #{pluralize(others, 'other member')}."]
+          ].each.with_index(1) do |(title, detail), step| %>
+            <li class="flex gap-3">
+              <span class="flex-none size-6 rounded-full bg-primary text-primary-content text-xs font-semibold flex items-center justify-center"><%= step %></span>
+              <p><span class="font-medium"><%= title %></span> <span class="text-base-content/60"><%= detail %></span></p>
+            </li>
+          <% end %>
+        </ol>
+      </div>
+
+      <%= f.submit 'Contribute', class: 'btn btn-primary rounded-2xl w-full' %>
+    <% end %>
+  </section>
+</div>

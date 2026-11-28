@@ -31,6 +31,8 @@
 
     <section class="w-full mb-4 sm:mb-0 sm:w-52 sm:absolute sm:left-1/2 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2 bg-base-200 rounded-3xl p-6 flex flex-col items-center text-center shadow-sm">
       <h1 class="sr-only">Pot <%= @pot.id %></h1>
+      <%= link_to 'Contribute', new_pot_contribution_path(@pot), data: { contribute: true },
+          class: 'btn btn-primary btn-sm rounded-2xl px-5 shadow-sm mb-2' %>
       <%= render 'shared/plant', class: 'size-32 mb-1', label: "Pot #{@pot.id}" %>
       <p class="text-sm text-base-content/60"><%= pluralize(count, 'person', plural: 'people') %></p>
     </section>
