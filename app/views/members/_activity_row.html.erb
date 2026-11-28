@@ -7,7 +7,7 @@
         <span class="badge badge-warning badge-sm"><%= badge %></span>
       <% end %>
     </p>
-    <p class="text-xs text-base-content/60"><%= date.strftime('%a, %-d %b %Y') %></p>
+    <p class="text-xs text-base-content/60"><%= date.to_datetime.strftime('%a, %-d %b %Y') %></p>
   </div>
   <p class="text-sm font-semibold tabular-nums"><%= amount %></p>
 <% end %>

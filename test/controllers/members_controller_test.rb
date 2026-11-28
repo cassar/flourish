@@ -35,6 +35,14 @@ class MembersControllerTest < ActionDispatch::IntegrationTest
     assert_select 'a[data-dividend][href=?]', pot_distribution_path(pots(:general), distributions(:one))
   end
 
+  test 'shows a dividend whose created_at the database returned as a String' do
+    Dividend.any_instance.stubs(:created_at).returns('2024-10-14 00:00:00')
+
+    get pot_member_path(pots(:general), members(:one))
+
+    assert_response :success
+  end
+
   test 'shows only contributions made to this pot' do
     get pot_member_path(pots(:member_one_contributions), members(:one))
 
