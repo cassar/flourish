@@ -163,6 +163,15 @@ GEM
     bundler-audit (0.9.3)
       bundler (>= 1.2.0)
       thor (~> 1.0)
+    capybara (3.40.0)
+      addressable
+      matrix
+      mini_mime (>= 0.1.3)
+      nokogiri (~> 1.11)
+      rack (>= 1.6.0)
+      rack-test (>= 0.6.3)
+      regexp_parser (>= 1.5, < 3.0)
+      xpath (~> 3.2)
     childprocess (5.1.0)
       logger (~> 1.5)
     concurrent-ruby (1.3.8)
@@ -257,6 +266,7 @@ GEM
       net-pop
       net-smtp
     marcel (2.1.0)
+    matrix (0.4.3)
     mini_mime (1.1.5)
     minitest (6.0.6)
       drb (~> 2.0)
@@ -308,6 +318,8 @@ GEM
       date
       stringio
     public_suffix (7.0.5)
+    puma (8.1.3)
+      nio4r (~> 2.0)
     raabro (1.5.0)
     racc (1.8.1)
     rack (3.2.8)
@@ -393,7 +405,13 @@ GEM
       ffi (~> 1.12)
       logger
     ruby2_keywords (0.0.5)
+    rubyzip (3.7.0)
     securerandom (0.4.1)
+    selenium-webdriver (4.54.0)
+      base64 (~> 0.2)
+      logger (~> 1.4)
+      rubyzip (>= 1.2.2, < 4.0)
+      websocket (~> 1.0)
     simplecov (1.3.2)
     solid_cable (4.1.0)
       actioncable (>= 7.2)
@@ -461,10 +479,13 @@ GEM
       addressable (>= 2.8.0)
       crack (>= 0.3.2)
       hashdiff (>= 0.4.0, < 2.0.0)
+    websocket (1.2.11)
     websocket-driver (0.8.2)
       base64
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    xpath (3.2.0)
+      nokogiri (~> 1.8)
     zeitwerk (2.8.3)
 
 PLATFORMS
@@ -483,6 +504,7 @@ DEPENDENCIES
   bootsnap
   brakeman
   bundler-audit
+  capybara
   cssbundling-rails
   debug
   devise!
@@ -499,6 +521,7 @@ DEPENDENCIES
   mocha
   money
   ostruct
+  puma
   rails!
   raptor
   rubocop
@@ -507,6 +530,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rails
   ruby-vips (~> 2.0)
+  selenium-webdriver
   simplecov
   solid_cable
   solid_cache

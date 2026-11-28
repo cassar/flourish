@@ -129,5 +129,8 @@ group :test do
   gem 'mocha'
 
   # Library for stubbing and setting expectations on HTTP requests in Ruby.
+  gem 'capybara'
+  gem 'puma'
+  gem 'selenium-webdriver'
   gem 'webmock'
 end

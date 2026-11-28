@@ -53,7 +53,7 @@ steps:
         -e RAILS_ENV=test \
         -e CI=true \
         $$CI_IMAGE \
-        bash -c "yarn install --immutable && bin/rails db:test:prepare test"
+        bash -c "yarn install --immutable && bin/rails db:test:prepare test:all"
       status=$$?
       sudo chown -R "$(id -u):$(id -g)" "$(pwd)" || true
       exit $$status

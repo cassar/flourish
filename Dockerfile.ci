@@ -10,9 +10,25 @@ WORKDIR /rails
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
-    build-essential chromium chromium-driver curl git libsqlite3-dev libvips-dev libyaml-dev node-gyp pkg-config python-is-python3 \
-    && ln -s /usr/bin/chromium /usr/bin/google-chrome \
+    build-essential curl git libsqlite3-dev libvips-dev libyaml-dev node-gyp pkg-config python-is-python3 \
     && rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y ca-certificates curl && \
+    arch="$(dpkg --print-architecture)" && \
+    case "$arch" in \
+        amd64) common=baabe01daaf628d599e14cf331d8b7cd1453e384; sandbox=52dbf5c3edb4e7e4e2ea6e10b655f738fb962617; chromium=122a1721a282240e07dcc9f8f769d0a40361b789; driver=c1db873fb82b0925cc54bc63a0755b635af8cf4d ;; \
+        arm64) common=e337bf346620b9a567a334447bbdef48c209e8d7; sandbox=27f0797606f1f66e278e4cc4d933f619367ee487; chromium=0a6923b2ba8a50de74ed744a8680db505a22d0dc; driver=5d1257d67fc8f36e874b1e31e481da83aa8a5d5d ;; \
+        *) echo "no pinned chromium build for arch $arch" >&2; exit 1 ;; \
+    esac && \
+    curl -sSL -o /tmp/chromium-common.deb "https://snapshot.debian.org/file/$common" && \
+    curl -sSL -o /tmp/chromium-sandbox.deb "https://snapshot.debian.org/file/$sandbox" && \
+    curl -sSL -o /tmp/chromium.deb "https://snapshot.debian.org/file/$chromium" && \
+    curl -sSL -o /tmp/chromium-driver.deb "https://snapshot.debian.org/file/$driver" && \
+    apt-get install --no-install-recommends -y /tmp/chromium-common.deb /tmp/chromium-sandbox.deb /tmp/chromium.deb /tmp/chromium-driver.deb && \
+    rm -f /tmp/chromium*.deb && \
+    ln -s /usr/bin/chromium /usr/bin/google-chrome && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 ENV BUNDLE_PATH="/usr/local/bundle" \
     CHROME_BIN=/usr/bin/chromium
