@@ -1,0 +1,19 @@
+<% classes = 'flex items-center justify-between gap-4 bg-base-200 rounded-2xl px-5 py-3 shadow-sm' %>
+<% content = capture do %>
+  <div>
+    <p class="text-sm font-medium flex items-center gap-2">
+      <%= distribution ? "Distribution #{distribution.name}" : 'Awaiting distribution' %>
+      <% if badge %>
+        <span class="badge badge-warning badge-sm"><%= badge %></span>
+      <% end %>
+    </p>
+    <p class="text-xs text-base-content/60"><%= date.strftime('%a, %-d %b %Y') %></p>
+  </div>
+  <p class="text-sm font-semibold tabular-nums"><%= amount %></p>
+<% end %>
+<% if distribution %>
+  <%= link_to content, pot_distribution_path(distribution.pot_id, distribution),
+      data: { data_attribute => true }, class: "#{classes} transition hover:bg-base-300/60" %>
+<% else %>
+  <%= tag.div content, data: { data_attribute => true }, class: classes %>
+<% end %>

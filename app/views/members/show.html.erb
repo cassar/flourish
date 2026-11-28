@@ -1,0 +1,42 @@
+<%= render 'shared/app_header' %>
+
+<div class="w-full max-w-md sm:max-w-3xl lg:max-w-5xl">
+  <%= render 'shared/back_link', path: pot_path(@pot), label: "Pot #{@pot.id}" %>
+
+  <section class="bg-base-200 rounded-3xl p-8 sm:p-10 flex flex-col items-center text-center max-w-md mx-auto">
+    <p class="text-5xl" aria-hidden="true">🐝</p>
+    <h1 class="mt-4 text-2xl font-semibold"><%= @member.display_name %></h1>
+    <p class="mt-2 text-sm text-base-content/60">
+      In Pot <%= @pot.id %> since <%= @membership.created_at.strftime('%-d %b %Y') %>
+    </p>
+  </section>
+
+  <section class="mt-10 max-w-md mx-auto">
+    <h2 class="text-xs uppercase tracking-widest text-base-content/50 font-medium mb-3 text-center">Contributions</h2>
+    <% if @contributions.empty? %>
+      <p class="bg-base-200 rounded-3xl p-6 text-center text-sm text-base-content/60">No contributions yet.</p>
+    <% else %>
+      <div class="flex flex-col gap-2">
+        <% @contributions.each do |contribution| %>
+          <%= render 'members/activity_row', data_attribute: 'contribution', distribution: contribution.distribution,
+              amount: contribution.amount_formatted, date: contribution.created_at, badge: nil %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+
+  <section class="mt-10 max-w-md mx-auto">
+    <h2 class="text-xs uppercase tracking-widest text-base-content/50 font-medium mb-3 text-center">Dividends</h2>
+    <% if @dividends.empty? %>
+      <p class="bg-base-200 rounded-3xl p-6 text-center text-sm text-base-content/60">No dividends yet.</p>
+    <% else %>
+      <div class="flex flex-col gap-2">
+        <% @dividends.each do |dividend| %>
+          <%= render 'members/activity_row', data_attribute: 'dividend', distribution: dividend.amount.distribution,
+              amount: (dividend.pay_out || dividend.amount).amount_formatted, date: dividend.created_at,
+              badge: ('Pending' if dividend.pending_payout?) %>
+        <% end %>
+      </div>
+    <% end %>
+  </section>
+</div>

@@ -10,6 +10,8 @@ class Dividend < ApplicationRecord
   has_one :distribution, through: :amount
   has_one :pay_out, dependent: :destroy
 
+  scope :in_pot, ->(pot) { joins(amount: :distribution).where(distributions: { pot_id: pot.id }) }
+
   validate :not_to_the_contributor, if: -> { member_id_changed? || amount_id_changed? }
 
   after_update_commit :log_status_change, if: :saved_change_to_status?

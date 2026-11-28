@@ -36,12 +36,12 @@
     </section>
 
     <% @memberships.zip(positions).each do |membership, (x, y)| %>
-      <div data-person style="--x: <%= x %>%; --y: <%= y %>%"
-           class="sm:absolute sm:left-(--x) sm:top-(--y) sm:-translate-x-1/2 sm:-translate-y-1/2 rounded-2xl text-center whitespace-nowrap shadow-sm bg-base-200 <%= large ? 'px-3 py-1.5 lg:px-4 lg:py-2' : 'px-4 py-2' %>">
+      <%= link_to pot_member_path(@pot, membership.member), data: { person: true }, style: "--x: #{x}%; --y: #{y}%",
+          class: "block sm:absolute sm:left-(--x) sm:top-(--y) sm:-translate-x-1/2 sm:-translate-y-1/2 rounded-2xl text-center whitespace-nowrap shadow-sm bg-base-200 transition hover:bg-base-300/60 #{large ? 'px-3 py-1.5 lg:px-4 lg:py-2' : 'px-4 py-2'}" do %>
         <p class="font-medium before:content-['🐝'] before:mr-1.5 <%= large ? 'text-xs lg:text-sm' : 'text-sm' %>">
           <%= membership.member.display_name %>
         </p>
-      </div>
+      <% end %>
     <% end %>
   </div>
 
