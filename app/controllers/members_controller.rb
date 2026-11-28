@@ -1,6 +1,4 @@
 class MembersController < ApplicationController
-  before_action :authenticate_user!
-
   def show
     @pot = current_member.pots.find(params.expect(:pot_id))
     @membership = @pot.pot_memberships.find_by!(member_id: params.expect(:id))
